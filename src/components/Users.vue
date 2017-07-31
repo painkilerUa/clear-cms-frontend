@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="users">
 	{{users.length}}
   </div>
 </template>
