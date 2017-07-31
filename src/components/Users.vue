@@ -1,6 +1,6 @@
 <template>
   <div class="users">
-	{{users.length}}
+	 <h2>{{users.length}} Users in store</h2>
   </div>
 </template>
 
@@ -9,10 +9,6 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'users',
-  data () {
-    return {
-    }
-  },
   computed: {
     ...mapGetters([
       'users'
