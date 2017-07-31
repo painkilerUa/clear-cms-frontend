@@ -10,7 +10,7 @@
 import {mapActions} from 'vuex'
 
 export default {
-  name: 'hello',
+  name: 'users',
   data () {
     return {
     }
