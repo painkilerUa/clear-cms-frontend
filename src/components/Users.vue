@@ -1,19 +1,22 @@
 <template>
   <div class="hello">
 	{{users}}
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est consequatur commodi laboriosam officia assumenda impedit. Reprehenderit saepe, hic, nobis ut, odio ex harum iure rem repellendus voluptatibus cumque id odit.
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'users',
   data () {
     return {
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getUsers'
+    ])
   },
   methods: {
     ...mapActions([
