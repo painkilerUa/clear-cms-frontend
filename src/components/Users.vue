@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-	{{users}}
+	{{users.length}}
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getUsers'
+      'users'
     ])
   },
   methods: {
