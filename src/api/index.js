@@ -14,26 +14,31 @@ const users = [
   {
     id: 1,
     name: 'User 1',
+    role: 'Admin'
     date: '2017-06-29 12:09:33'
   },
   {
     id: 2,
     name: 'User 2',
+    role: 'Admin'
     date: '2017-06-29 12:09:33'
   },
   {
     id: 3,
     name: 'User 3',
+    role: 'Admin'
     date: '2017-06-29 12:09:33'
   },
   {
     id: 4,
     name: 'User 4',
+    role: 'Admin'
     date: '2017-06-29 12:09:33'
   },
   {
     id: 5,
     name: 'User 5',
+    role: 'Admin'
     date: '2017-06-29 12:09:33'
   }
 ]
