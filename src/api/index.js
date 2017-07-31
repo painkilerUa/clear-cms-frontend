@@ -6,9 +6,27 @@ import Vue from 'vue'
 
 const api = {}
 
+export default api
+
 /**
  *  Fake data start
  **/
+const content = [
+  {
+    author_id: 'Arthur',
+    searchable_id: 1,
+    language_id: 1,
+    category_id: 1,
+    type_id: 1
+  },
+  {
+    author_id: 'Arthur',
+    searchable_id: 2,
+    language_id: 2,
+    category_id: 2,
+    type_id: 2
+  }
+]
 
 const users = [
   {
@@ -56,6 +74,7 @@ api.serverURL = 'your api server url'
  */
 
 api.requestUsers = (urlEnd, type, payload = {}) => Promise.resolve(users)
+api.requestContent = (urlEnd, type, payload = {}) => Promise.resolve(content)
 
 /**
  * Stabs for getters end
@@ -65,5 +84,3 @@ api.requestUsers = (urlEnd, type, payload = {}) => Promise.resolve(users)
 * Request to back-end api
 */
 api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
-
-export default api
