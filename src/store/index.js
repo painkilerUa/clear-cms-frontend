@@ -10,7 +10,7 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 const state = {
-  users: [],
+  users: []
 }
 
 export default new Vuex.Store({

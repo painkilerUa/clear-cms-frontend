@@ -14,36 +14,26 @@ const users = [
   {
     id: 1,
     name: 'User 1',
-    get groups () { return groups },
-    get products () { return products },
     date: '2017-06-29 12:09:33'
   },
   {
     id: 2,
     name: 'User 2',
-    get groups () { return groups },
-    get products () { return products },
     date: '2017-06-29 12:09:33'
   },
   {
     id: 3,
     name: 'User 3',
-    get groups () { return groups },
-    get products () { return products },
     date: '2017-06-29 12:09:33'
   },
   {
     id: 4,
     name: 'User 4',
-    get groups () { return groups },
-    get products () { return products },
     date: '2017-06-29 12:09:33'
   },
   {
     id: 5,
     name: 'User 5',
-    get groups () { return groups },
-    get products () { return products },
     date: '2017-06-29 12:09:33'
   }
 ]

@@ -1,5 +1,4 @@
 import api from '../api'
-
 export const getUsers = ({ commit }, payload) => {
   const urlEnd = '/users'
   const type = 'post'
