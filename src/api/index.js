@@ -60,37 +60,10 @@ api.serverURL = 'your api server url'
  * REMOVE AFTER BACK-END WELL BE IMPLEMENTED
  */
 
-api.requestOrders = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(orders)
-}
-
 api.requestUsers = (urlEnd, type, payload = {}) => {
   return Promise.resolve(users)
 }
 
-api.requestGroups = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(groups)
-}
-
-api.requestProducts = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(products)
-}
-
-api.requestCurrencies = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(currencies)
-}
-
-api.requestStatuses = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(statuses)
-}
-
-api.requestSpecifications = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(specifications)
-}
-
-api.requestCategories = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(categories)
-}
 /**
  * Stabs for getters end
  */
