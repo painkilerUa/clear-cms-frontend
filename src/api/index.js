@@ -50,9 +50,7 @@ api.serverURL = 'your api server url'
  * REMOVE AFTER BACK-END WELL BE IMPLEMENTED
  */
 
-api.requestUsers = (urlEnd, type, payload = {}) => {
-  return Promise.resolve(users)
-}
+api.requestUsers = (urlEnd, type, payload = {}) => Promise.resolve(users)
 
 /**
  * Stabs for getters end
@@ -61,8 +59,6 @@ api.requestUsers = (urlEnd, type, payload = {}) => {
 /*
 * Request to back-end api
 */
-api.requestToServer = (urlEnd, type, payload = {}) => {
-  return Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
-}
+api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
 
 export default api
