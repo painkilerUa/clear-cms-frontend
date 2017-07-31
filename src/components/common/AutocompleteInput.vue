@@ -5,7 +5,7 @@
     </p>
     <ul class="options-list">
       <li v-for="option in options">
-        {{option.title}}
+        {{option}}
       </li>
     </ul>
   </div>

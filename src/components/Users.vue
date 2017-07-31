@@ -1,11 +1,14 @@
 <template>
   <div class="users">
 	 <h2>{{users.length}} Users in store</h2>
+
+   <autocomplete-input :options="users" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import AutocompleteInput from '@/components/common/AutocompleteInput'
 
 export default {
   name: 'users',
@@ -21,6 +24,9 @@ export default {
   },
   mounted () {
     this.getUsers()
+  },
+  components: {
+    AutocompleteInput
   }
 }
 </script>
