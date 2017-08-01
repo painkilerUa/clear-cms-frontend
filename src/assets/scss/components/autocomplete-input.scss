@@ -3,7 +3,6 @@
 .ac {
     &-wrapper {
         position: relative;
-        background-color: color('autocompleteInputBg');
     }
     &-input {
         display: block;
@@ -14,22 +13,17 @@
         z-index: 1;
         width: 100%;
         margin-bottom: 0;
+        background-color: color('autocompleteInputBg');
         &__item {
             display: flex;
             padding: 15px 0;
 
             @extend %default-transition;
+            &:hover,
+            .highlighted {
+                color: color('highlightedArticleFont');
+                background-color: color('highlightedArticleBg');
+            }
         }
     }
-    &-content {
-        flex-grow: 1;
-    }
-    &-thumbnail {
-        margin-right: 15px;
-    }
-}
-
-.highlighted {
-    color: color('highlightedArticleFont');
-    background-color: color('highlightedArticleBg');
 }

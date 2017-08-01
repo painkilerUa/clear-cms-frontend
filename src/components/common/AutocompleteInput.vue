@@ -6,22 +6,25 @@
       @input.trim="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
+      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown"
       />
     <!-- ac-list -->
-    <ul class="ac-list" v-if="isOpen">
-      <li v-for="(option, index) in optionsFiltered" 
-        class="ac-list__item"
-        :class="{highlighted: index === highlightedPosition}"
-        @mouseenter="highlightedPosition = index"
-        @mousedown="select"> 
-        <slot name="item" 
-          :title="option.title" 
-          :description="option.description" 
-          :thumbnail="option.thumbnail" />
-      </li>
-    </ul>
+    <transition>
+      <ul class="ac-list" v-if="isOpen">
+        <li v-for="(option, index) in optionsFiltered" 
+          class="ac-list__item"
+          :class="{highlighted: index === highlightedPosition}"
+          @mouseenter="highlightedPosition = index"
+          @mousedown="select"> 
+          <slot name="item" 
+            :title="option.title" 
+            :description="option.description" 
+            :thumbnail="option.thumbnail" />
+        </li>
+      </ul>
+    </transition>
     <!-- END:ac-list -->
   </div>
 </template>

@@ -1,1 +1,22 @@
 @import './settings/settings';
+
+.ac {
+    &-content {
+        flex-grow: 1;
+    }
+    &-list {
+        &__item {
+            &:hover {
+                .ac-thumbnail {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &-thumbnail {
+        margin-right: 15px;
+        opacity: 0.6;
+
+        @extend %default-transition;
+    }
+}
