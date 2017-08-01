@@ -1,0 +1,6 @@
+@import '../settings/settings';
+
+.highlighted {
+    color: color('highlightedArticleFont');
+    background-color: color('highlightedArticleBg');
+}

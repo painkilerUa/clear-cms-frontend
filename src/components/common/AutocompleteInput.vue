@@ -6,7 +6,9 @@
       />
     <!-- ac-list -->
     <ul class="ac-list" v-if="isOpen">
-      <li v-for="option in options">
+      <li v-for="(option, index) in options" 
+        class="ac-list__item"
+        :class="{highlighted: index === highlightedPosition}"> 
         <slot name="item" 
           :title="option.title" 
           :description="option.description" 
@@ -27,7 +29,8 @@ export default {
   },
   data () {
     return {
-      isOpen: false
+      isOpen: true,
+      highlightedPosition: 0
     }
   },
   methods: {
@@ -37,3 +40,5 @@ export default {
   }
 }
 </script>
+
+<style src="@/assets/scss/components/autocomplete-input.scss" lang="scss" scoped />
