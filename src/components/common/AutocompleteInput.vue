@@ -61,8 +61,7 @@ export default {
       return this.options.filter(option => option.title.match(regEx)).slice(0, this.limit)
     },
     optionsLeft () {
-      let optionsLeft = this.optionsFiltered
-      return optionsLeft
+      return this.options.filter(option => this.optionsFiltered.indexOf(option) === -1)
     }
   },
   methods: {
