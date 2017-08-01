@@ -3,6 +3,11 @@
     <input class="ac-input" 
       placeholder="Search..."
       @input.trim="onInput($event.target.value)"
+      @keyup.enter.trim="isOpen = true"
+      @keyup.esc="isOpen = false"
+      @blur="isOpen = false"
+      @keydown.up="moveUp"
+      @keydown.down="moveDown"
       />
     <!-- ac-list -->
     <ul class="ac-list" v-if="isOpen">
@@ -36,6 +41,20 @@ export default {
   methods: {
     onInput (value) {
       this.isOpen = !!value
+    },
+    moveUp () {
+      if (!this.isOpen) {
+        return
+      }
+      this.highlightedPosition = this.highlightedPosition - 1 < 0
+        ? this.options.length - 1
+        : this.highlightedPosition - 1
+    },
+    moveDown () {
+      if (!this.isOpen) {
+        return
+      }
+      this.highlightedPosition = (this.highlightedPosition + 1) % this.options.length
     }
   }
 }
