@@ -19,7 +19,7 @@ const content = [
     language_id: 1,
     category_id: 1,
     type_id: 1,
-    content: 'Lorem ipsum dolor sit amet',
+    description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/1'
   },
   {
@@ -29,7 +29,7 @@ const content = [
     language_id: 2,
     category_id: 2,
     type_id: 2,
-    content: 'Lorem ipsum dolor sit amet',
+    description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/2'
   }
 ]

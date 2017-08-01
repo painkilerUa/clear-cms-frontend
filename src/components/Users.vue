@@ -6,7 +6,7 @@
       <article class="ac-article">
         <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" />
         <h3 class="ac-title">{{option.title}}</h3>
-        <div class="ac-content">{{option.content}}</div>
+        <div class="ac-description">{{option.description}}</div>
       </article>
       <!-- END:ac-article -->
     </template>
