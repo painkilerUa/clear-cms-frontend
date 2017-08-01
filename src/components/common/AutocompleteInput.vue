@@ -1,5 +1,5 @@
 <template>
-  <div class="autocomplete-input">
+  <div class="ac-wrapper">
     <input class="ac-input" 
       placeholder="Search..."
       @input.trim="onInput($event.target.value)"
