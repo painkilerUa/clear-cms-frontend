@@ -5,7 +5,7 @@
       <li v-for="option in options">
         <slot name="item" 
           :title="option.title" 
-          :description="option.description" 
+          :content="option.description" 
           :thumbnail="  option.thumbnail" />
       </li>
     </ul>
