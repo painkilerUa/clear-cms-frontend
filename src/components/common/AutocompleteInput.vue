@@ -33,6 +33,10 @@ export default {
     options: {
       type: Array,
       required: true
+    },
+    limit: {
+      type: Number,
+      default: 5
     }
   },
   data () {
@@ -45,7 +49,7 @@ export default {
   computed: {
     optionsFiltered () {
       const regEx = new RegExp(this.keyword, 'i')
-      return this.options.filter(option => option.title.match(regEx))
+      return this.options.filter(option => option.title.match(regEx)).slice(0, this.limit)
     }
   },
   methods: {
