@@ -14,7 +14,9 @@
     <ul class="ac-list" v-if="isOpen">
       <li v-for="(option, index) in options" 
         class="ac-list__item"
-        :class="{highlighted: index === highlightedPosition}"> 
+        :class="{highlighted: index === highlightedPosition}"
+        @mouseenter="highlightedPosition = index"
+        @mousedown="select"> 
         <slot name="item" 
           :title="option.title" 
           :description="option.description" 
