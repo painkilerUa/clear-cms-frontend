@@ -6,7 +6,7 @@
         <slot name="item" 
           :title="option.title" 
           :content="option.description" 
-          :thumbnail="  option.thumbnail" />
+          :thumbnail="option.thumbnail" />
       </li>
     </ul>
   </div>
