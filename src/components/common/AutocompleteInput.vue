@@ -12,7 +12,7 @@
       />
     <!-- ac-list -->
     <ul class="ac-list" v-if="isOpen">
-      <li v-for="(option, index) in options" 
+      <li v-for="(option, index) in optionsFiltered" 
         class="ac-list__item"
         :class="{highlighted: index === highlightedPosition}"
         @mouseenter="highlightedPosition = index"
@@ -40,6 +40,12 @@ export default {
       isOpen: true,
       highlightedPosition: 0,
       keyword: ''
+    }
+  },
+  computed: {
+    optionsFiltered () {
+      const regEx = new RegExp(this.keyword, 'i')
+      return this.options.filter(option => option.title.match(regEx))
     }
   },
   methods: {
