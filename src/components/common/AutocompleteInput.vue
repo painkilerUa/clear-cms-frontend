@@ -1,6 +1,7 @@
 <template>
   <div class="autocomplete-input">
     <input class="ac-input" placeholder="Search..." />
+    <!-- ac-list -->
     <ul class="ac-list" v-if="isOpen">
       <li v-for="option in options">
         <slot name="item" 
@@ -9,6 +10,7 @@
           :thumbnail="option.thumbnail" />
       </li>
     </ul>
+    <!-- END:ac-list -->
   </div>
 </template>
 
