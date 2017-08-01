@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      isOpen: true,
+      isOpen: false,
       highlightedPosition: 0,
       keyword: ''
     }
