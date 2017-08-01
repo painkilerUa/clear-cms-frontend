@@ -4,16 +4,18 @@
     &-wrapper {
         position: relative;
     }
+    &-results {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        background-color: color('autocompleteInputBg');
+    }
     &-input {
         display: block;
         width: 100%;
     }
     &-list {
-        position: absolute;
-        z-index: 1;
-        width: 100%;
         margin-bottom: 0;
-        background-color: color('autocompleteInputBg');
         &__item {
             display: flex;
             padding: 15px 0;

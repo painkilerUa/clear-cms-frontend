@@ -10,18 +10,25 @@
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
     <transition name="fade">
-      <ul class="ac-list" v-if="isOpen">
-        <li v-for="(option, index) in optionsFiltered" 
-          class="ac-list__item"
-          :class="{highlighted: index === highlightedPosition}"
-          @mouseenter="highlightedPosition = index"
-          @mousedown="select"> 
-          <slot name="item" 
-            :title="option.title" 
-            :description="option.description" 
-            :thumbnail="option.thumbnail" />
-        </li>
-      </ul>
+      <!-- .ac-results -->
+      <div class="ac-results">
+        <!-- ac-list -->
+        <ul class="ac-list" v-if="isOpen">
+          <li v-for="(option, index) in optionsFiltered" 
+            class="ac-list__item"
+            :class="{highlighted: index === highlightedPosition}"
+            @mouseenter="highlightedPosition = index"
+            @mousedown="select"> 
+            <slot name="item" 
+              :title="option.title" 
+              :description="option.description" 
+              :thumbnail="option.thumbnail" />
+          </li>
+        </ul>
+        <!-- END:ac-list -->
+        <button type="button" class="ac-more">+ See more</button>
+      </div>
+      <!-- END:.ac-results -->
     </transition>
     <!-- END:ac-list -->
   </div>
