@@ -8,9 +8,7 @@
       @keyup.esc="close"
       @blur="close"
       @keydown.up="moveUp"
-      @keydown.down="moveDown"
-      />
-    <!-- ac-list -->
+      @keydown.down="moveDown" />
     <transition name="fade">
       <ul class="ac-list" v-if="isOpen">
         <li v-for="(option, index) in optionsFiltered" 
