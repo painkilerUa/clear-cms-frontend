@@ -13,19 +13,23 @@ export default api
  **/
 const content = [
   {
+    title: 'Title 1',
     author_id: 'Arthur',
     searchable_id: 1,
     language_id: 1,
     category_id: 1,
     type_id: 1,
+    content: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/1'
   },
   {
+    title: 'Title 2',
     author_id: 'Arthur',
     searchable_id: 2,
     language_id: 2,
     category_id: 2,
     type_id: 2,
+    content: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/2'
   }
 ]

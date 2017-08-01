@@ -1,13 +1,12 @@
 <template>
   <div class="autocomplete-input">
-    <p class="control has-icon has-icon-right">
-      <input class="input is-large" placeholder="Search..." />
-    </p>
-    <ul class="options-list">
+    <input class="ac-input" placeholder="Search..." />
+    <!-- <ul class="options-list">
       <li v-for="option in options">
         {{option}}
       </li>
-    </ul>
+    </ul> -->
+    <slot name="item" :title="option.title" :description="option.description" :thumbnail="option.thumbnail" />
   </div>
 </template>
 
