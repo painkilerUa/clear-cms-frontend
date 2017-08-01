@@ -11,7 +11,7 @@
       @keydown.down="moveDown"
       />
     <!-- ac-list -->
-    <transition>
+    <transition name="fade">
       <ul class="ac-list" v-if="isOpen">
         <li v-for="(option, index) in optionsFiltered" 
           class="ac-list__item"
