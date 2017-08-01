@@ -1,8 +1,6 @@
 <template>
   <div class="users">
-	 <h2>{{users.length}} Users in store</h2>
-
-   <autocomplete-input :options="users">
+   <autocomplete-input :options="content">
      <template slot="item" scope="option">
       <!-- ac-article -->
       <article class="ac-article">
@@ -25,15 +23,18 @@ export default {
   name: 'users',
   computed: {
     ...mapGetters([
+      'content',
       'users'
     ])
   },
   methods: {
     ...mapActions([
+      'getContent',
       'getUsers'
     ])
   },
   mounted () {
+    this.getContent()
     this.getUsers()
   },
   components: {
