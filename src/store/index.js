@@ -10,6 +10,7 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 const state = {
+  content: [],
   users: []
 }
 
