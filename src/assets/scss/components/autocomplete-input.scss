@@ -20,7 +20,7 @@
 
             @extend %default-transition;
             &:hover,
-            .highlighted {
+            &.highlighted {
                 color: color('highlightedArticleFont');
                 background-color: color('highlightedArticleBg');
             }
