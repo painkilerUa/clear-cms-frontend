@@ -1,7 +1,7 @@
 <template>
   <div class="users">
-  
-   <autocomplete-input :options="content">
+
+   <autocomplete-input :options="content" @selected="selectArticle">
      <template slot="item" scope="option">
       <!-- ac-article -->
       <article class="ac-article">
@@ -32,7 +32,10 @@ export default {
     ...mapActions([
       'getContent',
       'getUsers'
-    ])
+    ]),
+    selectArticle (article) {
+      console.log('article selected', article)
+    }
   },
   mounted () {
     this.getContent()

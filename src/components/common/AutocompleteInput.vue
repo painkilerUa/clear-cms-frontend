@@ -1,11 +1,12 @@
 <template>
   <div class="ac-wrapper">
     <input class="ac-input" 
+      v-model="keyword"
       placeholder="Search..."
       @input.trim="onInput($event.target.value)"
-      @keyup.enter.trim="isOpen = true"
-      @keyup.esc="isOpen = false"
-      @blur="isOpen = false"
+      @keydown.enter="select"
+      @keyup.esc="close"
+      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown"
       />
@@ -35,7 +36,8 @@ export default {
   data () {
     return {
       isOpen: true,
-      highlightedPosition: 0
+      highlightedPosition: 0,
+      keyword: ''
     }
   },
   methods: {
@@ -55,6 +57,15 @@ export default {
         return
       }
       this.highlightedPosition = (this.highlightedPosition + 1) % this.options.length
+    },
+    select () {
+      const selectedOption = this.options[this.highlightedPosition]
+      this.keyword = selectedOption.title
+      this.close()
+      this.$emit('selected', selectedOption)
+    },
+    close () {
+      this.isOpen = false
     }
   }
 }
