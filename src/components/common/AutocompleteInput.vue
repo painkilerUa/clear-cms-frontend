@@ -12,6 +12,8 @@
     <transition name="fade">
       <!-- .ac-results -->
       <div class="ac-results">
+       <pre>{{optionsLeft.map(item => item.title)}}</pre>
+       <pre>{{options.map(item => item.title)}}</pre>
         <!-- ac-list -->
         <ul class="ac-list" v-if="isOpen">
           <li v-for="(option, index) in optionsFiltered" 
@@ -26,7 +28,7 @@
           </li>
         </ul>
         <!-- END:ac-list -->
-        <button type="button" class="ac-more">+ See more</button>
+        <button type="button" v-if="" class="ac-more">+ See more</button>
       </div>
       <!-- END:.ac-results -->
     </transition>
@@ -57,6 +59,10 @@ export default {
     optionsFiltered () {
       const regEx = new RegExp(this.keyword, 'i')
       return this.options.filter(option => option.title.match(regEx)).slice(0, this.limit)
+    },
+    optionsLeft () {
+      let optionsLeft = this.optionsFiltered
+      return optionsLeft
     }
   },
   methods: {
