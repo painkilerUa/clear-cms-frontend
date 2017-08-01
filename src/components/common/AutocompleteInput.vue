@@ -1,7 +1,7 @@
 <template>
   <div class="autocomplete-input">
     <input class="ac-input" placeholder="Search..." />
-    <ul class="options-list">
+    <ul class="ac-list" v-if="isOpen">
       <li v-for="option in options">
         <slot name="item" 
           :title="option.title" 
@@ -18,6 +18,11 @@ export default {
     options: {
       type: Array,
       required: true
+    }
+  },
+  data () {
+    return {
+      isOpen: false
     }
   }
 }
