@@ -13,7 +13,7 @@
       <!-- .ac-results -->
       <div class="ac-results">
        <pre><strong>optionsLeft:</strong> {{optionsLeft.map(item => item.title)}}</pre>
-       <pre><strong>options:</strong> {{options.map(item => item.title)}}</pre>
+       <pre><strong>optionsFiltered:</strong> {{optionsFiltered.map(item => item.title)}}</pre>
         <!-- ac-list -->
         <ul class="ac-list" v-if="isOpen">
           <li v-for="(option, index) in optionsFiltered" 
