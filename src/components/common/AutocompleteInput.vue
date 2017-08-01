@@ -1,6 +1,9 @@
 <template>
   <div class="autocomplete-input">
-    <input class="ac-input" placeholder="Search..." />
+    <input class="ac-input" 
+      placeholder="Search..."
+      @input.trim="onInput($event.target.value)"
+      />
     <!-- ac-list -->
     <ul class="ac-list" v-if="isOpen">
       <li v-for="option in options">
@@ -25,6 +28,11 @@ export default {
   data () {
     return {
       isOpen: false
+    }
+  },
+  methods: {
+    onInput (value) {
+      this.isOpen = !!value
     }
   }
 }
