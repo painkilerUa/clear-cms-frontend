@@ -6,7 +6,6 @@
       @input.trim="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
-      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown"
       />
@@ -37,7 +36,7 @@ export default {
   },
   data () {
     return {
-      isOpen: false,
+      isOpen: true,
       highlightedPosition: 0,
       keyword: ''
     }
