@@ -11,8 +11,6 @@
     <transition name="fade">
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
-       <pre><strong>optionsLeftShow:</strong> {{optionsLeftShow.map(item => item.title)}}</pre>
-       <pre><strong>optionsFilteredLimited:</strong> {{optionsFilteredLimited.map(item => item.title)}}</pre>
         <!-- ac-list -->
         <ul class="ac-list">
           <li v-for="(option, index) in optionsFilteredLimited" 
