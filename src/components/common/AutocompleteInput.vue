@@ -125,7 +125,7 @@ export default {
       setTimeout(function () {
         Velocity(
           el,
-          { opacity: 1, height: '1.6em' },
+          { opacity: 1, height: '3.6em' },
           { complete: done }
         )
       }, delay)
