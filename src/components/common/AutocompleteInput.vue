@@ -37,9 +37,11 @@
               :description="option.description" 
               :thumbnail="option.thumbnail" />
           </li>
+          <li :key="optionsLeft.length" v-if="optionsLeft.length">
+            <button type="button" class="ac-more" @mousedown="addLeftOptions">+ See more</button>
+          </li>
         </transition-group>
         <!-- END:ac-list -->
-        <button type="button" v-if="optionsLeft.length" class="ac-more" @mousedown="addLeftOptions">+ See more</button>
       </div>
       <!-- END:.ac-results -->
     </transition>
@@ -58,7 +60,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 5
+      default: 2
     }
   },
   data () {
