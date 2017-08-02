@@ -13,10 +13,10 @@
       <!-- .ac-results -->
       <div class="ac-results">
        <pre><strong>optionsLeft:</strong> {{optionsLeft.map(item => item.title)}}</pre>
-       <pre><strong>optionsFiltered:</strong> {{optionsFiltered.map(item => item.title)}}</pre>
+       <pre><strong>optionsFilteredLimited:</strong> {{optionsFilteredLimited.map(item => item.title)}}</pre>
         <!-- ac-list -->
         <ul class="ac-list" v-if="isOpen">
-          <li v-for="(option, index) in optionsFiltered" 
+          <li v-for="(option, index) in optionsFilteredLimited" 
             class="ac-list__item"
             :class="{highlighted: index === highlightedPosition}"
             @mouseenter="highlightedPosition = index"
@@ -45,7 +45,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 9
+      default: 5
     }
   },
   data () {
@@ -58,10 +58,13 @@ export default {
   computed: {
     optionsFiltered () {
       const regEx = new RegExp(this.keyword, 'i')
-      return this.options.filter(option => option.title.match(regEx)).slice(0, this.limit)
+      return this.options.filter(option => option.title.match(regEx))
+    },
+    optionsFilteredLimited () {
+      return this.optionsFiltered.slice(0, this.limit)
     },
     optionsLeft () {
-      return this.options.filter(option => this.optionsFiltered.indexOf(option) === -1)
+      return this.optionsFiltered.filter(option => this.optionsFilteredLimited.indexOf(option) === -1)
     }
   },
   methods: {
