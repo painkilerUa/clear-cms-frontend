@@ -50,6 +50,7 @@ export default {
   data () {
     return {
       isOpen: true,
+      limitToShow: this.limit,
       optionsToShow: this.options,
       optionsLeftShow: this.options,
       highlightedPosition: 0,
@@ -62,7 +63,7 @@ export default {
       return this.options.filter(option => option.title.match(regEx))
     },
     optionsFilteredLimited () {
-      this.optionsToShow = this.optionsFiltered.slice(0, this.limit)
+      this.optionsToShow = this.optionsFiltered.slice(0, this.limitToShow)
       return this.optionsToShow
     },
     optionsLeft () {
@@ -98,6 +99,8 @@ export default {
       this.isOpen = false
     },
     addLeftOptions () {
+      this.optionsToShow.concat(this.optionsLeftShow)
+      this.limitToShow *= 2
       console.log('optionsToShow', this.optionsToShow)
     }
   }
