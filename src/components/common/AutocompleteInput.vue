@@ -59,11 +59,11 @@ export default {
   computed: {
     optionsFiltered () {
       const regEx = new RegExp(this.keyword, 'i')
-      this.optionsToShow = this.options.filter(option => option.title.match(regEx))
-      return this.optionsToShow
+      return this.options.filter(option => option.title.match(regEx))
     },
     optionsFilteredLimited () {
-      return this.optionsFiltered.slice(0, this.limit)
+      this.optionsToShow = this.optionsFiltered.slice(0, this.limit)
+      return this.optionsToShow
     },
     optionsLeft () {
       this.optionsLeftShow = this.optionsFiltered.filter(option => this.optionsFilteredLimited.indexOf(option) === -1)
