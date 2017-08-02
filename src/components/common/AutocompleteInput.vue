@@ -97,8 +97,8 @@ export default {
       this.isOpen = false
     },
     addLeftOptions () {
-      this.optionsToShow.concat(this.optionsLeftShow)
       this.limitToShow *= 2
+      this.optionsToShow.concat(this.optionsLeftShow)
     }
   }
 }
