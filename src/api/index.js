@@ -14,6 +14,7 @@ export default api
 const content = [
   {
     title: 'Title 1',
+    type: 'text',
     author_id: 'Arthur',
     searchable_id: 1,
     language_id: 1,
@@ -24,6 +25,7 @@ const content = [
   },
   {
     title: 'Title 2',
+    type: 'video',
     author_id: 'Arthur',
     searchable_id: 2,
     language_id: 2,
@@ -34,6 +36,7 @@ const content = [
   },
   {
     title: 'Title 3',
+    type: 'text',
     author_id: 'Arthur',
     searchable_id: 3,
     language_id: 3,
@@ -44,6 +47,7 @@ const content = [
   },
   {
     title: 'Title 4',
+    type: 'video',
     author_id: 'Arthur',
     searchable_id: 4,
     language_id: 4,
@@ -54,6 +58,7 @@ const content = [
   },
   {
     title: 'Title 5',
+    type: 'video',
     author_id: 'Arthur',
     searchable_id: 5,
     language_id: 5,
@@ -64,6 +69,7 @@ const content = [
   },
   {
     title: 'Title 6',
+    type: 'text',
     author_id: 'Arthur',
     searchable_id: 6,
     language_id: 6,
@@ -74,6 +80,7 @@ const content = [
   },
   {
     title: 'Title 7',
+    type: 'video',
     author_id: 'Arthur',
     searchable_id: 7,
     language_id: 7,

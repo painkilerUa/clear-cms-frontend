@@ -6,9 +6,9 @@
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
+      @blur.esc="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
-    <transition name="fade">
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
@@ -44,9 +44,8 @@
         <!-- END:ac-list -->
       </div>
       <!-- END:.ac-results -->
-    </transition>
-    <!-- END:ac-list -->
   </div>
+  <!-- END:ac-wrapper -->
 </template>
 
 <script>
