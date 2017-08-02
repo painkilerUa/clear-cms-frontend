@@ -28,7 +28,7 @@
           </li>
         </ul>
         <!-- END:ac-list -->
-        <button type="button" v-if="" class="ac-more">+ See more</button>
+        <button type="button" v-if="optionsLeft.length" class="ac-more">+ See more</button>
       </div>
       <!-- END:.ac-results -->
     </transition>
@@ -45,7 +45,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 5
+      default: 9
     }
   },
   data () {
