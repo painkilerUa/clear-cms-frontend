@@ -6,12 +6,16 @@
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
-      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
     <transition name="fade">
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
+        <!-- .ac-filters -->
+        <div class="ac-filters">
+          
+        </div>
+        <!-- END:.ac-filters -->
         <!-- ac-list -->
         <ul class="ac-list">
           <li v-for="(option, index) in optionsFilteredLimited" 

@@ -21,6 +21,7 @@
             padding: 15px 0;
             border-bottom: 2px solid #979899;
 
+            align-items: center;
             @extend %default-transition;
             &:hover,
             &.highlighted {
