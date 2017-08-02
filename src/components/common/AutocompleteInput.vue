@@ -23,6 +23,7 @@
         class="ac-list">
           <li v-for="(option, index) in optionsFilteredLimited" 
             :key="option.title"
+            data-index="index"
             class="ac-list__item"
             :css="false"
             @before-enter="beforeEnter"
