@@ -89,6 +89,7 @@ export default {
   methods: {
     onInput (value) {
       this.isOpen = !!value
+      value ? this.limitToShow = this.limit : this.limitToShow
     },
     moveUp () {
       if (!this.isOpen) {
