@@ -88,6 +88,28 @@ const content = [
     type_id: 7,
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
+  },
+  {
+    title: 'Title 27',
+    type: 'video',
+    author_id: 'Arthur',
+    searchable_id: 7,
+    language_id: 7,
+    category_id: 7,
+    type_id: 7,
+    description: 'Lorem ipsum dolor sit amet',
+    thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
+  },
+  {
+    title: 'Title 28',
+    type: 'video',
+    author_id: 'Arthur',
+    searchable_id: 7,
+    language_id: 7,
+    category_id: 7,
+    type_id: 7,
+    description: 'Lorem ipsum dolor sit amet',
+    thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   }
 ]
 
