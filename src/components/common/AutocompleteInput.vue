@@ -1,9 +1,9 @@
 <template>
   <div class="ac-wrapper">
     <input class="ac-input" 
-      v-model="keyword"
+      v-model.trim="keyword"
       placeholder="Search..."
-      @input.trim="onInput($event.target.value)"
+      @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
       @blur="close"
