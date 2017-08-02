@@ -38,7 +38,7 @@
               :description="option.description" 
               :thumbnail="option.thumbnail" />
           </li>
-          <li :key="optionsLeft.length" v-if="optionsLeft.length" tabindex="0">
+          <li :key="optionsLeft.length" v-if="optionsLeft.length">
             <button type="button" class="ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
           </li>
         </transition-group>
