@@ -101,7 +101,6 @@ export default {
     addLeftOptions () {
       this.optionsToShow.concat(this.optionsLeftShow)
       this.limitToShow *= 2
-      console.log('optionsToShow', this.optionsToShow)
     }
   }
 }
