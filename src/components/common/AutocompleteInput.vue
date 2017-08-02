@@ -6,13 +6,12 @@
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
-      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
     <transition name="fade">
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
-       <pre><strong>optionsLeft:</strong> {{optionsLeft.map(item => item.title)}}</pre>
+       <pre><strong>optionsLeftShow:</strong> {{optionsLeftShow.map(item => item.title)}}</pre>
        <pre><strong>optionsFilteredLimited:</strong> {{optionsFilteredLimited.map(item => item.title)}}</pre>
         <!-- ac-list -->
         <ul class="ac-list">
@@ -28,7 +27,7 @@
           </li>
         </ul>
         <!-- END:ac-list -->
-        <button type="button" v-if="optionsLeft.length" class="ac-more">+ See more</button>
+        <button type="button" v-if="optionsLeft.length" class="ac-more" @mousedown="addLeftOptions">+ See more</button>
       </div>
       <!-- END:.ac-results -->
     </transition>
@@ -51,6 +50,8 @@ export default {
   data () {
     return {
       isOpen: true,
+      optionsToShow: this.options,
+      optionsLeftShow: this.options,
       highlightedPosition: 0,
       keyword: ''
     }
@@ -58,13 +59,15 @@ export default {
   computed: {
     optionsFiltered () {
       const regEx = new RegExp(this.keyword, 'i')
-      return this.options.filter(option => option.title.match(regEx))
+      this.optionsToShow = this.options.filter(option => option.title.match(regEx))
+      return this.optionsToShow
     },
     optionsFilteredLimited () {
       return this.optionsFiltered.slice(0, this.limit)
     },
     optionsLeft () {
-      return this.optionsFiltered.filter(option => this.optionsFilteredLimited.indexOf(option) === -1)
+      this.optionsLeftShow = this.optionsFiltered.filter(option => this.optionsFilteredLimited.indexOf(option) === -1)
+      return this.optionsLeftShow
     }
   },
   methods: {
@@ -93,6 +96,9 @@ export default {
     },
     close () {
       this.isOpen = false
+    },
+    addLeftOptions () {
+      console.log('optionsToShow', this.optionsToShow)
     }
   }
 }
