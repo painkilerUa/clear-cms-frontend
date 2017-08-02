@@ -24,7 +24,9 @@
             align-items: center;
             @extend %default-transition;
             &:hover,
+            &:focus,
             &.highlighted {
+                outline: none;
                 color: color('highlightedArticleFont');
                 background-color: color('highlightedArticleBg');
             }

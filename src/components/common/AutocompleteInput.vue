@@ -31,14 +31,15 @@
             @leave="leave"
             :class="{highlighted: index === highlightedPosition}"
             @mouseenter="highlightedPosition = index"
-            @mousedown="select"> 
+            @mousedown="select"
+            @keydown.space.enter="select" tabindex="0"> 
             <slot name="item" 
               :title="option.title" 
               :description="option.description" 
               :thumbnail="option.thumbnail" />
           </li>
-          <li :key="optionsLeft.length" v-if="optionsLeft.length">
-            <button type="button" class="ac-more" @mousedown="addLeftOptions">+ See more</button>
+          <li :key="optionsLeft.length" v-if="optionsLeft.length" tabindex="0">
+            <button type="button" class="ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
           </li>
         </transition-group>
         <!-- END:ac-list -->
