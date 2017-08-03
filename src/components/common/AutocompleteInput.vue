@@ -17,7 +17,7 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-              <button type="button" class="ac-filters__btn" @click="filterOptions" :data-value="filter.prop">{{filter.title}}</button>
+              <button type="button" class="ac-filters__btn" @click="filterOptions" :data-prop="filter.prop">{{filter.title}}</button>
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -163,8 +163,10 @@ export default {
       }, delay)
     },
     filterOptions ($event) {
+      let prop = $event.target.dataset.prop
       $event.target.parentNode.classList.add('active')
-      console.log('type:', $event.target.dataset.value)
+      this.optionsToShow = this.optionsToShow.sort((a, b) => a[prop] - b[prop])
+      console.log('optionsToShow:', this.optionsToShow)
     }
   },
   components: {

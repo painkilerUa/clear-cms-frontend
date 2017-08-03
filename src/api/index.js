@@ -21,9 +21,9 @@ const content = [
     category_id: 1,
     type_id: 1,
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      'tag11',
+      'tag32',
+      'tag543'
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/1'
@@ -37,9 +37,9 @@ const content = [
     category_id: 2,
     type_id: 2,
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      'tag31',
+      'tag42',
+      'tag53'
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/2'
