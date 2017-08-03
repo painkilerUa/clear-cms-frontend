@@ -163,6 +163,7 @@ export default {
       }, delay)
     },
     filterOptions ($event) {
+      $event.target.parentNode.classList.add('active')
       alert($event.target.dataset.value)
     }
   },
