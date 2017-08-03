@@ -71,10 +71,16 @@ export default {
     },
     filters: {
       type: Array,
-      default: () => [{
-        title: '',
-        value: null
-      }]
+      default: () => [
+        {
+          title: 'Type',
+          prop: null
+        },
+        {
+          title: 'Topic',
+          prop: null
+        }
+      ]
     }
   },
   data () {

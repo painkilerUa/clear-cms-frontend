@@ -1,7 +1,7 @@
 <template>
   <div class="users">
 
-   <autocomplete-input :options="content" :filters="filtersData" @selected="selectArticle">
+   <autocomplete-input :options="content" @selected="selectArticle">
      <template slot="item" scope="option">
       <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" class="ac-thumbnail" />
       <!-- .ac-content -->
