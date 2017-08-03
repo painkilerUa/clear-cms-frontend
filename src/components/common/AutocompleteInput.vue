@@ -74,11 +74,11 @@ export default {
       default: () => [
         {
           title: 'Type',
-          prop: null
+          prop: 'type'
         },
         {
           title: 'Topic',
-          prop: null
+          prop: 'tags'
         }
       ]
     }
