@@ -1,7 +1,7 @@
 <template>
   <div class="users">
 
-   <autocomplete-input :options="content" @selected="selectArticle">
+   <autocomplete-input :options="content" :filters="filtersData" @selected="selectArticle">
      <template slot="item" scope="option">
       <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" class="ac-thumbnail" />
       <!-- .ac-content -->
@@ -22,6 +22,14 @@ import AutocompleteInput from '@/components/common/AutocompleteInput'
 
 export default {
   name: 'users',
+  data () {
+    return {
+      filtersData: [
+        {title: 'Type'},
+        {title: 'Topic'}
+      ]
+    }
+  },
   computed: {
     ...mapGetters([
       'content',

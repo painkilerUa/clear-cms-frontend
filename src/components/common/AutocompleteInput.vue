@@ -16,11 +16,8 @@
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
-            <li class="ac-filters-list__item">
-              <button type="button" class="acf-filters__btn">Type</button>
-            </li>
-            <li class="ac-filters-list__item">
-              <button type="button" class="acf-filters__btn">Topic</button>
+            <li class="ac-filters-list__item" v-for="filter in filters">
+              <button type="button" class="acf-filters__btn">{{filter.title}}</button>
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -73,8 +70,7 @@ export default {
       default: 2
     },
     filters: {
-      type: Array,
-      default: []
+      type: Array
     }
   },
   data () {
