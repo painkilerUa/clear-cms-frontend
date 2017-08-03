@@ -31,6 +31,8 @@
             &__item {
                 display: inline-block;
                 vertical-align: middle;
+
+                @extend %default-transition;
                 &:not(:last-of-type) {
                     &::after {
                         display: inline-block;
@@ -40,6 +42,13 @@
                         content: '';
                         vertical-align: middle;
                         background-color: #000;
+                    }
+                }
+                &.active,
+                &:hover,
+                &:focus {
+                    .ac-filters__btn {
+                        color: color('highlightedArticleBg');
                     }
                 }
             }
