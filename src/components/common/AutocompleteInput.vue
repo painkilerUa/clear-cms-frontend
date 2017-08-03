@@ -13,7 +13,7 @@
       <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
         <div class="ac-filters">
-          
+          <span class="ac-blocktitle"></span>
         </div>
         <!-- END:.ac-filters -->
         <!-- ac-list -->
