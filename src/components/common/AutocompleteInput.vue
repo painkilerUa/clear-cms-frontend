@@ -13,7 +13,17 @@
       <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
         <div class="ac-filters">
-          <span class="ac-blocktitle"></span>
+          <span class="ac-blocktitle ac-filters-title">Filter</span>
+          <!-- .ac-filters-list -->
+          <ul class="ac-filters-list">
+            <li class="ac-filters-list__item">
+              <button type="button" class="acf-filters__btn">Type</button>
+            </li>
+            <li class="ac-filters-list__item">
+              <button type="button" class="acf-filters__btn">Topic</button>
+            </li>
+          </ul>
+          <!-- END:.ac-filters-list -->
         </div>
         <!-- END:.ac-filters -->
         <!-- ac-list -->
@@ -39,7 +49,7 @@
               :thumbnail="option.thumbnail" />
           </li>
           <li :key="optionsLeft.length" v-if="optionsLeft.length">
-            <button type="button" class="ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
+            <button type="button" class="ac-blocktitle ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
           </li>
         </transition-group>
         <!-- END:ac-list -->
