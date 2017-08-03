@@ -25,8 +25,8 @@ export default {
   data () {
     return {
       filtersData: [
-        {title: 'Type'},
-        {title: 'Topic'}
+        {title: 'Type', value: 'type'},
+        {title: 'Topic', value: 'tags'}
       ]
     }
   },

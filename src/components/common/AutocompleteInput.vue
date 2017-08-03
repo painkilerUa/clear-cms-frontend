@@ -70,7 +70,11 @@ export default {
       default: 2
     },
     filters: {
-      type: Array
+      type: Array,
+      default: () => [{
+        title: '',
+        value: null
+      }]
     }
   },
   data () {
