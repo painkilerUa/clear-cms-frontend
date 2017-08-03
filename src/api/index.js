@@ -20,6 +20,11 @@ const content = [
     language_id: 1,
     category_id: 1,
     type_id: 1,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/1'
   },
@@ -31,6 +36,11 @@ const content = [
     language_id: 2,
     category_id: 2,
     type_id: 2,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/2'
   },
@@ -42,6 +52,11 @@ const content = [
     language_id: 3,
     category_id: 3,
     type_id: 3,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/3'
   },
@@ -53,6 +68,11 @@ const content = [
     language_id: 4,
     category_id: 4,
     type_id: 4,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/4'
   },
@@ -64,6 +84,11 @@ const content = [
     language_id: 5,
     category_id: 5,
     type_id: 5,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/5'
   },
@@ -75,6 +100,11 @@ const content = [
     language_id: 6,
     category_id: 6,
     type_id: 6,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/6'
   },
@@ -86,6 +116,11 @@ const content = [
     language_id: 7,
     category_id: 7,
     type_id: 7,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   },
@@ -97,6 +132,11 @@ const content = [
     language_id: 7,
     category_id: 7,
     type_id: 7,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   },
@@ -108,6 +148,11 @@ const content = [
     language_id: 7,
     category_id: 7,
     type_id: 7,
+    tags: [
+      'tag1',
+      'tag2',
+      'tag3'
+    ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   }
