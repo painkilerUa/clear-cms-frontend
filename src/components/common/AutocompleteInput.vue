@@ -71,6 +71,10 @@ export default {
     limit: {
       type: Number,
       default: 2
+    },
+    filters: {
+      type: Array,
+      default: []
     }
   },
   data () {
