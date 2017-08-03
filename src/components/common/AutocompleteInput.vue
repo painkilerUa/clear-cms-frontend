@@ -164,7 +164,7 @@ export default {
     },
     filterOptions ($event) {
       $event.target.parentNode.classList.add('active')
-      alert($event.target.dataset.value)
+      console.log('type:', $event.target.dataset.value)
     }
   },
   components: {
