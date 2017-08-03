@@ -17,7 +17,7 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-              <button type="button" class="ac-filters__btn">{{filter.title}}</button>
+              <button type="button" class="ac-filters__btn" @click="filterOptions" :data-value="filter.prop">{{filter.title}}</button>
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -161,6 +161,9 @@ export default {
           { complete: done }
         )
       }, delay)
+    },
+    filterOptions ($event) {
+      alert($event.target.dataset.value)
     }
   },
   components: {
