@@ -17,7 +17,7 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-              <button type="button" class="ac-filters__btn" @click="filterOptions" :data-prop="filter.prop">{{filter.title}}</button>
+              <button type="button" class="ac-filters__btn" @click="filterOptions" @keydown.space.enter="filterOptions" :data-prop="filter.prop">{{filter.title}}</button>
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
