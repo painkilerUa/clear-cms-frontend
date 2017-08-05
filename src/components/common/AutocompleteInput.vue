@@ -164,9 +164,10 @@ export default {
       }, delay)
     },
     filterOptions ($event) {
-      let prop = $event.target.dataset.prop
+      // let prop = $event.target.dataset.prop
       $event.target.parentNode.classList.add('active')
-      this.optionsToShow = this.optionsToShow.sort((a, b) => a[prop] - b[prop])
+      // this.optionsToShow = this.optionsToShow.sort((a, b) => a[prop] - b[prop])
+      this.selectedFilter = this.filters[1].prop
       console.log('optionsToShow:', this.optionsToShow)
     }
   },

@@ -14,7 +14,7 @@ export default api
 const content = [
   {
     title: 'Title 1',
-    type: 'text1',
+    type: 'text3',
     author_id: 'Arthur',
     searchable_id: 1,
     language_id: 1,
