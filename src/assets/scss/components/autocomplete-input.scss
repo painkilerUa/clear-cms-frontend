@@ -44,13 +44,17 @@
                         background-color: #000;
                     }
                 }
-                &.active,
-                &:hover,
-                &:focus {
+                &.active {
                     .ac-filters__btn {
                         color: color('highlightedArticleBg');
                     }
                 }
+            }
+        }
+        &__btn {
+            &:hover,
+            &:focus {
+                color: color('highlightedArticleBg');
             }
         }
     }
