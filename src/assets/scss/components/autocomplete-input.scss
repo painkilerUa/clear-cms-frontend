@@ -52,6 +52,7 @@
             }
         }
         &__btn {
+            @extend %default-transition;
             &:hover,
             &:focus {
                 color: color('highlightedArticleBg');
