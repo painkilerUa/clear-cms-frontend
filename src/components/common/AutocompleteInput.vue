@@ -88,6 +88,7 @@ export default {
       isOpen: true,
       limitToShow: this.limit,
       optionsToShow: this.options,
+      selectedFilter: this.filters[0].prop,
       optionsLeftShow: this.options,
       highlightedPosition: 0,
       keyword: ''
@@ -99,7 +100,7 @@ export default {
       return this.options.filter(option => option.title.match(regEx))
     },
     optionsFilteredLimited () {
-      this.optionsToShow = this.optionsFiltered.slice(0, this.limitToShow)
+      this.optionsToShow = this.optionsFiltered.slice(0, this.limitToShow).sort((a, b) => a[this.selectedFilter] < b[this.selectedFilter] ? -1 : (a[this.selectedFilter] > b[this.selectedFilter]) ? 1 : 0)
       return this.optionsToShow
     },
     optionsLeft () {
