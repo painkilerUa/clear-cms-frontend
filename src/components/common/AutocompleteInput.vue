@@ -88,7 +88,7 @@ export default {
       isOpen: true,
       limitToShow: this.limit,
       optionsToShow: this.options,
-      selectedFilter: this.filters[0].prop,
+      selectedFilter: null,
       optionsLeftShow: this.options,
       highlightedPosition: 0,
       keyword: ''
@@ -167,7 +167,7 @@ export default {
       // let prop = $event.target.dataset.prop
       $event.target.parentNode.classList.add('active')
       // this.optionsToShow = this.optionsToShow.sort((a, b) => a[prop] - b[prop])
-      this.selectedFilter = this.filters[1].prop
+      this.selectedFilter = this.filters[0].prop
       console.log('optionsToShow:', this.optionsToShow)
     }
   },
