@@ -22,14 +22,6 @@ import AutocompleteInput from '@/components/common/AutocompleteInput'
 
 export default {
   name: 'users',
-  data () {
-    return {
-      filtersData: [
-        {title: 'Type', value: 'type'},
-        {title: 'Topic', value: 'tags'}
-      ]
-    }
-  },
   computed: {
     ...mapGetters([
       'content',
