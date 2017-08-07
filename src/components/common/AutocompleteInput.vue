@@ -14,6 +14,7 @@
         <!-- .ac-filters -->
         <div class="ac-filters">
           <span class="ac-blocktitle ac-filters-title">Filter</span>
+          <v-select v-model="selected" :options="['foo','bar']"></v-select>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
