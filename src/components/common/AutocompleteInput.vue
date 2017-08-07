@@ -165,7 +165,6 @@ export default {
     },
     filterOptions ($event) {
       let prop = $event.target.dataset.prop
-      $event.target.parentNode.classList.add('active')
       this.selectedFilter = prop
     }
   },
