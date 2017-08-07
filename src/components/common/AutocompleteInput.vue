@@ -67,7 +67,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 2
+      default: 5
     },
     filters: {
       type: Array,
@@ -167,7 +167,6 @@ export default {
       let prop = $event.target.dataset.prop
       $event.target.parentNode.classList.add('active')
       this.selectedFilter = prop
-      console.log('optionsToShow:', this.optionsToShow)
     }
   },
   components: {
