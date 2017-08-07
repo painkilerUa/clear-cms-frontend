@@ -17,8 +17,7 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-             <!--  <button type="button" class="ac-filters__btn" @click="filterOptions" @keydown.space.enter="filterOptions" :data-prop="filter.prop">{{filter.title}}</button> -->
-             <v-select v-model="filter.selected" :placeholder="filter.title" :options="['foo','bar']" />
+             <v-select v-model="filter.selected" multiple="true" :placeholder="filter.title" :options="['foo','bar']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
