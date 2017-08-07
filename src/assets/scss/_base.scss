@@ -13,6 +13,18 @@
             }
         }
     }
+    &-filters {
+        &-list {
+            &__item {
+                .open-indicator{
+                    display: none;
+                }
+                .dropdown-toggle {
+                    border: none;
+                }
+            }
+        }
+    }
     &-thumbnail {
         margin-right: 15px;
         opacity: 0.6;
