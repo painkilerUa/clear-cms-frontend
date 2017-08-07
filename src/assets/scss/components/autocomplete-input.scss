@@ -19,6 +19,7 @@
     }
     &-filters {
         display: flex;
+        align-items: center;
         padding: 10px;
 
         flex-wrap: wrap;
@@ -44,18 +45,6 @@
                         background-color: #000;
                     }
                 }
-                &.active {
-                    .ac-filters__btn {
-                        color: color('highlightedArticleBg');
-                    }
-                }
-            }
-        }
-        &__btn {
-            @extend %default-transition;
-            &:hover,
-            &:focus {
-                color: color('highlightedArticleBg');
             }
         }
     }
