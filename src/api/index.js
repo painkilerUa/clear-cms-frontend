@@ -14,16 +14,14 @@ export default api
 const content = [
   {
     title: 'Title 1',
-    type: 'text',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 1,
     language_id: 1,
-    category_id: 1,
-    type_id: 1,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag11',
-      'tag32',
-      'tag543'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/1'
