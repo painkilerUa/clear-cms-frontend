@@ -14,11 +14,11 @@
         <!-- .ac-filters -->
         <div class="ac-filters">
           <span class="ac-blocktitle ac-filters-title">Filter</span>
-          <v-select v-model="selected" :options="['foo','bar']"></v-select>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-              <button type="button" class="ac-filters__btn" @click="filterOptions" @keydown.space.enter="filterOptions" :data-prop="filter.prop">{{filter.title}}</button>
+             <!--  <button type="button" class="ac-filters__btn" @click="filterOptions" @keydown.space.enter="filterOptions" :data-prop="filter.prop">{{filter.title}}</button> -->
+             <v-select v-model="filter.selected" :placeholder="filter.title" :options="['foo','bar']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -75,11 +75,13 @@ export default {
       default: () => [
         {
           title: 'Type',
-          prop: 'type'
+          prop: 'type',
+          selected: null
         },
         {
           title: 'Topic',
-          prop: 'tags'
+          prop: 'tags',
+          selected: null
         }
       ]
     }
@@ -87,6 +89,7 @@ export default {
   data () {
     return {
       isOpen: true,
+      selectedType: null,
       limitToShow: this.limit,
       optionsToShow: this.options,
       selectedFilter: null,
@@ -163,10 +166,6 @@ export default {
           { complete: done }
         )
       }, delay)
-    },
-    filterOptions ($event) {
-      let prop = $event.target.dataset.prop
-      this.selectedFilter = prop
     }
   },
   components: {
