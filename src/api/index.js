@@ -28,128 +28,112 @@ const content = [
   },
   {
     title: 'Title 2',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 2,
     language_id: 2,
-    category_id: 2,
-    type_id: 2,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag31',
-      'tag42',
-      'tag53'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/2'
   },
   {
     title: 'Title 3',
-    type: 'text',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 3,
     language_id: 3,
-    category_id: 3,
-    type_id: 3,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/3'
   },
   {
     title: 'Title 4',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 4,
     language_id: 4,
-    category_id: 4,
-    type_id: 4,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/4'
   },
   {
     title: 'Title 5',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 5,
     language_id: 5,
-    category_id: 5,
-    type_id: 5,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/5'
   },
   {
     title: 'Title 6',
-    type: 'text',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 6,
     language_id: 6,
-    category_id: 6,
-    type_id: 6,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/6'
   },
   {
     title: 'Title 7',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 7,
     language_id: 7,
-    category_id: 7,
-    type_id: 7,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   },
   {
     title: 'Title 27',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 7,
     language_id: 7,
-    category_id: 7,
-    type_id: 7,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'
   },
   {
     title: 'Title 28',
-    type: 'video',
+    type: {title: 'text', id: 1},
     author_id: 'Arthur',
     searchable_id: 7,
     language_id: 7,
-    category_id: 7,
-    type_id: 7,
+    category: {title: 'Category1', id: 1},
     tags: [
-      'tag1',
-      'tag2',
-      'tag3'
+      {title: 'tag1', id: 1},
+      {title: 'tag2', id: 2}
     ],
     description: 'Lorem ipsum dolor sit amet',
     thumbnail: 'http://lorempicsum.com/nemo/200/200/7'

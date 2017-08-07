@@ -44,7 +44,6 @@
               :title="option.title" 
               :description="option.description" 
               :thumbnail="option.thumbnail" />
-              <h1>{{option.type}}</h1>
           </li>
           <li :key="optionsLeft.length" v-if="optionsLeft.length">
             <button type="button" class="ac-blocktitle ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
