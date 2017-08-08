@@ -1,5 +1,12 @@
 @import './settings/settings';
 
+.myContainer {
+    position: relative;
+    max-width: gridValue('mainContainer');
+    margin: 0 auto;
+    @extned %clearfix;
+}
+
 .ac {
     &-content {
         flex-grow: 1;
@@ -35,9 +42,9 @@
 
 .main {
     &-logo {
-        background-color: #fff;
-        padding: 10px;
-        text-transform: uppercase;
+        padding: 22px;
         text-decoration: none;
+        text-transform: uppercase;
+        background-color: #fff;
     }
 }
