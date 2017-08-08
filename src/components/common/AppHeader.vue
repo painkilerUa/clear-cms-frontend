@@ -23,16 +23,34 @@
 		<div class="app-header-info">
 			<!-- .myContainer -->
 			<div class="myContainer">
-				<!-- .app-header-login -->
-				<div class="app-header-login">
-					<span class="app-header-login__item app-header-login__item--name">User1234</span>
-					<span class="app-header-login__item">Logout</span>
+				<!-- .app-header-info__container -->
+				<div class="app-header-info__container">
+					<!-- .app-header-login -->
+					<div class="app-header-login">
+						<a href="#" class="app-header-login__item app-header-login__item--name">User1234</a>
+						<a href="#" class="app-header-login__item">Logout</a>
+					</div>
+					<!-- END:.app-header-login -->
+					<!-- .app-header-options -->
+					<div class="app-header-options">
+						<div class="app-header-options__text">Your accessibility options</div>
+					</div>
+					<!-- END:.app-header-options -->
 				</div>
-				<!-- END:.app-header-login -->
+				<!-- END:.app-header-info__container -->
 			</div>
 			<!-- END:.myContainer -->
 		</div>
 		<!-- END:.app-header-info -->
+		<!-- .app-header-search -->
+		<div class="app-header-search">
+			<!-- .myContainer -->
+			<div class="myContainer">
+				
+			</div>
+			<!-- END:.myContainer -->
+		</div>
+		<!-- END:.app-header-search -->
 	</header>
 	<!-- END:.app-header -->
 </template>

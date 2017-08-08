@@ -25,12 +25,25 @@
     &-info {
         padding: 12px 0;
         background-color: color('appHeaderInfo');
+        &__container {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+        }
     }
     &-login {
         &__item {
+            text-decoration: none;
+            color: #fff;
             &--name {
                 margin-right: 15px;
             }
         }
+    }
+    &-search {
+        padding: 32px 0;
+        color: #fff;
+        background-color: color('appHeaderSearchBg');
     }
 }
