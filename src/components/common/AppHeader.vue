@@ -19,6 +19,20 @@
 			<!-- END:.myContainer -->
 		</div>
 		<!-- END:.app-header-main -->
+		<!-- .app-header-info -->
+		<div class="app-header-info">
+			<!-- .myContainer -->
+			<div class="myContainer">
+				<!-- .app-header-login -->
+				<div class="app-header-login">
+					<span class="app-header-login__item app-header-login__item--name">User1234</span>
+					<span class="app-header-login__item">Logout</span>
+				</div>
+				<!-- END:.app-header-login -->
+			</div>
+			<!-- END:.myContainer -->
+		</div>
+		<!-- END:.app-header-info -->
 	</header>
 	<!-- END:.app-header -->
 </template>

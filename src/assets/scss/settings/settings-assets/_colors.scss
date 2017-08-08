@@ -3,7 +3,8 @@ $colors: (
    highlightedArticleBg: #2051A4,
    autocompleteItemBorder: #979899,
    highlightedArticleFont: #fff,
-   appHeaderMain: #050505
+   appHeaderMain: #050505,
+   appHeaderInfo: #1F1F21,
 );
 
 @function color($color) {

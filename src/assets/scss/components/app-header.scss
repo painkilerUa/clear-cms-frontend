@@ -1,12 +1,12 @@
 @import '../settings/settings';
 
 .app-header {
+    margin-bottom: 120px;
+    color: #fff;
     &-main {
-        color: #fff;
         background-color: color('appHeaderMain');
         &__container {
             display: flex;
-            margin-bottom: 120px;
 
             align-items: center;
             justify-content: space-between;
@@ -20,6 +20,17 @@
             font-weight: bold;
             text-decoration: none;
             color: #fff;
+        }
+    }
+    &-info {
+        padding: 12px 0;
+        background-color: color('appHeaderInfo');
+    }
+    &-login {
+        &__item {
+            &--name {
+                margin-right: 15px;
+            }
         }
     }
 }
