@@ -88,7 +88,7 @@ export default {
   },
   data () {
     return {
-      isOpen: true,
+      isOpen: false,
       selectedType: null,
       limitToShow: this.limit,
       optionsToShow: this.options,
