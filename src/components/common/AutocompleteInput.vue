@@ -60,6 +60,7 @@
 import Velocity from 'velocity-animate'
 
 export default {
+  name: 'autocomplete-input',
   props: {
     options: {
       type: Array,
