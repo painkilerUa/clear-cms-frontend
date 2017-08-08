@@ -11,21 +11,15 @@ export default {
   name: 'users',
   computed: {
     ...mapGetters([
-      'content',
       'users'
     ])
   },
   methods: {
     ...mapActions([
-      'getContent',
       'getUsers'
-    ]),
-    selectArticle (article) {
-      console.log('article selected', article)
-    }
+    ])
   },
   mounted () {
-    this.getContent()
     this.getUsers()
   }
 }
