@@ -1,5 +1,6 @@
 $grid: (
-	mainContainer: 1200px
+	mainContainer: 1200px,
+	autocompleteInput: 650px,
 );
 
 @function gridValue($width) {

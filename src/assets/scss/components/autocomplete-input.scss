@@ -3,7 +3,7 @@
 .ac {
     &-wrapper {
         position: relative;
-        max-width: 500px;
+        max-width: gridValue('autocompleteInput');
         margin: 0 auto;
     }
     &-results {
