@@ -3,7 +3,7 @@
 	<div class="popup">
 		<!-- .popup__inner -->
 		<div class="popup__inner">
-			<slot name="popup-inner"></slot>
+			<slot name="popup-inner" />
 		</div>
 		<!-- END:.popup__inner -->
 	</div>
