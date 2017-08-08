@@ -1,15 +1,15 @@
 <template>
 	<!-- .app-header -->
 	<header class="app-header">
-		<!-- .header-main -->
-		<div class="header-main">
+		<!-- .app-header-main -->
+		<div class="app-header-main">
 			<!-- .myContainer -->
-			<div class="myContainer">
-				
+			<div class="app-header-main__container myContainer">
+				<a href="#" class="main-logo">Lloyd's</a>
 			</div>
 			<!-- END:.myContainer -->
 		</div>
-		<!-- END:.header-main -->
+		<!-- END:.app-header-main -->
 	</header>
 	<!-- END:.app-header -->
 </template>
@@ -20,4 +20,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped/>
+<style src="@/assets/scss/components/app-header.scss" lang="scss" scoped/>

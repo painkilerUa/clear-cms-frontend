@@ -1,0 +1,11 @@
+@import '../settings/settings';
+
+.app-header {
+    &-main {
+        &__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
