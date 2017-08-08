@@ -2,22 +2,6 @@
     transition: all 0.15s ease-in;
 }
 
-%shadow-element {
-    box-shadow: 0 0 35px rgba(44,60,68,0.3);
-}
-
-%shadow-element-topmenu {
-    box-shadow: 0 0 35px #cfd7db;
-}
-
-%select-val-ellipsed {
-    display: inline-block;
-    overflow: hidden;
-    max-width: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 %clearfix {
     &:after {
         display: block;
@@ -68,23 +52,17 @@
     background: rgba(0, 0, 0, 0.7) none repeat scroll 0% 0%;
 }
 
+%overlay-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 %grayscale {
     filter: url('data:image/svg+xml;utf8,<svg%20xmlns=\'http://www.w3.org/2000/svg\'><filter%…200.3333%200.3333%200%200%200%200%200%201%200\'/></filter></svg>#grayscale');
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
     -o-filter: grayscale(100%);
-}
-
-%link-states {
-    color: color('primary');
-    &:active {
-        color: color('entity-free-status');
-    }
-}
-
-%ellipsis-points {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }

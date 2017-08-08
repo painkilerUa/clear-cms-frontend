@@ -1,1 +1,15 @@
-@import '../settings/settings'
+@import '../settings/settings';
+
+.popup {
+    display: block;
+    color: #000;
+    background-color: #000;
+
+    @extend %overlay;
+    &__inner {
+        padding: 32px 32px;
+        background-color: color('autocompleteInputBg');
+
+        @extend %overlay-inner;
+    }
+}

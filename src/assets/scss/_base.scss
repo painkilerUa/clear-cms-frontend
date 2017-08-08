@@ -1,9 +1,8 @@
 @import './settings/settings';
 
 .myContainer {
-    position: relative;
     max-width: gridValue('mainContainer');
-    margin: 0 auto;
+    @extend %container;
     @extned %clearfix;
 }
 
