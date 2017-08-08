@@ -44,11 +44,6 @@
 		<!-- END:.app-header-info -->
 		<!-- .app-header-search -->
 		<div class="app-header-search">
-			<popup :title="'Login Popup'" :description="'login description'">
-				<template slot="body">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero temporibus beatae quibusdam eius iusto, rerum sed ipsa expedita fuga quaerat reiciendis minus animi cumque error, voluptate dolor dolorum magni reprehenderit.
-				</template>
-			</popup>
 			<!-- .myContainer -->
 			<div class="myContainer">
 			  <!-- autocomplete-input -->
