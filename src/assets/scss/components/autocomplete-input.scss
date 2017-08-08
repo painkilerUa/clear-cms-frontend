@@ -3,6 +3,8 @@
 .ac {
     &-wrapper {
         position: relative;
+        max-width: 500px;
+        margin: 0 auto;
     }
     &-results {
         position: absolute;
@@ -13,15 +15,18 @@
     &-input {
         display: block;
         width: 100%;
+        padding: 10px;
+        color: color('appHeaderSearchBg');
+        border: none;
     }
     &-blocktitle {
         color: color('highlightedArticleBg');
     }
     &-filters {
         display: flex;
-        align-items: center;
         padding: 10px;
 
+        align-items: center;
         flex-wrap: wrap;
         &-title {
             margin-right: 15px;
