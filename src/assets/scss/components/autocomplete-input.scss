@@ -15,9 +15,12 @@
     &-input {
         display: block;
         width: 100%;
-        padding: 10px;
+        padding: 10px 50px 10px 10px;
         color: color('appHeaderSearchBg');
         border: none;
+        background-repeat: no-repeat;
+        background-position: 99% center;
+        background-image: url('../../img/base/search-icon.svg');
     }
     &-blocktitle {
         color: color('highlightedArticleBg');
