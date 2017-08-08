@@ -6,7 +6,7 @@
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
-      @blur.esc="close"
+      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
