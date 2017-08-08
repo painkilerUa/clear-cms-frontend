@@ -16,7 +16,7 @@
     &-filters {
         &-list {
             &__item {
-                .open-indicator{
+                .open-indicator {
                     display: none;
                 }
                 .dropdown-toggle {
@@ -30,5 +30,11 @@
         opacity: 0.6;
 
         @extend %default-transition;
+    }
+}
+
+.main {
+    &-logo {
+        text-decoration: none;
     }
 }
