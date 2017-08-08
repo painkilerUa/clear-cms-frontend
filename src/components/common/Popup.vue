@@ -16,18 +16,18 @@
 
 <script>
 export default {
- name: 'popup',
- props: {
-   title: {
-     type: String,
-     default: 'Title'
-   },
-   description: {
-   	type: String,
-   	default: ''
-   }
- }
+  name: 'popup',
+  props: {
+    title: {
+      type: String,
+      default: 'Title'
+    },
+    description: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 
-<style src="@/assets/scss/components/popup" lang="scss" scoped/>
+<style src="@/assets/scss/components/popup.scss" lang="scss" scoped/>
