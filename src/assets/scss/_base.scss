@@ -23,18 +23,6 @@
     &-title {
         margin-bottom: 10px;
     }
-    &-filters {
-        &-list {
-            &__item {
-                .open-indicator {
-                    display: none;
-                }
-                .dropdown-toggle {
-                    border: none;
-                }
-            }
-        }
-    }
     &-thumbnail {
         width: 30px;
         height: 30px;
