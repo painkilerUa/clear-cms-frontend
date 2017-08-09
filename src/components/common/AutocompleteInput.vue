@@ -16,8 +16,8 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-             <!-- <v-select v-model="filter.selected" multiple="true" :placeholder="filter.title" :options="['foo','bar']" /> -->
-             {{filter.title}}
+             <v-select v-model="filter.selected" multiple="true" :placeholder="filter.title" :options="['foo','bar']" />
+             <!-- {{filter.title}} -->
             </li>
           </ul>
           <!-- END:.ac-filters-list -->

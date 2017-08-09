@@ -178,7 +178,7 @@ const users = [
  **/
 
 api.timeout = { timeout: 20000 }
-api.serverURL = 'your api server url'
+api.serverURL = '192.168.0.85'
 
 /**
  * Stabs for getters start
