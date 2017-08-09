@@ -16,9 +16,11 @@
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
-            <li class="ac-filters-list__item" v-for="filter in filters">
-             <v-select v-model="filter.selected" :placeholder="filter.title" :options="['foo','bar']" />
-             <!-- {{filter.title}} -->
+            <li class="ac-filters-list__item">
+              <v-select v-model="selectedType" placeholder="Type" :on-change="selectType" :options="['foo','bar']" />
+            </li>
+            <li class="ac-filters-list__item">
+              <v-select v-model="selectedTopics" placeholder="Topic" :multiple="true" :on-change="selectTopic" :options="['foo','bar']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -71,27 +73,13 @@ export default {
     limit: {
       type: Number,
       default: 5
-    },
-    filters: {
-      type: Array,
-      default: () => [
-        {
-          title: 'Type',
-          prop: 'type',
-          selected: null
-        },
-        {
-          title: 'Topic',
-          prop: 'tags',
-          selected: null
-        }
-      ]
     }
   },
   data () {
     return {
       isOpen: true,
       selectedType: null,
+      selectedTopics: null,
       limitToShow: this.limit,
       optionsToShow: this.options,
       selectedFilter: null,
@@ -144,6 +132,12 @@ export default {
     addLeftOptions () {
       this.limitToShow += 2
       this.optionsToShow.concat(this.optionsLeftShow)
+    },
+    selectType (val) {
+      console.log('selectType', val)
+    },
+    selectTopic (val) {
+      console.log('selectTopic', val)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
