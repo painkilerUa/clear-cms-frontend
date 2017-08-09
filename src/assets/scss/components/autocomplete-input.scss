@@ -18,9 +18,9 @@
         padding: 10px 50px 10px 10px;
         color: color('appHeaderSearchBg');
         border: none;
+        background-image: url('../../img/base/search-icon.svg');
         background-repeat: no-repeat;
         background-position: 99% center;
-        background-image: url('../../img/base/search-icon.svg');
     }
     &-blocktitle {
         color: color('highlightedArticleBg');
@@ -40,6 +40,7 @@
             &__item {
                 display: inline-block;
                 vertical-align: middle;
+                color: #000;
 
                 @extend %default-transition;
                 &:not(:last-of-type) {
@@ -61,6 +62,7 @@
         &__item {
             display: flex;
             padding: 15px 0;
+            color: #000;
             border-bottom: 2px solid color('autocompleteItemBorder');
 
             align-items: center;
