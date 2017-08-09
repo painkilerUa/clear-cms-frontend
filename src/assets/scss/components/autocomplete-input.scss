@@ -43,7 +43,7 @@
                 color: #000;
 
                 @extend %default-transition;
-                &:not(:last-of-type) {
+                /* &:not(:last-of-type) {
                     &::after {
                         display: inline-block;
                         width: 1px;
@@ -53,7 +53,7 @@
                         vertical-align: middle;
                         background-color: #000;
                     }
-                }
+                } */
             }
         }
     }
