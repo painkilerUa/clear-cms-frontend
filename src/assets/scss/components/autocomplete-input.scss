@@ -43,6 +43,9 @@
                 color: #000;
 
                 @extend %default-transition;
+                .form-control {
+                    cursor: pointer;
+                }
                 /* &:not(:last-of-type) {
                     &::after {
                         display: inline-block;
