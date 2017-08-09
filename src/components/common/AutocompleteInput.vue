@@ -12,7 +12,7 @@
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
-        <div class="ac-filters">
+        <div class="ac-filters" v-on-clickaway="close">
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
@@ -59,6 +59,7 @@
 
 <script>
 import Velocity from 'velocity-animate'
+import { directive as onClickaway } from 'vue-clickaway'
 
 export default {
   name: 'autocomplete-input',
@@ -168,6 +169,9 @@ export default {
         )
       }, delay)
     }
+  },
+  directives: {
+    onClickaway
   },
   components: {
     Velocity
