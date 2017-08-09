@@ -170,9 +170,6 @@ export default {
   },
   components: {
     Velocity
-  },
-  mounted () {
-    // this.$http.get('https://jsonplaceholder.typicode.com/posts/1/comments')
   }
 }
 </script>
