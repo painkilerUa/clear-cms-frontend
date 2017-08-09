@@ -173,9 +173,6 @@ export default {
   },
   mounted () {
     // this.$http.get('https://jsonplaceholder.typicode.com/posts/1/comments')
-    this.$http.get('http://192.168.0.85/web/app.php/content')
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err))
   }
 }
 </script>

@@ -1,11 +1,10 @@
 import api from '../api'
 
 export const getContent = ({ commit }, payload) => {
-  const urlEnd = '/content'
-  const type = 'post'
-  // replace below method to "requestToServer"
-  api.requestContent(urlEnd, type, payload)
-    .then((res) => commit('setContent', res))
+  const urlEnd = ''
+  const type = 'get'
+  api.requestToServer(urlEnd, type, payload)
+    .then((res) => commit('setContent', res.body))
     .catch((err) => console.error(err))
 }
 
