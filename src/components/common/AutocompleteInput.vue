@@ -1,6 +1,5 @@
 <template>
   <div class="ac-wrapper">
-    <!-- TODO: add @blur="close" -->
     <input class="ac-input" 
       v-model.trim="keyword"
       placeholder="Search..."
