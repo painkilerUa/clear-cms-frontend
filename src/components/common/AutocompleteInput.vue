@@ -7,6 +7,7 @@
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
+      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
@@ -89,7 +90,7 @@ export default {
   },
   data () {
     return {
-      isOpen: true,
+      isOpen: false,
       selectedType: null,
       limitToShow: this.limit,
       optionsToShow: this.options,
