@@ -1,12 +1,12 @@
 <template>
   <div class="ac-wrapper">
+    <!-- TODO: add @blur="close" -->
     <input class="ac-input" 
       v-model.trim="keyword"
       placeholder="Search..."
       @input="onInput($event.target.value)"
       @keydown.enter="select"
       @keyup.esc="close"
-      @blur="close"
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
