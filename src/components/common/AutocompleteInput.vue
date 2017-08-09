@@ -11,12 +11,13 @@
       <!-- .ac-results -->
       <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
-        <div class="ac-filters" v-on-clickaway="close">
+        <!-- TODO: add v-on-clickaway="close" -->
+        <div class="ac-filters">
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item" v-for="filter in filters">
-             <v-select v-model="filter.selected" multiple="true" :placeholder="filter.title" :options="['foo','bar']" />
+             <v-select v-model="filter.selected" :placeholder="filter.title" :options="['foo','bar']" />
              <!-- {{filter.title}} -->
             </li>
           </ul>
@@ -89,7 +90,7 @@ export default {
   },
   data () {
     return {
-      isOpen: false,
+      isOpen: true,
       selectedType: null,
       limitToShow: this.limit,
       optionsToShow: this.options,
