@@ -27,9 +27,7 @@
         </div>
         <!-- END:.ac-filters -->
         <!-- ac-list -->
-        <transition-group
-        tag="ul"
-        name="staggered-fade"
+        <ul
         class="ac-list">
           <li v-for="(option, index) in optionsComputed" 
             :key="option.title"
@@ -51,10 +49,10 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li :key="options.length" v-if="options.length">
+          <li>
             <button type="button" class="ac-blocktitle ac-more">+ See more</button>
           </li>
-        </transition-group>
+        </ul>
         <!-- END:ac-list -->
       </div>
       <!-- END:.ac-results -->
@@ -81,10 +79,6 @@ export default {
       isOpen: false,
       selectedType: null,
       selectedTopics: null,
-      limitToShow: this.limit,
-      optionsToShow: this.options,
-      selectedFilter: null,
-      optionsLeftShow: this.options,
       highlightedPosition: 0,
       searchQuery: ''
     }
@@ -99,7 +93,7 @@ export default {
       this.$http.get(api.serverURL)
       .then((res) => {
         this.isOpen = !!value
-        this.options = res.body
+        this.options = res.body.content.items
       })
       .catch((err) => console.error(err))
     },
