@@ -17,10 +17,10 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item">
-              <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="['foo','bar']" />
+              <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="this.types.items" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="['foo','bar']" />
+              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="this.tags.items" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -74,11 +74,11 @@ export default {
       options: [],
       isOpen: false,
       types: {
-        items: [],
+        items: ['type1111', 'type2222'],
         selectedItem: null
       },
       tags: {
-        items: [],
+        items: ['tag11111', 'tag222'],
         selectedItems: []
       }
     }
