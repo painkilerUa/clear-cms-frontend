@@ -8,11 +8,18 @@ export const getContent = ({ commit }, payload) => {
     .catch((err) => console.error(err))
 }
 
-export const getUsers = ({ commit }, payload) => {
-  const urlEnd = '/users'
+export const getTypes = ({ commit }, payload) => {
+  const urlEnd = '/types'
   const type = 'get'
-  // replace below method to "requestToServer"
-  api.requestUsers(urlEnd, type, payload)
-    .then((res) => commit('setUsers', res))
+  api.requestToServer(urlEnd, type, payload)
+    .then((res) => commit('setTypes', res.body))
+    .catch((err) => console.error(err))
+}
+
+export const getTags = ({ commit }, payload) => {
+  const urlEnd = '/tags'
+  const type = 'get'
+  api.requestToServer(urlEnd, type, payload)
+    .then((res) => commit('setTags', res.body))
     .catch((err) => console.error(err))
 }
