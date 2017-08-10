@@ -7,10 +7,10 @@
 			<div class="myContainer">
 				<!-- .app-header-main__container -->
 				<div class="app-header-main__container">
-					<a href="#" class="main-logo">Lloyd's</a>
+					<a href="#" class="main-logo" tabindex="-1">Lloyd's</a>
 					<!-- .app-header-description -->
 					<div class="app-header-description">
-						<p>Powered by <a href="#" class="app-header-description__link">the clear company</a></p>
+						<p>Powered by <a href="#" class="app-header-description__link" tabindex="-1">the clear company</a></p>
 					</div>
 					<!-- END:.app-header-description -->
 				</div>
@@ -27,8 +27,8 @@
 				<div class="app-header-info__container">
 					<!-- .app-header-login -->
 					<div class="app-header-login">
-						<a href="#" class="app-header-login__item app-header-login__item--name">User1234</a>
-						<a href="#" class="app-header-login__item">Logout</a>
+						<a href="#" class="app-header-login__item app-header-login__item--name" tabindex="-1">User1234</a>
+						<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
 					</div>
 					<!-- END:.app-header-login -->
 					<!-- .app-header-options -->
