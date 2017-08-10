@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     onInput (value) {
+      this.options = []
       this.$http.get(api.serverURL)
       .then((res) => {
         this.isOpen = !!value
