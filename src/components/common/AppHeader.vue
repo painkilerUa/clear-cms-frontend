@@ -64,9 +64,6 @@ export default {
     selectArticle (article) {
       console.log('article selected', article)
     }
-  },
-  mounted () {
-    // this.getContent()
   }
 }
 </script>
