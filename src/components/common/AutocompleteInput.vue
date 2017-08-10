@@ -9,7 +9,7 @@
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
-      <div class="ac-results" v-if="isOpen">
+      <div class="ac-results" v-if="options.length">
         <!-- .ac-filters -->
         <!-- TODO: add v-on-clickaway="close" -->
         <div class="ac-filters">
