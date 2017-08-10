@@ -78,7 +78,7 @@ export default {
   data () {
     return {
       options: [],
-      isOpen: true,
+      isOpen: false,
       selectedType: null,
       selectedTopics: null,
       limitToShow: this.limit,
@@ -106,6 +106,9 @@ export default {
   methods: {
     onInput (value) {
       this.isOpen = !!value
+      this.$http.get(api.serverURL)
+      .then((res) => { this.options = res.body })
+      .catch((err) => console.error(err))
     },
     moveUp () {
       if (!this.isOpen) {
@@ -172,9 +175,6 @@ export default {
     Velocity
   },
   mounted () {
-    this.$http.get(api.serverURL)
-    .then((res) => { this.options = res.body })
-    .catch((err) => console.error(err))
   }
 }
 </script>
