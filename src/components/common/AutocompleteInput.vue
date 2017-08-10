@@ -49,7 +49,7 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li>
+          <li v-if="optionsComputed.length">
             <button type="button" class="ac-blocktitle ac-more" @click="nextPage">+ See more</button>
           </li>
         </ul>
