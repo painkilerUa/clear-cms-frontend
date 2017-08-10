@@ -91,10 +91,11 @@ export default {
   methods: {
     onInput (value) {
       this.options = []
-      this.$http.get(api.serverURL)
+      this.$http.get(`${api.serverURL}/search?_format=json&search=${this.searchQuery}`)
       .then((res) => {
         this.isOpen = !!value
-        this.options = res.body.content.items
+        this.options = res.body.data
+        console.log(res.body.data)
       })
       .catch((err) => console.error(err))
     },
