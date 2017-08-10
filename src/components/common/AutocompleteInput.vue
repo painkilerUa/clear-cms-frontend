@@ -91,8 +91,9 @@ export default {
   },
   methods: {
     onInput (value) {
+      const queryString = `${this.serverApiURL}&search=${this.searchQuery}`
       this.options = []
-      this.$http.get(`${this.serverApiURL}&search=${this.searchQuery}`)
+      this.$http.get(`${queryString}`)
       .then((res) => {
         this.isOpen = !!value
         this.options = res.body.data
