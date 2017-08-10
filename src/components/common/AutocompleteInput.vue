@@ -9,7 +9,7 @@
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
-      <div class="ac-results" v-if="optionsComputed.length">
+      <div class="ac-results" v-if="isOpen">
         <!-- .ac-filters -->
         <!-- TODO: add v-on-clickaway="close" -->
         <div class="ac-filters">
@@ -49,7 +49,7 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li v-if="optionsComputed.length">
+          <li v-if="isOpen">
             <button type="button" class="ac-blocktitle ac-more" @click="nextPage">+ See more</button>
           </li>
         </ul>
