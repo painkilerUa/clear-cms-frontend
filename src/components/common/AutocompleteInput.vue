@@ -30,13 +30,7 @@
         <ul
         class="ac-list">
           <li v-for="(option, index) in optionsComputed" 
-            :key="option.title"
-            data-index="index"
             class="ac-list__item"
-            :css="false"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @leave="leave"
             :class="{highlighted: index === highlightedPosition}"
             @mouseenter="highlightedPosition = index"
             @mousedown="select"
