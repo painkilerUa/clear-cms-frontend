@@ -70,6 +70,8 @@ export default {
   data () {
     return {
       options: [],
+      types: [],
+      tags: [],
       isOpen: false,
       selectedType: null,
       selectedTopics: null,
