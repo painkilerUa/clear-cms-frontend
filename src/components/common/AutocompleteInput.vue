@@ -69,6 +69,8 @@ export default {
   name: 'autocomplete-input',
   data () {
     return {
+      searchQuery: '',
+      highlightedPosition: 0,
       options: [],
       isOpen: false,
       types: {
@@ -79,8 +81,6 @@ export default {
         items: [],
         selectedItems: []
       },
-      highlightedPosition: 0,
-      searchQuery: ''
     }
   },
   computed: {
