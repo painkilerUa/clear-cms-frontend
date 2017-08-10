@@ -124,11 +124,9 @@ export default {
     },
     selectType (val) {
       this.types.selectedItem = val
-      console.log('selectedType', this.types.selectedItem)
     },
     selectTags (val) {
       this.tags.selectedItems = val
-      console.log('selectedTags', this.tags.selectedItems)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
