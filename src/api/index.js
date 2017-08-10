@@ -179,7 +179,8 @@ const users = [
 
 api.timeout = { timeout: 20000 }
 // api.serverURL = 'http://192.168.0.85/web/app.php/api/v1/content'
-api.serverURL = 'https://api.myjson.com/bins/q754t'
+// api.serverURL = 'https://api.myjson.com/bins/q754t'
+api.serverURL = 'https://api.myjson.com/bins/tan0t'
 
 /**
  * Stabs for getters start
