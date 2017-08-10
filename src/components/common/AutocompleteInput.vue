@@ -70,15 +70,15 @@ export default {
   data () {
     return {
       options: [],
+      isOpen: false,
       types: {
         items: [],
         selectedItem: null
       },
       tags: {
         items: [],
-        selectedItem: null
+        selectedItems: []
       },
-      isOpen: false,
       highlightedPosition: 0,
       searchQuery: ''
     }
@@ -86,6 +86,12 @@ export default {
   computed: {
     optionsComputed () {
       return this.options
+    },
+    isOpenComputed () {
+      if (this.options.length) {
+        this.isOpen = true
+      }
+      return this.isOpen
     }
   },
   methods: {
@@ -121,10 +127,12 @@ export default {
       this.isOpen = false
     },
     selectType (val) {
-      console.log('selectedType', val)
+      this.types.selectedItem = val
+      console.log('selectedType', this.types.selectedItem)
     },
     selectTags (val) {
-      console.log('selectedTags', val)
+      this.tags.selectedItems.push(val)
+      console.log('selectedTags', this.types.selectedItems)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
