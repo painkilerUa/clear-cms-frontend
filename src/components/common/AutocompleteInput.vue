@@ -100,13 +100,28 @@ export default {
       this.fetchContent()
     },
     fetchContent () {
-      const queryString = `${this.serverApiSearchURL}&search=${this.searchQuery}&page=${this.page}`
-      this.options = []
+      // variables
+      let queryString = `${this.serverApiSearchURL}&page=${this.page}`
+      let searchQuery = this.searchQuery
+      let selectedType = this.types.selectedItem
+      let selectedTags = this.tags.selectedItems
+      // END:variables
+      if (searchQuery.length) {
+        queryString += `&search=${searchQuery}`
+      }
+      if (selectedType) {
+        queryString += `&type=${selectedType}`
+      }
+      if (selectedTags.length) {
+        queryString += `&tags=${selectedTags}`
+      }
+      console.log('q:', queryString)
+      // this.options = []
       this.$http.get(`${queryString}`)
       .then((res) => {
         this.options = res.body.data.items
         this.allCount = res.body.data.count
-        console.log('allCount', res.body.data.count)
+        // console.log('allCount', res.body.data.count)
       })
       .catch((err) => console.error(err))
     },
@@ -140,11 +155,11 @@ export default {
     },
     selectType (val) {
       this.types.selectedItem = val
-      console.log(this.types.selectedItem)
+      this.fetchContent()
     },
     selectTags (val) {
       this.tags.selectedItems = val
-      console.log(this.tags.selectedItems)
+      this.fetchContent()
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
