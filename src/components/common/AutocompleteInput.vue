@@ -69,7 +69,7 @@ export default {
   name: 'autocomplete-input',
   data () {
     return {
-      serverApiURL: `${api.serverURL}/search?_format=json`,
+      serverApiSearchURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
       allCount: null,
       isOpen: false,
@@ -100,7 +100,7 @@ export default {
       this.fetchContent()
     },
     fetchContent () {
-      const queryString = `${this.serverApiURL}&search=${this.searchQuery}&page=${this.page}`
+      const queryString = `${this.serverApiSearchURL}&search=${this.searchQuery}&page=${this.page}`
       this.options = []
       this.$http.get(`${queryString}`)
       .then((res) => {
