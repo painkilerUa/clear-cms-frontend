@@ -69,6 +69,7 @@ export default {
   name: 'autocomplete-input',
   data () {
     return {
+      serverApiURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
       isOpen: false,
       highlightedPosition: 0,
@@ -91,7 +92,7 @@ export default {
   methods: {
     onInput (value) {
       this.options = []
-      this.$http.get(`${api.serverURL}/search?_format=json&search=${this.searchQuery}`)
+      this.$http.get(`${this.serverApiURL}&search=${this.searchQuery}`)
       .then((res) => {
         this.isOpen = !!value
         this.options = res.body.data
