@@ -71,6 +71,7 @@ export default {
     return {
       serverApiURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
+      allCount: null,
       isOpen: false,
       page: 1,
       highlightedPosition: 0,
@@ -104,6 +105,7 @@ export default {
       this.$http.get(`${queryString}`)
       .then((res) => {
         this.options = res.body.data.items
+        this.count = res.body.data.count
         console.log('count', res.body.data.count)
       })
       .catch((err) => console.error(err))
