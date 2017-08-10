@@ -67,12 +67,6 @@ import { directive as onClickaway } from 'vue-clickaway'
 
 export default {
   name: 'autocomplete-input',
-  props: {
-    limit: {
-      type: Number,
-      default: 5
-    }
-  },
   data () {
     return {
       options: [],
