@@ -86,12 +86,6 @@ export default {
   computed: {
     optionsComputed () {
       return this.options
-    },
-    isOpenComputed () {
-      if (this.options.length) {
-        this.isOpen = true
-      }
-      return this.isOpen
     }
   },
   methods: {
