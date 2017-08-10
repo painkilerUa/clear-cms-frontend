@@ -70,9 +70,9 @@ export default {
   data () {
     return {
       searchQuery: '',
+      isOpen: false,
       highlightedPosition: 0,
       options: [],
-      isOpen: false,
       types: {
         items: ['type1111', 'type2222'],
         selectedItem: null
