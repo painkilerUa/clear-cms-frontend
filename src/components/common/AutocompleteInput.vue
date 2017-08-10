@@ -17,10 +17,10 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item">
-              <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="this.types.items" />
+              <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="this.tags.items" />
+              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -62,6 +62,7 @@
 
 <script>
 import api from '@/api'
+import { mapGetters, mapActions } from 'vuex'
 import Velocity from 'velocity-animate'
 import { directive as onClickaway } from 'vue-clickaway'
 
@@ -76,22 +77,28 @@ export default {
       page: 1,
       highlightedPosition: 0,
       options: [],
-      types: {
-        items: ['type1', 'type2'],
-        selectedItem: null
-      },
-      tags: {
-        items: ['tag1', 'tag2'],
-        selectedItems: []
-      }
+      selectedType: null,
+      selectedTags: []
     }
   },
   computed: {
+    ...mapGetters([
+      'types',
+      'getContentTypeTitles',
+      'getContentTypeIdByTitle',
+      'tags',
+      'getTagTitles',
+      'getTagIdByName'
+    ]),
     optionsComputed () {
       return this.options
     }
   },
   methods: {
+    ...mapActions([
+      'getTypes',
+      'getTags'
+    ]),
     onInput (value) {
       this.isOpen = !!value
       if (value === '') {
@@ -103,17 +110,15 @@ export default {
       // variables
       let queryString = `${this.serverApiSearchURL}&page=${this.page}`
       let searchQuery = this.searchQuery
-      let selectedType = this.types.selectedItem
-      let selectedTags = this.tags.selectedItems
       // END:variables
       if (searchQuery.length) {
         queryString += `&search=${searchQuery}`
       }
-      if (selectedType) {
-        queryString += `&type=${selectedType}`
+      if (this.selectedType) {
+        queryString += `&type=${this.selectedType}`
       }
-      if (selectedTags.length) {
-        queryString += `&tags=${selectedTags}`
+      if (this.selectedTags.length) {
+        queryString += `&tags=${this.selectedTags}`
       }
       console.log('q:', queryString)
       // this.options = []
@@ -193,6 +198,8 @@ export default {
     Velocity
   },
   mounted () {
+    this.getTypes()
+    this.getTags()
   }
 }
 </script>
