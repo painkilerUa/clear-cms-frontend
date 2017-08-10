@@ -148,9 +148,6 @@ api.timeout = { timeout: 20000 }
 api.serverURL = 'http://192.168.0.85/web/app.php'
 // api.serverURL = 'https://api.myjson.com/bins/tan0t'
 
-/* tags */
-// api.serverURL = 'https://api.myjson.com/bins/1h4enh'
-
 /*
 * Request to back-end api
 */

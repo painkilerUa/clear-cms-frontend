@@ -103,7 +103,8 @@ export default {
       this.options = []
       this.$http.get(`${queryString}`)
       .then((res) => {
-        this.options = res.body.data
+        this.options = res.body.data.items
+        console.log('count', res.body.data.count)
       })
       .catch((err) => console.error(err))
     },
