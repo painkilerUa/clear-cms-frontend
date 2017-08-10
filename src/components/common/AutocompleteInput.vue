@@ -31,7 +31,7 @@
         tag="ul"
         name="staggered-fade"
         class="ac-list">
-          <li v-for="(option, index) in optionsFilteredLimited" 
+          <li v-for="(option, index) in optionsComputed" 
             :key="option.title"
             data-index="index"
             class="ac-list__item"
@@ -51,8 +51,8 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li :key="optionsLeft.length" v-if="optionsLeft.length">
-            <button type="button" class="ac-blocktitle ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
+          <li :key="options.length" v-if="options.length">
+            <button type="button" class="ac-blocktitle ac-more">+ See more</button>
           </li>
         </transition-group>
         <!-- END:ac-list -->
@@ -90,17 +90,8 @@ export default {
     }
   },
   computed: {
-    optionsFiltered () {
-      const regEx = new RegExp(this.searchQuery, 'i')
-      return this.options.filter(option => option.title.match(regEx))
-    },
-    optionsFilteredLimited () {
-      this.optionsToShow = this.optionsFiltered.slice(0, this.limitToShow).sort((a, b) => a[this.selectedFilter] < b[this.selectedFilter] ? -1 : (a[this.selectedFilter] > b[this.selectedFilter]) ? 1 : 0)
-      return this.optionsToShow
-    },
-    optionsLeft () {
-      this.optionsLeftShow = this.optionsFiltered.filter(option => this.optionsFilteredLimited.indexOf(option) === -1)
-      return this.optionsLeftShow
+    optionsComputed () {
+      return this.options
     }
   },
   methods: {
@@ -134,10 +125,6 @@ export default {
     },
     close () {
       this.isOpen = false
-    },
-    addLeftOptions () {
-      this.limitToShow += 2
-      this.optionsToShow.concat(this.optionsLeftShow)
     },
     selectType (val) {
       console.log('selectType', val)
