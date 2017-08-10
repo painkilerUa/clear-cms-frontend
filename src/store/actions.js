@@ -1,7 +1,7 @@
 import api from '../api'
 
 export const getContent = ({ commit }, payload) => {
-  const urlEnd = ''
+  const urlEnd = '/content'
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
     .then((res) => commit('setContent', res.body))
