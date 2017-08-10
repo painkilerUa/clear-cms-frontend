@@ -46,9 +46,7 @@
 		<div class="app-header-search">
 			<!-- .myContainer -->
 			<div class="myContainer">
-			  <!-- autocomplete-input -->
 			  <autocomplete-input @selected="selectArticle" />
-   			  <!-- END:autocomplete-input -->
 			</div>
 			<!-- END:.myContainer -->
 		</div>
