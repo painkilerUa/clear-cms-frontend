@@ -93,6 +93,9 @@ export default {
   methods: {
     onInput (value) {
       this.isOpen = !!value
+      if (value === '') {
+        this.close()
+      }
       this.fetchContent()
     },
     fetchContent () {
@@ -130,6 +133,7 @@ export default {
     },
     close () {
       this.isOpen = false
+      this.page = 1
     },
     selectType (val) {
       this.types.selectedItem = val
