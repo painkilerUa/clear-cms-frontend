@@ -75,11 +75,11 @@ export default {
       highlightedPosition: 0,
       options: [],
       types: {
-        items: ['type1111', 'type2222'],
+        items: ['type1', 'type2'],
         selectedItem: null
       },
       tags: {
-        items: ['tag11111', 'tag222'],
+        items: ['tag1', 'tag2'],
         selectedItems: []
       }
     }
