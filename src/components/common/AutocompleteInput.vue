@@ -105,9 +105,11 @@ export default {
   },
   methods: {
     onInput (value) {
-      this.isOpen = !!value
       this.$http.get(api.serverURL)
-      .then((res) => { this.options = res.body })
+      .then((res) => {
+        this.isOpen = !!value
+        this.options = res.body
+      })
       .catch((err) => console.error(err))
     },
     moveUp () {
