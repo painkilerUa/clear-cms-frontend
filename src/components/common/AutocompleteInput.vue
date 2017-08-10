@@ -88,7 +88,7 @@ export default {
       'getContentTypeIdByTitle',
       'tags',
       'getTagTitles',
-      'getTagIdByName'
+      'getTagIdByNames'
     ]),
     optionsComputed () {
       return this.options
@@ -159,11 +159,11 @@ export default {
       this.page = 1
     },
     selectType (val) {
-      this.types.selectedItem = val
+      this.selectedType = val
       this.fetchContent()
     },
     selectTags (val) {
-      this.tags.selectedItems = val
+      this.selectedTags = val
       this.fetchContent()
     },
     beforeEnter: function (el) {

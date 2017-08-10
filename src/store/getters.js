@@ -8,4 +8,4 @@ export const getContentTypeIdByTitle = (state, geters) => (title) => state.types
 
 // tags
 export const getTagTitles = (state, getters) => state.tags.map(item => item.title)
-export const getTagIdByName = (state, getters) => (name) => state.tags.find(item => item.name === name).id
+export const getTagIdByNames = (state, getters) => (name) => state.tags.find(item => item.name === name).id
