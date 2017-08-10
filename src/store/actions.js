@@ -10,7 +10,7 @@ export const getContent = ({ commit }, payload) => {
 
 export const getUsers = ({ commit }, payload) => {
   const urlEnd = '/users'
-  const type = 'post'
+  const type = 'get'
   // replace below method to "requestToServer"
   api.requestUsers(urlEnd, type, payload)
     .then((res) => commit('setUsers', res))
