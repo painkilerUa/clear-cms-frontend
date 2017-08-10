@@ -145,9 +145,9 @@ export default api
  **/
 
 api.timeout = { timeout: 20000 }
-// api.serverURL = 'http://192.168.0.85/web/app.php/content'
+api.serverURL = 'http://192.168.0.85/web/app.php/content'
 // api.serverURL = 'https://api.myjson.com/bins/q754t'
-api.serverURL = 'https://api.myjson.com/bins/tan0t'
+// api.serverURL = 'https://api.myjson.com/bins/tan0t'
 
 /*
 * Request to back-end api
