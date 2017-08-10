@@ -11,7 +11,8 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 const state = {
   content: [],
-  types: []
+  types: [],
+  tags: []
 }
 
 export default new Vuex.Store({
