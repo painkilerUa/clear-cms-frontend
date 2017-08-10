@@ -1,7 +1,7 @@
 <template>
   <div class="ac-wrapper">
     <input class="ac-input" 
-      v-model.trim="keyword"
+      v-model.trim="searchQuery"
       placeholder="Search..."
       @input="onInput($event.target.value)"
       @keydown.enter="select"
@@ -77,8 +77,8 @@ export default {
   },
   data () {
     return {
-      isOpen: true,
       options: [],
+      isOpen: true,
       selectedType: null,
       selectedTopics: null,
       limitToShow: this.limit,
@@ -86,12 +86,12 @@ export default {
       selectedFilter: null,
       optionsLeftShow: this.options,
       highlightedPosition: 0,
-      keyword: ''
+      searchQuery: ''
     }
   },
   computed: {
     optionsFiltered () {
-      const regEx = new RegExp(this.keyword, 'i')
+      const regEx = new RegExp(this.searchQuery, 'i')
       return this.options.filter(option => option.title.match(regEx))
     },
     optionsFilteredLimited () {
@@ -123,7 +123,7 @@ export default {
     },
     select () {
       const selectedOption = this.options[this.highlightedPosition]
-      this.keyword = selectedOption.title
+      this.searchQuery = selectedOption.title
       this.close()
       this.$emit('selected', selectedOption)
     },
