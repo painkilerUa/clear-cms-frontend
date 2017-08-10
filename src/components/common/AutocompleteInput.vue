@@ -159,11 +159,11 @@ export default {
       this.page = 1
     },
     selectType (val) {
-      this.selectedType = val
+      this.selectedType = this.getContentTypeIdByTitle(val)
       this.fetchContent()
     },
     selectTags (val) {
-      this.selectedTags = val
+      this.selectedTags = this.getTagIdByNames(val)
       this.fetchContent()
     },
     beforeEnter: function (el) {
