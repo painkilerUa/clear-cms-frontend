@@ -127,8 +127,8 @@ export default {
       console.log('selectedType', this.types.selectedItem)
     },
     selectTags (val) {
-      this.tags.selectedItems.push(val)
-      console.log('selectedTags', this.types.selectedItems)
+      this.tags.selectedItems = val
+      console.log('selectedTags', this.tags.selectedItems)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
