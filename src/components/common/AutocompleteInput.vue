@@ -41,7 +41,7 @@
             @mouseenter="highlightedPosition = index"
             @mousedown="select"
             @keydown.space.enter="select" tabindex="0"> 
-            <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" class="ac-thumbnail" />
+            <img v-if="option.content_type.icon" :src="option.content_type.icon" :alt="option.title" class="ac-thumbnail" />
             <!-- .ac-content -->
             <div class="ac-content">
               <h3 class="ac-title" v-if="option.title">{{option.title}}</h3>
