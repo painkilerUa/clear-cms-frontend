@@ -20,7 +20,7 @@
               <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="['foo','bar']" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTopic" :options="['foo','bar']" />
+              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="['foo','bar']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -121,10 +121,10 @@ export default {
       this.isOpen = false
     },
     selectType (val) {
-      console.log('selectType', val)
+      console.log('selectedType', val)
     },
-    selectTopic (val) {
-      console.log('selectTopic', val)
+    selectTags (val) {
+      console.log('selectedTags', val)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
