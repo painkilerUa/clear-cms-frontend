@@ -97,7 +97,6 @@ export default {
       .then((res) => {
         this.isOpen = !!value
         this.options = res.body.data
-        console.log(res.body.data)
       })
       .catch((err) => console.error(err))
     },
@@ -126,9 +125,11 @@ export default {
     },
     selectType (val) {
       this.types.selectedItem = val
+      console.log(this.types.selectedItem)
     },
     selectTags (val) {
       this.tags.selectedItems = val
+      console.log(this.tags.selectedItems)
     },
     beforeEnter: function (el) {
       el.style.opacity = 0
