@@ -47,17 +47,7 @@
 			<!-- .myContainer -->
 			<div class="myContainer">
 			  <!-- autocomplete-input -->
-			  <autocomplete-input :options="content" @selected="selectArticle">
-			     <template slot="item" scope="option">
-			      <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" class="ac-thumbnail" />
-			      <!-- .ac-content -->
-			      <div class="ac-content">
-			        <h3 class="ac-title" v-if="option.title">{{option.title}}</h3>
-			        <div class="ac-description" v-if="option.description">{{option.description}}</div>
-			      </div>
-			      <!-- END:.ac-content -->
-			    </template>
-   			  </autocomplete-input>
+			  <autocomplete-input @selected="selectArticle" />
    			  <!-- END:autocomplete-input -->
 			</div>
 			<!-- END:.myContainer -->
@@ -68,25 +58,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'app-header',
-  computed: {
-    ...mapGetters([
-      'content'
-    ])
-  },
   methods: {
-    ...mapActions([
-      'getContent'
-    ]),
     selectArticle (article) {
       console.log('article selected', article)
     }
   },
   mounted () {
-    this.getContent()
+    // this.getContent()
   }
 }
 </script>

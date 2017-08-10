@@ -43,10 +43,13 @@
             @mouseenter="highlightedPosition = index"
             @mousedown="select"
             @keydown.space.enter="select" tabindex="0"> 
-            <slot name="item" 
-              :title="option.title" 
-              :description="option.description" 
-              :thumbnail="option.thumbnail" />
+            <img v-if="option.thumbnail" :src="option.thumbnail" :alt="option.title" class="ac-thumbnail" />
+            <!-- .ac-content -->
+            <div class="ac-content">
+              <h3 class="ac-title" v-if="option.title">{{option.title}}</h3>
+              <div class="ac-description" v-if="option.description">{{option.description}}</div>
+            </div>
+            <!-- END:.ac-content -->
           </li>
           <li :key="optionsLeft.length" v-if="optionsLeft.length">
             <button type="button" class="ac-blocktitle ac-more" @mousedown="addLeftOptions" @keydown.space.enter="addLeftOptions">+ See more</button>
@@ -60,16 +63,13 @@
 </template>
 
 <script>
+import api from '@/api'
 import Velocity from 'velocity-animate'
 import { directive as onClickaway } from 'vue-clickaway'
 
 export default {
   name: 'autocomplete-input',
   props: {
-    options: {
-      type: Array,
-      required: true
-    },
     limit: {
       type: Number,
       default: 5
@@ -78,7 +78,7 @@ export default {
   data () {
     return {
       isOpen: true,
-      optionsData: [],
+      options: [],
       selectedType: null,
       selectedTopics: null,
       limitToShow: this.limit,
@@ -170,6 +170,11 @@ export default {
   },
   components: {
     Velocity
+  },
+  mounted () {
+    this.$http.get(api.serverURL)
+    .then((res) => { this.options = res.body })
+    .catch((err) => console.error(err))
   }
 }
 </script>
