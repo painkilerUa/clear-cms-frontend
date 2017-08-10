@@ -72,6 +72,7 @@ export default {
       serverApiURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
       isOpen: false,
+      page: 1,
       highlightedPosition: 0,
       options: [],
       types: {
@@ -91,11 +92,14 @@ export default {
   },
   methods: {
     onInput (value) {
-      const queryString = `${this.serverApiURL}&search=${this.searchQuery}`
+      this.isOpen = !!value
+      this.fetchContent()
+    },
+    fetchContent () {
+      const queryString = `${this.serverApiURL}&search=${this.searchQuery}&page=${this.page}`
       this.options = []
       this.$http.get(`${queryString}`)
       .then((res) => {
-        this.isOpen = !!value
         this.options = res.body.data
       })
       .catch((err) => console.error(err))
