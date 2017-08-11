@@ -114,7 +114,6 @@ export default {
         queryString += `&tags=${this.selectedTags}`
       }
       console.log('q:', queryString)
-      // this.options = []
       this.$http.get(`${queryString}`)
       .then((res) => {
         this.options = res.body.data.items
