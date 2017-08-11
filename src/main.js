@@ -7,8 +7,11 @@ import router from './router'
 import store from './store'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
+import vSelect from 'vue-select'
 
 Vue.config.productionTip = false
+
+Vue.component('v-select', vSelect)
 
 Vue.use(VueResource)
 Vue.use(Vuex)

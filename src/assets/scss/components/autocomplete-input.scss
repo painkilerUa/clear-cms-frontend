@@ -1,0 +1,69 @@
+@import '../settings/settings';
+
+.ac {
+    &-wrapper {
+        position: relative;
+    }
+    &-results {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        background-color: color('autocompleteInputBg');
+    }
+    &-input {
+        display: block;
+        width: 100%;
+    }
+    &-blocktitle {
+        color: color('highlightedArticleBg');
+    }
+    &-filters {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        flex-wrap: wrap;
+        &-title {
+            margin-right: 15px;
+        }
+        &-list {
+            margin-bottom: 0;
+            list-style: none;
+            &__item {
+                display: inline-block;
+                vertical-align: middle;
+
+                @extend %default-transition;
+                &:not(:last-of-type) {
+                    &::after {
+                        display: inline-block;
+                        width: 1px;
+                        height: 15px;
+                        margin: 0 10px;
+                        content: '';
+                        vertical-align: middle;
+                        background-color: #000;
+                    }
+                }
+            }
+        }
+    }
+    &-list {
+        margin-bottom: 0;
+        &__item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 2px solid color('autocompleteItemBorder');
+
+            align-items: center;
+            @extend %default-transition;
+            &:hover,
+            &:focus,
+            &.highlighted {
+                color: color('highlightedArticleFont');
+                outline: none;
+                background-color: color('highlightedArticleBg');
+            }
+        }
+    }
+}

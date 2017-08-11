@@ -1,0 +1,10 @@
+$colors: (
+   autocompleteInputBg: #DCDCDB,
+   highlightedArticleBg: #2051A4,
+   autocompleteItemBorder: #979899,
+   highlightedArticleFont: #fff,
+);
+
+@function color($color) {
+    @return map-get($colors, $color);
+}

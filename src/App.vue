@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
@@ -9,3 +9,5 @@ export default {
   name: 'app'
 }
 </script>
+
+<style src="@/assets/scss/app.scss" lang="scss" />

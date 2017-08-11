@@ -1,0 +1,13 @@
+$grid: (
+	
+);
+
+@function gridValue($width) {
+    @return map-get($grid, $width);
+}
+
+@function contentGrid($container, $content) {
+    $innerContainer: map-get($grid, $container);
+    $innerContent: map-get($grid, $content);
+    @return percentage($innerContent / $innerContainer);
+}
