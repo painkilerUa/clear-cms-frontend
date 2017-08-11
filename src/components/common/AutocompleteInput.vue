@@ -16,11 +16,12 @@
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
+            <!-- TODO:add v-model to v-selects -->
             <li class="ac-filters-list__item">
-              <v-select v-model="selectedType" placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
+              <v-select placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select v-model="selectedTags" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
+              <v-select placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
