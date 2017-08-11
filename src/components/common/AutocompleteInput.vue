@@ -130,7 +130,7 @@ export default {
           this.options = res.body.data.items
         }
         this.allCount = res.body.data.count
-        console.log('allCount', res.body.data.count)
+        console.log('options', this.options)
       })
       .catch((err) => console.error(err))
     },
