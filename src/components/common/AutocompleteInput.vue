@@ -44,7 +44,7 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li v-if="isOpen">
+          <li v-if="allCount >= limit">
             <button type="button" class="ac-blocktitle ac-more" @click="nextPage">+ See more</button>
           </li>
         </ul>
@@ -69,6 +69,7 @@ export default {
       allCount: null,
       isOpen: false,
       page: 1,
+      limit: 6,
       highlightedPosition: 0,
       options: [],
       selectedType: null,
