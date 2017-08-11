@@ -17,10 +17,10 @@
           <!-- .ac-filters-list -->
           <ul class="ac-filters-list">
             <li class="ac-filters-list__item">
-              <v-select v-model="types.selectedItem" placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
+              <v-select v-model="selectedType" placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select v-model="tags.selectedItem" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
+              <v-select v-model="selectedTags" placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
