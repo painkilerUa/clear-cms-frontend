@@ -96,8 +96,9 @@ export default {
       this.isOpen = !!value
       if (value === '') {
         this.close()
+      } else {
+        this.fetchContent()
       }
-      this.fetchContent()
     },
     fetchContent () {
       // variables
