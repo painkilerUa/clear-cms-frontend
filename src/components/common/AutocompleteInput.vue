@@ -18,7 +18,7 @@
           <ul class="ac-filters-list">
             <!-- TODO:add v-model to v-selects -->
             <li class="ac-filters-list__item">
-              <v-select placeholder="Type" v-model="selectedType" :on-change="selectType" :options="['a', 'b']" />
+              <v-select placeholder="Type" v-model="selectedType" :on-change="selectType" :options="['1081', '1082']" />
             </li>
             <li class="ac-filters-list__item">
               <v-select placeholder="Topic" v-model="selectedTags" :multiple="true" :on-change="selectTags" :options="['tag1', 'tag2']" />
