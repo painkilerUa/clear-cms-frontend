@@ -9,9 +9,8 @@
       @keydown.up="moveUp"
       @keydown.down="moveDown" />
       <!-- .ac-results -->
-      <div class="ac-results" v-if="isOpen">
+      <div class="ac-results" v-if="isOpen" v-on-clickaway="close">
         <!-- .ac-filters -->
-        <!-- TODO: add v-on-clickaway="close" -->
         <div class="ac-filters">
           <span class="ac-blocktitle ac-filters-title">Filter</span>
           <!-- .ac-filters-list -->
