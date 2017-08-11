@@ -113,7 +113,11 @@ export default {
         queryString += `&contentType=${this.selectedType}`
       }
       if (this.selectedTags.length) {
-        queryString += `&tags[]=${this.selectedTags}`
+        let tagsQuery = `&tags[]=`
+        queryString += tagsQuery
+        this.selectedTags.forEach(function (el, index) {
+          queryString += tagsQuery + el
+        })
       }
       console.log('q:', queryString)
       this.$http.get(`${queryString}`)
