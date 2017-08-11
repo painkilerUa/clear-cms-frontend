@@ -110,10 +110,10 @@ export default {
         queryString += `&search=${searchQuery}`
       }
       if (this.selectedType) {
-        queryString += `&type=${this.selectedType}`
+        queryString += `&contentType=${this.selectedType}`
       }
       if (this.selectedTags.length) {
-        queryString += `&tags=${this.selectedTags}`
+        queryString += `&tags[]=${this.selectedTags}`
       }
       console.log('q:', queryString)
       this.$http.get(`${queryString}`)
