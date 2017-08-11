@@ -113,10 +113,8 @@ export default {
         queryString += `&contentType=${this.selectedType}`
       }
       if (this.selectedTags.length) {
-        let tagsQuery = `&tags[]=`
-        queryString += tagsQuery
         this.selectedTags.forEach(function (el, index) {
-          queryString += tagsQuery + el
+          queryString += `&tags[]=${el}`
         })
       }
       console.log('q:', queryString)
