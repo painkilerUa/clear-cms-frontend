@@ -44,7 +44,7 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li v-if="allCount >= limit">
+          <li v-if="isOptionsLeft">
             <button type="button" class="ac-blocktitle ac-more" @click="nextPage">+ See more</button>
           </li>
         </ul>
@@ -87,6 +87,9 @@ export default {
     ]),
     optionsComputed () {
       return this.options
+    },
+    isOptionsLeft () {
+      return this.allCount >= this.limit
     }
   },
   methods: {
