@@ -18,10 +18,10 @@
           <ul class="ac-filters-list">
             <!-- TODO:add v-model to v-selects -->
             <li class="ac-filters-list__item">
-              <v-select placeholder="Type" :on-change="selectType" :options="getContentTypeTitles" />
+              <v-select placeholder="Type" v-model="selectedType" :on-change="selectType" :options="['a', 'b']" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select placeholder="Topic" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
+              <v-select placeholder="Topic" v-model="selectedTags" :multiple="true" :on-change="selectTags" :options="['tag1', 'tag2']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -153,11 +153,11 @@ export default {
       this.page = 1
     },
     selectType (val) {
-      this.selectedType = this.getContentTypeIdByTitle(val)
+      this.selectedType = val
       this.fetchContent()
     },
     selectTags (val) {
-      this.selectedTags = this.getTagIdByNames(val)
+      this.selectedTags = val
       this.fetchContent()
     }
   },
