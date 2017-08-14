@@ -1,6 +1,6 @@
 <template>
 	<div class="home-login">
-		<popup :title="'Login to your account'" :modal="true">
+		<popup :title="'Login to your account'">
 			
 		</popup>
 	</div>

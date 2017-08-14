@@ -40,7 +40,9 @@ export default {
   },
   methods: {
     close () {
-      this.show = false
+      if (!this.modal) {
+        this.show = false
+      }
     }
   },
   directives: {
