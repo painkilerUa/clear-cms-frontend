@@ -3,7 +3,6 @@
 .popup {
     display: block;
     color: #000;
-    background-color: #000;
 
     @extend %overlay;
     &__inner {
