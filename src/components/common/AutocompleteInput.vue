@@ -66,7 +66,6 @@ export default {
     return {
       serverApiSearchURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
-      allCount: null,
       isOpen: false,
       page: 1,
       limit: 6,
@@ -126,8 +125,6 @@ export default {
       .then((res) => {
         let resData = res.body.data
         this.options = resData.items
-        this.allCount = resData.count
-        console.log('options', this.options)
       })
       .catch((err) => console.error(err))
     },
