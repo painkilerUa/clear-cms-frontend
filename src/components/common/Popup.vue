@@ -20,6 +20,10 @@ import { directive as onClickaway } from 'vue-clickaway'
 export default {
   name: 'popup',
   props: {
+    modal: {
+      type: Boolean,
+      default: false
+    },
     title: {
       type: String,
       default: ''
@@ -31,7 +35,7 @@ export default {
   },
   data () {
     return {
-      show: true
+      show: this.modal
     }
   },
   methods: {
