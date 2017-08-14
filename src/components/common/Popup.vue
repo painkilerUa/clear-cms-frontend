@@ -3,8 +3,8 @@
 	<div class="popup">
 		<!-- .popup__inner -->
 		<div class="popup__inner">
-			<h2 class="popup-title">{{title}}</h2>
-			<div class="popup-description">
+			<h2 class="popup-title" v-if="title">{{title}}</h2>
+			<div class="popup-description" v-if="description">
 				<p>{{description}}</p>
 			</div>
 			<slot name="body"/>
