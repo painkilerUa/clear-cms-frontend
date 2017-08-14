@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomeLogin from '@/components/common/HomeLogin'
-import Error from '@/components/common/Error'
+import HomeLogin from '@/components/pages/HomeLogin'
+import Error from '@/components/pages/Error'
 
 Vue.use(Router)
 
