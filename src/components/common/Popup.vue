@@ -1,8 +1,8 @@
 <template>
 	<!-- .popup -->
-	<div class="popup">
+	<div class="popup" v-if="show">
 		<!-- .popup__inner -->
-		<div class="popup__inner">
+		<div class="popup__inner" v-on-clickaway="close">
 			<h2 class="popup-title" v-if="title">{{title}}</h2>
 			<div class="popup-description" v-if="description">
 				<p>{{description}}</p>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { directive as onClickaway } from 'vue-clickaway'
+
 export default {
   name: 'popup',
   props: {
@@ -26,6 +28,19 @@ export default {
       type: String,
       default: ''
     }
+  },
+  data () {
+    return {
+      show: true
+    }
+  },
+  methods: {
+    close () {
+      this.show = false
+    }
+  },
+  directives: {
+    onClickaway
   }
 }
 </script>
