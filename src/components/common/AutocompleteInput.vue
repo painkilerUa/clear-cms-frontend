@@ -45,7 +45,7 @@
             <!-- END:.ac-content -->
           </li>
           <li v-if="isOptionsLeft">
-            <button type="button" class="ac-blocktitle ac-more" @click="nextPage">+ See more</button>
+            <button type="button" class="ac-blocktitle ac-more">+ See more</button>
           </li>
         </ul>
         <!-- END:ac-list -->
@@ -133,10 +133,6 @@ export default {
         console.log('options', this.options)
       })
       .catch((err) => console.error(err))
-    },
-    nextPage () {
-      this.page += 1
-      this.fetchContent()
     },
     moveUp () {
       if (!this.isOpen) {
