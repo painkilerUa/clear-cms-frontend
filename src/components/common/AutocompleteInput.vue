@@ -125,11 +125,7 @@ export default {
       this.$http.get(`${queryString}`)
       .then((res) => {
         let resData = res.body.data
-        if (this.page > 1) {
-          this.options = this.options.concat(resData.items)
-        } else {
-          this.options = resData.items
-        }
+        this.options = resData.items
         this.allCount = resData.count
         console.log('options', this.options)
       })
