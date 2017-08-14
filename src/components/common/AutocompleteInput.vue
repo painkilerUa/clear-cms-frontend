@@ -124,12 +124,13 @@ export default {
       console.log('q:', queryString)
       this.$http.get(`${queryString}`)
       .then((res) => {
+        let resData = res.body.data
         if (this.page > 1) {
-          this.options = this.options.concat(res.body.data.items)
+          this.options = this.options.concat(resData.items)
         } else {
-          this.options = res.body.data.items
+          this.options = resData.items
         }
-        this.allCount = res.body.data.count
+        this.allCount = resData.count
         console.log('options', this.options)
       })
       .catch((err) => console.error(err))
