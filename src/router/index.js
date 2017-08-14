@@ -19,6 +19,7 @@ export default new Router({
     {
       path: '/error',
       component: Error
-    }
+    },
+    {path: '*', redirect: '/error'}
   ]
 })
