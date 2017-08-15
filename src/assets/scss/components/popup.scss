@@ -11,4 +11,7 @@
 
         @extend %overlay-inner;
     }
+    &-title {
+        text-transform: uppercase;
+    }
 }
