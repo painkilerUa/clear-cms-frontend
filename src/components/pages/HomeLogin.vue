@@ -17,10 +17,10 @@
 		  	<!-- popup-infolinks -->
 		  	<ul class="popup-infolinks">
 		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">link1</a>
+		  			<a href="#" class="popup-infolinks__link">Forgot password?</a>
 		  		</li>
 		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">link2</a>
+		  			<a href="#" class="popup-infolinks__link">Not registered yet?</a>
 		  		</li>
 		  	</ul>
 		  	<!-- END:popup-infolinks -->
