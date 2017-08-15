@@ -2,6 +2,7 @@
 
 .popup {
     display: block;
+    overflow: auto;
     color: #000;
 
     @extend %overlay;
