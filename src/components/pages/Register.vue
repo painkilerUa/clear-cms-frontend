@@ -30,7 +30,18 @@
 			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
-			  	<button type="submit" class="form-control form-submit">Login</button>
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<v-select placeholder="Function" class="form-control form-control--select" :options="['One', 'Two']" />
+			  	</div>
+			  	<!-- END:.form-element -->
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<input type="text" name="Job Title" data-vv-as='"Job Title"' class="form-control" v-validate="'required'" placeholder="Job Title" />
+			  		<div v-if="errors.has('Job Title')" class="form-errors">{{ errors.first('Job Title') }}</div>
+			  	</div>
+			  	<!-- END:.form-element -->
+			  	<button type="submit" class="form-control form-submit">Create account</button>
 			  </form>
 			  <!-- END:.form -->
 			</template>
