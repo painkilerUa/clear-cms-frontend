@@ -10,6 +10,7 @@ import Vuex from 'vuex'
 import AutocompleteInput from '@/components/common/AutocompleteInput'
 import Popup from '@/components/common/Popup'
 import vSelect from 'vue-select'
+import VeeValidate from 'vee-validate'
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ Vue.component('popup', Popup)
 
 Vue.use(VueResource)
 Vue.use(Vuex)
+Vue.use(VeeValidate)
 
 /* eslint-disable no-new */
 new Vue({

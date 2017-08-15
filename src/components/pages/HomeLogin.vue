@@ -5,8 +5,18 @@
 			<template slot="body">
 			  <!-- .form -->
 			  <form action="#" class="form">
-			  	<input type="text" class="form-control" placeholder="User Name" />
-			  	<input type="password" class="form-control" placeholder="Password" />
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<input type="text" name="User Name" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
+			  		<span v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</span>
+			  	</div>
+			  	<!-- END:.form-element -->
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<input type="password" name="Password" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
+			  		<span v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</span>
+			  	</div>
+			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Login</button>
 			  </form>
 			  <!-- END:.form -->
