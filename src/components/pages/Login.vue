@@ -27,10 +27,10 @@
 		  	<!-- popup-infolinks -->
 		  	<ul class="popup-infolinks">
 		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">Forgot password?</a>
+		  			<router-link class="popup-infolinks__link" :to="{name: 'forgotPassword'}">Forgot password?</router-link>
 		  		</li>
 		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">Not registered yet?</a>
+		  			<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>
 		  		</li>
 		  	</ul>
 		  	<!-- END:popup-infolinks -->

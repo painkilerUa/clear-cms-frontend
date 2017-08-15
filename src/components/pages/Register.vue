@@ -40,10 +40,8 @@
 		  	<!-- popup-infolinks -->
 		  	<ul class="popup-infolinks">
 		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">Forgot password?</a>
-		  		</li>
-		  		<li class="popup-infolinks__item">
-		  			<a href="#" class="popup-infolinks__link">Not registered yet?</a>
+		  			Already have an account?
+		  			<router-link :to="{name: 'login'}">Login</router-link>
 		  		</li>
 		  	</ul>
 		  	<!-- END:popup-infolinks -->
