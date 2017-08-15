@@ -8,13 +8,13 @@
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input type="text" name="User Name" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
-			  		<span v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</span>
+			  		<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input type="password" name="Password" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
-			  		<span v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</span>
+			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Login</button>

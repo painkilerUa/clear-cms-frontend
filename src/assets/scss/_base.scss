@@ -54,4 +54,8 @@
         color: #fff;
         background-color: color('formSubmit');
     }
+    &-errors {
+        margin-bottom: 25px;
+        color: color('danger');
+    }
 }
