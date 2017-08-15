@@ -1,6 +1,7 @@
 <template>
 	<div class="home-login">
 		<popup :title="'Login to your account'" :modal="true">
+		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
 			  <form action="#" class="form">
@@ -10,6 +11,12 @@
 			  </form>
 			  <!-- END:.form -->
 			</template>
+		  <!-- END:popup-body -->
+		  <!-- popup-footer -->
+		  <template slot="footer">
+		  	
+		  </template>
+		  <!-- END:popup-footer -->
 		</popup>
 	</div>
 </template>

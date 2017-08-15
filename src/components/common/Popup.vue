@@ -14,6 +14,9 @@
 			<div class="popup-body">
 				<slot name="body"/>
 			</div>
+			<div class="popup-footer">
+				<slot name="footer" />
+			</div>
 		</div>
 		<!-- END:.popup__inner -->
 	</div>
