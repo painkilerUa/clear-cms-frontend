@@ -3,11 +3,17 @@
 	<div class="popup" v-if="show">
 		<!-- .popup__inner -->
 		<div class="popup__inner" v-on-clickaway="close">
-			<h2 class="popup-title" v-if="title">{{title}}</h2>
-			<div class="popup-description" v-if="description">
-				<p>{{description}}</p>
+			<!-- .popup-heading -->
+			<div class="popup-heading">
+				<h2 class="popup-title" v-if="title">{{title}}</h2>
+				<div class="popup-description" v-if="description">
+					<p>{{description}}</p>
+				</div>
 			</div>
-			<slot name="body"/>
+			<!-- END:.popup-heading -->
+			<div class="popup-body">
+				<slot name="body"/>
+			</div>
 		</div>
 		<!-- END:.popup__inner -->
 	</div>
