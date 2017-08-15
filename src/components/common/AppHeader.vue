@@ -7,7 +7,7 @@
 			<div class="myContainer">
 				<!-- .app-header-main__container -->
 				<div class="app-header-main__container">
-					<a href="#" class="main-logo" tabindex="-1">Lloyd's</a>
+					<a href="/" class="main-logo" tabindex="-1">Lloyd's</a>
 					<!-- .app-header-description -->
 					<div class="app-header-description">
 						<p>Powered by <a href="#" class="app-header-description__link" tabindex="-1">the clear company</a></p>
