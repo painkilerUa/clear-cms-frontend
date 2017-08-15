@@ -14,4 +14,17 @@
     &-title {
         text-transform: uppercase;
     }
+    &-infolinks {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        &__item {
+            &:not(:last-of-type) {
+                margin-bottom: 15px;
+            }
+        }
+        &__link {
+            text-decoration: none;
+        }
+    }
 }

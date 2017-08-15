@@ -14,7 +14,16 @@
 		  <!-- END:popup-body -->
 		  <!-- popup-footer -->
 		  <template slot="footer">
-		  	
+		  	<!-- popup-infolinks -->
+		  	<ul class="popup-infolinks">
+		  		<li class="popup-infolinks__item">
+		  			<a href="#" class="popup-infolinks__link">link1</a>
+		  		</li>
+		  		<li class="popup-infolinks__item">
+		  			<a href="#" class="popup-infolinks__link">link2</a>
+		  		</li>
+		  	</ul>
+		  	<!-- END:popup-infolinks -->
 		  </template>
 		  <!-- END:popup-footer -->
 		</popup>
