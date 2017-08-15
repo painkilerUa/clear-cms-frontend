@@ -1,5 +1,5 @@
 <template>
-	<div class="home-login">
+	<div class="login">
 		<popup :title="'Login to your account'" :modal="true">
 		  <!-- popup-body -->
 			<template slot="body">
@@ -44,7 +44,7 @@
 import Popup from '@/components/common/Popup'
 
 export default {
-  name: 'home-login',
+  name: 'login',
   components: {
     Popup
   }
