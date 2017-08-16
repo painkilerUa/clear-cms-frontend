@@ -153,7 +153,11 @@ export default {
       this.page = 1
     },
     selectType (val) {
-      this.selectedType = this.getContentTypeIdByTitle(val)
+      if (val) {
+        this.selectedType = this.getContentTypeIdByTitle(val)
+      } else {
+        this.selectedType = null
+      }
       this.fetchContent()
     },
     selectTags (val) {
