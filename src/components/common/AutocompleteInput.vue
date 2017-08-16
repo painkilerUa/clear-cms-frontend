@@ -161,7 +161,11 @@ export default {
       this.fetchContent()
     },
     selectTags (val) {
-      this.selectedTags = this.getTagIdByNames(val)
+      if (val) {
+        this.selectedTags = this.getTagIdByNames(val)
+      } else {
+        this.selectedTags = []
+      }
       this.fetchContent()
     }
   },
