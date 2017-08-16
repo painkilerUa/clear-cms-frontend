@@ -19,9 +19,9 @@ export const getTypes = ({ commit }, payload) => {
 }
 
 export const getTags = ({ commit }, payload) => {
-  const urlEnd = '/tags'
+  const urlEnd = '/api/v1/tags'
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
-    .then((res) => commit('setTags', res.body))
+    .then((res) => commit('setTags', res.body.items))
     .catch((err) => console.error(err))
 }
