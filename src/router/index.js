@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
 import Error from '@/components/pages/Error'
+import Content from '@/components/pages/Content'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/content',
+      name: 'content',
+      component: Content
     },
     {
       path: '/error',
