@@ -18,10 +18,10 @@
           <ul class="ac-filters-list">
             <!-- TODO:add v-model to v-selects -->
             <li class="ac-filters-list__item">
-              <v-select placeholder="Type" v-model="selectedType" :on-change="selectType" :options="getContentTypeTitles" />
+              <v-select placeholder="Type" value.sync="selectedType" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select placeholder="Topic" v-model="selectedTags" :multiple="true" :on-change="selectTags" :options="['1014', '1015']" />
+              <v-select placeholder="Topic" value.sync="selectedTags" :multiple="true" :on-change="selectTags" :options="['1014', '1015']" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
