@@ -157,7 +157,7 @@ export default {
       this.fetchContent()
     },
     selectTags (val) {
-      this.selectedTags = val
+      this.selectedTags = this.getTagIdByNames(val)
       this.fetchContent()
     }
   },
