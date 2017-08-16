@@ -9,10 +9,12 @@ export const getContent = ({ commit }, payload) => {
 }
 
 export const getTypes = ({ commit }, payload) => {
-  const urlEnd = '/types'
+  const urlEnd = '/api/v1/contentTypes'
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
-    .then((res) => commit('setTypes', res.body))
+    .then((res) => {
+      commit('setTypes', res.body.items)
+    })
     .catch((err) => console.error(err))
 }
 
