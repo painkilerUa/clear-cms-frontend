@@ -44,7 +44,7 @@
             </div>
             <!-- END:.ac-content -->
           </li>
-          <li v-if="isOptionsLeft">
+          <li>
             <button type="button" class="ac-blocktitle ac-more">+ See more</button>
           </li>
         </ul>
@@ -86,9 +86,6 @@ export default {
     ]),
     optionsComputed () {
       return this.options
-    },
-    isOptionsLeft () {
-      return this.allCount >= this.limit
     }
   },
   methods: {
