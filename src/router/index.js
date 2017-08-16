@@ -25,7 +25,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/content',
+      path: '/content/:id',
       name: 'content',
       component: Content
     },

@@ -35,7 +35,7 @@
             :class="{highlighted: index === highlightedPosition}"
             @mouseenter="highlightedPosition = index" 
             tabindex="0"> 
-            <router-link :to="{name: 'login'}" class="ac-list__link">
+            <router-link :to="{name: 'content', params: {id: option.id}}" class="ac-list__link">
               <img v-if="option.content_type.icon" :src="option.content_type.icon" :alt="option.title" class="ac-thumbnail" />
               <!-- .ac-content -->
               <div class="ac-content">
