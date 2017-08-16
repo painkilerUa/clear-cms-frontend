@@ -1,6 +1,7 @@
 <template>
   <div class="ac-wrapper">
-    <input class="ac-input" 
+    <input 
+      class="ac-input" 
       v-model.trim="searchQuery"
       placeholder="Search..."
       @input="onInput($event.target.value)"
