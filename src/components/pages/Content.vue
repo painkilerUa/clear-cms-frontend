@@ -43,6 +43,7 @@ export default {
       this.contentItem = null
       this.$http.get(`${api.serverURL}/api/v1/content/${this.id}`)
       .then((res) => { this.contentItem = res.body })
+      .catch((err) => console.error(err))
     }
   },
   mounted () {
