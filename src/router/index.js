@@ -35,5 +35,8 @@ export default new Router({
       component: Error
     },
     {path: '*', redirect: '/error'}
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
