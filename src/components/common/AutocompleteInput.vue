@@ -124,6 +124,7 @@ export default {
       .then((res) => {
         let resData = res.body.data
         this.options = resData.items
+        console.log('res', res)
       })
       .catch((err) => console.error(err))
     },
