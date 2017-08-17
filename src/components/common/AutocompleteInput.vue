@@ -5,9 +5,7 @@
       v-model.trim="searchQuery"
       placeholder="Search..."
       @input="onInput($event.target.value)"
-      @keyup.esc="close"
-      @keydown.up="moveUp"
-      @keydown.down="moveDown" />
+      @keyup.esc="close"/>
       <!-- .ac-results -->
       <!-- TODO: add v-on-clickaway="close" -->
       <div class="ac-results" v-if="isOpen">
@@ -133,20 +131,6 @@ export default {
       this.close()
       this.clear()
       this.$router.push({name: 'content', params: {id: id}})
-    },
-    moveUp () {
-      if (!this.isOpen) {
-        return
-      }
-      this.highlightedPosition = this.highlightedPosition - 1 < 0
-        ? this.options.length - 1
-        : this.highlightedPosition - 1
-    },
-    moveDown () {
-      if (!this.isOpen) {
-        return
-      }
-      this.highlightedPosition = (this.highlightedPosition + 1) % this.options.length
     },
     close () {
       this.isOpen = false
