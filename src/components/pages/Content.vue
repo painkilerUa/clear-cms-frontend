@@ -42,7 +42,7 @@ export default {
     fetchContent () {
       this.contentItem = null
       this.$http.get(`${api.serverURL}/api/v1/content/${this.id}`)
-      .then((res) => { this.contentItem = res.body; console.log(res.body) })
+      .then((res) => { this.contentItem = res.body })
     }
   },
   mounted () {
