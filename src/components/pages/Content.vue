@@ -3,7 +3,7 @@
 	<div class="content">
 		<h1 class="content-title" v-if="title">{{title}}</h1>
 		<span class="content-type" v-if="type">{{type}}</span>
-		<div class="content-description" v-if="description">{{description}}</div>
+		<div class="content-content" v-if="content">{{content}}</div>
 	</div>
 	<!-- END:.content -->
 </template>
@@ -32,7 +32,7 @@ export default {
         return this.contentItem.content_type.type
       }
     },
-    description () {
+    content () {
       if (this.selectedItem) {
         return this.contentItem.content
       }
