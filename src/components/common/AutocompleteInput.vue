@@ -33,6 +33,8 @@
           <li v-for="(option, index) in optionsComputed" 
             class="ac-list__item"
             :class="{highlighted: index === highlightedPosition}"
+            @click="close"
+            @keydown.space.enter="close"
             @mouseenter="highlightedPosition = index" 
             tabindex="0"> 
             <router-link :to="{name: 'content', params: {id: option.id}}" class="ac-list__link">
