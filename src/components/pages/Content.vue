@@ -17,6 +17,9 @@ export default {
       contentItem: null
     }
   },
+  watch: {
+    '$route': 'fetchContent'
+  },
   computed: {
     title () {
       if (this.contentItem) {
@@ -31,6 +34,7 @@ export default {
   },
   methods: {
     fetchContent () {
+      this.contentItem = null
       this.$http.get(`${api.serverURL}/api/v1/content/${this.id}`)
       .then((res) => { this.contentItem = res.body })
     }
