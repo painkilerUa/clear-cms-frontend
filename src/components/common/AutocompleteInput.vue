@@ -33,8 +33,8 @@
           <li v-for="(option, index) in optionsComputed" 
             class="ac-list__item"
             :class="{highlighted: index === highlightedPosition}"
-            @click="close"
-            @keydown.space.enter="close"
+            @click="select(option.id)"
+            @keydown.space.enter="select(option.id)"
             @mouseenter="highlightedPosition = index" 
             tabindex="0"> 
             <router-link :to="{name: 'content', params: {id: option.id}}" class="ac-list__link">
@@ -127,6 +127,9 @@ export default {
         this.options = resData.items
       })
       .catch((err) => console.error(err))
+    },
+    select (id) {
+      this.$router.push({name: 'content', params: {id: id}})
     },
     moveUp () {
       if (!this.isOpen) {
