@@ -1,7 +1,8 @@
 <template>
 	<!-- .content -->
 	<div class="content">
-		
+		<h1 class="content-title" v-if="title">{{title}}</h1>
+		<span class="content-type">{{type}}</span>
 	</div>
 	<!-- END:.content -->
 </template>
@@ -10,10 +11,22 @@
 import api from '@/api'
 
 export default {
+  props: ['id'],
   data () {
     return {
-      contentItem: null,
-      id: 10003
+      contentItem: null
+    }
+  },
+  computed: {
+    title () {
+      if (this.contentItem) {
+        return this.contentItem.title
+      }
+    },
+    type () {
+      if (this.contentItem) {
+        return this.contentItem.content_type.type
+      }
     }
   },
   methods: {
