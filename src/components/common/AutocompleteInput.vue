@@ -37,15 +37,13 @@
             @keydown.space.enter="select(option.id)"
             @mouseenter="highlightedPosition = index" 
             tabindex="0"> 
-            <router-link :to="{name: 'content', params: {id: option.id}}" class="ac-list__link">
-              <img v-if="option.content_type.icon" :src="option.content_type.icon" :alt="option.title" class="ac-thumbnail" />
-              <!-- .ac-content -->
-              <div class="ac-content">
-                <h3 class="ac-title" v-if="option.title">{{option.title}}</h3>
-                <div class="ac-description" v-if="option.description">{{option.description}}</div>
-              </div>
-              <!-- END:.ac-content -->
-            </router-link>
+            <img v-if="option.content_type.icon" :src="option.content_type.icon" :alt="option.title" class="ac-thumbnail" />
+            <!-- .ac-content -->
+            <div class="ac-content">
+              <h3 class="ac-title" v-if="option.title">{{option.title}}</h3>
+              <div class="ac-description" v-if="option.description">{{option.description}}</div>
+            </div>
+            <!-- END:.ac-content -->
           </li>
           <li>
             <button type="button" class="ac-blocktitle ac-more">+ See more</button>
@@ -104,6 +102,9 @@ export default {
         this.fetchContent()
       }
     },
+    clear () {
+      this.searchQuery = ''
+    },
     fetchContent () {
       // variables
       let queryString = `${this.serverApiSearchURL}&page=${this.page}`
@@ -129,6 +130,8 @@ export default {
       .catch((err) => console.error(err))
     },
     select (id) {
+      this.close()
+      this.clear()
       this.$router.push({name: 'content', params: {id: id}})
     },
     moveUp () {

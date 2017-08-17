@@ -67,6 +67,7 @@
         &__item {
             display: flex;
             padding: 15px 20px;
+            cursor: pointer;
             color: #000;
             border-bottom: 2px solid color('autocompleteItemBorder');
 
@@ -79,9 +80,6 @@
                 outline: none;
                 background-color: color('highlightedArticleBg');
             }
-        }
-        &__link {
-            text-decoration: none;
         }
     }
 }
