@@ -21,6 +21,12 @@ export default {
     },
     submitErrors (err) {
       this.formServerMessages.errors = err
+    },
+    submit () {
+      this.checkErrorsOnSubmit()
+      if (this.formErrors.length === 0) {
+        this.sendFormRequest()
+      }
     }
   }
 }

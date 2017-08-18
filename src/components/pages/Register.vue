@@ -5,7 +5,7 @@
 		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
-			  <form action="#" class="form" @submit.prevent="register">
+			  <form action="#" class="form" @submit.prevent="submit">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input
@@ -155,16 +155,10 @@ export default {
     }
   },
   methods: {
-    sendRegisterRequest () {
+    sendFormRequest () {
       this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
       .then((res) => { this.submitSuccess(res.body) })
       .catch((err) => { this.submitErrors(err.body) })
-    },
-    register () {
-      this.checkErrorsOnSubmit()
-      if (this.formErrors.length === 0) {
-        this.sendRegisterRequest()
-      }
     }
   },
   components: {
