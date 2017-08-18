@@ -57,10 +57,17 @@
         color: #fff;
         background-color: color('formSubmit');
     }
-    &-errors {
+    &-message {
         margin-bottom: 25px;
         list-style: none;
         text-decoration: none;
+    }
+    &-success-messages {
+        color: color('success');
+        @extend .form-message;
+    }
+    &-errors {
         color: color('danger');
+        @extend .form-message;
     }
 }

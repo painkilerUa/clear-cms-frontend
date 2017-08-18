@@ -102,8 +102,8 @@
 			  	<!-- .form-server-messages -->
 			  	<div class="form-server-messages text-center">
 			  		<!-- success -->
-			  		<ul class="form-server-messages-list" v-if="serverSuccessMessage">
-			  			<li class="form-success-messages">{{serverSuccessMessage}}</li>
+			  		<ul class="form-server-messages-list" v-if="serverSuccessMessages">
+			  			<li v-for="message in serverSuccessMessages" class="form-success-messages">{{message}}</li>
 			  		</ul>
 			  		<!-- END:success -->
 			  		<!-- errors -->
@@ -156,13 +156,13 @@ export default {
       },
       formErrors: this.$validator.errors.items,
       formServerMessages: {
-        success: '',
+        success: [],
         errors: []
       }
     }
   },
   computed: {
-    serverSuccessMessage () {
+    serverSuccessMessages () {
       return this.formServerMessages.success
     },
     serverErrors () {
@@ -170,12 +170,15 @@ export default {
     }
   },
   methods: {
+    clearServerErrors () {
+      this.formServerMessages.errors = []
+    },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
     sendRegisterRequest () {
       this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
-      .then((res) => { this.formServerMessages.success = res.body })
+      .then((res) => { this.clearServerErrors(); this.formServerMessages.success = res.body })
       .catch((err) => { this.formServerMessages.errors = err.body; console.log(err) })
     },
     register () {
