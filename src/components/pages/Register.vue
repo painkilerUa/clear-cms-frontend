@@ -5,7 +5,7 @@
 		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
-			  <form action="#" class="form">
+			  <form action="#" class="form" @submit.prevent="register">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input type="text" name="First Name" v-model="formInfo.username" data-vv-as='"First Name"' class="form-control" v-validate="'required'" placeholder="First Name" />
@@ -83,6 +83,11 @@ export default {
         jobtitle: '',
         enabled: null
       }
+    }
+  },
+  methods: {
+    register () {
+      console.log('register')
     }
   },
   components: {
