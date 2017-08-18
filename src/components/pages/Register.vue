@@ -32,7 +32,7 @@
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<v-select placeholder="Function" name="Function" data-vv-as='"Function"' v-validate="'required'" class="form-control form-control--select" :options="['One', 'Two']" />
+			  		<v-select placeholder="Function" name="Function" value.sync="formInfo.function" data-vv-as='"Function"' v-validate="'required'" class="form-control form-control--select" :options="['One', 'Two']" />
 			  		<div v-if="errors.has('Function')" class="form-errors">{{ errors.first('Function') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
