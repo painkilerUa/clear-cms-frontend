@@ -82,12 +82,24 @@ export default {
         lastName: '',
         jobtitle: '',
         enabled: null
-      }
+      },
+      formErrors: this.$validator.errors.items
     }
   },
   methods: {
+    checkErrorsOnSubmit () {
+      this.$validator.validateAll()
+    },
+    sendRegisterRequest () {
+      console.log('register request sent')
+      this.$http.post('api', JSON.stringify(this.formInfo))
+      .then((res) => { console.log('login success') })
+    },
     register () {
-      console.log('register')
+      this.checkErrorsOnSubmit()
+      if (this.formErrors.length === 0) {
+        this.sendLoginRequest()
+      }
     }
   },
   components: {
