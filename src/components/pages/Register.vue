@@ -8,7 +8,7 @@
 			  <form action="#" class="form">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="First Name" data-vv-as='"First Name"' class="form-control" v-validate="'required'" placeholder="First Name" />
+			  		<input type="text" name="First Name" v-model="formInfo.username" data-vv-as='"First Name"' class="form-control" v-validate="'required'" placeholder="First Name" />
 			  		<div v-if="errors.has('First Name')" class="form-errors">{{ errors.first('First Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -69,6 +69,22 @@ import Popup from '@/components/common/Popup'
 
 export default {
   name: 'register',
+  data () {
+    return {
+      formInfo: {
+        username: '',
+        email: '',
+        plainPassword: {
+          first: '',
+          second: ''
+        },
+        function: '',
+        lastName: '',
+        jobtitle: '',
+        enabled: null
+      }
+    }
+  },
   components: {
     Popup
   }
