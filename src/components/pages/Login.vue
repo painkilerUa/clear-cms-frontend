@@ -7,13 +7,13 @@
 			  <form action="#" class="form" @submit.prevent="login">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="User Name" v-model="userName" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
+			  		<input type="text" name="User Name" v-model="formInfo.userName" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
 			  		<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="Password" v-model="userPassword" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
+			  		<input type="password" name="Password" v-model="formInfo.userPassword" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
 			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -47,8 +47,10 @@ export default {
   name: 'login',
   data () {
     return {
-      userName: null,
-      userPassword: null,
+      formInfo: {
+        userName: null,
+        userPassword: null
+      },
       hasErrors: null
     }
   },
@@ -59,6 +61,7 @@ export default {
     },
     sendLoginRequest () {
       console.log('success')
+      this.$http.post('api', JSON.stringify(this.formInfo))
     },
     login () {
       this.checkErrorsOnSubmit()
