@@ -66,7 +66,7 @@
 			  		data-vv-as='"PasswordSecond"'
 			  		class="form-control"
 			  		v-model="formInfo.plainPassword.second"
-			  		v-validate="'required'"
+			  		v-validate="'required|confirmed:PasswordFirst'"
 			  		placeholder="Confirm Password" />
 			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
 			  	</div>
