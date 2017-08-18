@@ -72,7 +72,7 @@ export default {
       let query = `username=${this.formInfo.username}&password=${this.formInfo.plainPassword.first}`
       this.$http.get(`${api.URLS.login}&${query}`, JSON.stringify(this.formInfo))
       .then((res) => { this.submitSuccess(res.body) })
-      .catch((err) => { this.submitErrors(err.body) })
+      .catch((err) => { this.submitErrors(err.body.error); console.log(err) })
     }
   },
   components: {
