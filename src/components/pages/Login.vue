@@ -32,11 +32,11 @@
 		  <template slot="footer">
 		  	<!-- popup-infolinks -->
 		  	<ul class="popup-infolinks">
-		  		<li class="popup-infolinks__item">
+		  		<!-- <li class="popup-infolinks__item">
 		  			<router-link class="popup-infolinks__link" :to="{name: 'forgotPassword'}">Forgot password?</router-link>
-		  		</li>
+		  		</li> -->
 		  		<li class="popup-infolinks__item">
-		  			<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>
+		  			<router-link class="popup-infolinks__link" :to="{name: 'Login'}">Not registered yet?</router-link>
 		  		</li>
 		  	</ul>
 		  	<!-- END:popup-infolinks -->
@@ -69,12 +69,23 @@ export default {
     }
   },
   methods: {
+    clearServerErrors () {
+      this.formServerMessages.errors = []
+    },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
+    loginSuccess (res) {
+      this.clearServerErrors()
+      this.formServerMessages.success = res
+    },
+    loginErrors (err) {
+      this.formServerMessages.errors = err
+    },
     sendLoginRequest () {
       this.$http.post(api.URLS.login, JSON.stringify(this.formInfo))
-      .then((res) => { console.log('login success') })
+      .then((res) => { this.loginSuccess(res.body) })
+      .catch((err) => { this.loginErrors(err.body) })
     },
     login () {
       this.checkErrorsOnSubmit()
