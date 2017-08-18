@@ -4,7 +4,7 @@
 		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
-			  <form action="#" class="form">
+			  <form action="#" class="form" @submit.prevent="login">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input type="text" name="User Name" v-model="userName" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
@@ -49,6 +49,12 @@ export default {
     return {
       userName: null,
       userPassword: null
+    }
+  },
+  methods: {
+    login () {
+      this.$validator.validateAll()
+      .then((res) => res ? console.log('yes') : false)
     }
   },
   components: {
