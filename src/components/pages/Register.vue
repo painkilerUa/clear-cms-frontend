@@ -99,7 +99,7 @@
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Create account</button>
-			  	<form-messages :formServerMessages="formServerMessagesData"/>
+			  	<form-messages :messages="formServerMessagesData"/>
 			  </form>
 			  <!-- END:.form -->
 			</template>
