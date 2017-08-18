@@ -176,10 +176,17 @@ export default {
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
+    registerSuccess (res) {
+      this.clearServerErrors()
+      this.formServerMessages.success = res
+    },
+    registerErrors (err) {
+      this.formServerMessages.errors = err
+    },
     sendRegisterRequest () {
       this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
-      .then((res) => { this.clearServerErrors(); this.formServerMessages.success = res.body })
-      .catch((err) => { this.formServerMessages.errors = err.body; console.log(err) })
+      .then((res) => { this.registerSuccess(res.body) })
+      .catch((err) => { this.registerErrors(err.body) })
     },
     register () {
       this.checkErrorsOnSubmit()
