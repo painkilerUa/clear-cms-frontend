@@ -143,11 +143,6 @@ export default {
         function: '',
         lastName: '',
         jobTitle: ''
-      },
-      formErrors: this.$validator.errors.items,
-      formServerMessages: {
-        success: [],
-        errors: []
       }
     }
   },
