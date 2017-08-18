@@ -49,13 +49,26 @@
 			  	<div class="form-element">
 			  		<input
 			  		type="password"
-			  		name="Password"
-			  		data-vv-as='"Password"'
+			  		name="PasswordFirst"
+			  		data-vv-as='"PasswordFirst"'
 			  		class="form-control"
 			  		v-model="formInfo.plainPassword.first"
 			  		v-validate="'required'"
 			  		placeholder="Password" />
-			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
+			  		<div v-if="errors.has('PasswordFirst')" class="form-errors">{{ errors.first('PasswordFirst') }}</div>
+			  	</div>
+			  	<!-- END:.form-element -->
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<input
+			  		type="password"
+			  		name="PasswordSecond"
+			  		data-vv-as='"PasswordSecond"'
+			  		class="form-control"
+			  		v-model="formInfo.plainPassword.second"
+			  		v-validate="'required'"
+			  		placeholder="Confirm Password" />
+			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
@@ -125,8 +138,7 @@ export default {
         },
         function: '',
         lastName: '',
-        jobTitle: '',
-        enabled: null
+        jobTitle: ''
       },
       formErrors: this.$validator.errors.items
     }
