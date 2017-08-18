@@ -100,7 +100,7 @@
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Create account</button>
 			  	<!-- .form-server-messages -->
-			  	<div class="form-server-messages">
+			  	<div class="form-server-messages text-center">
 			  		<!-- success -->
 			  		<ul class="form-server-messages-list" v-if="serverSuccessMessage">
 			  			<li class="form-success-messages">{{serverSuccessMessage}}</li>
