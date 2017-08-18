@@ -86,7 +86,7 @@ export default {
     },
     sendLoginRequest () {
       let query = `username=${this.username}&password=${this.formInfo.plainPassword.first}`
-      this.$http.post(`${api.URLS.login}${query}`, JSON.stringify(this.formInfo))
+      this.$http.post(`${api.URLS.login}&${query}`, JSON.stringify(this.formInfo))
       .then((res) => { this.loginSuccess(res.body) })
       .catch((err) => { this.loginErrors(err.body) })
     },
