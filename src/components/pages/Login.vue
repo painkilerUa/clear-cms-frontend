@@ -37,7 +37,7 @@
 		  			<router-link class="popup-infolinks__link" :to="{name: 'forgotPassword'}">Forgot password?</router-link>
 		  		</li> -->
 		  		<li class="popup-infolinks__item">
-		  			<router-link class="popup-infolinks__link" :to="{name: 'Login'}">Not registered yet?</router-link>
+		  			<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>
 		  		</li>
 		  	</ul>
 		  	<!-- END:popup-infolinks -->
