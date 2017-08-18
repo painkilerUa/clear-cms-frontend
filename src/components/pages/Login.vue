@@ -4,7 +4,7 @@
 		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
-			  <form action="#" class="form" @submit.prevent="login">
+			  <form action="#" class="form" @submit.prevent="submit">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
 			  		<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
