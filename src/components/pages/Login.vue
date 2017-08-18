@@ -7,14 +7,20 @@
 			  <form action="#" class="form" @submit.prevent="login">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="User Name" v-model="formInfo.userName" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
+			  		<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
 			  		<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="Password" v-model="formInfo.userPassword" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
-			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
+			  		<input type="password" name="PasswordFirst" v-model="formInfo.plainPassword.first" data-vv-as='"PasswordFirst"' class="form-control" v-validate="'required'" placeholder="Password" />
+			  		<div v-if="errors.has('PasswordFirst')" class="form-errors">{{ errors.first('PasswordFirst') }}</div>
+			  	</div>
+			  	<!-- END:.form-element -->
+			  	<!-- .form-element -->
+			  	<div class="form-element">
+			  		<input type="password" name="PasswordSecond" v-model="formInfo.plainPassword.second" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
+			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Login</button>
@@ -48,8 +54,11 @@ export default {
   data () {
     return {
       formInfo: {
-        userName: null,
-        userPassword: null
+        username: null,
+        plainPassword: {
+          first: '',
+          second: ''
+        }
       },
       formErrors: this.$validator.errors.items
     }
