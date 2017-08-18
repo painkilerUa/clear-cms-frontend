@@ -68,18 +68,11 @@ export default {
     }
   },
   methods: {
-    loginSuccess (res) {
-      this.clearServerErrors()
-      this.formServerMessages.success = res
-    },
-    loginErrors (err) {
-      this.formServerMessages.errors = err
-    },
     sendLoginRequest () {
       let query = `username=${this.username}&password=${this.formInfo.plainPassword.first}`
       this.$http.post(`${api.URLS.login}&${query}`, JSON.stringify(this.formInfo))
-      .then((res) => { this.loginSuccess(res.body) })
-      .catch((err) => { this.loginErrors(err.body) })
+      .then((res) => { this.submitSuccess(res.body) })
+      .catch((err) => { this.submitErrors(err.body) })
     },
     login () {
       this.checkErrorsOnSubmit()

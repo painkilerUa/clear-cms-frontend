@@ -155,17 +155,10 @@ export default {
     }
   },
   methods: {
-    registerSuccess (res) {
-      this.clearServerErrors()
-      this.formServerMessages.success = res
-    },
-    registerErrors (err) {
-      this.formServerMessages.errors = err
-    },
     sendRegisterRequest () {
       this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
-      .then((res) => { this.registerSuccess(res.body) })
-      .catch((err) => { this.registerErrors(err.body) })
+      .then((res) => { this.submitSuccess(res.body) })
+      .catch((err) => { this.submitErrors(err.body) })
     },
     register () {
       this.checkErrorsOnSubmit()

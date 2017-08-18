@@ -14,6 +14,13 @@ export default {
     },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
+    },
+    submitSuccess (res) {
+      this.clearServerErrors()
+      this.formServerMessages.success = res
+    },
+    submitErrors (err) {
+      this.formServerMessages.errors = err
     }
   }
 }
