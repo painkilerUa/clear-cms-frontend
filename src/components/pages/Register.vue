@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import Popup from '@/components/common/Popup'
 
 export default {
@@ -136,7 +137,7 @@ export default {
     },
     sendRegisterRequest () {
       console.log('register request sent')
-      this.$http.post('api', JSON.stringify(this.formInfo))
+      this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
       .then((res) => { console.log('login success') })
     },
     register () {
