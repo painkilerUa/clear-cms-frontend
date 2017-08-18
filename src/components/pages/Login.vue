@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import Popup from '@/components/common/Popup'
 
 export default {
@@ -68,7 +69,7 @@ export default {
       this.$validator.validateAll()
     },
     sendLoginRequest () {
-      this.$http.post('api', JSON.stringify(this.formInfo))
+      this.$http.post(api.URLS.login, JSON.stringify(this.formInfo))
       .then((res) => { console.log('login success') })
     },
     login () {

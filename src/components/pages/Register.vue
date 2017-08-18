@@ -184,7 +184,7 @@ export default {
       this.formServerMessages.errors = err
     },
     sendRegisterRequest () {
-      this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
+      this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
       .then((res) => { this.registerSuccess(res.body) })
       .catch((err) => { this.registerErrors(err.body) })
     },
