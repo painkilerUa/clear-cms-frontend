@@ -8,37 +8,76 @@
 			  <form action="#" class="form" @submit.prevent="register">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="First Name" v-model="formInfo.username" data-vv-as='"First Name"' class="form-control" v-validate="'required'" placeholder="First Name" />
+			  		<input
+			  		type="text"
+			  		name="First Name"
+			  		v-model="formInfo.username"
+			  		data-vv-as='"First Name"'
+			  		class="form-control"
+			  		v-validate="'required'"
+			  		placeholder="First Name" />
 			  		<div v-if="errors.has('First Name')" class="form-errors">{{ errors.first('First Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="Last Name" data-vv-as='"Last Name"' class="form-control" v-validate="'required'" placeholder="Last Name" />
+			  		<input 
+			  		type="text"
+			  		name="Last Name"
+			  		data-vv-as='"Last Name"'
+			  		class="form-control"
+			  		v-validate="'required'"
+			  		placeholder="Last Name" />
 			  		<div v-if="errors.has('Last Name')" class="form-errors">{{ errors.first('Last Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="email" name="Email Address" data-vv-as='"Email Address"' class="form-control" v-validate="'required|email'" placeholder="Email Address" />
+			  		<input
+			  		type="email"
+			  		name="Email Address"
+			  		data-vv-as='"Email Address"'
+			  		class="form-control"
+			  		v-validate="'required|email'"
+			  		placeholder="Email Address" />
 			  		<div v-if="errors.has('Email Address')" class="form-errors">{{ errors.first('Email Address') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="Password" data-vv-as='"Password"' class="form-control" v-validate="'required'" placeholder="Password" />
+			  		<input
+			  		type="password"
+			  		name="Password"
+			  		data-vv-as='"Password"'
+			  		class="form-control"
+			  		v-validate="'required'"
+			  		placeholder="Password" />
 			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<v-select placeholder="Function" name="Function" data-vv-name="Function" value.sync="formInfo.function" data-vv-as='"Function"' v-validate="'required'" class="form-control form-control--select" :options="functionOptions" :on-change="validateFunction"/>
+			  		<v-select
+			  		placeholder="Function"
+			  		name="Function"
+			  		data-vv-name="Function"
+			  		value.sync="formInfo.function"
+			  		data-vv-as='"Function"'
+			  		v-validate="'required'"
+			  		class="form-control form-control--select"
+			  		:options="functionOptions" />
 			  		<div v-if="errors.has('Function')" class="form-errors">{{ errors.first('Function') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="Job Title" data-vv-as='"Job Title"' class="form-control" v-validate="'required'" placeholder="Job Title" />
+			  		<input
+			  		type="text"
+			  		name="Job Title"
+			  		data-vv-as='"Job Title"'
+			  		class="form-control"
+			  		v-validate="'required'"
+			  		placeholder="Job Title" />
 			  		<div v-if="errors.has('Job Title')" class="form-errors">{{ errors.first('Job Title') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -88,9 +127,6 @@ export default {
     }
   },
   methods: {
-    validateFunction (value) {
-      this.$validator.validate('Function', value)
-    },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
