@@ -101,7 +101,16 @@
 			  	<button type="submit" class="form-control form-submit">Create account</button>
 			  	<!-- .form-server-messages -->
 			  	<div class="form-server-messages">
-			  		<ul class="form-server-messages-list"></ul>
+			  		<!-- success -->
+			  		<ul class="form-server-messages-list" v-if="serverSuccessMessage">
+			  			<li class="form-success-messages">{{serverSuccessMessage}}</li>
+			  		</ul>
+			  		<!-- END:success -->
+			  		<!-- errors -->
+			  		<ul class="form-server-messages-list" v-if="serverErrors.length">
+			  			<li v-for="error in serverErrors" class="form-errors">{{error}}</li>
+			  		</ul>
+			  		<!-- END:errors -->
 			  	</div>
 			  	<!-- END:.form-server-messages -->
 			  </form>
@@ -152,14 +161,22 @@ export default {
       }
     }
   },
+  computed: {
+    serverSuccessMessage () {
+      return this.formServerMessages.success
+    },
+    serverErrors () {
+      return this.formServerMessages.errors
+    }
+  },
   methods: {
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
     sendRegisterRequest () {
       this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
-      .then((res) => { console.log('login success') })
-      .catch((err) => { this.formServerMessages.errors = err.body })
+      .then((res) => { this.formServerMessages.success = res.body })
+      .catch((err) => { this.formServerMessages.errors = err.body; console.log(err) })
     },
     register () {
       this.checkErrorsOnSubmit()
