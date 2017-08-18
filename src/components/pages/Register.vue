@@ -63,7 +63,6 @@
 			  		data-vv-name="Function"
 			  		value.sync="formInfo.function"
 			  		data-vv-as='"Function"'
-			  		v-validate="'required'"
 			  		class="form-control form-control--select"
 			  		:options="functionOptions" />
 			  		<div v-if="errors.has('Function')" class="form-errors">{{ errors.first('Function') }}</div>
@@ -138,7 +137,7 @@ export default {
     register () {
       this.checkErrorsOnSubmit()
       if (this.formErrors.length === 0) {
-        this.sendLoginRequest()
+        this.sendRegisterRequest()
       }
     }
   },
