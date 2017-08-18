@@ -10,6 +10,10 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 const state = {
+  auth: {
+    isLoggedIn: !!localStorage.getItem('token'),
+    pending: null
+  },
   content: [],
   types: [],
   tags: []
