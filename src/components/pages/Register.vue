@@ -137,6 +137,7 @@
 <script>
 import api from '@/api'
 import Popup from '@/components/common/Popup'
+import FormMessages from '@/components/common/FormMessages'
 
 export default {
   name: 'register',
@@ -196,7 +197,8 @@ export default {
     }
   },
   components: {
-    Popup
+    Popup,
+    FormMessages
   }
 }
 </script>
