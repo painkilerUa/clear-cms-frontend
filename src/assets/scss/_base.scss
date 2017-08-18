@@ -59,6 +59,8 @@
     }
     &-errors {
         margin-bottom: 25px;
+        list-style: none;
+        text-decoration: none;
         color: color('danger');
     }
 }
