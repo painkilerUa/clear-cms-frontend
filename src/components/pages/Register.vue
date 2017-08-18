@@ -65,6 +65,7 @@
 			  		name="Function"
 			  		data-vv-name="Function"
 			  		v-model="formInfo.function"
+			  		v-validate="'required'"
 			  		data-vv-as='"Function"'
 			  		class="form-control form-control--select"
 			  		:options="functionOptions" />
@@ -123,7 +124,7 @@ export default {
         },
         function: '',
         lastName: '',
-        jobtitle: '',
+        jobTitle: '',
         enabled: null
       },
       formErrors: this.$validator.errors.items
