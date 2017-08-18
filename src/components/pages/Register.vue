@@ -26,6 +26,7 @@
 			  		name="Last Name"
 			  		data-vv-as='"Last Name"'
 			  		class="form-control"
+			  		v-model="formInfo.lastName"
 			  		v-validate="'required'"
 			  		placeholder="Last Name" />
 			  		<div v-if="errors.has('Last Name')" class="form-errors">{{ errors.first('Last Name') }}</div>
@@ -63,7 +64,7 @@
 			  		placeholder="Function"
 			  		name="Function"
 			  		data-vv-name="Function"
-			  		value.sync="formInfo.function"
+			  		v-model="formInfo.function"
 			  		data-vv-as='"Function"'
 			  		class="form-control form-control--select"
 			  		:options="functionOptions" />
@@ -77,6 +78,7 @@
 			  		name="Job Title"
 			  		data-vv-as='"Job Title"'
 			  		class="form-control"
+			  		v-model="formInfo.jobTitle"
 			  		v-validate="'required'"
 			  		placeholder="Job Title" />
 			  		<div v-if="errors.has('Job Title')" class="form-errors">{{ errors.first('Job Title') }}</div>
