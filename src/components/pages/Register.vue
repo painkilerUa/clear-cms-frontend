@@ -38,6 +38,7 @@
 			  		name="Email Address"
 			  		data-vv-as='"Email Address"'
 			  		class="form-control"
+			  		v-model="formInfo.email"
 			  		v-validate="'required|email'"
 			  		placeholder="Email Address" />
 			  		<div v-if="errors.has('Email Address')" class="form-errors">{{ errors.first('Email Address') }}</div>
@@ -138,6 +139,7 @@ export default {
       this.checkErrorsOnSubmit()
       if (this.formErrors.length === 0) {
         this.sendRegisterRequest()
+        console.log(JSON.stringify(this.formInfo))
       }
     }
   },
