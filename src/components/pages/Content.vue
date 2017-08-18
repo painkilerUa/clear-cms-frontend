@@ -41,7 +41,7 @@ export default {
   methods: {
     fetchContent () {
       this.contentItem = null
-      this.$http.get(`${api.serverURL}/api/v1/content/${this.id}`)
+      this.$http.get(`${api.URLS.content}/${this.id}`)
       .then((res) => { this.contentItem = res.body })
       .catch((err) => console.error(err))
     }
