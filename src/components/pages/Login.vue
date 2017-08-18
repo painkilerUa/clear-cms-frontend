@@ -57,7 +57,7 @@ export default {
   methods: {
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
-      .then((res) => { res ? this.hasErrors = true : false })
+      .then((res) => { res ? this.hasErrors = false : this.hasErrors = true })
     },
     sendLoginRequest () {
       console.log('request sent')
@@ -66,7 +66,9 @@ export default {
     },
     login () {
       this.checkErrorsOnSubmit()
-      this.hasErrors ? this.sendLoginRequest() : false
+      if (this.hasErrors === false) {
+        this.sendLoginRequest()
+      }
     }
   },
   components: {
