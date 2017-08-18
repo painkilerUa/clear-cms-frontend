@@ -1,13 +1,13 @@
 <template>
   <div class="form-server-messages text-center">
 		<!-- success -->
-		<ul class="form-server-messages-list" v-if="serverSuccessMessages">
-			<li v-for="message in serverSuccessMessages" class="form-success-messages">{{message}}</li>
+		<ul class="form-server-messages-list" v-if="formServerMessages.success.length">
+			<li v-for="message in formServerMessages.success" class="form-success-messages">{{message}}</li>
 		</ul>
 		<!-- END:success -->
 		<!-- errors -->
-		<ul class="form-server-messages-list" v-if="serverErrors.length">
-			<li v-for="error in serverErrors" class="form-errors">{{error}}</li>
+		<ul class="form-server-messages-list" v-if="formServerMessages.errors.length">
+			<li v-for="error in formServerMessages.errors" class="form-errors">{{error}}</li>
 		</ul>
 		<!-- END:errors -->
   </div>
@@ -17,8 +17,11 @@
 export default {
   props: {
     formServerMessages: {
-      success: [],
-      errors: []
+      type: Object,
+      default: {
+        success: [],
+        errors: []
+      }
     }
   }
 }

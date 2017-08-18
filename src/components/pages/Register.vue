@@ -99,20 +99,7 @@
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Create account</button>
-			  	<!-- .form-server-messages -->
-			  	<div class="form-server-messages text-center">
-			  		<!-- success -->
-			  		<ul class="form-server-messages-list" v-if="serverSuccessMessages">
-			  			<li v-for="message in serverSuccessMessages" class="form-success-messages">{{message}}</li>
-			  		</ul>
-			  		<!-- END:success -->
-			  		<!-- errors -->
-			  		<ul class="form-server-messages-list" v-if="serverErrors.length">
-			  			<li v-for="error in serverErrors" class="form-errors">{{error}}</li>
-			  		</ul>
-			  		<!-- END:errors -->
-			  	</div>
-			  	<!-- END:.form-server-messages -->
+			  	<form-messages :formServerMessages="formServerMessagesData"/>
 			  </form>
 			  <!-- END:.form -->
 			</template>
@@ -156,7 +143,7 @@ export default {
         jobTitle: ''
       },
       formErrors: this.$validator.errors.items,
-      formServerMessages: {
+      formServerMessagesData: {
         success: [],
         errors: []
       }
@@ -164,25 +151,25 @@ export default {
   },
   computed: {
     serverSuccessMessages () {
-      return this.formServerMessages.success
+      return this.formServerMessagesData.success
     },
     serverErrors () {
-      return this.formServerMessages.errors
+      return this.formServerMessagesData.errors
     }
   },
   methods: {
     clearServerErrors () {
-      this.formServerMessages.errors = []
+      this.formServerMessagesData.errors = []
     },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
     registerSuccess (res) {
       this.clearServerErrors()
-      this.formServerMessages.success = res
+      this.formServerMessagesData.success = res
     },
     registerErrors (err) {
-      this.formServerMessages.errors = err
+      this.formServerMessagesData.errors = err
     },
     sendRegisterRequest () {
       this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
