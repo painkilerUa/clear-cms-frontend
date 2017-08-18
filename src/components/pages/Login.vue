@@ -51,13 +51,13 @@ export default {
         userName: null,
         userPassword: null
       },
-      formErrors: this.$validator.errors.items.length
+      hasErrors: null
     }
   },
   methods: {
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
-      console.log('errors', this.$validator.errors.items.length)
+      .then((res) => { res ? this.hasErrors = true : false })
     },
     sendLoginRequest () {
       console.log('request sent')
@@ -66,9 +66,7 @@ export default {
     },
     login () {
       this.checkErrorsOnSubmit()
-      if (!this.formErrors.length) {
-        this.sendLoginRequest()
-      }
+      this.hasErrors ? this.sendLoginRequest() : false
     }
   },
   components: {
