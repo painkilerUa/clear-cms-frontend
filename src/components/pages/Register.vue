@@ -146,14 +146,6 @@ export default {
       }
     }
   },
-  computed: {
-    serverSuccessMessages () {
-      return this.formServerMessages.success
-    },
-    serverErrors () {
-      return this.formServerMessages.errors
-    }
-  },
   methods: {
     sendFormRequest () {
       this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))

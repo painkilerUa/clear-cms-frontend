@@ -8,6 +8,14 @@ export default {
       }
     }
   },
+  computed: {
+    serverSuccessMessages () {
+      return this.formServerMessages.success
+    },
+    serverErrors () {
+      return this.formServerMessages.errors
+    }
+  },
   methods: {
     clearServerErrors () {
       this.formServerMessages.errors = []
