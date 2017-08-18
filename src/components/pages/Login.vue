@@ -24,6 +24,7 @@
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Login</button>
+			  	<form-messages :messages="formServerMessages" />
 			  </form>
 			  <!-- END:.form -->
 			</template>
@@ -49,6 +50,7 @@
 <script>
 import api from '@/api'
 import Popup from '@/components/common/Popup'
+import FormMessages from '@/components/common/FormMessages'
 
 export default {
   name: 'login',
@@ -95,7 +97,8 @@ export default {
     }
   },
   components: {
-    Popup
+    Popup,
+    FormMessages
   }
 }
 </script>
