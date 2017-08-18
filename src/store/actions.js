@@ -1,7 +1,7 @@
 import api from '../api'
 
 export const getTypes = ({ commit }, payload) => {
-  const urlEnd = '/api/v1/contentTypes'
+  const urlEnd = api.URLS.contentTypes
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
     .then((res) => {
@@ -11,7 +11,7 @@ export const getTypes = ({ commit }, payload) => {
 }
 
 export const getTags = ({ commit }, payload) => {
-  const urlEnd = '/api/v1/tags'
+  const urlEnd = api.URLS.tags
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
     .then((res) => commit('setTags', res.body.items))
