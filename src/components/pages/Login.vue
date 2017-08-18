@@ -49,11 +49,13 @@
 
 <script>
 import api from '@/api'
+import forms from '@/mixins/forms'
 import Popup from '@/components/common/Popup'
 import FormMessages from '@/components/common/FormMessages'
 
 export default {
   name: 'login',
+  mixins: [forms],
   data () {
     return {
       formInfo: {
@@ -71,12 +73,6 @@ export default {
     }
   },
   methods: {
-    clearServerErrors () {
-      this.formServerMessages.errors = []
-    },
-    checkErrorsOnSubmit () {
-      this.$validator.validateAll()
-    },
     loginSuccess (res) {
       this.clearServerErrors()
       this.formServerMessages.success = res
