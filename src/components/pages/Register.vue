@@ -32,7 +32,7 @@
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<v-select placeholder="Function" name="Function" value.sync="formInfo.function" data-vv-as='"Function"' v-validate="'required'" class="form-control form-control--select" :options="functionOptions" />
+			  		<v-select placeholder="Function" name="Function" data-vv-name="Function" value.sync="formInfo.function" data-vv-as='"Function"' v-validate="'required'" class="form-control form-control--select" :options="functionOptions" :on-change="validateFunction"/>
 			  		<div v-if="errors.has('Function')" class="form-errors">{{ errors.first('Function') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -88,6 +88,9 @@ export default {
     }
   },
   methods: {
+    validateFunction (value) {
+      this.$validator.validate('Function', value)
+    },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
