@@ -59,7 +59,6 @@ export default {
       this.$validator.validateAll()
     },
     sendLoginRequest () {
-      console.log('login request sent')
       this.$http.post('api', JSON.stringify(this.formInfo))
       .then((res) => { console.log('login success') })
     },
