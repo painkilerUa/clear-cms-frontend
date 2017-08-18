@@ -99,6 +99,11 @@
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Create account</button>
+			  	<!-- .form-server-messages -->
+			  	<div class="form-server-messages">
+			  		<ul class="form-server-messages-list"></ul>
+			  	</div>
+			  	<!-- END:.form-server-messages -->
 			  </form>
 			  <!-- END:.form -->
 			</template>
