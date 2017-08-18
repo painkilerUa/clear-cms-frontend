@@ -145,7 +145,11 @@ export default {
         lastName: '',
         jobTitle: ''
       },
-      formErrors: this.$validator.errors.items
+      formErrors: this.$validator.errors.items,
+      formServerMessages: {
+        success: '',
+        errors: []
+      }
     }
   },
   methods: {
@@ -155,13 +159,12 @@ export default {
     sendRegisterRequest () {
       this.$http.post(`${api.serverURL}/api/v1/register`, JSON.stringify(this.formInfo))
       .then((res) => { console.log('login success') })
-      .catch((err) => { console.log(err) })
+      .catch((err) => { this.formServerMessages.errors = err.body })
     },
     register () {
       this.checkErrorsOnSubmit()
       if (this.formErrors.length === 0) {
         this.sendRegisterRequest()
-        console.log(JSON.stringify(this.formInfo))
       }
     }
   },
