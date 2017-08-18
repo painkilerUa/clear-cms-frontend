@@ -61,7 +61,11 @@ export default {
           second: ''
         }
       },
-      formErrors: this.$validator.errors.items
+      formErrors: this.$validator.errors.items,
+      formServerMessages: {
+        success: [],
+        errors: []
+      }
     }
   },
   methods: {

@@ -99,7 +99,7 @@
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Create account</button>
-			  	<form-messages :messages="formServerMessagesData"/>
+			  	<form-messages :messages="formServerMessages"/>
 			  </form>
 			  <!-- END:.form -->
 			</template>
@@ -143,7 +143,7 @@ export default {
         jobTitle: ''
       },
       formErrors: this.$validator.errors.items,
-      formServerMessagesData: {
+      formServerMessages: {
         success: [],
         errors: []
       }
@@ -151,25 +151,25 @@ export default {
   },
   computed: {
     serverSuccessMessages () {
-      return this.formServerMessagesData.success
+      return this.formServerMessages.success
     },
     serverErrors () {
-      return this.formServerMessagesData.errors
+      return this.formServerMessages.errors
     }
   },
   methods: {
     clearServerErrors () {
-      this.formServerMessagesData.errors = []
+      this.formServerMessages.errors = []
     },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
     registerSuccess (res) {
       this.clearServerErrors()
-      this.formServerMessagesData.success = res
+      this.formServerMessages.success = res
     },
     registerErrors (err) {
-      this.formServerMessagesData.errors = err
+      this.formServerMessages.errors = err
     },
     sendRegisterRequest () {
       this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
