@@ -51,6 +51,7 @@
 			  		name="Password"
 			  		data-vv-as='"Password"'
 			  		class="form-control"
+			  		v-model="formInfo.plainPassword.first"
 			  		v-validate="'required'"
 			  		placeholder="Password" />
 			  		<div v-if="errors.has('Password')" class="form-errors">{{ errors.first('Password') }}</div>
