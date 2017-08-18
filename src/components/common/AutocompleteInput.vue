@@ -93,7 +93,7 @@ export default {
       'getTags'
     ]),
     onInput (value) {
-      this.open()
+      this.open(value)
       if (value === '') {
         this.close()
       } else {
@@ -133,8 +133,8 @@ export default {
       this.clear()
       this.$router.push({name: 'content', params: {id: id}})
     },
-    open () {
-      this.isOpen = !!value  
+    open (value) {
+      this.isOpen = !!value
     },
     close () {
       this.isOpen = false
