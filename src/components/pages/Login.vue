@@ -60,8 +60,9 @@ export default {
       .then((res) => { res ? this.hasErrors = true : false })
     },
     sendLoginRequest () {
-      console.log('success')
+      console.log('request sent')
       this.$http.post('api', JSON.stringify(this.formInfo))
+      .then((res) => { console.log('success') })
     },
     login () {
       this.checkErrorsOnSubmit()
