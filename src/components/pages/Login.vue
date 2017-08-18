@@ -48,13 +48,18 @@ export default {
   data () {
     return {
       userName: null,
-      userPassword: null
+      userPassword: null,
+      hasErrors: null
     }
   },
   methods: {
-    login () {
+    checkErrorsOnSubmit () {
       this.$validator.validateAll()
-      .then((res) => res ? console.log('yes') : false)
+      .then((res) => { res ? this.hasErrors = true : false })
+    },
+    login () {
+      this.checkErrorsOnSubmit()
+      this.hasErrors ? console.log('success') : false
     }
   },
   components: {
