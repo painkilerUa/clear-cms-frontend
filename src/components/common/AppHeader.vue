@@ -28,10 +28,10 @@
 					<!-- .app-header-login -->
 					<div class="app-header-login">
 						<template v-if="getIsLoggedIn">
-							<a href="#"
+							<span
 							class="app-header-login__item app-header-login__item--name"
 							tabindex="-1"
-							v-if="getUsername">{{getUsername}}</a>
+							v-if="getUsername">{{getUsername}}</span>
 							<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
 						</template>
 						<template v-else>
