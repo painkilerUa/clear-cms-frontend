@@ -1,7 +1,7 @@
 <template>
 	<!-- .register -->
 	<div class="register">
-		<popup :title="'Create your account'" :modal="true">
+		<popup :title="title" :description="description" :modal="true">
 		  <!-- popup-body -->
 			<template slot="body">
 			  <!-- .form -->
@@ -132,6 +132,8 @@ export default {
   mixins: [forms],
   data () {
     return {
+      title: 'Create your account',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laudantium sed necessitatibus enim recusandae sunt numquam, ducimus asperiores laborum! Reprehenderit!',
       functionOptions: ['One', 'Two'],
       formInfo: {
         username: '',

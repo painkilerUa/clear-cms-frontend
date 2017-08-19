@@ -6,7 +6,7 @@
       <button type="button" class="popup-close-btn">X</button>
 			<!-- .popup-heading -->
 			<div class="popup-heading">
-				<h2 class="popup-title" v-if="title">{{title}}</h2>
+				<h2 class="popup-title text-center" v-if="title">{{title}}</h2>
 				<div class="popup-description" v-if="description">
 					<p>{{description}}</p>
 				</div>

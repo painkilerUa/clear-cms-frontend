@@ -53,9 +53,11 @@
         }
     }
     &-submit {
+        font-weight: bold;
+        padding: 18px 10px;
         text-transform: uppercase;
         color: #fff;
-        background-color: color('formSubmit');
+        background-color: color('appHeaderSearchBg');
     }
     &-message {
         margin-bottom: 25px;
@@ -64,10 +66,12 @@
     }
     &-success-messages {
         color: color('success');
+
         @extend .form-message;
     }
     &-errors {
         color: color('danger');
+
         @extend .form-message;
     }
 }
