@@ -56,8 +56,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'app-header',
+  computed: {
+    ...mapGetters([
+      'getIsLoggedIn'
+    ])
+  },
   methods: {
     selectArticle (article) {
       console.log('article selected', article)
