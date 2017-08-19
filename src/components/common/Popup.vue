@@ -3,6 +3,7 @@
 	<div class="popup" v-if="show">
 		<!-- .popup__inner -->
 		<div class="popup__inner" v-on-clickaway="close">
+      <button type="button" class="popup-close-btn">X</button>
 			<!-- .popup-heading -->
 			<div class="popup-heading">
 				<h2 class="popup-title" v-if="title">{{title}}</h2>

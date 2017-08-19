@@ -7,7 +7,7 @@
 
     @extend %overlay;
     &__inner {
-        padding: 32px 32px;
+        padding: 52px 32px 32px 32px;
         background-color: color('autocompleteInputBg');
 
         @extend %overlay-inner;
@@ -26,6 +26,15 @@
         }
         &__link {
             text-decoration: none;
+        }
+    }
+    &-close {
+        &-btn {
+            border: none;
+            background-color: transparent;
+            position: absolute;
+            top: 16px;
+            right: 16px;
         }
     }
 }
