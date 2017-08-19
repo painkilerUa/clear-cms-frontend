@@ -27,8 +27,16 @@
 				<div class="app-header-info__container">
 					<!-- .app-header-login -->
 					<div class="app-header-login">
-						<a href="#" class="app-header-login__item app-header-login__item--name" tabindex="-1">User1234</a>
-						<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
+						<template v-if="getIsLoggedIn">
+							<a href="#"
+							class="app-header-login__item app-header-login__item--name"
+							tabindex="-1"
+							v-if="getUsername">{{getUsername}}</a>
+							<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
+						</template>
+						<template v-else>
+							<a href="#" class="app-header-login__item" tabindex="-1">Login</a>
+						</template>
 					</div>
 					<!-- END:.app-header-login -->
 					<!-- .app-header-options -->
@@ -62,13 +70,9 @@ export default {
   name: 'app-header',
   computed: {
     ...mapGetters([
-      'getIsLoggedIn'
+      'getIsLoggedIn',
+      'getUsername'
     ])
-  },
-  methods: {
-    selectArticle (article) {
-      console.log('article selected', article)
-    }
   }
 }
 </script>
