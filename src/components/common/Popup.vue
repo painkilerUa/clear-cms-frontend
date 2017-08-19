@@ -49,9 +49,7 @@ export default {
   },
   methods: {
     close () {
-      if (!this.modal) {
-        this.show = false
-      }
+      this.show = false
     }
   },
   directives: {
