@@ -14,6 +14,14 @@ import VeeValidate from 'vee-validate'
 
 Vue.config.productionTip = false
 
+// directives
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+// END:directives
+
 Vue.component('autocomplete-input', AutocompleteInput)
 Vue.component('v-select', vSelect)
 Vue.component('popup', Popup)
