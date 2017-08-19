@@ -15,7 +15,7 @@
 			  		data-vv-as='"First Name"'
 			  		class="form-control"
 			  		v-validate="'required'"
-			  		placeholder="First Name" />
+			  		placeholder="First Name" v-focus />
 			  		<div v-if="errors.has('First Name')" class="form-errors">{{ errors.first('First Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
