@@ -30,11 +30,11 @@
     }
     &-close {
         &-btn {
-            border: none;
-            background-color: transparent;
             position: absolute;
             top: 16px;
             right: 16px;
+            border: none;
+            background-color: transparent;
         }
     }
 }
