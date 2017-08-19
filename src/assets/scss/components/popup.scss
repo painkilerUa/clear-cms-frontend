@@ -1,5 +1,7 @@
 @import '../settings/settings';
 
+$innerPaddingRight: 32px;
+
 .popup {
     display: block;
     overflow: auto;
@@ -7,7 +9,7 @@
 
     @extend %overlay;
     &__inner {
-        padding: 52px 32px 32px 32px;
+        padding: 52px $innerPaddingRight $innerPaddingRight $innerPaddingRight;
         background-color: color('autocompleteInputBg');
 
         @extend %overlay-inner;
@@ -32,7 +34,7 @@
         &-btn {
             position: absolute;
             top: 16px;
-            right: 16px;
+            right: $innerPaddingRight;
             border: none;
             background-color: transparent;
         }
