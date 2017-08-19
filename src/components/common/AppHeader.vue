@@ -35,7 +35,7 @@
 							<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
 						</template>
 						<template v-else>
-							<router-link :to="{name: 'login'}" class="app-header-login__item">Login</router-link>
+							<router-link :to="{name: 'login'}" class="app-header-login__item" tabindex="-1">Login</router-link>
 						</template>
 					</div>
 					<!-- END:.app-header-login -->
