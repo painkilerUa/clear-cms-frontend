@@ -7,7 +7,7 @@
 			  <form action="#" class="form" @submit.prevent="submit">
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" v-focus />
+			  		<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
 			  		<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -33,9 +33,9 @@
 		  <template slot="footer">
 		  	<!-- popup-infolinks -->
 		  	<ul class="popup-infolinks">
-		  		<!-- <li class="popup-infolinks__item">
-		  			<router-link class="popup-infolinks__link" :to="{name: 'forgotPassword'}">Forgot password?</router-link>
-		  		</li> -->
+		  		<li class="popup-infolinks__item">
+		  			<router-link class="popup-infolinks__link" :to="{name: 'forgot-password'}">Forgot password?</router-link>
+		  		</li>
 		  		<li class="popup-infolinks__item">
 		  			<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>
 		  		</li>

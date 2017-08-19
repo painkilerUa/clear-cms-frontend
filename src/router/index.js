@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
+import ForgotPassword from '@/components/pages/ForgotPassword'
 import Error from '@/components/pages/Error'
 import Content from '@/components/pages/Content'
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: ForgotPassword
     },
     {
       path: '/content/:id',
