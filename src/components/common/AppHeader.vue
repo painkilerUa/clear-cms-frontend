@@ -28,10 +28,11 @@
 					<!-- .app-header-login -->
 					<div class="app-header-login">
 						<template v-if="getIsLoggedIn">
-							<span
+							<router-link
+							:to="{name: 'profile'}"
 							class="app-header-login__item app-header-login__item--name"
 							tabindex="-1"
-							v-if="getUsername">{{getUsername}}</span>
+							v-if="getUsername">{{getUsername}}</router-link>
 							<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
 						</template>
 						<template v-else>
@@ -54,7 +55,7 @@
 		<div class="app-header-search">
 			<!-- .myContainer -->
 			<div class="myContainer">
-			  <autocomplete-input @selected="selectArticle" />
+			  <autocomplete-input />
 			</div>
 			<!-- END:.myContainer -->
 		</div>
