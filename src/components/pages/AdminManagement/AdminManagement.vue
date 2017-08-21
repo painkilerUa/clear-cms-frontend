@@ -4,7 +4,10 @@
 		<h1>Admin Management</h1>
 		<!-- admin-actions -->
 		<ul class="admin-actions">
-			<admin-management-item :itemInfo="action" v-for="action in actions" :key="action" />
+			<admin-management-item
+      :itemInfo="action"
+      v-for="action in actions"
+      :key="action" />
 		</ul>
 		<!-- END:admin-actions -->
       <v-select
