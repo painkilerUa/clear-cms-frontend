@@ -81,7 +81,9 @@ export default {
         localStorage.setItem('token', res.body.access_token)
         this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
+        this.$store.commit('authLoginSetUsername', this.formInfo.username)
         this.redirect()
+        console.log(res)
       })
       .catch((err) => {
         this.submitErrors(err.body)
