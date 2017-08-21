@@ -4,7 +4,7 @@
 		<h1>Admin Management</h1>
 		<!-- admin-actions -->
 		<ul class="admin-actions">
-			<li v-for="action in actions">{{action}}</li>
+			<admin-management-item :itemInfo="action" v-for="action in actions" />
 		</ul>
 		<!-- END:admin-actions -->
       <v-select
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import AdminManagementItem from '@/components/pages/AdminManagement/AdminManagementItem'
+
 export default {
   name: 'admin-management',
   data () {
@@ -29,6 +31,9 @@ export default {
     selectRoles () {
       console.log('selectRole')
     }
+  },
+  components: {
+    AdminManagementItem
   }
 }
 </script>
