@@ -9,6 +9,9 @@ export default {
     }
   },
   computed: {
+    formJson () {
+      return JSON.stringify(this.formInfo)
+    },
     serverSuccessMessages () {
       return this.formServerMessages.success
     },

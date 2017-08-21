@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     sendFormRequest () {
-      this.$http.post(api.URLS.register, JSON.stringify(this.formInfo))
+      this.$http.post(api.URLS.register, this.formJson)
       .then((res) => { this.submitSuccess(res.body) })
       .catch((err) => { this.submitErrors(err.body) })
     }
