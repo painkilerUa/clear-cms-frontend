@@ -84,7 +84,7 @@ export default {
         this.redirect()
       })
       .catch((err) => {
-        this.submitErrors(err.body.error)
+        this.submitErrors(err.body)
         console.log(err)
       })
     }
