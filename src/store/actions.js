@@ -1,7 +1,7 @@
 import api from '@/api'
 import router from '@/router'
 
-export const redirect = (url) => router.push(url)
+export const redirect = () => router.push('/')
 
 export const getTypes = ({ commit }, payload) => {
   const urlEnd = api.URLS.contentTypes
@@ -22,6 +22,6 @@ export const getTags = ({ commit }, payload) => {
 // auth
 export const authLogout = ({ commit }, payload) => {
   localStorage.removeItem('token')
-  redirect('/')
+  redirect()
   commit('authLogout')
 }

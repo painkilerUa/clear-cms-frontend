@@ -80,7 +80,7 @@ export default {
       .then((res) => {
         this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
-        this.redirect('/')
+        this.redirect()
       })
       .catch((err) => {
         this.submitErrors(err.body.error)
