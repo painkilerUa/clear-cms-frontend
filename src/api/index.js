@@ -13,7 +13,7 @@ api.serverURL = 'http://13.59.74.76'
 
 api.URLS = {
   search: `${api.serverURL}/search?_format=json`,
-  login: `${api.serverURL}/oauth/v2/token?grant_type=password&client_id=1_hfxueyakuh44w8osgg8wkkgcskgw8s08gcwk448cwwkg8oc4w&client_secret=69cem3f7d808s00oswgsco4k4w4cco8os08c0co4844skw8ko0`,
+  login: `${api.serverURL}/oauth/v2/token`,
   register: `${api.serverURL}/api/v1/register`,
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',

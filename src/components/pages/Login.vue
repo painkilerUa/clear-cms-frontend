@@ -13,13 +13,13 @@
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="PasswordFirst" v-model="formInfo.plainPassword.first" data-vv-as='"PasswordFirst"' class="form-control" v-validate="'required'" placeholder="Password" />
+			  		<input type="password" name="PasswordFirst" v-model="formInfo.password" data-vv-as='"PasswordFirst"' class="form-control" v-validate="'required'" placeholder="Password" />
 			  		<div v-if="errors.has('PasswordFirst')" class="form-errors">{{ errors.first('PasswordFirst') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="PasswordSecond" v-model="formInfo.secondPassword" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
+			  		<input type="password" name="PasswordSecond" v-model="secondPassword" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
 			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -62,19 +62,19 @@ export default {
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laudantium sed necessitatibus enim recusandae sunt numquam, ducimus asperiores laborum! Reprehenderit!',
       formInfo: {
         username: null,
-        plainPassword: {
-          first: ''
-        }
+        password: null,
+        grant_type: 'password',
+        client_id: '1_hfxueyakuh44w8osgg8wkkgcskgw8s08gcwk448cwwkg8oc4w',
+        client_secret: '69cem3f7d808s00oswgsco4k4w4cco8os08c0co4844skw8ko0'
       },
-      secondPassword: ''
+      secondPassword: null
     }
   },
   methods: {
     sendFormRequest () {
-      let query = `username=${this.formInfo.username}&password=${this.formInfo.plainPassword.first}`
-      this.$http.get(`${api.URLS.login}&${query}`, this.formJson)
+      this.$http.post(`${api.URLS.login}`, this.formJson)
       .then((res) => { this.submitSuccess(res.body) })
-      .catch((err) => { this.submitErrors(err.body.error); console.log(err) })
+      .catch((err) => { this.submitErrors(err.body.error); console.log(this.formJson) })
     }
   },
   components: {
