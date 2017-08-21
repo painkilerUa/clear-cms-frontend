@@ -85,6 +85,7 @@ export default {
       })
       .catch((err) => {
         this.submitErrors(err.body.error)
+        console.log(err)
       })
     }
   },
