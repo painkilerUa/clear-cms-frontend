@@ -1,4 +1,7 @@
-import api from '../api'
+import api from '@/api'
+import router from '@/router'
+
+export const redirect = (url) => router.push(url)
 
 export const getTypes = ({ commit }, payload) => {
   const urlEnd = api.URLS.contentTypes
@@ -17,16 +20,8 @@ export const getTags = ({ commit }, payload) => {
 }
 
 // auth
-// export const authLogin = ({ commit }, credentials) => {
-//   const urlEnd = ''
-//   const type = 'post'
-//   commit('authLogin')
-//   api.requestToServer(urlEnd, type, credentials)
-//   .then((res) => commit('authLoginSuccess'))
-//   .catch((err) => console.log(err))
-// }
-
 export const authLogout = ({ commit }, payload) => {
   localStorage.removeItem('token')
+  redirect('/')
   commit('authLogout')
 }
