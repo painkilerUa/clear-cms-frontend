@@ -63,7 +63,6 @@ export default {
   name: 'autocomplete-input',
   data () {
     return {
-      serverApiSearchURL: `${api.serverURL}/search?_format=json`,
       searchQuery: '',
       isOpen: false,
       page: 1,
@@ -105,7 +104,7 @@ export default {
     },
     fetchContent () {
       // variables
-      let queryString = `${this.serverApiSearchURL}&page=${this.page}`
+      let queryString = `${api.URLS.search}&page=${this.page}`
       let searchQuery = this.searchQuery
       // END:variables
       if (searchQuery.length) {
