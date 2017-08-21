@@ -19,7 +19,7 @@
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="PasswordSecond" v-model="formInfo.plainPassword.second" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
+			  		<input type="password" name="PasswordSecond" v-model="formInfo.secondPassword" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
 			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
 			  	</div>
 			  	<!-- END:.form-element -->
@@ -63,10 +63,10 @@ export default {
       formInfo: {
         username: null,
         plainPassword: {
-          first: '',
-          second: ''
+          first: ''
         }
-      }
+      },
+      secondPassword: ''
     }
   },
   methods: {
