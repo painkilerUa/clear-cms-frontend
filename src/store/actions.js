@@ -20,7 +20,8 @@ export const getTags = ({ commit }, payload) => {
 export const authLogin = ({ commit }, credentials) => {
   const urlEnd = ''
   const type = 'post'
+  commit('authLogin')
   api.requestToServer(urlEnd, type, credentials)
-  .then((res) => commit('authLogin'))
+  .then((res) => commit('authLoginSuccess'))
   .catch((err) => console.log(err))
 }
