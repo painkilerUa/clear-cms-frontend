@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     sendFormRequest () {
-      this.$http.post(`${api.URLS.login}`, this.formJson)
+      this.$http.post(api.URLS.login, this.formJson)
       .then((res) => {
         this.submitSuccess(res.body)
         this.successRedirect()
