@@ -25,3 +25,8 @@ export const authLogin = ({ commit }, credentials) => {
   .then((res) => commit('authLoginSuccess'))
   .catch((err) => console.log(err))
 }
+
+export const authLogout = ({ commit }, payload) => {
+  localStorage.removeItem('token')
+  commit('authLogout')
+}
