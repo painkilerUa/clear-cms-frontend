@@ -8,10 +8,10 @@
 		</ul>
 		<!-- END:admin-actions -->
       <v-select
-      placeholder="Topic"
+      placeholder="Roles"
       :multiple="true"
       :on-change="selectRoles"
-      :options="actions" />
+      :options="roles" />
 	</div>
 	<!-- END:.admin-management -->
 </template>
@@ -21,7 +21,8 @@ export default {
   name: 'admin-management',
   data () {
     return {
-      actions: ['Action1', 'Action2', 'Action3']
+      actions: ['Action1', 'Action2', 'Action3'],
+      roles: ['User', 'Admin', 'Editor']
     }
   },
   methods: {
