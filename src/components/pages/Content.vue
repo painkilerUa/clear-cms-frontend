@@ -39,8 +39,11 @@ export default {
     }
   },
   methods: {
-    fetchContent () {
+    clearItem () {
       this.contentItem = null
+    },
+    fetchContent () {
+      this.clearItem()
       this.$http.get(`${api.URLS.content}/${this.id}`)
       .then((res) => { this.contentItem = res.body })
       .catch((err) => console.error(err))
