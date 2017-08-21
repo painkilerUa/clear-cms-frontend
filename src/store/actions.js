@@ -22,6 +22,7 @@ export const getTags = ({ commit }, payload) => {
 // auth
 export const authLogout = ({ commit }, payload) => {
   localStorage.removeItem('token')
+  localStorage.removeItem('username')
   redirect()
   commit('authLogout')
 }
