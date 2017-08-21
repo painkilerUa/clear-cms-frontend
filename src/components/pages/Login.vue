@@ -79,6 +79,7 @@ export default {
       this.$http.post(api.URLS.login, this.formJson)
       .then((res) => {
         localStorage.setItem('token', res.body.access_token)
+        localStorage.setItem('username', this.formInfo.username)
         this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
         this.$store.commit('authLoginSetUsername', this.formInfo.username)
