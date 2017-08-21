@@ -64,8 +64,8 @@ export default {
         username: null,
         password: null,
         grant_type: 'password',
-        client_id: '1_hfxueyakuh44w8osgg8wkkgcskgw8s08gcwk448cwwkg8oc4w',
-        client_secret: '69cem3f7d808s00oswgsco4k4w4cco8os08c0co4844skw8ko0'
+        client_id: '1_7v14gfa6qigwwgss80kg484o8wc880owgo4s400kg4w4g4kgc',
+        client_secret: '5keno5qzn5gcoosswckcw0sgccggsk8ws4scggosgcgs08wksw'
       },
       secondPassword: null
     }
@@ -73,7 +73,7 @@ export default {
   methods: {
     sendFormRequest () {
       this.$http.post(`${api.URLS.login}`, this.formJson)
-      .then((res) => { this.submitSuccess(res.body) })
+      .then((res) => { this.submitSuccess(res.body); console.log('success') })
       .catch((err) => { this.submitErrors(err.body.error); console.log(this.formJson) })
     }
   },
