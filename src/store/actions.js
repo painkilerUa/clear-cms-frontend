@@ -17,14 +17,14 @@ export const getTags = ({ commit }, payload) => {
 }
 
 // auth
-export const authLogin = ({ commit }, credentials) => {
-  const urlEnd = ''
-  const type = 'post'
-  commit('authLogin')
-  api.requestToServer(urlEnd, type, credentials)
-  .then((res) => commit('authLoginSuccess'))
-  .catch((err) => console.log(err))
-}
+// export const authLogin = ({ commit }, credentials) => {
+//   const urlEnd = ''
+//   const type = 'post'
+//   commit('authLogin')
+//   api.requestToServer(urlEnd, type, credentials)
+//   .then((res) => commit('authLoginSuccess'))
+//   .catch((err) => console.log(err))
+// }
 
 export const authLogout = ({ commit }, payload) => {
   localStorage.removeItem('token')

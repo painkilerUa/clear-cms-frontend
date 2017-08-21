@@ -73,8 +73,14 @@ export default {
   methods: {
     sendFormRequest () {
       this.$http.post(`${api.URLS.login}`, this.formJson)
-      .then((res) => { this.submitSuccess(res.body); this.successRedirect() })
-      .catch((err) => { this.submitErrors(err.body.error); console.log(this.formJson) })
+      .then((res) => {
+        this.submitSuccess(res.body)
+        this.successRedirect()
+        this.$store.commit('authLoginSuccess')
+      })
+      .catch((err) => {
+        this.submitErrors(err.body.error)
+      })
     }
   },
   components: {
