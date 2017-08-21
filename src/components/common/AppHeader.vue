@@ -33,7 +33,7 @@
 							class="app-header-login__item app-header-login__item--name"
 							tabindex="-1"
 							v-if="getUsername">{{getUsername}}</router-link>
-							<a href="#" class="app-header-login__item" tabindex="-1">Logout</a>
+							<a href="#" class="app-header-login__item" tabindex="-1" @click.prevent="authLogout">Logout</a>
 						</template>
 						<template v-else>
 							<router-link
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'app-header',
@@ -76,6 +76,11 @@ export default {
     ...mapGetters([
       'getIsLoggedIn',
       'getUsername'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'authLogout'
     ])
   }
 }
