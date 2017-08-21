@@ -33,6 +33,9 @@ export default {
     submitErrors (err) {
       this.formServerMessages.errors = err
     },
+    successRedirect () {
+      this.$router.push('/')
+    },
     submit () {
       this.checkErrorsOnSubmit()
       if (this.formErrors.length === 0) {
