@@ -78,6 +78,7 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.login, this.formJson)
       .then((res) => {
+        localStorage.setItem('token', 'JWT')
         this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
         this.redirect()
