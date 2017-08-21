@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import api from '@/api'
 import forms from '@/mixins/forms'
 import Popup from '@/components/common/Popup'
@@ -71,12 +72,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'redirect'
+    ]),
     sendFormRequest () {
       this.$http.post(api.URLS.login, this.formJson)
       .then((res) => {
         this.submitSuccess(res.body)
-        this.successRedirect()
         this.$store.commit('authLoginSuccess')
+        this.redirect()
       })
       .catch((err) => {
         this.submitErrors(err.body.error)
