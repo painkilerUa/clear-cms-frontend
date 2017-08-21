@@ -15,3 +15,12 @@ export const getTags = ({ commit }, payload) => {
   .then((res) => commit('setTags', res.body.items))
   .catch((err) => console.error(err))
 }
+
+// auth
+export const authLogin = ({ commit }, credentials, payload) => {
+  const urlEnd = ''
+  const type = 'post'
+  api.requestToServer(urlEnd, type, credentials, payload)
+  .then((res) => commit('authLogin'))
+  .catch((err) => console.log(err))
+}
