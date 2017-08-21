@@ -31,7 +31,11 @@ export default {
       this.formServerMessages.success = res
     },
     submitErrors (err) {
-      this.formServerMessages.errors = err
+      if (Array.isArray(err)) {
+        this.formServerMessages.errors = err
+      } else {
+        this.formServerMessages.errors.push(JSON.parse(err).error_description)
+      }
     },
     submit () {
       this.checkErrorsOnSubmit()

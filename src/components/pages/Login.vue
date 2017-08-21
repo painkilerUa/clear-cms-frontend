@@ -86,7 +86,7 @@ export default {
         console.log(res)
       })
       .catch((err) => {
-        this.submitErrors(err.body)
+        this.submitErrors(err.bodyText)
         console.log(err)
       })
     }
