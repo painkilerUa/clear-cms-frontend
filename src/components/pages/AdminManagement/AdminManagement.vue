@@ -70,7 +70,7 @@ export default {
     this.getActions()
     this.getRoles()
     this.$http.get(api.URLS.actions).then((res) => this.$store.commit('setActions', res.body))
-    this.$http.get(api.URLS.roles).then((res) => { this.$store.commit('setRoles', res.body.items) })
+    this.$http.get(api.URLS.roles).then((res) => this.$store.commit('setRoles', res.body.items))
   }
 }
 </script>
