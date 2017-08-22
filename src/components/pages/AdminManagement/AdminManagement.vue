@@ -1,24 +1,24 @@
 <template>
 	<!-- .admin-management -->
-	<div class="admin-management">
+	<div class='admin-management'>
 		<h1>Admin Management</h1>
 		<strong>{{selectedInfo.selectedAction}}</strong>
 		<strong>{{selectedInfo.selectedRole}}</strong>
     <!-- .actions-table -->
-    <div class="actions-table">
+    <div class='actions-table'>
       <!-- .actions-heading -->
-      <div class="actions-heading">
-      	<div class="actions-cell actions-heading__cell">Actions:</div>
-      	<div class="actions-cell actions-heading__cell" v-for="role in roles">{{role.name}}</div>
+      <div class='actions-heading'>
+      	<div class='actions-cell actions-heading__cell'>Actions:</div>
+      	<div class='actions-cell actions-heading__cell' v-for='role in roles'>{{role.name}}</div>
       </div>
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
-      <div class="actions-body">
-      	<div class="actions-row" v-for="action in actions">
-      		<div class="actions-cell">{{action.actionName}}</div>
-      		<div class="actions-cell" v-for="role in roles">
+      <div class='actions-body'>
+      	<div class='actions-row' v-for='action in actions'>
+      		<div class='actions-cell'>{{action.actionName}}</div>
+      		<div class='actions-cell' v-for='role in roles'>
       			<label>
-      				<input type="checkbox" class="actions-checkbox" @change="select(action.actionId, role.id)" />
+      				<input type='checkbox' class='actions-checkbox' @change='select(action.actionId, role.id)' />
       				Enable
       			</label>
       		</div>
@@ -61,7 +61,7 @@ export default {
       this.selectedInfo.selectedRole = role
     },
     sendRequest () {
-      this.$http.post(`${api}/disallowed`, this.selectedInfo)
+      this.$http.post(`${api}/disallowed`, this.selectedInfo, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}, 'Accept': 'application/json', 'cache-control': 'no-cache'` }})
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     }
@@ -75,4 +75,4 @@ export default {
 }
 </script>
 
-<style src="@/assets/scss/components/admin-management.scss" lang="scss" scoped />
+<style src='@/assets/scss/components/admin-management.scss' lang='scss' scoped />

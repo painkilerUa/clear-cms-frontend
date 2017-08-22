@@ -22,7 +22,7 @@ export const getTypes = ({ commit }, payload) => {
 export const getTags = ({ commit }, payload) => {
   const urlEnd = api.URLS.tags
   const type = 'get'
-  api.requestToServer(urlEnd, type, payload)
+  api.requestToServer(urlEnd, type, payload, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }})
   .then((res) => commit('setTags', res.body.items))
   .catch((err) => console.error(err))
 }
