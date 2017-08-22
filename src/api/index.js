@@ -18,8 +18,8 @@ api.URLS = {
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',
   tags: '/api/v1/tags',
-  actions: '/api/v1/actions',
-  roles: '/api/v1/roles'
+  actions: 'https://api.myjson.com/bins/gh1td',
+  roles: 'https://api.myjson.com/bins/eor01'
 }
 
 api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
