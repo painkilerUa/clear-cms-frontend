@@ -2,8 +2,8 @@
 	<!-- .admin-management -->
 	<div class="admin-management">
 		<h1>Admin Management</h1>
-		<strong>{{selectedAction}}</strong>
-		<strong>{{selectedRole}}</strong>
+		<strong>{{selectedInfo.selectedAction}}</strong>
+		<strong>{{selectedInfo.selectedRole}}</strong>
     <!-- .actions-table -->
     <div class="actions-table">
       <!-- .actions-heading -->
@@ -32,14 +32,17 @@
 </template>
 
 <script>
+import api from '@/api'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'admin-management',
   data () {
     return {
-      selectedAction: null,
-      selectedRole: null
+      selectedInfo: {
+        selectedAction: null,
+        selectedRole: null
+      }
     }
   },
   computed: {
@@ -54,8 +57,13 @@ export default {
       'getRoles'
     ]),
     select (action, role) {
-      this.selectedAction = action
-      this.selectedRole = role
+      this.selectedInfo.selectedAction = action
+      this.selectedInfo.selectedRole = role
+    },
+    sendRequest () {
+      this.$http.post(`${api}`, this.selectedInfo)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
     }
   },
   mounted () {
