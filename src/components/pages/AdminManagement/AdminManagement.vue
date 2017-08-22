@@ -9,7 +9,7 @@
       <!-- .actions-heading -->
       <div class="actions-heading">
       	<div class="actions-cell actions-heading__cell">Actions:</div>
-      	<div class="actions-cell actions-heading__cell" v-for="role in roles">{{role}}</div>
+      	<div class="actions-cell actions-heading__cell" v-for="role in roles">{{role.name}}</div>
       </div>
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
@@ -18,7 +18,7 @@
       		<div class="actions-cell">{{action.actionName}}</div>
       		<div class="actions-cell" v-for="role in roles">
       			<label>
-      				<input type="checkbox" class="actions-checkbox" @change="select(action.actionId, role)" />
+      				<input type="checkbox" class="actions-checkbox" @change="select(action.actionId, role.id)" />
       				Enable
       			</label>
       		</div>
@@ -70,7 +70,7 @@ export default {
     this.getActions()
     this.getRoles()
     this.$http.get(api.URLS.actions).then((res) => this.$store.commit('setActions', res.body))
-    this.$http.get(api.URLS.roles).then((res) => { this.$store.commit('setRoles', res.body.items); console.log('getRoles', res.body.items) })
+    this.$http.get(api.URLS.roles).then((res) => { this.$store.commit('setRoles', res.body.items) })
   }
 }
 </script>
