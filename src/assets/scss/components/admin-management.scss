@@ -1,0 +1,14 @@
+@import '../settings/settings';
+
+.actions {
+    &-table {
+        display: table;
+        width: 100%;
+    }
+    &-heading {
+        display: table-header-group;
+    }
+    &-cell {
+        display: table-cell;
+    }
+}
