@@ -2,8 +2,6 @@
 	<!-- .admin-management -->
 	<div class='admin-management'>
 		<h1>Admin Management</h1>
-		<strong>{{selectedInfo.selectedAction}}</strong>
-		<strong>{{selectedInfo.selectedRole}}</strong>
     <!-- .actions-table -->
     <div class='actions-table'>
       <!-- .actions-heading -->
