@@ -7,9 +7,7 @@
       <!-- .actions-heading -->
       <div class="actions-heading">
       	<div class="actions-cell actions-heading__cell">Actions:</div>
-      	<div class="actions-cell actions-heading__cell" v-for="role in roles">
-      		{{role}}
-      	</div>
+      	<div class="actions-cell actions-heading__cell" v-for="role in roles">{{role}}</div>
       </div>
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
