@@ -65,7 +65,7 @@ export default {
     sendRequest () {
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => {
-        this.allowedItems = res
+        this.allowedItems = res.body
         console.log(res)
       })
       .catch((err) => console.log(err))
