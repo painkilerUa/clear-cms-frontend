@@ -1,6 +1,8 @@
 export const content = state => state.content
 export const types = state => state.types
 export const tags = state => state.tags
+export const actions = state => state.actions
+export const roles = state => state.roles
 
 // types
 export const getContentTypeTitles = (state) => state.types.map(item => item.type)

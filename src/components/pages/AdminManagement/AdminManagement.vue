@@ -32,18 +32,34 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'admin-management',
   data () {
     return {
-      actions: ['Action1', 'Action2', 'Action3'],
-      roles: ['SuperAdmin', 'User', 'Admin', 'Editor']
+      selectedAction: null,
+      selectedRole: null
     }
   },
+  computed: {
+    ...mapGetters([
+      'actions',
+      'roles'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'getActions',
+      'getRoles'
+    ]),
     selectRoles () {
       console.log('selectRole')
     }
+  },
+  mounted () {
+    this.getActions()
+    this.getRoles()
   }
 }
 </script>
