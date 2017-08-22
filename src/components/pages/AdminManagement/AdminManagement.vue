@@ -2,6 +2,7 @@
 	<!-- .admin-management -->
 	<div class='admin-management'>
 		<h1>Admin Management</h1>
+		<pre>{{allowedItems}}</pre>
     <!-- .actions-table -->
     <div class='actions-table'>
       <!-- .actions-heading -->
@@ -62,9 +63,11 @@ export default {
       'getRoles'
     ]),
     sendRequest () {
-      console.log(this.selectedInfoJson)
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
-      .then((res) => console.log(res))
+      .then((res) => {
+        this.allowedItems = res
+        console.log(res)
+      })
       .catch((err) => console.log(err))
     },
     select (actionId, actionName, role) {
