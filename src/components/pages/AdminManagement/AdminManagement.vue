@@ -6,12 +6,12 @@
     <div class="actions-table">
       <!-- .actions-heading -->
       <div class="actions-heading">
-      	<div class="actions-cell actions-heading__cell">
-      		<span class="actions-cell__title">Admin</span>
-      		<input type="checkbox" />
+      	<div class="actions-cell actions-heading__cell text-center" v-for="role in roles">
+      		<label class="actions-cell__title">
+      			{{role}}
+      			<input type="checkbox" />
+      		</label>
       	</div>
-      	<div class="actions-cell actions-heading__cell">User</div>
-      	<div class="actions-cell actions-heading__cell">Editor</div>
       </div>
       <!-- END:.actions-heading -->
     </div>
@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       actions: ['Action1', 'Action2', 'Action3'],
-      roles: ['User', 'Admin', 'Editor']
+      roles: ['SuperAdmin', 'User', 'Admin', 'Editor']
     }
   },
   methods: {
