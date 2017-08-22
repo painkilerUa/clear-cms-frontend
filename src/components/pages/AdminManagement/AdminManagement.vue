@@ -61,7 +61,7 @@ export default {
       this.selectedInfo.selectedRole = role
     },
     sendRequest () {
-      this.$http.post(`${api}`, this.selectedInfo)
+      this.$http.post(`${api}/disallowed`, this.selectedInfo)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     }
