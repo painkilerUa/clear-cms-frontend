@@ -57,14 +57,15 @@ export default {
       'getActions',
       'getRoles'
     ]),
-    select (action, role) {
-      this.selectedInfo.selectedAction = action
-      this.selectedInfo.selectedRole = role
-    },
     sendRequest () {
       this.$http.post(api.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
+    },
+    select (action, role) {
+      this.selectedInfo.selectedAction = action
+      this.selectedInfo.selectedRole = role
+      this.sendRequest()
     }
   },
   mounted () {
