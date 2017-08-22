@@ -17,8 +17,10 @@
       	<div class="actions-row" v-for="action in actions">
       		<div class="actions-cell">{{action}}</div>
       		<div class="actions-cell" v-for="role in roles">
-      		  
-      			<input type="checkbox" class="actions-checkbox" />
+      			<label>
+      				<input type="checkbox" class="actions-checkbox" />
+      				Enable
+      			</label>
       		</div>
       	</div>
       </div>
