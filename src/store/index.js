@@ -17,7 +17,9 @@ const state = {
   },
   content: [],
   types: [],
-  tags: []
+  tags: [],
+  actions: [],
+  roles: []
 }
 
 export default new Vuex.Store({
