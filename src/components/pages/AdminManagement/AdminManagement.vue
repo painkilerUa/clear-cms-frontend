@@ -49,7 +49,10 @@ export default {
     ...mapGetters([
       'actions',
       'roles'
-    ])
+    ]),
+    selectedInfoJson () {
+      return JSON.stringify(this.selectedInfo)
+    }
   },
   methods: {
     ...mapActions([
@@ -61,7 +64,7 @@ export default {
       this.selectedInfo.selectedRole = role
     },
     sendRequest () {
-      this.$http.post(api.actionsURLS.disallowed, this.selectedInfo)
+      this.$http.post(api.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     }
@@ -69,8 +72,6 @@ export default {
   mounted () {
     this.getActions()
     this.getRoles()
-    // this.$http.get(api.URLS.actions).then((res) => this.$store.commit('setActions', res.body))
-    // this.$http.get(api.URLS.roles).then((res) => this.$store.commit('setRoles', res.body.items))
   }
 }
 </script>
