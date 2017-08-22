@@ -58,7 +58,7 @@ export default {
       'getRoles'
     ]),
     sendRequest () {
-      this.$http.post(api.actionsURLS.disallowed, this.selectedInfoJson)
+      this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     },
