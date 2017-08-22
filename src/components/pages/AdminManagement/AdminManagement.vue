@@ -61,7 +61,7 @@ export default {
       this.selectedInfo.selectedRole = role
     },
     sendRequest () {
-      this.$http.post(`${api}/disallowed`, this.selectedInfo, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}, 'Accept': 'application/json', 'cache-control': 'no-cache'` }})
+      this.$http.post(`${api}/disallowed`, this.selectedInfo)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     }
