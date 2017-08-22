@@ -9,11 +9,16 @@
       	<div class="actions-cell actions-heading__cell text-center" v-for="role in roles">
       		<label class="actions-cell__title">
       			{{role}}
-      			<input type="checkbox" />
+      			<input type="checkbox" class="actions-checkbox" />
       		</label>
       	</div>
       </div>
       <!-- END:.actions-heading -->
+      <!-- .actions-body -->
+      <div class="actions-body">
+      	
+      </div>
+      <!-- END:.actions-body -->
     </div>
     <!-- END:.actions-table -->
 	</div>
