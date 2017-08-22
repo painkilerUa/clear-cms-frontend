@@ -6,18 +6,19 @@
     <div class="actions-table">
       <!-- .actions-heading -->
       <div class="actions-heading">
-      	<div class="actions-cell actions-heading__cell text-center" v-for="role in roles">
-      		<label class="actions-cell__title">
-      			{{role}}
-      			<input type="checkbox" class="actions-checkbox" />
-      		</label>
+      	<div class="actions-cell actions-heading__cell"></div>
+      	<div class="actions-cell actions-heading__cell" v-for="role in roles">
+      		{{role}}
       	</div>
       </div>
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
       <div class="actions-body">
-      	<div class="actions-list">
-      		<div class="actions-list__item" v-for="action in actions">{{action}}</div>
+      	<div class="actions-row" v-for="action in actions">
+      		<div class="actions-cell">{{action}}</div>
+      		<div class="actions-cell">
+      			<input type="checkbox" class="actions-checkbox" />
+      		</div>
       	</div>
       </div>
       <!-- END:.actions-body -->

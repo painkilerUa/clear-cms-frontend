@@ -11,6 +11,12 @@
     &-cell {
         display: table-cell;
     }
+    &-body {
+        display: table-footer-group;
+    }
+    &-row {
+        display: table-row;
+    }
     &-checkbox {
         display: inline-block;
         vertical-align: middle;
