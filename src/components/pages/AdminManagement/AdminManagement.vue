@@ -16,7 +16,7 @@
       		<div class='actions-cell'>{{action.actionName}}</div>
       		<div class='actions-cell' v-for='role in roles'>
       			<label>
-      				<input type='checkbox' class='actions-checkbox' @change='select(action.actionId, role.id)' />
+      				<input type='checkbox' class='actions-checkbox' @change='select(action.actionId, action.actionName, role.id)' />
       				Enable
       			</label>
       		</div>
@@ -40,6 +40,7 @@ export default {
       selectedInfo: {
         disallowed: {
           actionId: null,
+          actionName: null,
           roleUser: null
         }
       }
@@ -65,8 +66,9 @@ export default {
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     },
-    select (action, role) {
-      this.selectedInfo.disallowed.actionId = action
+    select (actionId, actionName, role) {
+      this.selectedInfo.disallowed.actionId = actionId
+      this.selectedInfo.disallowed.actionName = actionName
       this.selectedInfo.disallowed.roleUser = role
       this.sendRequest()
     }
