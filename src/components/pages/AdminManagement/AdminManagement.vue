@@ -38,8 +38,10 @@ export default {
   data () {
     return {
       selectedInfo: {
-        actionId: null,
-        roleUser: null
+        disallowed: {
+          actionId: null,
+          roleUser: null
+        }
       }
     }
   },
@@ -64,8 +66,8 @@ export default {
       .catch((err) => console.log(err))
     },
     select (action, role) {
-      this.selectedInfo.actionId = action
-      this.selectedInfo.roleUser = role
+      this.selectedInfo.disallowed.actionId = action
+      this.selectedInfo.disallowed.roleUser = role
       this.sendRequest()
     }
   },
