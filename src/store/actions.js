@@ -28,7 +28,7 @@ export const getTags = ({ commit }, payload) => {
 }
 
 export const getActions = ({ commit }, payload) => {
-  const urlEnd = api.URLS.actions
+  const urlEnd = api.URLS.actionsURLS.actions
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
   .then((res) => commit('setActions', res.body))

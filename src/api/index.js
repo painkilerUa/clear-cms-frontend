@@ -19,9 +19,11 @@ api.URLS = {
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',
   tags: '/api/v1/tags',
-  actions: '/api/v1/get-actions',
-  actionsPermissions: '/api/v1/permissions',
-  actionsDisallowed: '/api/v1/disallowed',
+  actionsURLS: {
+    actions: '/api/v1/get-actions',
+    permissions: '/api/v1/permissions',
+    disallowed: `${api.serverURL}/api/v1/disallowed`
+  },
   roles: `/api/v1/roles`
   // actions: 'https://api.myjson.com/bins/gh1td',
   // roles: 'https://api.myjson.com/bins/eor01'
