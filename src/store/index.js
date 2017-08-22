@@ -18,8 +18,8 @@ const state = {
   content: [],
   types: [],
   tags: [],
-  actions: ['Action1', 'Action2', 'Action3'],
-  roles: ['SuperAdmin', 'User', 'Admin', 'Editor']
+  actions: [],
+  roles: []
 }
 
 export default new Vuex.Store({
