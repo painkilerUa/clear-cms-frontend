@@ -7,9 +7,17 @@
     }
     &-heading {
         display: table-header-group;
+        &__cell {
+            color: #fff;
+            background-color: grey;
+        }
     }
     &-cell {
         display: table-cell;
+        padding: 10px;
+        border: 1px solid #000;
+        border-right: none;
+        border-bottom: none;
     }
     &-body {
         display: table-footer-group;
