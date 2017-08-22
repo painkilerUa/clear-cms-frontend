@@ -22,9 +22,9 @@ api.URLS = {
   actions: '/api/v1/get-actions',
   actionsPermissions: '/api/v1/permissions',
   actionsDisallowed: '/api/v1/disallowed',
-  roles: `/api/v1/roles?access_token=${api.token}`
+  roles: `/api/v1/roles`
   // actions: 'https://api.myjson.com/bins/gh1td',
   // roles: 'https://api.myjson.com/bins/eor01'
 }
 
-api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout, {headers: { 'Authorization': `Bearer ${api.token}, 'Accept': 'application/json', 'cache-control': 'no-cache'` }})
+api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
