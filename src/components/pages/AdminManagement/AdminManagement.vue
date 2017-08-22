@@ -16,7 +16,9 @@
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
       <div class="actions-body">
-      	
+      	<div class="actions-list">
+      		<div class="actions-list__item" v-for="action in actions">{{action}}</div>
+      	</div>
       </div>
       <!-- END:.actions-body -->
     </div>
