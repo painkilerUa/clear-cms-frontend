@@ -39,6 +39,6 @@ export const getRoles = ({ commit }, payload) => {
   const urlEnd = api.URLS.roles
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
-  .then((res) => commit('setRoles', res.body))
+  .then((res) => commit('setRoles', res.body.items))
   .catch((err) => console.log(err))
 }

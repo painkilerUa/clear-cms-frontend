@@ -18,10 +18,7 @@ const state = {
   content: [],
   types: [],
   tags: [],
-  actions: [
-    {actionId: 'all_content_action1', actionName: 'All content1'},
-    {actionId: 'all_content_action2', actionName: 'All content2'}
-  ],
+  actions: [],
   roles: []
 }
 

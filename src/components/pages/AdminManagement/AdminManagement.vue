@@ -15,10 +15,10 @@
       <!-- .actions-body -->
       <div class="actions-body">
       	<div class="actions-row" v-for="action in actions">
-      		<div class="actions-cell">{{action}}</div>
+      		<div class="actions-cell">{{action.actionName}}</div>
       		<div class="actions-cell" v-for="role in roles">
       			<label>
-      				<input type="checkbox" class="actions-checkbox" @change="select(action, role)" />
+      				<input type="checkbox" class="actions-checkbox" @change="select(action.actionId, role)" />
       				Enable
       			</label>
       		</div>
@@ -69,8 +69,8 @@ export default {
   mounted () {
     this.getActions()
     this.getRoles()
-    this.$http.get(api.URLS.actions)
-    .then((res) => console.log('getActions', res))
+    this.$http.get(api.URLS.actions).then((res) => this.$store.commit('setActions', res.body))
+    this.$http.get(api.URLS.roles).then((res) => { this.$store.commit('setRoles', res.body.items); console.log('getRoles', res.body.items) })
   }
 }
 </script>
