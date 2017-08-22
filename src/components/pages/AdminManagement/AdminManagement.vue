@@ -16,7 +16,7 @@
       		<div class="actions-cell">{{action}}</div>
       		<div class="actions-cell" v-for="role in roles">
       			<label>
-      				<input type="checkbox" class="actions-checkbox" />
+      				<input type="checkbox" class="actions-checkbox" @change="select" />
       				Enable
       			</label>
       		</div>
@@ -51,7 +51,7 @@ export default {
       'getActions',
       'getRoles'
     ]),
-    selectRoles () {
+    select () {
       console.log('selectRole')
     }
   },
