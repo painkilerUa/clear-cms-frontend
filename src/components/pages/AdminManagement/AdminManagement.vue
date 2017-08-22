@@ -2,6 +2,8 @@
 	<!-- .admin-management -->
 	<div class="admin-management">
 		<h1>Admin Management</h1>
+		<strong>{{selectedAction}}</strong>
+		<strong>{{selectedRole}}</strong>
     <!-- .actions-table -->
     <div class="actions-table">
       <!-- .actions-heading -->
@@ -16,7 +18,7 @@
       		<div class="actions-cell">{{action}}</div>
       		<div class="actions-cell" v-for="role in roles">
       			<label>
-      				<input type="checkbox" class="actions-checkbox" @change="select" />
+      				<input type="checkbox" class="actions-checkbox" @change="select(action, role)" />
       				Enable
       			</label>
       		</div>
@@ -51,8 +53,9 @@ export default {
       'getActions',
       'getRoles'
     ]),
-    select () {
-      console.log('selectRole')
+    select (action, role) {
+      this.selectedAction = action
+      this.selectedRole = role
     }
   },
   mounted () {
