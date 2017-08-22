@@ -69,6 +69,8 @@ export default {
   mounted () {
     this.getActions()
     this.getRoles()
+    this.$http.get(api.URLS.actions)
+    .then((res) => console.log('getActions', res))
   }
 }
 </script>
