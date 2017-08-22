@@ -71,6 +71,8 @@ export default {
   mounted () {
     this.getActions()
     this.getRoles()
+    this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`)
+    .then((res) => console.log('getPermissions', res))
   }
 }
 </script>
