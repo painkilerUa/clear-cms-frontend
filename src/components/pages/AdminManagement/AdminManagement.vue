@@ -38,8 +38,8 @@ export default {
   data () {
     return {
       selectedInfo: {
-        selectedAction: null,
-        selectedRole: null
+        actionId: null,
+        roleUser: null
       }
     }
   },
@@ -58,13 +58,14 @@ export default {
       'getRoles'
     ]),
     sendRequest () {
+      console.log(this.selectedInfoJson)
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     },
     select (action, role) {
-      this.selectedInfo.selectedAction = action
-      this.selectedInfo.selectedRole = role
+      this.selectedInfo.actionId = action
+      this.selectedInfo.roleUser = role
       this.sendRequest()
     }
   },
