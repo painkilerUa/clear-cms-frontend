@@ -87,6 +87,11 @@ export default {
   },
   components: {
     FormMessages
+  },
+  mounted () {
+    this.$http.get(api.URLS.resetToken)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
   }
 }
 </script>
