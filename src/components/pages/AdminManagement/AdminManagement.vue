@@ -1,7 +1,7 @@
 <template>
-	<!-- .admin-management -->
-	<div class='admin-management'>
-		<h1>Admin Management</h1>
+	<!-- .security-configuration -->
+	<div class='security-configuration'>
+		<h1>Security Configuration</h1>
 		<!-- <pre>{{allowedItems}}</pre> -->
     <!-- .actions-table -->
     <div class='actions-table'>
@@ -31,7 +31,7 @@
     </div>
     <!-- END:.actions-table -->
 	</div>
-	<!-- END:.admin-management -->
+	<!-- END:.security-configuration -->
 </template>
 
 <script>
@@ -39,7 +39,7 @@ import api from '@/api'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'admin-management',
+  name: 'security-configuration',
   data () {
     return {
       allowedItems: [],
@@ -95,4 +95,4 @@ export default {
 }
 </script>
 
-<style src='@/assets/scss/components/admin-management.scss' lang='scss' scoped />
+<style src='@/assets/scss/components/security-configuration.scss' lang='scss' scoped />
