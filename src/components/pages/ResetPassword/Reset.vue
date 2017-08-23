@@ -5,7 +5,7 @@
 		<form
 		name="fos_user_resetting_form"
 		method="post"
-		action="/resetting/reset/s02EaB9ePpwFW_NdLl9X5TW8d-cIIb-W2qVVwcQqM2s"
+		:action="formAction"
 		class="form fos_user_resetting_reset">
 		    <!-- form-element -->
         <div class="form-element">
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import forms from '@/mixins/forms'
 import FormMessages from '@/components/common/FormMessages'
 
@@ -57,9 +58,10 @@ export default {
   mixins: [forms],
   data () {
     return {
+      resetToken: '',
       passwordsNames: {
-        first: 'fos_user_resetting_form[plainPassword][first]',
-        second: 'fos_user_resetting_form[plainPassword][second]'
+        first: 'confirmPassword[plainPassword][first]',
+        second: 'confirmPassword[plainPassword][second]'
       },
       formInfo: {
         plainPassword: {
@@ -67,6 +69,19 @@ export default {
           second: ''
         }
       }
+    }
+  },
+  computed: {
+    formAction () {
+      return `/resetting/reset/${this.resetToken}`
+    }
+  },
+  methods: {
+    fetchData () {
+      this.$http.get(api.URLS.reset)
+      .then((res) => {
+        console.log(res)
+      })
     }
   },
   components: {
