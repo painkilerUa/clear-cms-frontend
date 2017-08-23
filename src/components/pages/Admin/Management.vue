@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import forms from '@/mixins/forms'
 import FormMessages from '@/components/common/FormMessages'
 
@@ -112,6 +113,13 @@ export default {
         lastName: '',
         jobTitle: ''
       }
+    }
+  },
+  methods: {
+    sendFormRequest () {
+      this.$http.post(api.URLS.createUser, this.formJson)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
     }
   },
   components: {
