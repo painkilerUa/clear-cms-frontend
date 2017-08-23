@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     formAction () {
-      return window.location.pathname
+      return api.serverURL + window.location.pathname
     }
   },
   methods: {
