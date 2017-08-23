@@ -1,7 +1,7 @@
 <template>
 	<!-- .admin -->
 	<div class="admin">
-		<h1>Admin</h1>
+		<h1>{{getUsername}}</h1>
 		<ul>
 			<li>
 				<router-link :to="{name: 'admin'}">Admin</router-link>
@@ -19,7 +19,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'admin'
+  name: 'admin',
+  computed: {
+    ...mapGetters([
+      'getUsername'
+    ])
+  }
 }
 </script>
