@@ -132,7 +132,7 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.createUser, this.formJson)
       .then((res) => console.log(res))
-      .catch(() => console.log('formServerMessages', this.formServerMessages))
+      .catch((err) => console.log(err))
     }
   },
   components: {
