@@ -13,7 +13,7 @@ import Error from '@/components/pages/Error'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -39,6 +39,7 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'security-configuration',
@@ -79,5 +80,24 @@ export default new Router({
   ],
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
+  }
+})
+
+export default router
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!this.$store.isLoggedIn) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
   }
 })
