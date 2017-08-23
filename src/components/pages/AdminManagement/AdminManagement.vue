@@ -2,7 +2,7 @@
 	<!-- .admin-management -->
 	<div class='admin-management'>
 		<h1>Admin Management</h1>
-		<pre>{{allowedItems}}</pre>
+		<!-- <pre>{{allowedItems}}</pre> -->
     <!-- .actions-table -->
     <div class='actions-table'>
       <!-- .actions-heading -->
@@ -17,7 +17,7 @@
       		<div class='actions-cell'>{{action.actionName}}</div>
       		<div class='actions-cell' v-for='role in roles'>
       			<label>
-      				<input type='checkbox' class='actions-checkbox' @change='select(action.actionId, action.actionName, role.id)' />
+      				<input type='checkbox' class='actions-checkbox' :checked="checkId(action.actionId, role.id)" @change='select(action.actionId, action.actionName, role.id)' />
       				Enable
       			</label>
       		</div>
@@ -63,16 +63,13 @@ export default {
       'getRoles'
     ]),
     checkId (actionId, roleId) {
-      this.allowedItems
+      return this.allowedItems
       .filter(item => item.actionId === actionId)
-      .filter(item => item.roleUser.find(item => item.id === roleId))
+      .filter(item => item.roleUser.id === roleId).length
     },
     sendRequest () {
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
-      .then((res) => {
-        this.allowedItems = res.body
-        console.log(res)
-      })
+      .then((res) => {})
       .catch((err) => console.log(err))
     },
     select (actionId, actionName, role) {
@@ -86,7 +83,10 @@ export default {
     this.getActions()
     this.getRoles()
     this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`)
-    .then((res) => console.log('getPermissions', res))
+    .then((res) => {
+      this.allowedItems = res.body
+      console.log('getPermissions', res.body)
+    })
   }
 }
 </script>
