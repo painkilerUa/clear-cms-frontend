@@ -89,7 +89,6 @@ export default {
     this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`)
     .then((res) => {
       this.allowedItems = res.body
-      console.log('getPermissions', res.body)
     })
   }
 }
