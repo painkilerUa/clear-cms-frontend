@@ -19,8 +19,8 @@
             class="form-control"
             required>
             <div 
-            v-if="errors.has('passwordsNames.first')"
-            class="form-errors">{{ errors.first('passwordsNames.first') }}</div>
+            v-if="errors.has('confirmPassword[plainPassword][first]')"
+            class="form-errors">{{ errors.first('confirmPassword[plainPassword][first]') }}</div>
         </div>
 		    <!-- END:form-element -->
 		    <!-- form-element -->
@@ -30,13 +30,13 @@
             :name="passwordsNames.second"
             v-model="formInfo.plainPassword.second"
             data-vv-as='"Repeat Password"'
-            v-validate="'required|confirmed:passwordsNames.first'"
+            v-validate="'required|confirmed:confirmPassword[plainPassword][first]'"
             placeholder="Repeat new password"
             class="form-control"
             required>
             <div 
-            v-if="errors.has('passwordsNames.second')"
-            class="form-errors">{{ errors.first('passwordsNames.second') }}</div>
+            v-if="errors.has('confirmPassword[plainPassword][second]')"
+            class="form-errors">{{ errors.first('confirmPassword[plainPassword][second]') }}</div>
         </div>
         <!-- END:form-element -->
     		<button
@@ -89,7 +89,7 @@ export default {
     FormMessages
   },
   mounted () {
-    this.fetchData()
+    // this.fetchData()
   }
 }
 </script>
