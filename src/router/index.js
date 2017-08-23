@@ -58,8 +58,9 @@ export default new Router({
       component: Resetting,
       children: [
         {
-          path: 'reset',
+          path: 'reset/:id',
           name: 'reset',
+          props: true,
           component: Reset
         }
       ]

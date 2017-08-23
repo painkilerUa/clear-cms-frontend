@@ -16,6 +16,7 @@ api.URLS = {
   search: `${api.serverURL}/search?_format=json`,
   login: `${api.serverURL}/oauth/v2/token`,
   register: `${api.serverURL}/api/v1/register`,
+  forgotPassword: `${api.serverURL}/resetting/send-email`,
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',
   tags: '/api/v1/tags',

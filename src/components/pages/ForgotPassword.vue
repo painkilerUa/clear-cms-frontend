@@ -62,7 +62,10 @@ export default {
   methods: {
     sendFormRequest () {
       this.$http.post(api.URLS.forgotPassword, JSON.stringify(this.formInfo))
-      .then((res) => { this.submitSuccess(res.body) })
+      .then((res) => {
+        console.log(res)
+        this.submitSuccess(res.body)
+      })
       .catch((err) => { this.submitErrors(err.body) })
     }
   },
