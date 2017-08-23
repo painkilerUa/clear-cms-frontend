@@ -4,7 +4,10 @@
 		<h1>Admin</h1>
 		<ul>
 			<li>
-				<router-link to="/admin/security-configuration">Security Configuration</router-link>
+				<router-link :to="{name: 'admin'}">Admin</router-link>
+			</li>
+			<li>
+				<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>
 			</li>
 		</ul>
 		<router-view />
