@@ -11,7 +11,7 @@
         <div class="form-element">
             <input
             type="password"
-            name="passwordsNames.first"
+            :name="passwordsNames.first"
             v-model="formInfo.plainPassword.first"
             v-validate="'required'"
             data-vv-as='"Password"'
@@ -27,7 +27,7 @@
         <div class="form-element">
             <input
             type="password"
-            name="passwordsNames.second"
+            :name="passwordsNames.second"
             v-model="formInfo.plainPassword.second"
             data-vv-as='"Repeat Password"'
             v-validate="'required|confirmed:passwordsNames.first'"
