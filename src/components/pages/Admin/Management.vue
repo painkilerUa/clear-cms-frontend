@@ -6,6 +6,19 @@
 		<form action="#" class="create-user" @submit.prevent="submit">
 			<!-- .form-element -->
 	  	<div class="form-element">
+	  		<input
+	  		type="text"
+	  		name="First Name"
+	  		v-model="formInfo.username"
+	  		data-vv-as='"First Name"'
+	  		class="form-control"
+	  		v-validate="'required'"
+	  		placeholder="First Name" />
+	  		<div v-if="errors.has('First Name')" class="form-errors">{{ errors.first('First Name') }}</div>
+	  	</div>
+	  	<!-- END:.form-element -->
+			<!-- .form-element -->
+	  	<div class="form-element">
 	  		<input 
 	  		type="text"
 	  		name="Last Name"
@@ -119,7 +132,7 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.createUser, this.formJson)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .catch(() => console.log('formServerMessages', this.formServerMessages))
     }
   },
   components: {
