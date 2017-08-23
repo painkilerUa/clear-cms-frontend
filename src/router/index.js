@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
 import ForgotPassword from '@/components/pages/ForgotPassword'
-import AdminManagement from '@/components/pages/AdminManagement/AdminManagement'
+import SecurityConfiguration from '@/components/pages/Admin/SecurityConfiguration'
 import Content from '@/components/pages/Content'
 import Error from '@/components/pages/Error'
 
@@ -32,9 +32,9 @@ export default new Router({
       component: ForgotPassword
     },
     {
-      path: '/admin-management',
-      name: 'admin-management',
-      component: AdminManagement
+      path: '/security-configuration',
+      name: 'security-configuration',
+      component: SecurityConfiguration
     },
     {
       path: '/content/:id',
