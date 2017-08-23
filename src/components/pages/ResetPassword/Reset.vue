@@ -6,7 +6,6 @@
 		name="fos_user_resetting_form"
 		method="post"
 		action="/resetting/reset/s02EaB9ePpwFW_NdLl9X5TW8d-cIIb-W2qVVwcQqM2s"
-		@submit="submit"
 		class="form fos_user_resetting_reset">
 		    <!-- form-element -->
         <div class="form-element">
