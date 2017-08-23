@@ -52,7 +52,7 @@ export default {
   mixins: [forms],
   data () {
     return {
-      title: 'Create your account',
+      title: 'Forgot Password',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laudantium sed necessitatibus enim recusandae sunt numquam, ducimus asperiores laborum! Reprehenderit!',
       formInfo: {
         email: ''
@@ -60,6 +60,13 @@ export default {
     }
   },
   methods: {
+    submitSuccess (res) {
+      this.clearServerErrors()
+      this.formServerMessages.success.push(res)
+    },
+    submitErrors (err) {
+      this.formServerMessages.errors.push(err)
+    },
     sendFormRequest () {
       this.$http.post(api.URLS.forgotPassword, JSON.stringify(this.formInfo))
       .then((res) => {
