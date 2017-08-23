@@ -25,7 +25,7 @@ api.URLS = {
     disallowed: `${api.serverURL}/api/v1/disallowed`
   },
   roles: `/api/v1/roles`,
-  createUser: '/api/v1/register-admin'
+  createUser: `${api.serverURL}/api/v1/register-admin`
   // actions: 'https://api.myjson.com/bins/gh1td',
   // roles: 'https://api.myjson.com/bins/eor01'
 }
