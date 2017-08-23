@@ -20,7 +20,7 @@
       				<input
       				type='checkbox'
       				class='actions-checkbox'
-      				:checked="checkId(action.actionId, role.id)"
+      				:checked="checkIdLength(action.actionId, role.id)"
       				@change='select(action.actionId, action.actionName, role.id)' />
       				Enable
       			</label>
@@ -66,7 +66,7 @@ export default {
       'getActions',
       'getRoles'
     ]),
-    checkId (actionId, roleId) {
+    checkIdLength (actionId, roleId) {
       return this.allowedItems
       .filter(item => item.actionId === actionId)
       .filter(item => item.roleUser.id === roleId).length
