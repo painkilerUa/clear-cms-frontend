@@ -13,7 +13,7 @@ api.serverURL = 'http://13.59.74.76'
 api.token = localStorage.getItem('token')
 
 api.URLS = {
-  search: `${api.serverURL}/search?_format=json`,
+  search: `${api.serverURL}/api/v1/search?_format=json`,
   login: `${api.serverURL}/oauth/v2/token`,
   register: `${api.serverURL}/api/v1/register`,
   forgotPassword: `${api.serverURL}/resetting/send-email`,

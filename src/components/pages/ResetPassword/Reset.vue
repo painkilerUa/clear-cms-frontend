@@ -12,7 +12,7 @@
             <input
             type="password"
             :name="passwordsNames.first"
-            v-model="formInfo.plainPassword.first"
+            v-model="formInfo.confirmPassword.plainPassword.first"
             v-validate="'required'"
             data-vv-as='"Password"'
             placeholder="New Password"
@@ -28,7 +28,7 @@
             <input
             type="password"
             :name="passwordsNames.second"
-            v-model="formInfo.plainPassword.second"
+            v-model="formInfo.confirmPassword.plainPassword.second"
             data-vv-as='"Repeat Password"'
             v-validate="'required|confirmed:confirmPassword[plainPassword][first]'"
             placeholder="Repeat new password"
@@ -64,9 +64,11 @@ export default {
         second: 'confirmPassword[plainPassword][second]'
       },
       formInfo: {
-        plainPassword: {
-          first: '',
-          second: ''
+        confirmPassword: {
+          plainPassword: {
+            first: '',
+            second: ''
+          }
         }
       }
     }
@@ -77,6 +79,9 @@ export default {
     }
   },
   methods: {
+    serialize () {
+      console.log(this.formJson)
+    },
     fetchData () {
       this.$http.get(api.URLS.reset)
       .then((res) => {
