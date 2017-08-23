@@ -59,7 +59,6 @@ export default {
   mixins: [forms],
   data () {
     return {
-      resetToken: '',
       passwordsNames: {
         first: 'confirmPassword[plainPassword][first]',
         second: 'confirmPassword[plainPassword][second]'
