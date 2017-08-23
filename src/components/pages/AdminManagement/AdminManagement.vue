@@ -17,7 +17,11 @@
       		<div class='actions-cell'>{{action.actionName}}</div>
       		<div class='actions-cell' v-for='role in roles'>
       			<label>
-      				<input type='checkbox' class='actions-checkbox' :checked="checkId(action.actionId, role.id)" @change='select(action.actionId, action.actionName, role.id)' />
+      				<input
+      				type='checkbox'
+      				class='actions-checkbox'
+      				:checked="checkId(action.actionId, role.id)"
+      				@change='select(action.actionId, action.actionName, role.id)' />
       				Enable
       			</label>
       		</div>
