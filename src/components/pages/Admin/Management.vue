@@ -3,7 +3,7 @@
 	<div class="management">
 		<h1>Create User</h1>
 		<!-- .create-user -->
-		<form action="#" class="create-user" @submit.prevent="submit">
+		<form action="#" class="create-user" ref="form" @submit.prevent="submit">
 			<!-- .form-element -->
 	  	<div class="form-element">
 	  		<input
@@ -131,7 +131,9 @@ export default {
   methods: {
     sendFormRequest () {
       this.$http.post(api.URLS.createUser, this.formJson)
-      .then((res) => this.submitSuccess(res.body))
+      .then((res) => {
+        this.submitSuccess(res.body)
+      })
       .catch((err) => this.submitErrors(err.body))
     }
   },
