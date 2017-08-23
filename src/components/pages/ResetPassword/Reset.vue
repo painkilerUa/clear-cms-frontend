@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     formAction () {
-      return `/resetting/reset/${this.resetToken}`
+      return window.location.pathname
     }
   },
   methods: {
