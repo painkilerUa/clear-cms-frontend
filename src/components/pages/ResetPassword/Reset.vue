@@ -11,26 +11,32 @@
         <div class="form-element">
             <input
             type="password"
-            name="fos_user_resetting_form[plainPassword][first]"
+            name="passwordsNames.first"
             v-model="formInfo.plainPassword.first"
             v-validate="'required'"
             data-vv-as='"Password"'
             placeholder="New Password"
             class="form-control"
             required>
+            <div 
+            v-if="errors.has('passwordsNames.first')"
+            class="form-errors">{{ errors.first('passwordsNames.first') }}</div>
         </div>
 		    <!-- END:form-element -->
 		    <!-- form-element -->
         <div class="form-element">
             <input
             type="password"
-            name="fos_user_resetting_form[plainPassword][second]"
+            name="passwordsNames.second"
             v-model="formInfo.plainPassword.second"
             data-vv-as='"Repeat Password"'
-            v-validate="'required|confirmed:Password'"
+            v-validate="'required|confirmed:passwordsNames.first'"
             placeholder="Repeat new password"
             class="form-control"
             required>
+            <div 
+            v-if="errors.has('passwordsNames.second')"
+            class="form-errors">{{ errors.first('passwordsNames.second') }}</div>
         </div>
         <!-- END:form-element -->
     		<button
@@ -51,6 +57,10 @@ export default {
   mixins: [forms],
   data () {
     return {
+      passwordsNames: {
+        first: 'fos_user_resetting_form[plainPassword][first]',
+        second: 'fos_user_resetting_form[plainPassword][second]'
+      },
       formInfo: {
         plainPassword: {
           first: '',
