@@ -6,7 +6,7 @@
 		name="fos_user_resetting_form"
 		method="post"
 		:action="formAction"
-		class="form fos_user_resetting_reset">
+		class="form">
 		    <!-- form-element -->
         <div class="form-element">
             <input
