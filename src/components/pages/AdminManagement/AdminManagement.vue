@@ -62,6 +62,11 @@ export default {
       'getActions',
       'getRoles'
     ]),
+    checkId (actionId, roleId) {
+      this.allowedItems
+      .filter(item => item.actionId === actionId)
+      .filter(item => item.roleUser.find(item => item.id === roleId))
+    },
     sendRequest () {
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
       .then((res) => {
