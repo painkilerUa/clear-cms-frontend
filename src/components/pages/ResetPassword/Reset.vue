@@ -55,6 +55,7 @@ import FormMessages from '@/components/common/FormMessages'
 
 export default {
   name: 'reset',
+  props: ['token'],
   mixins: [forms],
   data () {
     return {

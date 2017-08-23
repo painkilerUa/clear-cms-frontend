@@ -58,7 +58,7 @@ export default new Router({
       component: Resetting,
       children: [
         {
-          path: 'reset/:id',
+          path: 'reset/:token',
           name: 'reset',
           props: true,
           component: Reset

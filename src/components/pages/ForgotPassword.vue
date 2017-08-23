@@ -52,6 +52,7 @@ export default {
   mixins: [forms],
   data () {
     return {
+      resetToken: '',
       title: 'Forgot Password',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laudantium sed necessitatibus enim recusandae sunt numquam, ducimus asperiores laborum! Reprehenderit!',
       formInfo: {
@@ -60,6 +61,9 @@ export default {
     }
   },
   methods: {
+    resetRedirect () {
+      this.$router.push({name: 'reset', params: {token: this.resetToken}})
+    },
     submitSuccess (res) {
       this.clearServerErrors()
       this.formServerMessages.success.push(res)
