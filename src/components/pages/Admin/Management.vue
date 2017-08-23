@@ -3,7 +3,7 @@
 	<div class="management">
 		<h1>Create User</h1>
 		<!-- .create-user -->
-		<form action="#" class="create-user">
+		<form action="#" class="create-user" @submit.prevent="submit">
 			<!-- .form-element -->
 	  	<div class="form-element">
 	  		<input 
