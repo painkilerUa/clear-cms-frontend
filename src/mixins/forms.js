@@ -20,6 +20,13 @@ export default {
     }
   },
   methods: {
+    resetForm () {
+      let func = this.formInfo.function
+      if (func.length) {
+        func = null
+      }
+      this.$refs.form.reset()
+    },
     clearServerErrors () {
       this.formServerMessages.errors = []
     },
