@@ -26,8 +26,6 @@ api.URLS = {
   },
   roles: `/api/v1/roles`,
   createUser: `${api.serverURL}/api/v1/register-admin`
-  // actions: 'https://api.myjson.com/bins/gh1td',
-  // roles: 'https://api.myjson.com/bins/eor01'
 }
 
 api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
