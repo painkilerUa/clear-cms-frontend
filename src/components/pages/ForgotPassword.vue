@@ -65,7 +65,6 @@ export default {
       this.$router.push({name: 'reset', params: {token: this.resetToken}})
     },
     submitSuccess (res) {
-      this.clearServerErrors()
       this.formServerMessages.success.push(res)
     },
     submitErrors (err) {

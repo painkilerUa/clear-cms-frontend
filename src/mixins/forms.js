@@ -27,14 +27,14 @@ export default {
       }
       this.$refs.form.reset()
     },
-    clearServerErrors () {
+    clearServerMessages () {
+      this.formServerMessages.success = []
       this.formServerMessages.errors = []
     },
     checkErrorsOnSubmit () {
       this.$validator.validateAll()
     },
     submitSuccess (res) {
-      this.clearServerErrors()
       this.formServerMessages.success = res
     },
     submitErrors (err) {
@@ -45,6 +45,7 @@ export default {
       }
     },
     submit () {
+      this.clearServerMessages()
       this.checkErrorsOnSubmit()
       if (this.formErrors.length === 0) {
         this.sendFormRequest()
