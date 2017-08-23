@@ -1,6 +1,7 @@
 <template>
 	<!-- .reset -->
 	<div class="reset">
+		<h1>Reset Password</h1>
 		<form
 		name="fos_user_resetting_form"
 		method="post"
@@ -11,6 +12,7 @@
             <input
             type="password"
             placeholder="New Password"
+            class="form-control"
             name="fos_user_resetting_form[plainPassword][first]"
             required>
         </div>
@@ -20,18 +22,22 @@
             <input
             type="password"
             placeholder="Repeat new password"
+            class="form-control"
             name="fos_user_resetting_form[plainPassword][second]"
             required>
         </div>
         <!-- END:form-element -->
-    		<button type="submit">Change password</button>
+    		<button type="submit" class="form-control form-submit">Change password</button>
 		</form>
 	</div>
 	<!-- END:.reset -->
 </template>
 
 <script>
+import forms from '@/mixins/forms'
+
 export default {
-  name: 'reset'
+  name: 'reset',
+  mixins: [forms]
 }
 </script>
