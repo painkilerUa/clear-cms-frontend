@@ -131,8 +131,8 @@ export default {
   methods: {
     sendFormRequest () {
       this.$http.post(api.URLS.createUser, this.formJson)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .then((res) => this.submitSuccess(res.body))
+      .catch((err) => this.submitErrors(err.body))
     }
   },
   components: {
