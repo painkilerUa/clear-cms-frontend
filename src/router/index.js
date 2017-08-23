@@ -35,12 +35,14 @@ export default new Router({
     {
       path: '/admin',
       name: 'admin',
-      component: Admin
-    },
-    {
-      path: '/security-configuration',
-      name: 'security-configuration',
-      component: SecurityConfiguration
+      component: Admin,
+      children: [
+        {
+          path: 'security-configuration',
+          name: 'security-configuration',
+          component: SecurityConfiguration
+        }
+      ]
     },
     {
       path: '/content/:id',
