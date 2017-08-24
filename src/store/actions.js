@@ -1,6 +1,7 @@
 import api from '@/api'
 import router from '@/router'
 
+const isLoggedIn = localStorage.getItem('token')
 export const redirect = () => router.push('/')
 
 // auth
@@ -14,21 +15,25 @@ export const authLogout = ({ commit }, payload) => {
 export const getTypes = ({ commit }, payload) => {
   const urlEnd = api.URLS.contentTypes
   const type = 'get'
-  api.requestToServer(urlEnd, type, payload)
-  .then((res) => {
-    commit('setTypes', res.body.items)
-  })
-  .catch((err) => console.error(err))
+  if (isLoggedIn) {
+    api.requestToServer(urlEnd, type, payload)
+    .then((res) => {
+      commit('setTypes', res.body.items)
+    })
+    .catch((err) => console.error(err))
+  }
 }
 
 export const getTags = ({ commit }, payload) => {
   const urlEnd = api.URLS.tags
   const type = 'get'
-  api.requestToServer(urlEnd, type, payload)
-  .then((res) => {
-    commit('setTags', res.body.items)
-  })
-  .catch((err) => console.error(err))
+  if (isLoggedIn) {
+    api.requestToServer(urlEnd, type, payload)
+    .then((res) => {
+      commit('setTags', res.body.items)
+    })
+    .catch((err) => console.error(err))
+  }
 }
 
 export const getActions = ({ commit }, payload) => {
