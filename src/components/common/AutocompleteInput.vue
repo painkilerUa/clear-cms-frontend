@@ -83,8 +83,8 @@ export default {
       'getTagTitles',
       'getTagIdByNames'
     ]),
-    tokenComputed () {
-      return localStorage.getItem('token')
+    optionsComputed () {
+      return this.options
     }
   },
   methods: {
