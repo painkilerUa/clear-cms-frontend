@@ -78,23 +78,8 @@ export default {
       return api.serverURL + window.location.pathname
     }
   },
-  methods: {
-    serialize () {
-      console.log(this.formJson)
-    },
-    fetchData () {
-      this.$http.get(api.URLS.reset)
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
-    }
-  },
   components: {
     FormMessages
-  },
-  mounted () {
-    // this.fetchData()
   }
 }
 </script>

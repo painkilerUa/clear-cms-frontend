@@ -26,8 +26,7 @@ api.URLS = {
     disallowed: `${api.serverURL}/api/v1/disallowed`
   },
   roles: `/api/v1/roles`,
-  createUser: `${api.serverURL}/api/v1/register-admin`,
-  reset: `/api/v1/reset`
+  createUser: `${api.serverURL}/api/v1/register-admin`
 }
 
 api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
