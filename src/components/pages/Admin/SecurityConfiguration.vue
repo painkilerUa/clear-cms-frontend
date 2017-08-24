@@ -73,7 +73,7 @@ export default {
     },
     sendRequest () {
       this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
-      .then((res) => {})
+      .then((res) => console.log(res))
       .catch((err) => console.log(err))
     },
     select (actionId, actionName, role) {
