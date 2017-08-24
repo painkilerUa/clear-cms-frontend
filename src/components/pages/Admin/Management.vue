@@ -1,8 +1,8 @@
 <template>
 	<!-- .management -->
 	<div class="management">
-		<h1>Create User</h1>
-		<!-- .create-user -->
+		<h1>Create Admin</h1>
+		<!-- .create-admin -->
 		<form action="#" class="form" ref="form" @submit.prevent="submit">
 			<!-- .form-element -->
 	  	<div class="form-element">
@@ -96,10 +96,10 @@
 	  		<div v-if="errors.has('Job Title')" class="form-errors">{{ errors.first('Job Title') }}</div>
 	  	</div>
 	  	<!-- END:.form-element -->
-	  	<button type="submit" class="form-control form-submit">Create User</button>
+	  	<button type="submit" class="form-control form-submit">Create Admin</button>
 	  	<form-messages :messages="formServerMessages"/>
 		</form>
-		<!-- END:.create-user -->
+		<!-- END:.create-admin -->
 	</div>
 	<!-- END:.management -->
 </template>
