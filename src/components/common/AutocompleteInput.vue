@@ -75,6 +75,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'getIsLoggedIn',
       'getAccessToken',
       'types',
       'getContentTypeTitles',
@@ -97,7 +98,9 @@ export default {
       if (value === '') {
         this.close()
       } else {
-        this.fetchContent()
+        if (this.getIsLoggedIn) {
+          this.fetchContent()
+        }
       }
     },
     clear () {
