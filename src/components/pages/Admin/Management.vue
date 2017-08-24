@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     sendFormRequest () {
-      this.$http.post(api.URLS.createUser, this.formJson)
+      this.$http.post(api.URLS.createAdmin, this.formJson)
       .then((res) => {
         this.submitSuccess(res.body)
       })
