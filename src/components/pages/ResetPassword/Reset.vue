@@ -6,6 +6,7 @@
 		name="fos_user_resetting_form"
 		method="post"
 		:action="formAction"
+    @submit.prevent="submit"
 		class="form">
 		    <!-- form-element -->
         <div class="form-element">
@@ -76,6 +77,11 @@ export default {
   computed: {
     formAction () {
       return api.serverURL + window.location.pathname
+    }
+  },
+  methods: {
+    sendFormRequest () {
+      this.$router.push('/')
     }
   },
   components: {
