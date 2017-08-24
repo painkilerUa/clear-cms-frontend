@@ -22,7 +22,7 @@ api.URLS = {
   tags: '/api/v1/tags',
   actionsURLS: {
     actions: '/api/v1/get-actions',
-    permissions: '/api/v1/permissions',
+    permissions: `/api/v1/permissions`,
     disallowed: `${api.serverURL}/api/v1/disallowed`
   },
   roles: `/api/v1/roles`,
