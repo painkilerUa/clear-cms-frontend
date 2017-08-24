@@ -5,6 +5,7 @@
 		<form
 		name="fos_user_resetting_form"
 		method="post"
+    @submit.prevent="serialize"
 		:action="formAction"
 		class="form">
 		    <!-- form-element -->
