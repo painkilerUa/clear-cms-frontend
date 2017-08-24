@@ -75,6 +75,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'getAccessToken',
       'types',
       'getContentTypeTitles',
       'getContentTypeIdByTitle',
@@ -82,8 +83,8 @@ export default {
       'getTagTitles',
       'getTagIdByNames'
     ]),
-    optionsComputed () {
-      return this.options
+    tokenComputed () {
+      return localStorage.getItem('token')
     }
   },
   methods: {
@@ -118,7 +119,7 @@ export default {
           queryString += `&tags[]=${el}`
         })
       }
-      this.$http.get(`${queryString}`, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
+      this.$http.get(`${queryString}`, { headers: {'Authorization': `Bearer ${this.getAccessToken}`} })
       .then((res) => {
         let resData = res.body.data
         this.options = resData.items

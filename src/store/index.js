@@ -12,6 +12,7 @@ Vue.use(Vuex)
 const state = {
   auth: {
     isLoggedIn: !!localStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     username: localStorage.getItem('username'),
     pending: null
   },
