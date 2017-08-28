@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -82,6 +83,12 @@ export default {
     ...mapActions([
       'authLogout'
     ])
+  },
+  mounted () {
+    this.$http.get(api.URLS.userRole)
+    .then((res) => {
+      console.log(res)
+    })
   }
 }
 </script>
