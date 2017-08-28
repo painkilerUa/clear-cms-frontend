@@ -13,6 +13,20 @@ export const authLogout = ({ commit }, payload) => {
   redirect()
 }
 
+export const getUserRoles = ({ commit }, payload) => {
+  if (isLoggedIn) {
+    const urlEnd = api.URLS.userRoles
+    const type = 'get'
+    api.requestToServer(urlEnd, type, payload)
+    .then((res) => {
+      let userRole = res.body[0]
+      localStorage.setItem('userRole', userRole)
+      commit('authLoginSetUserRole', userRole)
+    })
+    .catch((err) => console.log(err))
+  }
+}
+
 export const getTypes = ({ commit }, payload) => {
   const urlEnd = api.URLS.contentTypes
   const type = 'get'

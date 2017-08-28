@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import api from '@/api'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -87,17 +86,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'authLogout'
+      'authLogout',
+      'getUserRoles'
     ])
   },
   mounted () {
-    this.$http.get(api.URLS.userRole)
-    .then((res) => {
-      let userRole = res.body[0]
-      localStorage.setItem('userRole', userRole)
-      this.$store.commit('authLoginSetUserRole', userRole)
-    })
-    .catch((err) => console.log(err))
+    this.getUserRoles()
   }
 }
 </script>
