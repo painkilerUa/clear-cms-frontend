@@ -14,6 +14,7 @@ const state = {
     isLoggedIn: !!localStorage.getItem('token'),
     accessToken: localStorage.getItem('token'),
     username: localStorage.getItem('username'),
+    userRole: null,
     pending: null
   },
   content: [],

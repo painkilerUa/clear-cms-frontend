@@ -15,4 +15,5 @@ export const getTagIdByNames = (state) => (names) => state.tags.filter(item => n
 // auth
 export const getIsLoggedIn = (state) => state.auth.isLoggedIn
 export const getUsername = (state) => state.auth.username
+export const getUserRole = (state) => state.auth.userRole
 export const getAccessToken = state => state.auth.accessToken
