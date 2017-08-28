@@ -72,7 +72,7 @@ export default {
       .filter(item => item.roleUser.id === roleId).length
     },
     sendRequest () {
-      this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson)
+      this.$http.post(api.URLS.actionsURLS.disallowed, this.selectedInfoJson, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
     },
@@ -86,7 +86,7 @@ export default {
   mounted () {
     this.getActions()
     this.getRoles()
-    this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`)
+    this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
     .then((res) => {
       this.allowedItems = res.body
     })
