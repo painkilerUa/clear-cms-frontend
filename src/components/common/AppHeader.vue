@@ -94,8 +94,8 @@ export default {
     this.$http.get(api.URLS.userRole)
     .then((res) => {
       let userRole = res.body[0]
+      localStorage.setItem('userRole', userRole)
       this.$store.commit('authLoginSetUserRole', userRole)
-      console.log(res)
     })
     .catch((err) => console.log(err))
   }

@@ -8,6 +8,7 @@ export const redirect = () => { router.push('/'); router.go('/') }
 export const authLogout = ({ commit }, payload) => {
   localStorage.removeItem('token')
   localStorage.removeItem('username')
+  localStorage.removeItem('userRole')
   commit('authLogout')
   redirect()
 }
