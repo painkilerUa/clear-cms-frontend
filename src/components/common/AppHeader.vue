@@ -76,7 +76,8 @@ export default {
   computed: {
     ...mapGetters([
       'getIsLoggedIn',
-      'getUsername'
+      'getUsername',
+      'getUserRole'
     ])
   },
   methods: {
@@ -87,6 +88,8 @@ export default {
   mounted () {
     this.$http.get(api.URLS.userRole)
     .then((res) => {
+      let userRole = res.body[0]
+      this.$store.commit('authLoginSetUserRole', userRole)
       console.log(res)
     })
     .catch((err) => console.log(err))
