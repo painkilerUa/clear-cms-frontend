@@ -24,6 +24,13 @@ Vue.use(VeeValidate)
 
 // Vue.http.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
 
+Vue.http.interceptors.push(function (request, next) {
+  request.method = 'GET'
+  request.headers.set('X-CSRF-TOKEN', `${localStorage.getItem('token')}`)
+  request.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
