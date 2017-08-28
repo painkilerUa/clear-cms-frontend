@@ -28,11 +28,16 @@
 					<!-- .app-header-login -->
 					<div class="app-header-login">
 						<template v-if="getIsLoggedIn">
-							<router-link
-							:to="{name: 'admin'}"
-							class="app-header-login__item app-header-login__item--name"
-							tabindex="-1"
-							v-if="getUsername">{{getUsername}}</router-link>
+							<template v-if="getUserRole === 'Admin'">
+								<router-link
+								:to="{name: 'admin'}"
+								class="app-header-login__item app-header-login__item--name"
+								tabindex="-1"
+								v-if="getUsername">{{getUsername}}</router-link>
+							</template>
+							<template v-else>
+								{{getUsername}}
+							</template>
 							<a href="#" class="app-header-login__item" tabindex="-1" @click.prevent="authLogout">Logout</a>
 						</template>
 						<template v-else>
