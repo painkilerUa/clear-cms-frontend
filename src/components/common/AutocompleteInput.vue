@@ -125,7 +125,7 @@ export default {
           queryString += `&tags[]=${el}`
         })
       }
-      this.$http.get(`${queryString}`, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
+      this.$http.get(`${queryString}`, api.headersAuthSettings)
       .then((res) => {
         let resData = res.body.data
         this.options = resData.items
