@@ -16,7 +16,7 @@ export const getTypes = ({ commit }, payload) => {
   const urlEnd = api.URLS.contentTypes
   const type = 'get'
   if (isLoggedIn) {
-    api.requestToServer(urlEnd, type, payload)
+    api.requestToServer(urlEnd, type, payload, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
     .then((res) => {
       commit('setTypes', res.body.items)
     })
@@ -28,7 +28,7 @@ export const getTags = ({ commit }, payload) => {
   const urlEnd = api.URLS.tags
   const type = 'get'
   if (isLoggedIn) {
-    api.requestToServer(urlEnd, type, payload)
+    api.requestToServer(urlEnd, type, payload, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
     .then((res) => {
       commit('setTags', res.body.items)
     })
@@ -39,7 +39,7 @@ export const getTags = ({ commit }, payload) => {
 export const getActions = ({ commit }, payload) => {
   const urlEnd = api.URLS.actionsURLS.actions
   const type = 'get'
-  api.requestToServer(urlEnd, type, payload)
+  api.requestToServer(urlEnd, type, payload, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
   .then((res) => commit('setActions', res.body))
   .catch((err) => console.log(err))
 }
@@ -47,7 +47,7 @@ export const getActions = ({ commit }, payload) => {
 export const getRoles = ({ commit }, payload) => {
   const urlEnd = api.URLS.roles
   const type = 'get'
-  api.requestToServer(urlEnd, type, payload)
+  api.requestToServer(urlEnd, type, payload, { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} })
   .then((res) => commit('setRoles', res.body.items))
   .catch((err) => console.log(err))
 }
