@@ -19,8 +19,7 @@
 			  	<!-- END:.form-element -->
 			  	<!-- .form-element -->
 			  	<div class="form-element">
-			  		<input type="password" name="PasswordSecond" v-model="secondPassword" data-vv-as='"PasswordSecond"' class="form-control" v-validate="'required|confirmed:PasswordFirst'" placeholder="Confirm Password" />
-			  		<div v-if="errors.has('PasswordSecond')" class="form-errors">{{ errors.first('PasswordSecond') }}</div>
+			  		<input type="hidden" name="PasswordSecond" :value="secondPasswordComputed" />
 			  	</div>
 			  	<!-- END:.form-element -->
 			  	<button type="submit" class="form-control form-submit">Login</button>
@@ -69,6 +68,11 @@ export default {
         client_secret: '5keno5qzn5gcoosswckcw0sgccggsk8ws4scggosgcgs08wksw'
       },
       secondPassword: null
+    }
+  },
+  computed: {
+    secondPasswordComputed () {
+      return this.formInfo.password
     }
   },
   methods: {
