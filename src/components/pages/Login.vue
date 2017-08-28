@@ -83,8 +83,7 @@ export default {
         this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
         this.$store.commit('authLoginSetUsername', this.formInfo.username)
-        console.log(res)
-        // this.redirect()
+        this.redirect()
       })
       .catch((err) => {
         this.submitErrors(err.bodyText)
