@@ -11,6 +11,7 @@ export default api
 api.timeout = { timeout: 20000 }
 api.serverURL = 'http://13.59.74.76'
 api.token = localStorage.getItem('token')
+api.headersAuthSettings = { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} }
 
 api.URLS = {
   search: `${api.serverURL}/api/v1/search?_format=json`,
@@ -30,4 +31,4 @@ api.URLS = {
   createAdmin: `${api.serverURL}/api/v1/register-admin`
 }
 
-api.requestToServer = (urlEnd, type, payload = {}) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
+api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
