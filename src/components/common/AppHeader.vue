@@ -27,6 +27,7 @@
 				<div class="app-header-info__container">
 					<!-- .app-header-login -->
 					<div class="app-header-login">
+						<strong>{{getUserRole}}</strong>
 						<template v-if="getIsLoggedIn">
 							<router-link
 							:to="{name: 'admin'}"
