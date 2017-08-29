@@ -3,6 +3,7 @@
 .articles-list {
     &-heading {
         display: flex;
+        color: color('tableText');
 
         align-items: center;
         // justify-content: space-between;
@@ -33,6 +34,7 @@
             border: 1px solid color('tableBorder');
         }
         &__contains {
+        	background-color: color('artcleListLibraryContainsTable');
             border-right: 1px solid color('tableBorder');
         }
     }
