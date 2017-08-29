@@ -36,7 +36,11 @@
 								v-if="getUsername">{{getUsername}}</router-link>
 							</template>
 							<template v-else>
-								{{getUsername}}
+								<router-link
+								:to="{name: 'profile'}"
+								class="app-header-login__item app-header-login__item--name"
+								tabindex="-1"
+								v-if="getUsername">{{getUsername}}</router-link>
 							</template>
 							<a href="#" class="app-header-login__item" tabindex="-1" @click.prevent="authLogout">Logout</a>
 						</template>

@@ -4,6 +4,7 @@ import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
 import ForgotPassword from '@/components/pages/ForgotPassword'
 import Admin from '@/components/pages/Admin/Admin'
+import Profile from '@/components/pages/Profile'
 import SecurityConfiguration from '@/components/pages/Admin/SecurityConfiguration'
 import Management from '@/components/pages/Admin/Management'
 import Resetting from '@/components/pages/ResetPassword/Resetting'
@@ -52,6 +53,12 @@ const router = new Router({
           component: Management
         }
       ]
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      meta: { requiresAuth: true }
     },
     {
       path: '/resetting',
