@@ -10,6 +10,7 @@ import Management from '@/components/pages/Admin/Management'
 import Resetting from '@/components/pages/ResetPassword/Resetting'
 import Reset from '@/components/pages/ResetPassword/Reset'
 import Content from '@/components/pages/Content'
+import ArticlesList from '@/components/pages/ArticlesList'
 import Error from '@/components/pages/Error'
 
 Vue.use(Router)
@@ -78,6 +79,12 @@ const router = new Router({
       name: 'content',
       props: true,
       component: Content
+    },
+    {
+      path: '/articles-list/',
+      name: 'articles-list',
+      meta: { requiresAuth: true, requiresAuthAdmin: true },
+      component: ArticlesList
     },
     {
       path: '/error',

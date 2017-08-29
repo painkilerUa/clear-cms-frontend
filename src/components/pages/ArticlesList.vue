@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'articles-list',
   data () {
     return {
     }

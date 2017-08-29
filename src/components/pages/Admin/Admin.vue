@@ -6,9 +6,15 @@
 			<li>
 				<router-link :to="{name: 'admin'}">Admin</router-link>
 			</li>
+			<br />
 			<li>
 				<router-link :to="{name: 'management'}">Management</router-link>
 			</li>
+			<br />
+			<li>
+				<router-link :to="{name: 'articles-list'}">Articles List</router-link>
+			</li>
+			<br />
 			<li>
 				<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>
 			</li>
