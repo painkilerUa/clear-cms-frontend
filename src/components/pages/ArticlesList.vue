@@ -7,7 +7,7 @@
       <div class="articles-list-actions">
         <!-- .articles-list-inputwrap -->
         <div class="articles-list-inputwrap">
-        	<input type="checkbox" />
+        	<input type="checkbox" class="articles-list-input" />
         </div>
         <!-- END:.articles-list-inputwrap -->
         <v-select

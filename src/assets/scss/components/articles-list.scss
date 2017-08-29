@@ -8,9 +8,18 @@
     }
     &-actions {
         display: flex;
+
         align-items: center;
     }
     &-inputwrap {
-    	border: 1px solid rgba(60,60,60,.26);
+        display: inline-flex;
+        height: 34px;
+        border: 1px solid rgba(60,60,60,0.26);
+
+        align-items: center;
+    }
+    &-input {
+        display: inline-block;
+        vertical-align: middle;
     }
 }
