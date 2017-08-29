@@ -2,7 +2,6 @@
 	<!-- .security-configuration -->
 	<div class='security-configuration'>
 		<h1>Security Configuration</h1>
-		<!-- <pre>{{allowedItems}}</pre> -->
     <!-- .actions-table -->
     <div class='table actions-table'>
       <!-- .actions-heading -->

@@ -15,3 +15,5 @@ export default {
   }
 }
 </script>
+
+<style src='@/assets/scss/components/articles-list.scss' lang='scss' scoped />
