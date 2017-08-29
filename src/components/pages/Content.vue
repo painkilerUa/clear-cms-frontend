@@ -44,7 +44,7 @@ export default {
     },
     fetchContent () {
       this.clearItem()
-      this.$http.get(`${api.URLS.content}/${this.id}`)
+      this.$http.get(`${api.URLS.content}/${this.id}`, api.headersAuthSettings)
       .then((res) => { this.contentItem = res.body })
       .catch((err) => console.error(err))
     }

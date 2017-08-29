@@ -104,13 +104,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else {
-    next()
-  }
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuthAdmin)) {
+  } if (to.matched.some(record => record.meta.requiresAuthAdmin)) {
     if (localStorage.getItem('userRole') !== 'Admin') {
       next({
         path: '/login',
@@ -118,8 +112,6 @@ router.beforeEach((to, from, next) => {
           redirect: to.fullPath
         }
       })
-    } else {
-      next()
     }
   } else {
     next()
