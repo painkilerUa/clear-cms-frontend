@@ -4,7 +4,8 @@
     &-heading {
         display: flex;
 
-        align-items: space-between;
+        align-items: center;
+        // justify-content: space-between;
     }
     &-actions {
         display: flex;
@@ -14,12 +15,31 @@
     &-inputwrap {
         display: inline-flex;
         height: 34px;
-        border: 1px solid rgba(60,60,60,0.26);
+        border: 1px solid color('tableBorder');
 
         align-items: center;
     }
     &-input {
         display: inline-block;
         vertical-align: middle;
+    }
+    &-statusbar {
+        display: table;
+
+        align-items: center;
+        &__block {
+            display: table-cell;
+            padding: 9px;
+            border: 1px solid color('tableBorder');
+        }
+        &__contains {
+            border-right: 1px solid color('tableBorder');
+        }
+    }
+    &-statuses {
+        list-style: none;
+        &__item {
+            display: inline-block;
+        }
     }
 }
