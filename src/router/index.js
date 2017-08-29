@@ -40,7 +40,7 @@ const router = new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, requiresAuthAdmin: true },
       children: [
         {
           path: 'security-configuration',
@@ -95,6 +95,23 @@ export default router
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!localStorage.getItem('token')) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuthAdmin)) {
+    if (localStorage.getItem('userRole') !== 'Admin') {
       next({
         path: '/login',
         query: {
