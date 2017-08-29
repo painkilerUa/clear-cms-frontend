@@ -30,6 +30,12 @@
       	<!-- END:.articles-list-statuses -->
       </div>
       <!-- END:.articles-list-statusbar -->
+      <div class="articles-list-add">
+        <button
+        type="button"
+        class="articles-list-add__btn">
+        + Add new article</button>
+      </div>
     </div>
    <!-- END:.articles-list-heading -->
   </div>

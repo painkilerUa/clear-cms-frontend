@@ -6,7 +6,7 @@
         color: color('tableText');
 
         align-items: center;
-        // justify-content: space-between;
+        justify-content: space-between;
     }
     &-actions {
         display: flex;
@@ -52,6 +52,14 @@
             &:last-of-type {
                 margin-right: 0;
             }
+        }
+    }
+    &-add {
+        &__btn {
+            padding: 9px;
+            color: #fff;
+            background: none;
+            background-color: color('articlesListActionBtn');
         }
     }
 }
