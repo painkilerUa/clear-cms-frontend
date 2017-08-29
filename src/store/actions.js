@@ -13,6 +13,18 @@ export const authLogout = ({ commit }, payload) => {
   redirect()
 }
 
+export const getContentById = ({ commit }, payload, id) => {
+  if (isLoggedIn) {
+    const urlEnd = `${api.URLS.content}/${this.id}`
+    const type = 'get'
+    api.requestToServer(urlEnd, type, payload, id)
+    .then((res) => {
+      this.contentItem = res.body
+    })
+    .catch((err) => console.error(err))
+  }
+}
+
 export const getUserRoles = ({ commit }, payload) => {
   if (isLoggedIn) {
     const urlEnd = api.URLS.userRoles
