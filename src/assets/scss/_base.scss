@@ -89,12 +89,20 @@
         border: 1px solid #000;
         border-right: none;
         border-bottom: none;
+        &:last-of-type {
+            border-right: 1px solid #000;
+        }
     }
     &-body {
         display: table-footer-group;
     }
     &-row {
         display: table-row;
+        &:last-of-type {
+            .table-cell {
+                border-bottom: 1px solid #000;
+            }
+        }
     }
     &-checkbox {
         display: inline-block;
