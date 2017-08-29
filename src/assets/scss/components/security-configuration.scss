@@ -1,32 +1,11 @@
 @import '../settings/settings';
 
 .actions {
-    &-table {
-        display: table;
-        width: 100%;
-    }
     &-heading {
         display: table-header-group;
         &__cell {
             color: #fff;
             background-color: grey;
         }
-    }
-    &-cell {
-        display: table-cell;
-        padding: 10px;
-        border: 1px solid #000;
-        border-right: none;
-        border-bottom: none;
-    }
-    &-body {
-        display: table-footer-group;
-    }
-    &-row {
-        display: table-row;
-    }
-    &-checkbox {
-        display: inline-block;
-        vertical-align: middle;
     }
 }

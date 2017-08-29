@@ -60,9 +60,9 @@
         background-color: color('appHeaderSearchBg');
     }
     &-message {
+        line-height: normal;
         margin-bottom: 25px;
         list-style: none;
-        line-height: normal;
         text-decoration: none;
     }
     &-success-messages {
@@ -74,5 +74,30 @@
         color: color('danger');
 
         @extend .form-message;
+    }
+}
+
+.table {
+    display: table;
+    width: 100%;
+    &-heading {
+        display: table-header-group;
+    }
+    &-cell {
+        display: table-cell;
+        padding: 10px;
+        border: 1px solid #000;
+        border-right: none;
+        border-bottom: none;
+    }
+    &-body {
+        display: table-footer-group;
+    }
+    &-row {
+        display: table-row;
+    }
+    &-checkbox {
+        display: inline-block;
+        vertical-align: middle;
     }
 }

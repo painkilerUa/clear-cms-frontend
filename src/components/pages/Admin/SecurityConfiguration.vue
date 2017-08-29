@@ -4,22 +4,22 @@
 		<h1>Security Configuration</h1>
 		<!-- <pre>{{allowedItems}}</pre> -->
     <!-- .actions-table -->
-    <div class='actions-table'>
+    <div class='table actions-table'>
       <!-- .actions-heading -->
-      <div class='actions-heading'>
-      	<div class='actions-cell actions-heading__cell'>Actions:</div>
-      	<div class='actions-cell actions-heading__cell' v-for='role in roles'>{{role.name}}</div>
+      <div class='table-heading'>
+      	<div class='table-cell actions-heading__cell'>Actions:</div>
+      	<div class='table-cell actions-heading__cell' v-for='role in roles'>{{role.name}}</div>
       </div>
       <!-- END:.actions-heading -->
       <!-- .actions-body -->
-      <div class='actions-body'>
-      	<div class='actions-row' v-for='action in actions'>
-      		<div class='actions-cell'>{{action.actionName}}</div>
-      		<div class='actions-cell' v-for='role in roles'>
+      <div class='table-body'>
+      	<div class='table-row' v-for='action in actions'>
+      		<div class='table-cell'>{{action.actionName}}</div>
+      		<div class='table-cell' v-for='role in roles'>
       			<label>
       				<input
       				type='checkbox'
-      				class='actions-checkbox'
+      				class='table-checkbox'
       				:checked="checkIdLength(action.actionId, role.id)"
       				@change='select(action.actionId, action.actionName, role.id)' />
       				Enable
