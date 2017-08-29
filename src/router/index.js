@@ -41,17 +41,25 @@ const router = new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
-      meta: { requiresAuth: true, requiresAuthAdmin: true },
+      meta: {
+        requiresAuth: true,
+        requiresAuthAdmin: true
+      },
       children: [
-        {
-          path: 'security-configuration',
-          name: 'security-configuration',
-          component: SecurityConfiguration
-        },
         {
           path: 'management',
           name: 'management',
           component: Management
+        },
+        {
+          path: '/articles-list/',
+          name: 'articles-list',
+          component: ArticlesList
+        },
+        {
+          path: 'security-configuration',
+          name: 'security-configuration',
+          component: SecurityConfiguration
         }
       ]
     },
@@ -79,12 +87,6 @@ const router = new Router({
       name: 'content',
       props: true,
       component: Content
-    },
-    {
-      path: '/articles-list/',
-      name: 'articles-list',
-      meta: { requiresAuth: true, requiresAuthAdmin: true },
-      component: ArticlesList
     },
     {
       path: '/error',
