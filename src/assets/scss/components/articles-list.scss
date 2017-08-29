@@ -1,1 +1,16 @@
 @import '../settings/settings';
+
+.articles-list {
+    &-heading {
+        display: flex;
+
+        align-items: space-between;
+    }
+    &-actions {
+        display: flex;
+        align-items: center;
+    }
+    &-inputwrap {
+    	border: 1px solid rgba(60,60,60,.26);
+    }
+}
