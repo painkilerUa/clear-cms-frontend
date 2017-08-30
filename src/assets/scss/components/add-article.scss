@@ -6,13 +6,18 @@
         margin-bottom: 50px;
     }
     &-section {
+        padding: 14px;
         counter-increment: addArticleSection;
         background-color: color('articleDetails');
         &__title {
-            font-weight: normal;
             &::before {
                 content: counter(addArticleSection) '. ';
             }
         }
+    }
+    &--details {
+        display: flex;
+
+        flex-wrap: wrap;
     }
 }

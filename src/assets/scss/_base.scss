@@ -43,6 +43,13 @@
 }
 
 .form {
+    &-group {
+        display: flex;
+
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
     &-control {
         display: block;
         width: 100%;
@@ -51,6 +58,12 @@
         &--select {
             padding: 0;
         }
+    }
+    &-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 12px;
+        padding-left: 10px;
     }
     &-submit {
         font-weight: bold;

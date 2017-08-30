@@ -3,16 +3,25 @@
   <div class="add-article">
     <h1 class="add-article-title">Add new article</h1>
     <!-- .add-article-wrapper -->
-    <div class="add-article-wrapper">
-      <section class="add-article-section">
+    <form class="add-article-wrapper form" @submit.prevent>
+      <section class="add-article-section add-article-section--heading">
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
-          
+          <!-- .form-element -->
+          <div class="form-element">
+            <label for="addTitle" class="form-label">Title</label>
+            <input
+            id="addTitle"
+            type="text"
+            placeholder="Type in to add title..."
+            class="form-control" />
+          </div>
+          <!-- END:.form-element -->
         </div>
         <!-- END:.add-article-details -->
       </section>
-    </div>
+    </form>
     <!-- END:.add-article-wrapper -->
   </div>
   <!-- END:add-article -->
