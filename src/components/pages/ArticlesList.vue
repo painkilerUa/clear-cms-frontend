@@ -82,7 +82,12 @@
          </tr>
        </thead>
        <tbody>
-         <tr></tr>
+         <tr>
+           <td>
+             <input type="checkbox" id="1258"/>
+             <label for="1258">1258</label>
+           </td>
+         </tr>
        </tbody>
      </table>
      <!-- END:.table table-data -->
