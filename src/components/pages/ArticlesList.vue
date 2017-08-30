@@ -81,6 +81,9 @@
            <th colspan="3">Actions</th>
          </tr>
        </thead>
+       <tbody>
+         <tr></tr>
+       </tbody>
      </table>
      <!-- END:.table table-data -->
    </div>
