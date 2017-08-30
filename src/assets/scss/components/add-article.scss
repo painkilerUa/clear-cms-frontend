@@ -1,2 +1,18 @@
 @import '../settings/settings';
 
+.add-article {
+    counter-reset: addArticleSection;
+    &-title {
+        margin-bottom: 50px;
+    }
+    &-section {
+        counter-increment: addArticleSection;
+        background-color: color('articleDetails');
+        &__title {
+            font-weight: normal;
+            &::before {
+                content: counter(addArticleSection) '. ';
+            }
+        }
+    }
+}
