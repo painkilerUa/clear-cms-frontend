@@ -101,9 +101,15 @@
            <td class="cellpadding">
             <span class="status status--published">Published</span>
            </td>
-           <td>One</td>
-           <td>One</td>
-           <td>One</td>
+           <td class="cellpadding">
+             <button type="button" class="icon-btn"><icon name="pencil" /></button>
+           </td>
+           <td class="cellpadding">
+             <button type="button" class="icon-btn"><icon name="folder" /></button>
+           </td>
+           <td class="cellpadding">
+             <button type="button" class="icon-btn"><icon name="times" /></button>
+           </td>
          </tr>
        </tbody>
      </table>
@@ -116,6 +122,9 @@
 
 <script>
 import api from '@/api'
+import 'vue-awesome/icons/pencil'
+import 'vue-awesome/icons/folder'
+import 'vue-awesome/icons/times'
 
 export default {
   name: 'articles-list',
