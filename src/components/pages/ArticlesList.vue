@@ -93,13 +93,23 @@
 </template>
 
 <script>
+import api from '@/api'
+
 export default {
   name: 'articles-list',
   data () {
     return {
+      articles: [],
       getArticleListActions: ['Action 1', 'Action 2', 'Action 3'],
       selectedAction: null
     }
+  },
+  mounted () {
+    this.$http.get(api.URLS.content, api.headersAuthSettings)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err))
   }
 }
 </script>
