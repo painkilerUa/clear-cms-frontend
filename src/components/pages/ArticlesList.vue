@@ -33,8 +33,10 @@
       <div class="articles-list-add">
         <button
         type="button"
-        class="articles-list-add__btn">
-        + Add new article</button>
+        class="icon-btn articles-list-add__btn">
+          <icon name="plus"></icon>
+          <span>Add new article</span>
+        </button>
       </div>
     </div>
    <!-- END:.articles-list-heading -->
@@ -134,6 +136,7 @@
 
 <script>
 import api from '@/api'
+import 'vue-awesome/icons/plus'
 import 'vue-awesome/icons/pencil'
 import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
