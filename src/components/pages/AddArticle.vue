@@ -111,6 +111,11 @@
             <!-- END:.form-element -->
             <button type="button">Add video</button>
           </section>
+          <section class="add-article-section">
+            <h2 class="add-article-section__title">Article resources</h2>
+            <!-- END:.form-element -->
+            <button type="button">Add video</button>
+          </section>
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
