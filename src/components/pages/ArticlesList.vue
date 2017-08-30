@@ -46,7 +46,10 @@
          <tr>
            <th>ID</th>
            <th>
-             <input type="search" placeholder="Search in articles" />
+             <input
+             type="search"
+             class="table-search"
+             placeholder="Search in articles" />
            </th>
            <th>
              <v-select placeholder="Language" />
