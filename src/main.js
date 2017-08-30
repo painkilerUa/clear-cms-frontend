@@ -14,6 +14,7 @@ import VeeValidate from 'vee-validate'
 import Icon from 'vue-awesome/components/Icon'
 import Datepicker from 'vuejs-datepicker'
 import VueFroala from 'vue-froala-wysiwyg'
+import VueEditor from 'vue2-editor'
 
 Vue.config.productionTip = false
 
@@ -27,6 +28,7 @@ Vue.use(VueResource)
 Vue.use(Vuex)
 Vue.use(VeeValidate)
 Vue.use(VueFroala)
+Vue.use(VueEditor)
 
 // Vue.http.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
 

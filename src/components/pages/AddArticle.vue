@@ -84,6 +84,7 @@
         <div class="add-article-sections">
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article content</h2>
+            <vue-editor v-model="content" />
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article video</h2>
@@ -145,6 +146,7 @@ export default {
   name: 'add-article',
   data () {
     return {
+      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sint et similique laudantium eius est, fuga ex reiciendis placeat illo omnis ducimus, adipisci quisquam eum asperiores earum soluta nam quos.'
     }
   }
 }
