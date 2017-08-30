@@ -77,12 +77,18 @@
         padding-left: 10px;
         &--file {
             position: relative;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 150px;
             font-weight: normal;
             padding-left: 0;
             border: 1px solid color('tableBorder');
             background-color: color('uploadImage');
+            .fa-icon {
+                width: 30px;
+                height: 30px;
+            }
         }
     }
     &-submit {

@@ -12,12 +12,12 @@
           <div class="form-elements">
             <!-- .form-element -->
             <div class="form-element">
-            <label for="addTitle" class="form-label">Title</label>
-            <input
-            id="addTitle"
-            type="text"
-            placeholder="Type in to add title..."
-            class="form-control" />
+              <label for="addTitle" class="form-label">Title</label>
+              <input
+              id="addTitle"
+              type="text"
+              placeholder="Type in to add title..."
+              class="form-control" />
             </div>
             <!-- END:.form-element -->
               <div class="form-group">
@@ -70,6 +70,7 @@
           <div class="add-article-thumbnail">
             <span class="form-label">Featured image</span>
             <label class="form-label form-label--file">
+              <icon name="upload" />
               <input type="file" class="form-control form-control--file" />
             </label>
           </div>
@@ -84,6 +85,8 @@
 </template>
 
 <script>
+import 'vue-awesome/icons/upload'
+
 export default {
   name: 'add-article',
   data () {
