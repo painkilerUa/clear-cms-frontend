@@ -19,7 +19,7 @@
       <!-- .articles-list-statusbar -->
       <div class="articles-list-statusbar">
       	<!-- .articles-list-statusbar__contains -->
-      	<div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains 33.456 Articles</div>
+      	<div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{articles.length}} Articles</div>
       	<!-- END:.articles-list-statusbar__contains -->
       	<!-- .articles-list-statuses -->
       	<ul class="articles-list-statuses articles-list-statusbar__block">
@@ -92,7 +92,7 @@
              <label :for="article.id">{{article.id}}</label>
            </td>
            <td class="cellpadding">{{article.content}}</td>
-           <td class="cellpadding">English (USA)</td>
+           <td class="cellpadding">{{article.language}}</td>
            <td class="cellpadding">{{article.content_type.type}}</td>
            <td class="cellpadding">{{article.tags[0]}}</td>
            <td class="cellpadding">Category lor..</td>
