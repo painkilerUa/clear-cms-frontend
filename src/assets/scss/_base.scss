@@ -138,7 +138,8 @@
         vertical-align: middle;
     }
     &-search {
-        display: inline-block;
+        display: block;
+        width: 100%;
         padding-left: 10px;
         border: none;
         .icon-wrap {

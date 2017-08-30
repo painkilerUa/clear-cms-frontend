@@ -47,7 +47,7 @@
        <thead>
          <tr>
            <th>ID</th>
-           <th>
+           <th class="text-left">
              <div class="table-search-wrap">
                <input
                type="search"
@@ -93,8 +93,8 @@
            </td>
            <td class="cellpadding">{{article.content}}</td>
            <td class="cellpadding">English (USA)</td>
-           <td class="cellpadding">Video</td>
-           <td class="cellpadding">Financial</td>
+           <td class="cellpadding">{{article.content_type.type}}</td>
+           <td class="cellpadding">{{article.tags[0]}}</td>
            <td class="cellpadding">Category lor..</td>
            <td class="cellpadding">Clear assured</td>
            <td class="cellpadding">Lorem ipsum.</td>
