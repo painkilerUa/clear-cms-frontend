@@ -78,13 +78,14 @@
         &--file {
             position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
             height: 150px;
             font-weight: normal;
             padding-left: 0;
             border: 1px solid color('tableBorder');
             background-color: color('uploadImage');
+
+            align-items: center;
+            justify-content: center;
             .fa-icon {
                 width: 30px;
                 height: 30px;
@@ -116,20 +117,44 @@
     }
 }
 
+.icon-btn {
+    border: none;
+    background: none;
+    .fa-icon {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+}
+
+.action {
+    &-btn {
+        padding: 14px 20px; 
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid color('tableBorder');
+        &--preview {
+            background-color: color('uploadImage');
+        }
+        &--publish {
+            color: #fff;
+            background-color: color('appHeaderSearchBg');
+        }
+        &--exit {
+            background-color: color('exit');
+        }
+        &--draft {
+            color: #fff;
+            background-color: color('saveDraft');
+        }
+    }
+}
+
 .status {
     &--published {
         color: color('appHeaderSearchBg');
     }
     &--archived {
         color: color('danger');
-    }
-}
-
-.icon-btn {
-    border: none;
-    background: none;
-    .fa-icon {
-        vertical-align: middle;
     }
 }
 

@@ -6,6 +6,7 @@
         margin-bottom: 50px;
     }
     &-section {
+        margin-bottom: 20px;
         padding: 14px;
         counter-increment: addArticleSection;
         background-color: color('articleDetails');
@@ -28,5 +29,24 @@
     }
     &-thumbnail {
         flex-basis: 18%;
+    }
+    &-body {
+        display: flex;
+    }
+    &-sections {
+        margin-right: 20px;
+
+        flex-basis: 80%;
+    }
+    &-actions {
+        padding: 24px;
+        background-color: color('articleDetails');
+
+        flex-basis: 20%;
+        .action-btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
     }
 }

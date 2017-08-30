@@ -78,6 +78,41 @@
         </div>
         <!-- END:.add-article-details -->
       </section>
+      <!-- .add-article-body -->
+      <div class="add-article-body">
+        <!-- .add-article-sections -->
+        <div class="add-article-sections">
+          <section class="add-article-section">
+            <h2 class="add-article-section__title">Article content</h2>
+          </section>
+          <section class="add-article-section">
+            <h2 class="add-article-section__title">Article video</h2>
+            <!-- .form-element -->
+            <div class="form-element">
+              <label for="addTitle" class="form-label">Video URL</label>
+              <input
+              id="addTitle"
+              type="text"
+              placeholder="Insert video link here"
+              class="form-control" />
+            </div>
+            <!-- END:.form-element -->
+          </section>
+        </div>
+        <!-- END:.add-article-sections -->
+        <!-- .add-article-actions -->
+        <div class="add-article-actions">
+          <button type="button" class="action-btn action-btn--preview icon-btn">
+            <icon name="eye" />
+            <span>Preview Article</span>
+          </button>
+          <button type="button" class="action-btn action-btn--exit icon-btn">Exit without saving</button>
+          <button type="button" class="action-btn action-btn--draft icon-btn">Save as draft</button>
+          <button type="button" class="action-btn action-btn--publish icon-btn">Publish article</button>
+        </div>
+        <!-- END:.add-article-actions -->
+      </div>
+      <!-- END:.add-article-body -->
     </form>
     <!-- END:.add-article-wrapper -->
   </div>
@@ -86,6 +121,7 @@
 
 <script>
 import 'vue-awesome/icons/upload'
+import 'vue-awesome/icons/eye'
 
 export default {
   name: 'add-article',
