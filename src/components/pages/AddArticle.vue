@@ -84,6 +84,7 @@
         <div class="add-article-sections">
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article content</h2>
+            <froala :tag="'textarea'" :config="config" v-model="model" />
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article video</h2>
@@ -138,6 +139,7 @@
 </template>
 
 <script>
+import VueFroala from 'vue-froala-wysiwyg'
 import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/eye'
 
@@ -145,7 +147,18 @@ export default {
   name: 'add-article',
   data () {
     return {
+      config: {
+        events: {
+          'froalaEditor.initialized': function () {
+            console.log('initialized')
+          }
+        }
+      },
+      model: 'Edit Your Content Here!'
     }
+  },
+  components: {
+    VueFroala
   }
 }
 </script>
