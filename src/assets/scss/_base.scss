@@ -138,9 +138,13 @@
         vertical-align: middle;
     }
     &-search {
-        width: 100%;
+        display: inline-block;
         padding-left: 10px;
         border: none;
+        .icon-wrap {
+            display: inline-block;
+            background-color: color('artcleListLibraryContainsTable');
+        }
     }
     &-crud-btn {
         color: color('tableCrudBtn');

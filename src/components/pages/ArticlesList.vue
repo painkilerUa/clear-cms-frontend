@@ -48,10 +48,13 @@
          <tr>
            <th>ID</th>
            <th>
-             <input
-             type="search"
-             class="table-search"
-             placeholder="Search in articles" />
+             <div class="table-search-wrap">
+               <input
+               type="search"
+               class="table-search"
+               placeholder="Search in articles..." />
+               <icon name="search" />
+             </div>
            </th>
            <th>
              <v-select placeholder="Lang" />
@@ -137,6 +140,7 @@
 <script>
 import api from '@/api'
 import 'vue-awesome/icons/plus'
+import 'vue-awesome/icons/search'
 import 'vue-awesome/icons/pencil'
 import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
