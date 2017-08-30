@@ -11,6 +11,7 @@ import Resetting from '@/components/pages/ResetPassword/Resetting'
 import Reset from '@/components/pages/ResetPassword/Reset'
 import Content from '@/components/pages/Content'
 import ArticlesList from '@/components/pages/ArticlesList'
+import Article from '@/components/pages/Article'
 import AddArticle from '@/components/pages/AddArticle'
 import Error from '@/components/pages/Error'
 
@@ -65,6 +66,7 @@ const router = new Router({
         {
           path: 'article',
           name: 'article',
+          component: Article,
           children: [
             {
               path: 'add',
