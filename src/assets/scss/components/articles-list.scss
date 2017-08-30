@@ -35,6 +35,7 @@
             border: 1px solid color('tableBorder');
         }
         &__contains {
+            border-right: none;
             background-color: color('artcleListLibraryContainsTable');
         }
     }

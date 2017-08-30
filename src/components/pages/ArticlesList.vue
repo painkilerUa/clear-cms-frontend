@@ -40,7 +40,6 @@
       </div>
     </div>
    <!-- END:.articles-list-heading -->
-   <datepicker />
    <!-- .articles-list-body -->
    <div class="articles-list-body">
      <!-- .table table-data -->
@@ -75,7 +74,8 @@
              <v-select placeholder="Com spec" />
            </th>
            <th>
-             <v-select placeholder="Last Edit" />
+             <span>Last Edited</span>
+             <icon name="chevron-up" />
            </th>
            <th>
             <v-select placeholder="Upl/Edit" />
@@ -142,6 +142,8 @@ import 'vue-awesome/icons/search'
 import 'vue-awesome/icons/pencil'
 import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
+import 'vue-awesome/icons/chevron-up'
+import 'vue-awesome/icons/chevron-down'
 
 export default {
   name: 'articles-list',
