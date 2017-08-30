@@ -75,7 +75,6 @@
            </th>
            <th>
              <span>Last Edited</span>
-             <icon name="chevron-up" />
            </th>
            <th>
             <v-select placeholder="Upl/Edit" />
