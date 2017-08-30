@@ -54,9 +54,15 @@
            <th>
              <v-select placeholder="Language" />
            </th>
-           <th>Type</th>
-           <th>Topic</th>
-           <th>Category</th>
+           <th>
+             <v-select placeholder="Type" />
+           </th>
+           <th>
+             <v-select placeholder="Topic" />
+           </th>
+           <th>
+             <v-select placeholder="Category" />
+           </th>
            <th>Access</th>
            <th>Company specific</th>
            <th>Last Edited</th>

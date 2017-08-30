@@ -83,6 +83,7 @@
     th,
     td {
         vertical-align: middle;
+        padding: 4px;
         color: color('tableText');
         border: 1px solid color('tableBorder');
         .dropdown-toggle {
@@ -117,7 +118,7 @@
         display: inline-block;
         vertical-align: middle;
     }
-    &-search{
+    &-search {
         width: 100%;
         padding-left: 10px;
         border: none;
