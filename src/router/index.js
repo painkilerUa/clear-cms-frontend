@@ -53,6 +53,11 @@ const router = new Router({
           component: Management
         },
         {
+          path: 'security-configuration',
+          name: 'security-configuration',
+          component: SecurityConfiguration
+        },
+        {
           path: '/articles-list/',
           name: 'articles-list',
           component: ArticlesList
@@ -67,11 +72,6 @@ const router = new Router({
               component: AddArticle
             }
           ]
-        },
-        {
-          path: 'security-configuration',
-          name: 'security-configuration',
-          component: SecurityConfiguration
         }
       ]
     },
