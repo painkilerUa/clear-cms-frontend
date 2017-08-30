@@ -23,9 +23,9 @@
       	<!-- END:.articles-list-statusbar__contains -->
       	<!-- .articles-list-statuses -->
       	<ul class="articles-list-statuses articles-list-statusbar__block">
-      		<li class="articles-list-statuses__item articles-list-statuses__item--published">12567 Published</li>
-      		<li class="articles-list-statuses__item articles-list-statuses__item--archived">12567 Archived</li>
-      		<li class="articles-list-statuses__item articles-list-statuses__item--draft">12567 Draft</li>
+      		<li class="articles-list-statuses__item status--published">12567 Published</li>
+      		<li class="articles-list-statuses__item status--archived">12567 Archived</li>
+      		<li class="articles-list-statuses__item status--draft">12567 Draft</li>
       	</ul>
       	<!-- END:.articles-list-statuses -->
       </div>
@@ -52,7 +52,7 @@
              placeholder="Search in articles" />
            </th>
            <th>
-             <v-select placeholder="Language" />
+             <v-select placeholder="Lang" />
            </th>
            <th>
              <v-select placeholder="Type" />
@@ -61,32 +61,49 @@
              <v-select placeholder="Topic" />
            </th>
            <th>
-             <v-select placeholder="Category" />
+             <v-select placeholder="Categor" />
            </th>
            <th>
              <v-select placeholder="Access" />
            </th>
            <th>
-             <v-select placeholder="Comp spec" />
+             <v-select placeholder="Com spec" />
            </th>
            <th>
-             <v-select placeholder="Last Edited" />
+             <v-select placeholder="Last Edit" />
            </th>
            <th>
-            <v-select placeholder="Upl / Edit" />
+            <v-select placeholder="Upl/Edit" />
            </th>
            <th>
             <v-select placeholder="Status" />
            </th>
-           <th colspan="3">Actions</th>
+           <th colspan="3" class="cellpadding">Actions</th>
          </tr>
        </thead>
        <tbody>
          <tr>
-           <td>
+           <td class="text-center cellpadding">
              <input type="checkbox" id="1258"/>
              <label for="1258">1258</label>
            </td>
+           <td class="cellpadding">
+             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, eveniet?
+           </td>
+           <td class="cellpadding">English (USA)</td>
+           <td class="cellpadding">Video</td>
+           <td class="cellpadding">Financial</td>
+           <td class="cellpadding">Category lor..</td>
+           <td class="cellpadding">Clear assured</td>
+           <td class="cellpadding">Lorem ipsum.</td>
+           <td class="cellpadding">12 hours ago</td>
+           <td class="cellpadding">Conan Simpson</td>
+           <td class="cellpadding">
+            <span class="status status--published">Published</span>
+           </td>
+           <td>One</td>
+           <td>One</td>
+           <td>One</td>
          </tr>
        </tbody>
      </table>

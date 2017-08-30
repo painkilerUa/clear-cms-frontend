@@ -77,6 +77,15 @@
     }
 }
 
+.status {
+    &--published {
+        color: color('appHeaderSearchBg');
+    }
+    &--archived {
+        color: color('danger');
+    }
+}
+
 .table {
     display: table;
     width: 100%;
@@ -85,6 +94,9 @@
         vertical-align: middle;
         color: color('tableText');
         border: 1px solid color('tableBorder');
+        &.cellpadding {
+            padding: 7px;
+        }
         .dropdown-toggle {
             border: none;
         }
