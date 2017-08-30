@@ -47,7 +47,7 @@
        <thead>
          <tr>
            <th>ID</th>
-           <th class="text-left">
+           <th class="articles-list-search-col text-left">
              <div class="table-search-wrap">
                <input
                type="search"

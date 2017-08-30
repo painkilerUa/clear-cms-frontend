@@ -3,10 +3,10 @@
 .articles-list {
     &-heading {
         display: flex;
+        margin-bottom: 40px;
         color: color('tableText');
 
         align-items: center;
-        margin-bottom: 40px;
         justify-content: space-between;
     }
     &-actions {
@@ -55,6 +55,11 @@
             color: #fff;
             background: none;
             background-color: color('articlesListActionBtn');
+        }
+    }
+    &-search {
+        &-col {
+            width: 200px;
         }
     }
 }
