@@ -97,6 +97,19 @@
               class="form-control" />
             </div>
             <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element">
+              <label for="addTextarea" class="form-label">Transcript for video</label>
+              <textarea
+              id="addTextarea"
+              placeholder="Transcript for video"
+              class="form-control"
+              cols="30"
+              rows="5">
+              </textarea>
+            </div>
+            <!-- END:.form-element -->
+            <button type="button">Add video</button>
           </section>
         </div>
         <!-- END:.add-article-sections -->
