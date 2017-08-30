@@ -12,6 +12,7 @@ import Popup from '@/components/common/Popup'
 import vSelect from 'vue-select'
 import VeeValidate from 'vee-validate'
 import Icon from 'vue-awesome/components/Icon'
+import Datepicker from 'vuejs-datepicker'
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ Vue.component('autocomplete-input', AutocompleteInput)
 Vue.component('icon', Icon)
 Vue.component('v-select', vSelect)
 Vue.component('popup', Popup)
+Vue.component('datepicker', Datepicker)
 
 Vue.use(VueResource)
 Vue.use(Vuex)
