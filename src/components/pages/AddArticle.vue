@@ -8,62 +8,72 @@
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
-          <!-- .form-element -->
-          <div class="form-element">
+          <!-- .form-elements -->
+          <div class="form-elements">
+            <!-- .form-element -->
+            <div class="form-element">
             <label for="addTitle" class="form-label">Title</label>
             <input
             id="addTitle"
             type="text"
             placeholder="Type in to add title..."
             class="form-control" />
+            </div>
+            <!-- END:.form-element -->
+              <div class="form-group">
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Language</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Type</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Topic</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Category</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Access</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+                <!-- .form-element -->
+                <div class="form-element form-element--half">
+                  <label class="form-label">Company Specific</label>
+                  <v-select
+                  placeholder="Select" />
+                </div>
+                <!-- END:.form-element -->
+            </div>
           </div>
-          <!-- END:.form-element -->
-          <!-- .form-group -->
-          <div class="form-group">
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Language</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Type</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Topic</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Category</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Access</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
-            <!-- .form-element -->
-            <div class="form-element form-element--half">
-              <label class="form-label">Company Specific</label>
-              <v-select
-              placeholder="Select" />
-            </div>
-            <!-- END:.form-element -->
+          <!-- END:.form-elements -->
+          <!-- .add-article-thumbnail -->
+          <div class="add-article-thumbnail">
+            <span class="form-label">Featured image</span>
+            <label class="form-label form-label--file">
+              <input type="file" class="form-control form-control--file" />
+            </label>
           </div>
-          <!-- END:.form-group -->
+          <!-- END:.add-article-thumbnail -->
         </div>
         <!-- END:.add-article-details -->
       </section>

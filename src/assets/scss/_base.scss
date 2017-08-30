@@ -66,12 +66,24 @@
         &--select {
             padding: 0;
         }
+        &--file {
+            @extend %visually-hidden;
+        }
     }
     &-label {
         display: block;
         font-weight: bold;
         margin-bottom: 12px;
         padding-left: 10px;
+        &--file {
+            position: relative;
+            display: block;
+            height: 150px;
+            font-weight: normal;
+            padding-left: 0;
+            border: 1px solid color('tableBorder');
+            background-color: color('uploadImage');
+        }
     }
     &-submit {
         font-weight: bold;
