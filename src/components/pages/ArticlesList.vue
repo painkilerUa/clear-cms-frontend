@@ -63,12 +63,22 @@
            <th>
              <v-select placeholder="Category" />
            </th>
-           <th>Access</th>
-           <th>Company specific</th>
-           <th>Last Edited</th>
-           <th>Uploader / Editor</th>
-           <th>Status</th>
-           <th>Actions</th>
+           <th>
+             <v-select placeholder="Access" />
+           </th>
+           <th>
+             <v-select placeholder="Comp spec" />
+           </th>
+           <th>
+             <v-select placeholder="Last Edited" />
+           </th>
+           <th>
+            <v-select placeholder="Upl / Edit" />
+           </th>
+           <th>
+            <v-select placeholder="Status" />
+           </th>
+           <th colspan="3">Actions</th>
          </tr>
        </thead>
      </table>
