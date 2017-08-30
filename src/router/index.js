@@ -58,12 +58,12 @@ const router = new Router({
           component: SecurityConfiguration
         },
         {
-          path: '/articles-list/',
+          path: 'articles-list',
           name: 'articles-list',
           component: ArticlesList
         },
         {
-          path: '/article/',
+          path: 'article',
           name: 'article',
           children: [
             {
