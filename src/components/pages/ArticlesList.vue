@@ -102,13 +102,25 @@
             <span class="status status--published">Published</span>
            </td>
            <td class="cellpadding">
-             <button type="button" class="icon-btn"><icon name="pencil" /></button>
+             <button
+             type="button"
+             class="table-crud-btn icon-btn">
+              <icon name="pencil"/>
+             </button>
            </td>
            <td class="cellpadding">
-             <button type="button" class="icon-btn"><icon name="folder" /></button>
+             <button
+             type="button"
+             class="table-crud-btn icon-btn">
+              <icon name="folder"/>
+             </button>
            </td>
            <td class="cellpadding">
-             <button type="button" class="icon-btn"><icon name="times" /></button>
+             <button
+             type="button"
+             class="table-crud-btn icon-btn">
+              <icon name="times"/>
+             </button>
            </td>
          </tr>
        </tbody>
