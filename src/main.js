@@ -11,10 +11,12 @@ import AutocompleteInput from '@/components/common/AutocompleteInput'
 import Popup from '@/components/common/Popup'
 import vSelect from 'vue-select'
 import VeeValidate from 'vee-validate'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.config.productionTip = false
 
 Vue.component('autocomplete-input', AutocompleteInput)
+Vue.component('icon', Icon)
 Vue.component('v-select', vSelect)
 Vue.component('popup', Popup)
 
