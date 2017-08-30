@@ -31,12 +31,12 @@
       </div>
       <!-- END:.articles-list-statusbar -->
       <div class="articles-list-add">
-        <button
-        type="button"
+        <router-link
+        :to="{name: 'add-article'}"
         class="icon-btn articles-list-add__btn">
           <icon name="plus" />
           <span>Add new article</span>
-        </button>
+        </router-link>
       </div>
     </div>
    <!-- END:.articles-list-heading -->
