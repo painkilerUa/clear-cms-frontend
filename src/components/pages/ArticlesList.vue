@@ -34,7 +34,7 @@
         <button
         type="button"
         class="icon-btn articles-list-add__btn">
-          <icon name="plus"></icon>
+          <icon name="plus" />
           <span>Add new article</span>
         </button>
       </div>
@@ -89,12 +89,10 @@
        <tbody>
          <tr v-for="article in articles">
            <td class="text-center cellpadding">
-             <input type="checkbox" id="1258"/>
-             <label for="1258">1258</label>
+             <input type="checkbox" :id="article.id"/>
+             <label :for="article.id">{{article.id}}</label>
            </td>
-           <td class="cellpadding">
-             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, eveniet?
-           </td>
+           <td class="cellpadding">{{article.content}}</td>
            <td class="cellpadding">English (USA)</td>
            <td class="cellpadding">Video</td>
            <td class="cellpadding">Financial</td>
