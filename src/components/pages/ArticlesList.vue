@@ -53,7 +53,6 @@
                type="search"
                class="table-search"
                placeholder="Search in articles..." />
-               <icon name="search" />
              </div>
            </th>
            <th>
