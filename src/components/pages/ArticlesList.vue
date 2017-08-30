@@ -87,7 +87,7 @@
          </tr>
        </thead>
        <tbody>
-         <tr>
+         <tr v-for="article in articles">
            <td class="text-center cellpadding">
              <input type="checkbox" id="1258"/>
              <label for="1258">1258</label>
@@ -157,6 +157,7 @@ export default {
   mounted () {
     this.$http.get(api.URLS.content, api.headersAuthSettings)
     .then((res) => {
+      this.articles = res.body
       console.log(res)
     })
     .catch((err) => console.log(err))
