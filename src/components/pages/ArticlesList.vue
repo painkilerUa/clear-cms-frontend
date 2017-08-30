@@ -40,6 +40,7 @@
       </div>
     </div>
    <!-- END:.articles-list-heading -->
+   <datepicker />
    <!-- .articles-list-body -->
    <div class="articles-list-body">
      <!-- .table table-data -->
@@ -154,7 +155,7 @@ export default {
   mounted () {
     this.$http.get(api.URLS.content, api.headersAuthSettings)
     .then((res) => {
-      this.articles = res.body
+      this.articles = res.body.items
       console.log(res)
     })
     .catch((err) => console.log(err))
