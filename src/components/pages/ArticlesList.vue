@@ -46,7 +46,7 @@
      <table class="table table-data">
        <thead>
          <tr>
-           <th>ID</th>
+           <th class="cellpadding">ID</th>
            <th class="articles-list-search-col text-left">
              <div class="table-search-wrap">
                <input
