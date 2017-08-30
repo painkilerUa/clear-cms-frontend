@@ -18,6 +18,52 @@
             class="form-control" />
           </div>
           <!-- END:.form-element -->
+          <!-- .form-group -->
+          <div class="form-group">
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Language</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Type</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Topic</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Category</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Access</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+            <!-- .form-element -->
+            <div class="form-element form-element--half">
+              <label class="form-label">Company Specific</label>
+              <v-select
+              placeholder="Select" />
+            </div>
+            <!-- END:.form-element -->
+          </div>
+          <!-- END:.form-group -->
         </div>
         <!-- END:.add-article-details -->
       </section>
