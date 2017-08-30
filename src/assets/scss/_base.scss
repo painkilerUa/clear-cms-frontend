@@ -80,6 +80,9 @@
 .table {
     display: table;
     width: 100%;
+    th, td {
+        border: 1px solid color('tableBorder');
+    }
     &-heading {
         display: table-header-group;
     }

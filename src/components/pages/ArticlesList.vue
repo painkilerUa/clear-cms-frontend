@@ -38,6 +38,32 @@
       </div>
     </div>
    <!-- END:.articles-list-heading -->
+   <!-- .articles-list-body -->
+   <div class="articles-list-body">
+     <!-- .table table-data -->
+     <table class="table table-data">
+       <thead>
+         <tr>
+           <th>ID</th>
+           <th>
+             <!-- <input type="search" placeholder="Search in articles" /> -->
+           </th>
+           <th>Language</th>
+           <th>Type</th>
+           <th>Topic</th>
+           <th>Category</th>
+           <th>Access</th>
+           <th>Company specific</th>
+           <th>Last Edited</th>
+           <th>Uploader / Editor</th>
+           <th>Status</th>
+           <th>Actions</th>
+         </tr>
+       </thead>
+     </table>
+     <!-- END:.table table-data -->
+   </div>
+   <!-- END:.articles-list-body -->
   </div>
 	<!-- END:.articles-list -->
 </template>
