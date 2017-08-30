@@ -46,9 +46,11 @@
          <tr>
            <th>ID</th>
            <th>
-             <!-- <input type="search" placeholder="Search in articles" /> -->
+             <input type="search" placeholder="Search in articles" />
            </th>
-           <th>Language</th>
+           <th>
+             <v-select placeholder="Language" />
+           </th>
            <th>Type</th>
            <th>Topic</th>
            <th>Category</th>

@@ -80,7 +80,10 @@
 .table {
     display: table;
     width: 100%;
-    th, td {
+    th,
+    td {
+        vertical-align: middle;
+        color: color('tableText');
         border: 1px solid color('tableBorder');
     }
     &-heading {
