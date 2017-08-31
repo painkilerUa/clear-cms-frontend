@@ -68,6 +68,7 @@
                   data-vv-as='"Topic"'
                   :options="getTagTitles"
                   v-model="selectValues.tags"
+                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
