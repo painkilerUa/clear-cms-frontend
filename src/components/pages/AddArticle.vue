@@ -50,9 +50,16 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Type</label>
                   <v-select
+                  name="Type"
+                  data-vv-name="Type"
+                  v-validate="'required'"
                   :options="getContentTypeTitles"
                   value.sync="formInfo.contentType"
                   placeholder="Select" />
+                  <div
+                    v-if="errors.has('Type')"
+                    class="form-errors">{{ errors.first('Type') }}
+                  </div>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
