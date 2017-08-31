@@ -109,7 +109,7 @@
           <div class="add-article-thumbnail">
             {{formInfo.thumbnail}}
             <span class="form-label">Featured image</span>
-            <label class="form-label form-label--file" v-show="!isThumbnailFileUploaded">
+            <label class="form-label form-label--file-upload" v-show="!isThumbnailFileUploaded">
               <icon name="upload" />
               <input
                 type="file"
@@ -197,12 +197,14 @@
               <div class="form-group">
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
-                  <label for="addTitle" class="form-label">Upload resource</label>
-                  <input
-                  id="addTitle"
-                  type="file"
-                  placeholder="Type in to add title..."
-                  class="form-control" />
+                  <span class="form-label">Upload resource</span>
+                  <label class="form-label form-label--file">
+                    <input
+                    id="uploadResource"
+                    type="file"
+                    placeholder="Type in to add title..."
+                    class="form-control form-control--file" />
+                  </label>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
