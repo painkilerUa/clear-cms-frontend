@@ -61,6 +61,7 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Category</label>
                   <v-select
+                  :options="getCategoriesTitles"
                   :multiple="true"
                   placeholder="Select" />
                 </div>
@@ -255,6 +256,9 @@ export default {
     getTagTitles () {
       return this.tags.map(item => item.name)
     },
+    getCategoriesTitles () {
+      return this.categories.map(item => item.title)
+    },
     getRoleTitles () {
       return this.roles.map(item => item.name)
     }
@@ -277,7 +281,8 @@ export default {
     getCategories () {
       this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
       .then((res) => {
-        this.tags = res.body.items
+        this.categories = res.body.items
+        console.log(res)
       })
       .catch((err) => console.log(err))
     },
@@ -285,7 +290,6 @@ export default {
       this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
       .then((res) => {
         this.roles = res.body.items
-        console.log(res)
       })
       .catch((err) => console.log(err))
     },
