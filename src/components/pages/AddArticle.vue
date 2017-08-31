@@ -99,9 +99,10 @@
                   <v-select
                   name="Access"
                   :options="getRoleTitles"
+                  v-model="selectValues.roles"
+                  v-validate="'required'"
                   :multiple="true"
                   data-vv-as='"Access"'
-                  :on-change="selectRoles"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Access')"
@@ -293,7 +294,8 @@ export default {
       selectValues: {
         type: null,
         tags: [],
-        categories: []
+        categories: [],
+        roles: []
       },
       formInfo: {
         thumbnail: null,
@@ -342,6 +344,7 @@ export default {
       this.selectType()
       this.selectTags()
       this.selectCategories()
+      this.selectRoles()
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
@@ -411,9 +414,10 @@ export default {
         console.log('categories', this.formInfo.categories)
       }
     },
-    selectRoles (value) {
-      if (value) {
-        this.formInfo.access = this.roles.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+    selectRoles () {
+      if (this.selectValues.roles) {
+        this.formInfo.access = this.roles.filter(item => this.selectValues.roles.indexOf(item.name) !== -1).map(item => item.id)
+        console.log('roles', this.formInfo.access)
       }
     },
     selectTags () {
