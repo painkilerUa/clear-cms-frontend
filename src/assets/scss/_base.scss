@@ -70,7 +70,6 @@
 
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
         .form-element {
             margin-bottom: 30px;
             &--full {
@@ -100,11 +99,17 @@
         font-weight: bold;
         margin-bottom: 12px;
         padding-left: 10px;
-        &-file-resource {
+        &--file-resource {
+            display: flex;
             width: 100%;
-            height: 10px;
+            height: 40px;
             border: 1px solid color('tableBorder');
             background-color: #fff;
+
+            align-items: center;
+            .fa-icon {
+                margin-right: 12px;
+            }
         }
         &--file-upload {
             position: relative;
