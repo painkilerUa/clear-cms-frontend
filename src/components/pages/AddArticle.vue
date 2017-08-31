@@ -37,7 +37,6 @@
                   :options="languages"
                   name="Language"
                   data-vv-as="Language"
-                  v-validate="'required'"
                   v-model="formInfo.language"
                   placeholder="Select" />
                   <div
@@ -280,7 +279,7 @@ export default {
         thumbnail: null,
         language: null,
         contentType: null,
-        typeValues: [],
+        typeValues: [{}],
         tags: [],
         access: [],
         category: null,
