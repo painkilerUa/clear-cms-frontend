@@ -105,7 +105,7 @@
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article video</h2>
             <!-- .form-elements -->
-            <div class="form-elements" v-for="n in videoRange">
+            <div class="form-elements" v-for="n in addElements.video">
               <!-- .form-element -->
               <div class="form-element">
                 <label for="addVideoUrl" class="form-label">Video URL</label>
@@ -139,7 +139,7 @@
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article resources</h2>
             <!-- .form-elements -->
-            <div class="form-elements" v-for="n in resourceRange">
+            <div class="form-elements" v-for="n in addElements.resource">
               <!-- .form-group -->
               <div class="form-group">
                 <!-- .form-element -->
@@ -219,14 +219,15 @@ export default {
       formInfo: {
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptas tempore error quis recusandae perferendis aliquam, dolore alias, commodi natus labore dolorum obcaecati, voluptatibus sunt rem atque iusto odit, facere vel similique impedit. Qui, voluptas voluptatibus suscipit modi omnis harum, deserunt libero maxime natus, ad veniam inventore rerum velit numquam? Est obcaecati dolores laudantium dignissimos, saepe atque. Porro a dolorem tempora, ad vero rerum at. Nostrum provident sapiente praesentium atque, expedita alias, hic perspiciatis quae sed, aliquam beatae, rem optio magni perferendis quo numquam deleniti magnam. Tenetur vero expedita, aliquam, quis fugit laborum quisquam doloremque asperiores eligendi dolores facere maiores.'
       },
-      videoRange: 1,
-      resourceRange: 1
+      addElements: {
+        video: 1,
+        resource: 1
+      }
     }
   },
   methods: {
     addFormElement (type) {
-      let typeRange = `${type}Range`
-      this[typeRange] += 1
+      this.addElements[type] += 1
     }
   },
   components: {
