@@ -51,7 +51,7 @@
                   name="Type"
                   data-vv-as='"Type"'
                   :options="getContentTypeTitles"
-                  value.sync="formInfo.contentType"
+                  v-model="selectValues.selectValues"
                   v-validate="'required'"
                   :on-change="selectType"
                   placeholder="Select" />
@@ -294,6 +294,9 @@ export default {
   mixins: [forms],
   data () {
     return {
+      selectValues: {
+        type: ''
+      },
       formInfo: {
         thumbnail: null,
         language: null,
