@@ -119,7 +119,7 @@
               v-if="isThumbnailFileUploaded"
               @click="removeThumbnail"
               class="btn btn--remove-element alignright">
-              <span>Remove image</span>
+              <span class="btn__text">Remove image</span>
               <icon name="times-circle-o" />
             </button>
           </div>

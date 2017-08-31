@@ -46,7 +46,16 @@
     border: none;
     background: none;
     &--remove-element {
+        margin-top: 5px;
         color: color('danger');
+        .btn__text,
+        .fa-icon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .btn__text {
+            margin-right: 6px;
+        }
     }
 }
 
