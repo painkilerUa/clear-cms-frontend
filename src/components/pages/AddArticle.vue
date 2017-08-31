@@ -43,6 +43,7 @@
                   <label class="form-label">Type</label>
                   <v-select
                   :options="getContentTypeTitles"
+                  value.sync="formInfo.contentType"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -50,6 +51,8 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Topic</label>
                   <v-select
+                  :options="getTagTitles"
+                  value.sync="formInfo.tags"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -241,6 +244,9 @@ export default {
   computed: {
     getContentTypeTitles () {
       return this.types.map(item => item.type)
+    },
+    getTagTitles () {
+      return this.tags.map(item => item.name)
     }
   },
   methods: {
@@ -269,6 +275,7 @@ export default {
   },
   mounted () {
     this.getTypes()
+    this.getTags()
   }
 }
 </script>
