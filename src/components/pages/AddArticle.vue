@@ -5,7 +5,7 @@
     <!-- .add-article-wrapper -->
     <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
-        <form-messages :messages="formServerMessages"/>
+        <form-messages :messages="formServerMessages" class="text-left" />
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
@@ -323,7 +323,7 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
-      .catch((err) => { this.submitErrors(err.body) })
+      .catch((err) => { this.submitErrors(err.body.errors) })
     },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
