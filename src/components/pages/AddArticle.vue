@@ -201,9 +201,11 @@
                   <label class="form-label form-label--file-resource">
                     <icon name="upload" />
                     <span class="form-label__text">Upload resource</span>
+                    <span id="uploadedResource"></span>
                     <input
                     id="uploadResource"
                     type="file"
+                    @change="onResourceFileChange($event.target.value)"
                     placeholder="Type in to add title..."
                     class="form-control visually-hidden form-control--file" />
                   </label>
@@ -367,6 +369,10 @@ export default {
         }
         reader.readAsDataURL(input.files[0])
       }
+    },
+    onResourceFileChange (value) {
+      let valueTrimmed = value.replace(/^.*\\/, '')
+      document.getElementById('uploadedResource').innerHTML = valueTrimmed
     },
     removeThumbnail () {
       var input = document.getElementById('uploadThumbnail')
