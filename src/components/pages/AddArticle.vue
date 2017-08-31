@@ -51,6 +51,7 @@
                   name="Type"
                   data-vv-as='"Type"'
                   :options="getContentTypeTitles"
+                  value.sync="formInfo.contentType"
                   v-validate="'required'"
                   :on-change="selectType"
                   placeholder="Select" />
@@ -123,7 +124,6 @@
           <!-- END:.form-elements -->
           <!-- .add-article-thumbnail -->
           <div class="add-article-thumbnail">
-            {{formInfo.thumbnail}}
             <span class="form-label">Featured image</span>
             <label class="form-label form-label--file-upload" v-show="!isThumbnailFileUploaded">
               <icon name="upload" />
