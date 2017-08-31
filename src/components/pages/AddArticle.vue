@@ -305,7 +305,7 @@ export default {
         contentType: null,
         tags: [],
         access: [],
-        category: null,
+        categories: [],
         companySpecific: null,
         content: ''
       },
