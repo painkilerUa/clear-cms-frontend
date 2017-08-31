@@ -42,6 +42,7 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Type</label>
                   <v-select
+                  :options="getContentTypeTitles"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -208,6 +209,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
 import FormMessages from '@/components/common/FormMessages'
@@ -236,13 +238,37 @@ export default {
       }
     }
   },
+  computed: {
+    getContentTypeTitles () {
+      return this.types.map(item => item.type)
+    }
+  },
   methods: {
+    getTypes () {
+      this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
+      .then((res) => {
+        this.types = res.body.items
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+    },
+    getTags () {
+      this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
+      .then((res) => {
+        this.tags = res.body.items
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+    },
     addFormElement (type) {
       this.addElements[type] += 1
     }
   },
   components: {
     FormMessages
+  },
+  mounted () {
+    this.getTypes()
   }
 }
 </script>
