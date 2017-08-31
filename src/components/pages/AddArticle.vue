@@ -52,7 +52,6 @@
                   <v-select
                   name="Type"
                   data-vv-as='"Type"'
-                  v-validate="'required'"
                   :options="getContentTypeTitles"
                   value.sync="formInfo.contentType"
                   :on-change="selectType"
@@ -322,7 +321,7 @@ export default {
   },
   methods: {
     sendFormRequest () {
-      this.$http.post(api.URLS.content, this.formJson)
+      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { console.log(err) })
     },
