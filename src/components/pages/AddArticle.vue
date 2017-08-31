@@ -323,7 +323,7 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
-      .catch((err) => { console.log(err) })
+      .catch((err) => { this.submitErrors(err.body) })
     },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
