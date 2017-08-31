@@ -68,7 +68,6 @@
                   data-vv-as='"Topic"'
                   :options="getTagTitles"
                   :multiple="true"
-                  :on-change="selectTags"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Topic')"
@@ -290,7 +289,8 @@ export default {
   data () {
     return {
       selectValues: {
-        type: null
+        type: null,
+        tags: []
       },
       formInfo: {
         thumbnail: null,
@@ -337,6 +337,7 @@ export default {
   methods: {
     sendFormRequest () {
       this.selectType()
+      this.selectTags()
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
@@ -410,9 +411,10 @@ export default {
         this.formInfo.access = this.roles.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
       }
     },
-    selectTags (value) {
-      if (value) {
-        this.formInfo.tags = this.tags.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+    selectTags () {
+      if (this.selectValues.tags) {
+        this.formInfo.tags = this.tags.filter(item => this.selectValues.tags.indexOf(item.name) !== -1).map(item => item.id)
+        console.log(this.formInfo.tags)
       }
     }
   },
