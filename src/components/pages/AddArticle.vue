@@ -279,7 +279,10 @@ export default {
         thumbnail: null,
         language: null,
         contentType: null,
-        typeValues: [],
+        typeValues: [
+          {link: 'data'},
+          {textarea: 'data'}
+        ],
         tags: [],
         access: [],
         category: null,
