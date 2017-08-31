@@ -37,8 +37,6 @@
                   :options="languages"
                   name="Language"
                   data-vv-as="Language"
-                  v-validate="'required'"
-                  v-model="formInfo.language"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Language')"
@@ -53,7 +51,7 @@
                   name="Type"
                   data-vv-as='"Type"'
                   :options="getContentTypeTitles"
-                  value.sync="formInfo.contentType"
+                  v-validate="'required'"
                   :on-change="selectType"
                   placeholder="Select" />
                   <div
@@ -66,32 +64,51 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Topic</label>
                   <v-select
+                  name="Topic"
+                  data-vv-as='"Topic"'
                   :options="getTagTitles"
-                  value.sync="formInfo.tags"
                   :multiple="true"
+                  v-validate="'required'"
                   :on-change="selectTags"
                   placeholder="Select" />
+                  <div
+                    v-if="errors.has('Topic')"
+                    class="form-errors">{{ errors.first('Topic') }}
+                  </div>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
                   <label class="form-label">Category</label>
                   <v-select
+                  name="Category"
+                  data-vv-as='"Category"'
                   :options="getCategoriesTitles"
+                  v-validate="'required'"
                   :multiple="true"
                   :on-change="selectCategories"
                   placeholder="Select" />
+                  <div
+                    v-if="errors.has('Category')"
+                    class="form-errors">{{ errors.first('Category') }}
+                  </div>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
                   <label class="form-label">Access</label>
                   <v-select
+                  name="Access"
                   :options="getRoleTitles"
-                  value.sync="formInfo.access"
                   :multiple="true"
+                  data-vv-as='"Access"'
+                  v-validate="'required'"
                   :on-change="selectRoles"
                   placeholder="Select" />
+                  <div
+                    v-if="errors.has('Access')"
+                    class="form-errors">{{ errors.first('Access') }}
+                  </div>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
