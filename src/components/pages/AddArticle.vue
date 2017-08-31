@@ -108,14 +108,13 @@
               cols="30"
               rows="5">
               </textarea>
+              <button type="button" class="add-article-btn alignright">Add video</button>
             </div>
             <!-- END:.form-element -->
-            <button type="button">Add video</button>
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article resources</h2>
-            <!-- END:.form-element -->
-            <button type="button">Add resource</button>
+            <button type="button" class="add-article-btn alignright">Add resource</button>
           </section>
         </div>
         <!-- END:.add-article-sections -->
