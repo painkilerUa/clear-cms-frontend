@@ -53,6 +53,7 @@
                   <v-select
                   :options="getTagTitles"
                   value.sync="formInfo.tags"
+                  multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -60,6 +61,7 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Category</label>
                   <v-select
+                  multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -67,6 +69,9 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Access</label>
                   <v-select
+                  :options="getRoleTitles"
+                  value.sync="formInfo.access"
+                  multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -227,7 +232,7 @@ export default {
         language: null,
         contentType: null,
         tags: [],
-        access: null,
+        access: [],
         category: null,
         companySpecific: null,
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptas tempore error quis recusandae perferendis aliquam, dolore alias, commodi natus labore dolorum obcaecati, voluptatibus sunt rem atque iusto odit, facere vel similique impedit. Qui, voluptas voluptatibus suscipit modi omnis harum, deserunt libero maxime natus, ad veniam inventore rerum velit numquam? Est obcaecati dolores laudantium dignissimos, saepe atque. Porro a dolorem tempora, ad vero rerum at. Nostrum provident sapiente praesentium atque, expedita alias, hic perspiciatis quae sed, aliquam beatae, rem optio magni perferendis quo numquam deleniti magnam. Tenetur vero expedita, aliquam, quis fugit laborum quisquam doloremque asperiores eligendi dolores facere maiores.'
@@ -235,6 +240,7 @@ export default {
       languages: ['English (UK)', 'English (US)'],
       types: [],
       tags: [],
+      roles: [],
       addElements: {
         video: 1,
         resource: 1
@@ -247,6 +253,9 @@ export default {
     },
     getTagTitles () {
       return this.tags.map(item => item.name)
+    },
+    getRoleTitles () {
+      return this.roles.map(item => item.name)
     }
   },
   methods: {
@@ -254,7 +263,6 @@ export default {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
       .then((res) => {
         this.types = res.body.items
-        console.log(res)
       })
       .catch((err) => console.log(err))
     },
@@ -262,6 +270,13 @@ export default {
       this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
       .then((res) => {
         this.tags = res.body.items
+      })
+      .catch((err) => console.log(err))
+    },
+    getRoles () {
+      this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
+      .then((res) => {
+        this.roles = res.body.items
         console.log(res)
       })
       .catch((err) => console.log(err))
@@ -276,6 +291,7 @@ export default {
   mounted () {
     this.getTypes()
     this.getTags()
+    this.getRoles()
   }
 }
 </script>
