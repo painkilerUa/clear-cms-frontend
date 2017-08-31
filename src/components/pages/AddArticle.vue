@@ -412,7 +412,7 @@ export default {
       }
     },
     selectTags () {
-      if (this.selectValues.tags) {
+      if (this.selectValues.tags.length) {
         this.formInfo.tags = this.tags.filter(item => this.selectValues.tags.indexOf(item.name) !== -1).map(item => item.id)
         console.log(this.formInfo.tags)
       }
