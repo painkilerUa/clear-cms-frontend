@@ -86,7 +86,6 @@
                   :options="getCategoriesTitles"
                   v-model="selectValues.categories"
                   :multiple="true"
-                  :on-change="selectCategories"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Category')"
