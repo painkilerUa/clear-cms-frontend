@@ -59,6 +59,11 @@
     }
 }
 
+.fa-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .form {
     &-group {
         display: flex;
@@ -95,6 +100,12 @@
         font-weight: bold;
         margin-bottom: 12px;
         padding-left: 10px;
+        &-file-resource {
+            width: 100%;
+            height: 10px;
+            border: 1px solid color('tableBorder');
+            background-color: #fff;
+        }
         &--file-upload {
             position: relative;
             display: flex;
@@ -110,6 +121,12 @@
                 width: 30px;
                 height: 30px;
             }
+        }
+        &__text {
+            display: inline-block;
+            font-size: 14px;
+            vertical-align: middle;
+            color: color('tableText');
         }
     }
     &-submit {

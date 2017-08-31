@@ -198,7 +198,9 @@
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
                   <span class="form-label">Upload resource</span>
-                  <label class="form-label form-label--file">
+                  <label class="form-label form-label--file-resource">
+                    <icon name="upload" />
+                    <span class="form-label__text">Upload resource</span>
                     <input
                     id="uploadResource"
                     type="file"
