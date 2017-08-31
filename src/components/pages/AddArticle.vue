@@ -304,6 +304,9 @@ export default {
     getRoleTitles () {
       return this.roles.map(item => item.name)
     },
+    getContentTypeIdByTitle (title) {
+      return this.types.find(item => item.type === title).id
+    },
     veeValidateFileUploadRules () {
       return {
         required: true,
@@ -368,6 +371,7 @@ export default {
       this.isThumbnailFileUploaded = false
     },
     selectType (val) {
+      this.getContentTypeIdByTitle(val)
       console.log(val)
     }
   },
