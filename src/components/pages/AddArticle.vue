@@ -103,6 +103,7 @@
                 id="uploadThumbnail"
                 name="Thumbnail"
                 data-vv-as='"Thumbnail"'
+                :value="formInfo.thumbnail"
                 v-validate.reject="veeValidateFileUploadRules"
                 @change="onThumbnailFileChange"
                 class="form-control form-control--file" />
@@ -249,6 +250,7 @@ export default {
   data () {
     return {
       formInfo: {
+        thumbnail: null,
         language: null,
         contentType: null,
         tags: [],
