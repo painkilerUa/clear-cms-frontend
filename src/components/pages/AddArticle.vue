@@ -34,8 +34,15 @@
                   <label class="form-label">Language</label>
                   <v-select
                   :options="languages"
+                  name="Language"
+                  data-vv-name="Language"
+                  v-validate="'required'"
                   v-model="formInfo.language"
                   placeholder="Select" />
+                  <div
+                    v-if="errors.has('Language')"
+                    class="form-errors">{{ errors.first('Language') }}
+                  </div>
                 </div>
                 <!-- END:.form-element -->
                 <!-- .form-element -->
@@ -89,10 +96,22 @@
           <!-- .add-article-thumbnail -->
           <div class="add-article-thumbnail">
             <span class="form-label">Featured image</span>
-            <label class="form-label form-label--file">
+            <label class="form-label form-label--file" v-if="!isThumbnailFileUploaded">
               <icon name="upload" />
-              <input type="file" class="form-control form-control--file" />
+              <input
+                type="file"
+                id="uploadThumbnail"
+                name="Thumbnail"
+                data-vv-as='"Thumbnail"'
+                v-validate.reject="veeValidateFileUploadRules"
+                @change="onThumbnailFileChange"
+                class="form-control form-control--file" />
             </label>
+            <img id="thumbnailFilePreview" src="" />
+            <div
+              v-if="errors.has('Thumbnail')"
+              class="form-errors">{{ errors.first('Thumbnail') }}
+            </div>
           </div>
           <!-- END:.add-article-thumbnail -->
         </div>
@@ -243,6 +262,7 @@ export default {
       tags: [],
       categories: [],
       roles: [],
+      isThumbnailFileUploaded: false,
       addElements: {
         video: 1,
         resource: 1
@@ -261,6 +281,12 @@ export default {
     },
     getRoleTitles () {
       return this.roles.map(item => item.name)
+    },
+    veeValidateFileUploadRules () {
+      return {
+        required: true,
+        mimes: 'image/*'
+      }
     }
   },
   methods: {
@@ -295,6 +321,19 @@ export default {
     },
     addFormElement (type) {
       this.addElements[type] += 1
+    },
+    onThumbnailFileChange: function () {
+      var input = document.getElementById('uploadThumbnail')
+      if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+        this.isThumbnailFileUploaded = true
+        var reader = new FileReader()
+        var thumbnailFilePreview = document.getElementById('thumbnailFilePreview')
+        reader.onload = function (e) {
+          thumbnailFilePreview.setAttribute('src', e.target.result)
+          thumbnailFilePreview.setAttribute('alt', 'thumbnail')
+        }
+        reader.readAsDataURL(input.files[0])
+      }
     }
   },
   components: {
