@@ -3,7 +3,7 @@
   <div class="add-article">
     <h1 class="add-article-title">Add new article</h1>
     <!-- .add-article-wrapper -->
-    <form class="add-article-wrapper form" @submit.prevent>
+    <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
         <form-messages :messages="formServerMessages"/>
         <h2 class="add-article-section__title">Article details</h2>
@@ -51,7 +51,7 @@
                   <label class="form-label">Type</label>
                   <v-select
                   name="Type"
-                  data-vv-name="Type"
+                  data-vv-as='"Type"'
                   v-validate="'required'"
                   :options="getContentTypeTitles"
                   value.sync="formInfo.contentType"
@@ -322,9 +322,9 @@ export default {
   },
   methods: {
     sendFormRequest () {
-      this.$http.post(api.URLS.register, this.formJson)
-      .then((res) => { this.submitSuccess(res.body) })
-      .catch((err) => { this.submitErrors(err.body) })
+      this.$http.post(api.URLS.content, this.formJson)
+      .then((res) => { console.log(res) })
+      .catch((err) => { console.log(err) })
     },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
