@@ -36,7 +36,7 @@
                   <v-select
                   :options="languages"
                   name="Language"
-                  data-vv-name="Language"
+                  data-vv-as="Language"
                   v-validate="'required'"
                   v-model="formInfo.language"
                   placeholder="Select" />
