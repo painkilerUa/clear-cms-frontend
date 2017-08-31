@@ -70,6 +70,7 @@
                   :options="getTagTitles"
                   value.sync="formInfo.tags"
                   :multiple="true"
+                  :on-change="selectTags"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -335,7 +336,6 @@ export default {
       this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
       .then((res) => {
         this.categories = res.body.items
-        console.log(res)
       })
       .catch((err) => console.log(err))
     },
@@ -369,6 +369,10 @@ export default {
     },
     selectType (value) {
       this.formInfo.contentType = this.types.find(item => item.type === value).id
+    },
+    selectTags (value) {
+      this.formInfo.tags = this.tags.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+      console.log(this.formInfo.tags)
     }
   },
   components: {
