@@ -85,6 +85,7 @@
                   data-vv-as='"Category"'
                   :options="getCategoriesTitles"
                   v-model="selectValues.categories"
+                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
@@ -346,6 +347,7 @@ export default {
       this.selectTags()
       this.selectCategories()
       this.selectRoles()
+      console.log('formJson', this.formJson)
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
