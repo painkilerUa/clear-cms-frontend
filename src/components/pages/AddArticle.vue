@@ -138,10 +138,10 @@
               <!-- END:.form-element -->
               <!-- .form-element -->
               <div class="form-element form-element--full">
-                <label for="addTextarea" class="form-label">Transcript for video</label>
+                <label for="addTextarea" class="form-label">Transcript for resource</label>
                 <textarea
                 id="addTextarea"
-                placeholder="Transcript for video"
+                placeholder="Transcript for resource"
                 class="form-control"
                 cols="30"
                 rows="5">
