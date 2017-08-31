@@ -407,8 +407,8 @@ export default {
     },
     selectCategories () {
       if (this.selectValues.categories) {
-        this.formInfo.categories = this.categories.filter(item => this.selectValues.categories.indexOf(item.name) !== -1).map(item => item.id)
-        console.log('categories', this.selectValues.categories)
+        this.formInfo.categories = this.categories.filter(item => this.selectValues.categories.indexOf(item.title) !== -1).map(item => item.id)
+        console.log('categories', this.formInfo.categories)
       }
     },
     selectRoles (value) {
