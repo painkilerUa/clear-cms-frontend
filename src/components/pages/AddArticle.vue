@@ -51,9 +51,8 @@
                   name="Type"
                   data-vv-as='"Type"'
                   :options="getContentTypeTitles"
-                  v-model="selectValues.selectValues"
+                  v-model="selectValues.type"
                   v-validate="'required'"
-                  :on-change="selectType"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Type')"
@@ -69,7 +68,6 @@
                   data-vv-as='"Topic"'
                   :options="getTagTitles"
                   :multiple="true"
-                  v-validate="'required'"
                   :on-change="selectTags"
                   placeholder="Select" />
                   <div
@@ -85,7 +83,6 @@
                   name="Category"
                   data-vv-as='"Category"'
                   :options="getCategoriesTitles"
-                  v-validate="'required'"
                   :multiple="true"
                   :on-change="selectCategories"
                   placeholder="Select" />
@@ -103,7 +100,6 @@
                   :options="getRoleTitles"
                   :multiple="true"
                   data-vv-as='"Access"'
-                  v-validate="'required'"
                   :on-change="selectRoles"
                   placeholder="Select" />
                   <div
@@ -165,7 +161,6 @@
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
-              v-validate="'required'"
               v-model="formInfo.content" />
             <div
               v-if="errors.has('Content')"
@@ -295,7 +290,7 @@ export default {
   data () {
     return {
       selectValues: {
-        type: ''
+        type: null
       },
       formInfo: {
         thumbnail: null,
@@ -341,6 +336,7 @@ export default {
   },
   methods: {
     sendFormRequest () {
+      this.selectType()
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
@@ -398,9 +394,10 @@ export default {
       input.value = null
       this.isThumbnailFileUploaded = false
     },
-    selectType (value) {
-      if (value) {
-        this.formInfo.contentType = this.types.find(item => item.type === value).id
+    selectType () {
+      if (this.selectValues.type) {
+        this.formInfo.contentType = this.types.find(item => item.type === this.selectValues.type).id
+        console.log(this.formInfo.contentType)
       }
     },
     selectCategories (value) {
