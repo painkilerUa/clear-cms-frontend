@@ -84,7 +84,7 @@
         <div class="add-article-sections">
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article content</h2>
-            <vue-editor v-model="content" />
+            <vue-editor v-model="formInfo.content" />
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article video</h2>
@@ -181,7 +181,9 @@ export default {
   name: 'add-article',
   data () {
     return {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sint et similique laudantium eius est, fuga ex reiciendis placeat illo omnis ducimus, adipisci quisquam eum asperiores earum soluta nam quos.'
+      formInfo: {
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptas tempore error quis recusandae perferendis aliquam, dolore alias, commodi natus labore dolorum obcaecati, voluptatibus sunt rem atque iusto odit, facere vel similique impedit. Qui, voluptas voluptatibus suscipit modi omnis harum, deserunt libero maxime natus, ad veniam inventore rerum velit numquam? Est obcaecati dolores laudantium dignissimos, saepe atque. Porro a dolorem tempora, ad vero rerum at. Nostrum provident sapiente praesentium atque, expedita alias, hic perspiciatis quae sed, aliquam beatae, rem optio magni perferendis quo numquam deleniti magnam. Tenetur vero expedita, aliquam, quis fugit laborum quisquam doloremque asperiores eligendi dolores facere maiores.'
+      }
     }
   }
 }
