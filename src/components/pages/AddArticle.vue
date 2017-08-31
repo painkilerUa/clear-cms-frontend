@@ -67,6 +67,7 @@
                   name="Topic"
                   data-vv-as='"Topic"'
                   :options="getTagTitles"
+                  v-model="selectValues.tags"
                   :multiple="true"
                   placeholder="Select" />
                   <div
