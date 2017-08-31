@@ -43,8 +43,11 @@
 }
 
 .btn {
-    background: none;
     border: none;
+    background: none;
+    &--remove-element {
+        color: color('danger');
+    }
 }
 
 .form {

@@ -95,15 +95,16 @@
           <!-- END:.form-elements -->
           <!-- .add-article-thumbnail -->
           <div class="add-article-thumbnail">
+            {{formInfo.thumbnail}}
             <span class="form-label">Featured image</span>
-            <label class="form-label form-label--file" v-if="!isThumbnailFileUploaded">
+            <label class="form-label form-label--file" v-show="!isThumbnailFileUploaded">
               <icon name="upload" />
               <input
                 type="file"
                 id="uploadThumbnail"
                 name="Thumbnail"
                 data-vv-as='"Thumbnail"'
-                :value="formInfo.thumbnail"
+                value.sync="formInfo.thumbnail"
                 v-validate.reject="veeValidateFileUploadRules"
                 @change="onThumbnailFileChange"
                 class="form-control form-control--file" />
@@ -117,8 +118,9 @@
               type="button"
               v-if="isThumbnailFileUploaded"
               @click="removeThumbnail"
-              class="btn remove-element alignright">
-              Remove image
+              class="btn btn--remove-element alignright">
+              <span>Remove image</span>
+              <icon name="times-circle-o" />
             </button>
           </div>
           <!-- END:.add-article-thumbnail -->
@@ -248,6 +250,7 @@
 import api from '@/api'
 import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
+import 'vue-awesome/icons/times-circle-o'
 import FormMessages from '@/components/common/FormMessages'
 import forms from '@/mixins/forms'
 
@@ -345,6 +348,8 @@ export default {
       }
     },
     removeThumbnail () {
+      var input = document.getElementById('uploadThumbnail')
+      input.value = null
       this.isThumbnailFileUploaded = false
     }
   },
