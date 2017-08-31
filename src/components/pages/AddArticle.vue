@@ -80,6 +80,7 @@
                   <v-select
                   :options="getCategoriesTitles"
                   :multiple="true"
+                  :on-change="selectCategories"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -373,10 +374,15 @@ export default {
         this.formInfo.contentType = this.types.find(item => item.type === value).id
       }
     },
+    selectCategories (value) {
+      if (value) {
+        this.formInfo.categories = this.categories.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+        console.log(this.formInfo.categories)
+      }
+    },
     selectRoles (value) {
       if (value) {
         this.formInfo.access = this.roles.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
-        console.log(this.formInfo.access)
       }
     },
     selectTags (value) {
