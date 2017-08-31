@@ -90,6 +90,7 @@
                   :options="getRoleTitles"
                   value.sync="formInfo.access"
                   :multiple="true"
+                  :on-change="selectRoles"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -370,6 +371,12 @@ export default {
     selectType (value) {
       if (value) {
         this.formInfo.contentType = this.types.find(item => item.type === value).id
+      }
+    },
+    selectRoles (value) {
+      if (value) {
+        this.formInfo.access = this.roles.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+        console.log(this.formInfo.access)
       }
     },
     selectTags (value) {
