@@ -55,6 +55,7 @@
                   v-validate="'required'"
                   :options="getContentTypeTitles"
                   value.sync="formInfo.contentType"
+                  :on-change="selectType"
                   placeholder="Select" />
                   <div
                     v-if="errors.has('Type')"
@@ -365,6 +366,9 @@ export default {
       var input = document.getElementById('uploadThumbnail')
       input.value = null
       this.isThumbnailFileUploaded = false
+    },
+    selectType (val) {
+      console.log(val)
     }
   },
   components: {
