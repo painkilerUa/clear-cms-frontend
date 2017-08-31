@@ -279,7 +279,7 @@ export default {
         thumbnail: null,
         language: null,
         contentType: null,
-        typeValues: [{}],
+        typeValues: [],
         tags: [],
         access: [],
         category: null,
