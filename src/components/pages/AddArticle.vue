@@ -92,7 +92,15 @@
         <div class="add-article-sections">
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article content</h2>
-            <vue-editor v-model="formInfo.content" />
+            <vue-editor
+              name="Content"
+              data-vv-as='"Content"'
+              v-validate="'required'"
+              v-model="formInfo.content" />
+            <div
+              v-if="errors.has('Content')"
+              class="form-errors">{{ errors.first('Content') }}
+            </div>
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article video</h2>
