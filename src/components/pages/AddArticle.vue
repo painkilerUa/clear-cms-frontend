@@ -292,7 +292,8 @@ export default {
     return {
       selectValues: {
         type: null,
-        tags: []
+        tags: [],
+        categories: []
       },
       formInfo: {
         thumbnail: null,
@@ -400,12 +401,13 @@ export default {
     selectType () {
       if (this.selectValues.type) {
         this.formInfo.contentType = this.types.find(item => item.type === this.selectValues.type).id
-        console.log(this.formInfo.contentType)
+        console.log('contentType', this.formInfo.contentType)
       }
     },
-    selectCategories (value) {
-      if (value) {
-        this.formInfo.categories = this.categories.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+    selectCategories () {
+      if (this.selectValues.categories) {
+        this.formInfo.categories = this.categories.filter(item => this.selectValues.categories.indexOf(item.name) !== -1).map(item => item.id)
+        console.log('categories', this.selectValues.categories)
       }
     },
     selectRoles (value) {
@@ -416,7 +418,7 @@ export default {
     selectTags () {
       if (this.selectValues.tags.length) {
         this.formInfo.tags = this.tags.filter(item => this.selectValues.tags.indexOf(item.name) !== -1).map(item => item.id)
-        console.log(this.formInfo.tags)
+        console.log('tags', this.formInfo.tags)
       }
     }
   },
