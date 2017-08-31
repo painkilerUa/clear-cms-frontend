@@ -80,6 +80,9 @@
     &-element {
         &--half {
             width: 47%;
+            .dropdown-toggle {
+                margin-bottom: 15px;
+            }
         }
     }
     &-control {

@@ -37,6 +37,7 @@
                   :options="languages"
                   name="Language"
                   data-vv-as="Language"
+                  v-validate="'required'"
                   v-model="formInfo.language"
                   placeholder="Select" />
                   <div
