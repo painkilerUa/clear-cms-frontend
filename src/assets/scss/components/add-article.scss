@@ -10,6 +10,8 @@
         padding: 14px;
         counter-increment: addArticleSection;
         background-color: color('articleDetails');
+
+        @extend %clearfix;
         &__title {
             &::before {
                 content: counter(addArticleSection) '. ';
@@ -17,8 +19,8 @@
         }
     }
     &-btn {
-        padding: 12px;
         width: 130px;
+        padding: 12px;
         color: #fff;
         background-color: color('addArticleBtn');
     }
