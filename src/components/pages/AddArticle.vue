@@ -90,9 +90,9 @@
             <h2 class="add-article-section__title">Article video</h2>
             <!-- .form-element -->
             <div class="form-element">
-              <label for="addTitle" class="form-label">Video URL</label>
+              <label for="addVideoUrl" class="form-label">Video URL</label>
               <input
-              id="addTitle"
+              id="addVideoUrl"
               type="text"
               placeholder="Insert video link here"
               class="form-control" />
