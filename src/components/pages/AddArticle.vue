@@ -108,11 +108,18 @@
                 @change="onThumbnailFileChange"
                 class="form-control form-control--file" />
             </label>
-            <img id="thumbnailFilePreview" src="" />
+            <img id="thumbnailFilePreview" v-if="isThumbnailFileUploaded" src="" />
             <div
               v-if="errors.has('Thumbnail')"
               class="form-errors">{{ errors.first('Thumbnail') }}
             </div>
+            <button
+              type="button"
+              v-if="isThumbnailFileUploaded"
+              @click="removeThumbnail"
+              class="btn remove-element alignright">
+              Remove image
+            </button>
           </div>
           <!-- END:.add-article-thumbnail -->
         </div>
@@ -329,13 +336,16 @@ export default {
       if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
         this.isThumbnailFileUploaded = true
         var reader = new FileReader()
-        var thumbnailFilePreview = document.getElementById('thumbnailFilePreview')
         reader.onload = function (e) {
+          var thumbnailFilePreview = document.getElementById('thumbnailFilePreview')
           thumbnailFilePreview.setAttribute('src', e.target.result)
           thumbnailFilePreview.setAttribute('alt', 'thumbnail')
         }
         reader.readAsDataURL(input.files[0])
       }
+    },
+    removeThumbnail () {
+      this.isThumbnailFileUploaded = false
     }
   },
   components: {
