@@ -34,6 +34,7 @@
                   <label class="form-label">Language</label>
                   <v-select
                   :options="languages"
+                  v-model="formInfo.language"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -218,6 +219,7 @@ export default {
   data () {
     return {
       formInfo: {
+        language: null,
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptas tempore error quis recusandae perferendis aliquam, dolore alias, commodi natus labore dolorum obcaecati, voluptatibus sunt rem atque iusto odit, facere vel similique impedit. Qui, voluptas voluptatibus suscipit modi omnis harum, deserunt libero maxime natus, ad veniam inventore rerum velit numquam? Est obcaecati dolores laudantium dignissimos, saepe atque. Porro a dolorem tempora, ad vero rerum at. Nostrum provident sapiente praesentium atque, expedita alias, hic perspiciatis quae sed, aliquam beatae, rem optio magni perferendis quo numquam deleniti magnam. Tenetur vero expedita, aliquam, quis fugit laborum quisquam doloremque asperiores eligendi dolores facere maiores.'
       },
       languages: ['English (UK)', 'English (US)'],
