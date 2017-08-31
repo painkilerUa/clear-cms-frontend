@@ -145,6 +145,7 @@
             <h2 class="add-article-section__title">Article content</h2>
             <vue-editor
               name="Content"
+              class="article-editor"
               data-vv-as='"Content"'
               v-validate="'required'"
               v-model="formInfo.content" />
