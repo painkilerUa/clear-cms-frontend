@@ -371,8 +371,8 @@ export default {
       this.isThumbnailFileUploaded = false
     },
     selectType (val) {
-      this.getContentTypeIdByTitle(val)
-      console.log(val)
+      this.formInfo.contentType = this.getContentTypeIdByTitle(val)
+      console.log(this.formInfo.contentType)
     }
   },
   components: {
