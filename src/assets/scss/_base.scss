@@ -51,6 +51,9 @@
         align-items: center;
         .form-element {
             margin-bottom: 30px;
+            &--full {
+                flex-basis: 100%;
+            }
         }
     }
     &-element {
@@ -128,7 +131,7 @@
 
 .action {
     &-btn {
-        padding: 14px 20px; 
+        padding: 14px 20px;
         text-align: center;
         text-decoration: none;
         border: 1px solid color('tableBorder');

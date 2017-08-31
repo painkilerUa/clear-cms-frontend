@@ -114,8 +114,8 @@
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article resources</h2>
-            <!-- .form-elements -->
-            <div class="form-elements">
+            <!-- .form-group -->
+            <div class="form-group">
               <!-- .form-element -->
               <div class="form-element form-element--half">
                 <label for="addTitle" class="form-label">Upload resource</label>
@@ -132,12 +132,24 @@
                 <input
                 id="addTitle"
                 type="url"
-                placeholder="Type in to add title..."
+                placeholder="Insert resource link here"
                 class="form-control" />
               </div>
               <!-- END:.form-element -->
+              <!-- .form-element -->
+              <div class="form-element form-element--full">
+                <label for="addTextarea" class="form-label">Transcript for video</label>
+                <textarea
+                id="addTextarea"
+                placeholder="Transcript for video"
+                class="form-control"
+                cols="30"
+                rows="5">
+                </textarea>
+              </div>
+              <!-- END:.form-element -->
             </div>
-            <!-- END:.form-elements -->
+            <!-- END:.form-group -->
             <button type="button" class="add-article-btn alignright">Add resource</button>
           </section>
         </div>
