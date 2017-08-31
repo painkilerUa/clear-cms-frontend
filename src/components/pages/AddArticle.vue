@@ -368,11 +368,14 @@ export default {
       this.isThumbnailFileUploaded = false
     },
     selectType (value) {
-      this.formInfo.contentType = this.types.find(item => item.type === value).id
+      if (value) {
+        this.formInfo.contentType = this.types.find(item => item.type === value).id
+      }
     },
     selectTags (value) {
-      this.formInfo.tags = this.tags.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
-      console.log(this.formInfo.tags)
+      if (value) {
+        this.formInfo.tags = this.tags.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
+      }
     }
   },
   components: {
