@@ -377,7 +377,6 @@ export default {
     selectCategories (value) {
       if (value) {
         this.formInfo.categories = this.categories.filter(item => value.indexOf(item.name) !== -1).map(item => item.id)
-        console.log(this.formInfo.categories)
       }
     },
     selectRoles (value) {
