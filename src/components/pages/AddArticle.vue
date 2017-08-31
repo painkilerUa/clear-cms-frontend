@@ -205,7 +205,7 @@
                     id="uploadResource"
                     type="file"
                     placeholder="Type in to add title..."
-                    class="form-control form-control--file" />
+                    class="form-control visually-hidden form-control--file" />
                   </label>
                 </div>
                 <!-- END:.form-element -->
