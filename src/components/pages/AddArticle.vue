@@ -53,7 +53,7 @@
                   <v-select
                   :options="getTagTitles"
                   value.sync="formInfo.tags"
-                  multiple="true"
+                  :multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -61,7 +61,7 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Category</label>
                   <v-select
-                  multiple="true"
+                  :multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
@@ -71,7 +71,7 @@
                   <v-select
                   :options="getRoleTitles"
                   value.sync="formInfo.access"
-                  multiple="true"
+                  :multiple="true"
                   placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
