@@ -84,6 +84,7 @@
                   name="Category"
                   data-vv-as='"Category"'
                   :options="getCategoriesTitles"
+                  v-model="selectValues.categories"
                   :multiple="true"
                   :on-change="selectCategories"
                   placeholder="Select" />
@@ -341,6 +342,7 @@ export default {
     sendFormRequest () {
       this.selectType()
       this.selectTags()
+      this.selectCategories()
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
