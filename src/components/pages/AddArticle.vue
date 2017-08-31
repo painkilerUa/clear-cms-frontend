@@ -5,6 +5,7 @@
     <!-- .add-article-wrapper -->
     <form class="add-article-wrapper form" @submit.prevent>
       <section class="add-article-section add-article-section--heading">
+        <form-messages :messages="formServerMessages"/>
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
@@ -235,7 +236,7 @@
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn">Exit without saving</button>
           <button type="button" class="action-btn action-btn--draft icon-btn">Save as draft</button>
-          <button type="button" class="action-btn action-btn--publish icon-btn">Publish article</button>
+          <button type="submit" class="action-btn action-btn--publish icon-btn">Publish article</button>
         </div>
         <!-- END:.add-article-actions -->
       </div>
@@ -302,6 +303,11 @@ export default {
     }
   },
   methods: {
+    sendFormRequest () {
+      this.$http.post(api.URLS.register, this.formJson)
+      .then((res) => { this.submitSuccess(res.body) })
+      .catch((err) => { this.submitErrors(err.body) })
+    },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
       .then((res) => {
