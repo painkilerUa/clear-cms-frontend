@@ -240,6 +240,7 @@ export default {
       languages: ['English (UK)', 'English (US)'],
       types: [],
       tags: [],
+      categories: [],
       roles: [],
       addElements: {
         video: 1,
@@ -273,6 +274,13 @@ export default {
       })
       .catch((err) => console.log(err))
     },
+    getCategories () {
+      this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
+      .then((res) => {
+        this.tags = res.body.items
+      })
+      .catch((err) => console.log(err))
+    },
     getRoles () {
       this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
       .then((res) => {
@@ -291,6 +299,7 @@ export default {
   mounted () {
     this.getTypes()
     this.getTags()
+    this.getCategories()
     this.getRoles()
   }
 }
