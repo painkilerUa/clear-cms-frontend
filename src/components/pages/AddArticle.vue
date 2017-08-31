@@ -16,8 +16,16 @@
               <input
               id="addTitle"
               type="text"
+              name="Title"
+              v-model="formInfo.title"
+              data-vv-as='"Title"'
+              v-validate="'required'"
               placeholder="Type in to add title..."
               class="form-control" />
+              <div
+                v-if="errors.has('Title')"
+                class="form-errors">{{ errors.first('Title') }}
+              </div>
             </div>
             <!-- END:.form-element -->
               <div class="form-group">
@@ -174,17 +182,23 @@
 </template>
 
 <script>
-import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/eye'
+import 'vue-awesome/icons/upload'
+import FormMessages from '@/components/common/FormMessages'
+import forms from '@/mixins/forms'
 
 export default {
   name: 'add-article',
+  mixins: [forms],
   data () {
     return {
       formInfo: {
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptas tempore error quis recusandae perferendis aliquam, dolore alias, commodi natus labore dolorum obcaecati, voluptatibus sunt rem atque iusto odit, facere vel similique impedit. Qui, voluptas voluptatibus suscipit modi omnis harum, deserunt libero maxime natus, ad veniam inventore rerum velit numquam? Est obcaecati dolores laudantium dignissimos, saepe atque. Porro a dolorem tempora, ad vero rerum at. Nostrum provident sapiente praesentium atque, expedita alias, hic perspiciatis quae sed, aliquam beatae, rem optio magni perferendis quo numquam deleniti magnam. Tenetur vero expedita, aliquam, quis fugit laborum quisquam doloremque asperiores eligendi dolores facere maiores.'
       }
     }
+  },
+  components: {
+    FormMessages
   }
 }
 </script>
