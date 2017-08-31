@@ -30,8 +30,6 @@ Vue.use(VeeValidate)
 Vue.use(VueFroala)
 Vue.use(VueEditor)
 
-// Vue.http.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
