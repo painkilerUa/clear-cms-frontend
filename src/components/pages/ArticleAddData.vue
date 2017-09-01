@@ -5,6 +5,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    fields: {
+      type: Array,
+      default () { return [] }
     }
   },
   render: function (createElement) {
@@ -22,6 +26,14 @@ export default {
           },
           domProps: {
             innerText: this.title
+          }
+        }),
+        createElement('div', {
+          attrs: {
+            'class': 'form-elements'
+          },
+          domProps: {
+            innerHTML: this.title
           }
         })
       ]
