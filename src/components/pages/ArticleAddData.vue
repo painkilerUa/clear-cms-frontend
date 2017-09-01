@@ -1,11 +1,6 @@
 <script>
 export default {
   name: 'article-add-data',
-  data () {
-    return {
-      elementsCount: 1
-    }
-  },
   props: {
     title: {
       type: String,
