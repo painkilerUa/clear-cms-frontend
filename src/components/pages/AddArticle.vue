@@ -8,7 +8,7 @@
         <form-messages :messages="formServerMessages" class="text-left" />
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
-        <div class="add-article-details">
+        <div class="add-article-details">4
           <!-- .form-elements -->
           <div class="form-elements">
             <!-- .form-element -->
@@ -282,11 +282,12 @@
 
 <script>
 import api from '@/api'
+import forms from '@/mixins/forms'
 import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
 import FormMessages from '@/components/common/FormMessages'
-import forms from '@/mixins/forms'
+import ArticleAddData from '@/components/pages/ArticleAddData'
 
 export default {
   name: 'add-article',
@@ -439,7 +440,8 @@ export default {
     }
   },
   components: {
-    FormMessages
+    FormMessages,
+    ArticleAddData
   },
   mounted () {
     this.getTypes()
