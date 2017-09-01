@@ -259,7 +259,7 @@
               class="add-article-btn alignright">Add resource
             </button>
           </section>
-          <article-add-data :title="'Test Video'" />
+          <article-add-data :title="'Test Video'" :type="'video'" />
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->

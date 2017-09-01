@@ -6,6 +6,10 @@ export default {
       type: String,
       default: ''
     },
+    type: {
+      type: String,
+      default: ''
+    },
     fields: {
       type: Array,
       default () { return [] }
@@ -34,6 +38,15 @@ export default {
           },
           domProps: {
             innerHTML: this.title
+          }
+        }),
+        createElement('button', {
+          attrs: {
+            type: 'button',
+            class: 'add-article-btn alignright'
+          },
+          domProps: {
+            innerText: `Add ${this.type}`
           }
         })
       ]
