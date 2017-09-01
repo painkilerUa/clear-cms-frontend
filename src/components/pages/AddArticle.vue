@@ -341,6 +341,11 @@ export default {
       }
     }
   },
+  watch: {
+    'selectValues.type': function (value) {
+      alert(value)
+    }
+  },
   methods: {
     sendFormRequest () {
       this.selectType()
