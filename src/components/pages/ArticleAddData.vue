@@ -13,6 +13,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  render: function (createElement) {
+    return createElement(
+      'h', this.title
+    )
   }
 }
 </script>
