@@ -1,6 +1,11 @@
 <script>
 export default {
   name: 'article-add-data',
+  data () {
+    return {
+      elementsCount: 1
+    }
+  },
   props: {
     title: {
       type: String,
@@ -35,9 +40,6 @@ export default {
         createElement('div', {
           attrs: {
             'class': 'form-elements'
-          },
-          domProps: {
-            innerHTML: this.title
           }
         }),
         createElement('button', {
