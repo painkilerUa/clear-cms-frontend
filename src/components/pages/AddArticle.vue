@@ -342,7 +342,7 @@ export default {
     }
   },
   watch: {
-    'selectValues.type': function (value) {
+    'selectValues.type' (value) {
       alert(value)
     }
   },
