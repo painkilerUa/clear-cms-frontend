@@ -29,3 +29,5 @@ export default {
   }
 }
 </script>
+
+<style src='@/assets/scss/components/add-article.scss' lang='scss' scoped />
