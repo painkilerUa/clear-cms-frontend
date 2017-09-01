@@ -393,7 +393,7 @@ export default {
     addFormElement (type) {
       this.addElements[type] += 1
     },
-    onThumbnailFileChange: function () {
+    onThumbnailFileChange () {
       var input = document.getElementById('uploadThumbnail')
       if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
         this.isThumbnailFileUploaded = true
