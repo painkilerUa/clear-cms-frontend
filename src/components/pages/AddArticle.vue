@@ -358,7 +358,7 @@ export default {
       .catch((err) => { this.submitErrors(err.body.errors) })
     },
     sendTypeRequest (value) {
-      console.log(value)
+      console.log('sendTypeRequest', value)
     },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
