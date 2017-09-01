@@ -259,7 +259,7 @@
               class="add-article-btn alignright">Add resource
             </button>
           </section>
-          <article-add-data :title="'Test Video'" :type="'video'" :formFields="['input']"/>
+          <article-add-data :title="'Test Video'" :type="'video'" :formFields="additionalFormFields"/>
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
@@ -295,6 +295,14 @@ export default {
   mixins: [forms],
   data () {
     return {
+      additionalFormFields: [
+        {
+          tag: 'strong',
+          attrs: {
+            placeholder: 'Add Video'
+          }
+        }
+      ],
       selectValues: {
         type: null,
         tags: [],

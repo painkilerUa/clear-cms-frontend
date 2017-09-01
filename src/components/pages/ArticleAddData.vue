@@ -41,7 +41,11 @@ export default {
           attrs: {
             'class': 'form-elements'
           }
-        }),
+        }, [
+          this.formFields.forEach(function (el, index) {
+            createElement(el.tag, 'tag')
+          })
+        ]),
         createElement('button', {
           attrs: {
             type: 'button',
