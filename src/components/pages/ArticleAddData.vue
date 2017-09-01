@@ -21,6 +21,7 @@ export default {
     }
   },
   render: function (createElement) {
+    var self = this
     return createElement(
       'section',
       {
@@ -61,7 +62,7 @@ export default {
           },
           on: {
             click (event) {
-              console.log('add resource')
+              self.$emit('addNewFieldGroup', 'veee')
             }
           },
           domProps: {

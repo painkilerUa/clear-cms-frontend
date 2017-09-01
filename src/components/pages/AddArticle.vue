@@ -264,6 +264,7 @@
             :type="'video'"
             v-for="(item, i) in additionalFormFields"
             :key="i"
+            @addNewFieldGroup="addFieldGroup"
             :formFields="item.fields"/>
         </div>
         <!-- END:.add-article-sections -->
@@ -386,6 +387,9 @@ export default {
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
+    },
+    addFieldGroup (event) {
+      alert(event)
     },
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
