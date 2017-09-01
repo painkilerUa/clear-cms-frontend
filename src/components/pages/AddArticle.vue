@@ -343,7 +343,7 @@ export default {
   },
   watch: {
     'selectValues.type' (value) {
-      alert(value)
+      this.sendTypeRequest(value)
     }
   },
   methods: {
@@ -356,6 +356,9 @@ export default {
       this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
+    },
+    sendTypeRequest (value) {
+      alert(value)
     },
     getTypes () {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
