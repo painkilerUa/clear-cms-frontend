@@ -389,7 +389,14 @@ export default {
       .catch((err) => { this.submitErrors(err.body.errors) })
     },
     addFieldGroup (event) {
-      alert(event)
+      let elem = {
+        tag: 'input',
+        attrs: {
+          type: 'url',
+          placeholder: 'input value'
+        }
+      }
+      this.additionalFormFields[0].fields.push(elem)
     },
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
