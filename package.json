@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "node-sass": "^4.5.3",
     "vee-validate": "^2.0.0-rc.12",
     "velocity-animate": "^1.5.0",
     "vue": "^2.3.3",
