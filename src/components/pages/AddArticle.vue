@@ -309,6 +309,15 @@ export default {
                 type: 'url',
                 placeholder: 'input value'
               }
+            },
+            {
+              tag: 'textarea',
+              attrs: {
+                type: null,
+                cols: 5,
+                rows: 6,
+                placeholder: 'input value'
+              }
             }
           ]
         }

@@ -46,6 +46,8 @@ export default {
             return createElement(item.tag, {
               attrs: {
                 type: item.attrs.type,
+                cols: item.attrs.cols,
+                rows: item.attrs.rows,
                 placeholder: item.attrs.placeholder,
                 'class': 'form-control'
               }
