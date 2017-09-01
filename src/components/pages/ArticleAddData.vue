@@ -10,7 +10,7 @@ export default {
       type: String,
       default: ''
     },
-    fields: {
+    formFields: {
       type: Array,
       default () { return [] }
     }
