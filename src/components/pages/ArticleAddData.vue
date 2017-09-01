@@ -42,8 +42,14 @@ export default {
             'class': 'form-elements'
           }
         }, [
-          this.formFields.forEach(function (el, index) {
-            createElement(el.tag, 'tag')
+          this.formFields.map(function (item) {
+            return createElement(item.tag, {
+              attrs: {
+                type: item.attrs.type,
+                placeholder: item.attrs.placeholder,
+                'class': 'form-control'
+              }
+            })
           })
         ]),
         createElement('button', {

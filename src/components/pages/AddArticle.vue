@@ -297,8 +297,9 @@ export default {
     return {
       additionalFormFields: [
         {
-          tag: 'strong',
+          tag: 'input',
           attrs: {
+            type: 'url',
             placeholder: 'Add Video'
           }
         }
