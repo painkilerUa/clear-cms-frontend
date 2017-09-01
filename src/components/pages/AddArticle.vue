@@ -259,7 +259,11 @@
               class="add-article-btn alignright">Add resource
             </button>
           </section>
-          <article-add-data :title="'Test Video'" :type="'video'" :formFields="additionalFormFields"/>
+          <article-add-data
+            :title="'Test Video'"
+            :type="'video'"
+            v-for="item in additionalFormFields"
+            :formFields="item.fields"/>
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
@@ -297,11 +301,16 @@ export default {
     return {
       additionalFormFields: [
         {
-          tag: 'input',
-          attrs: {
-            type: 'url',
-            placeholder: 'Add Video'
-          }
+          title: 'test video',
+          fields: [
+            {
+              tag: 'input',
+              attrs: {
+                type: 'url',
+                placeholder: 'input value'
+              }
+            }
+          ]
         }
       ],
       selectValues: {
