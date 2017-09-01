@@ -276,6 +276,7 @@
       <!-- END:.add-article-body -->
     </form>
     <!-- END:.add-article-wrapper -->
+    <article-add-data :title="'title'" />
   </div>
   <!-- END:add-article -->
 </template>

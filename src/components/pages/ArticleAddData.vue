@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'article-add-data',
   props: {
     title: {
       type: String,
@@ -16,7 +17,7 @@ export default {
   },
   render: function (createElement) {
     return createElement(
-      'h', this.title
+      'h1', this.title
     )
   }
 }
