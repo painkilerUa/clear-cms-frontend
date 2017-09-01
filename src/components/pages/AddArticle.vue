@@ -8,7 +8,7 @@
         <form-messages :messages="formServerMessages" class="text-left" />
         <h2 class="add-article-section__title">Article details</h2>
         <!-- .add-article-details -->
-        <div class="add-article-details">4
+        <div class="add-article-details">
           <!-- .form-elements -->
           <div class="form-elements">
             <!-- .form-element -->
