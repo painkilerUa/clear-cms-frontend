@@ -262,7 +262,8 @@
           <article-add-data
             :title="'Test Video'"
             :type="'video'"
-            v-for="item in additionalFormFields"
+            v-for="(item, i) in additionalFormFields"
+            :key="i"
             :formFields="item.fields"/>
         </div>
         <!-- END:.add-article-sections -->

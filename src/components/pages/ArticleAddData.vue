@@ -59,6 +59,11 @@ export default {
             type: 'button',
             class: 'add-article-btn alignright'
           },
+          on: {
+            click (event) {
+              console.log('add resource')
+            }
+          },
           domProps: {
             innerText: `Add ${this.type}`
           }
