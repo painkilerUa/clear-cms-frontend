@@ -105,9 +105,9 @@
              <label :for="article.id">{{article.id}}</label>
            </td>
            <td class="cellpadding">{{article.content}}</td>
-           <td class="cellpadding">{{article.language}}</td>
+           <td class="cellpadding"></td>
            <td class="cellpadding">{{article.content_type.type}}</td>
-           <td class="cellpadding">{{article.tags[0]}}</td>
+           <td class="cellpadding">{{}}</td>
            <td class="cellpadding">Category lor..</td>
            <td class="cellpadding">Clear assured</td>
            <td class="cellpadding">Lorem ipsum.</td>
@@ -201,8 +201,13 @@ export default {
       })
       this.$http.get(`${queryString}`, api.headersAuthSettings)
         .then((res) => {
-          let resData = res.body.data
-          console.log('fetchContent', resData)
+          let resData = res.body.data.items
+          if (!resData) {
+            this.articles = []
+            return
+          }
+          this.articles = resData
+          console.log('fetchContent', res)
         })
         .catch((err) => console.error(err))
     }
