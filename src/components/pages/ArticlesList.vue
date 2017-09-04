@@ -50,22 +50,35 @@
            <th class="articles-list-search-col text-left">
              <div class="table-search-wrap">
                <input
+               v-model="filter.search"
+               @input="fetchContent"
                type="search"
                class="table-search"
                placeholder="Search in articles..." />
              </div>
            </th>
            <th>
-             <v-select placeholder="Lang" />
+             <v-select placeholder="Lang"
+             v-model="filter.lng"
+             :options="lngs"/>
            </th>
            <th>
-             <v-select placeholder="Type" />
+             <v-select placeholder="Type"
+             v-model="filter.contentType"
+             :options="getContentTypeForSelect"
+             :multiple="true"/>
            </th>
            <th>
-             <v-select placeholder="Topic" />
+             <v-select placeholder="Topic"
+             :options="getTagsForSelect"
+             v-model="filter.tags"
+             :multiple="true" />
            </th>
            <th>
-             <v-select placeholder="Categor" />
+             <v-select placeholder="Category"
+             :options="getCategoriesForSelect"
+             v-model="filter.category"
+             :multiple="true" />
            </th>
            <th>
              <v-select placeholder="Access" />
@@ -143,6 +156,7 @@ import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'articles-list',
@@ -150,8 +164,58 @@ export default {
     return {
       articles: [],
       getArticleListActions: ['Action 1', 'Action 2', 'Action 3'],
-      selectedAction: null
+      selectedAction: null,
+      lngs: ['English (UK)', 'English (US)'],
+      tags: [],
+      filter: {
+        search: '',
+        lng: null,
+        contentType: [],
+        tags: [],
+        category: [],
+        access: []
+      }
     }
+  },
+  methods: {
+    ...mapActions([
+      'getCategories'
+    ]),
+    fetchContent () {
+      console.log('fech content')
+      if (!this.filter.search) return
+      let queryString = `${api.URLS.search}`
+      Object.keys(this.filter).forEach((item) => {
+        let value = this.filter[item]
+        if (value && typeof (value) === 'string') {
+          queryString += `&search=${value}`
+          return
+        }
+        if (value !== null && typeof (value) === 'object' && value.length) {
+          let subString = ''
+          value.forEach((it) => {
+            subString += `&${item}[]=${it.value}`
+          })
+          queryString += subString
+        }
+      })
+      this.$http.get(`${queryString}`, api.headersAuthSettings)
+        .then((res) => {
+          let resData = res.body.data
+          console.log('fetchContent', resData)
+        })
+        .catch((err) => console.error(err))
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getContentTypeTitles',
+      'getCategoriesTitle',
+      'getTagTitles',
+      'getContentTypeForSelect',
+      'getTagsForSelect',
+      'getCategoriesForSelect'
+    ])
   },
   mounted () {
     this.$http.get(api.URLS.content, api.headersAuthSettings)
@@ -160,6 +224,7 @@ export default {
       console.log(res)
     })
     .catch((err) => console.log(err))
+    this.getCategories()
   }
 }
 </script>

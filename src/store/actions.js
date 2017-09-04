@@ -78,3 +78,11 @@ export const getRoles = ({ commit }, payload) => {
   .then((res) => commit('setRoles', res.body.items))
   .catch((err) => console.log(err))
 }
+
+export const getCategories = ({ commit }, payload) => {
+  const urlEnd = api.URLS.categories
+  const type = 'get'
+  api.requestToServer(urlEnd, type, payload)
+    .then((res) => commit('setCategories', res.body.items))
+    .catch((err) => console.log(err))
+}

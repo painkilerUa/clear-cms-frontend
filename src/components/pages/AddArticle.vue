@@ -276,7 +276,6 @@
       <!-- END:.add-article-body -->
     </form>
     <!-- END:.add-article-wrapper -->
-    <article-add-data :title="'title'" />
   </div>
   <!-- END:add-article -->
 </template>
@@ -320,7 +319,12 @@ export default {
       addElements: {
         video: 1,
         resource: 1
-      }
+      },
+      additionalForms: [
+        {
+          type: 'input'
+        }
+      ]
     }
   },
   computed: {
@@ -366,6 +370,7 @@ export default {
       this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
       .then((res) => {
         this.types = res.body.items
+        console.log('getTypes', res.body)
       })
       .catch((err) => console.log(err))
     },

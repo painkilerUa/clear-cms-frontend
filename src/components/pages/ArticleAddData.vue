@@ -9,7 +9,8 @@ export default {
   },
   render: function (createElement) {
     return createElement(
-      'h1', this.title
+      'h1',
+      this.title
     )
   }
 }

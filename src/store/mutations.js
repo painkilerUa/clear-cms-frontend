@@ -1,5 +1,6 @@
 export const setTypes = (state, types) => { state.types = types }
 export const setTags = (state, tags) => { state.tags = tags }
+export const setCategories = (state, categories) => { state.categories = categories }
 
 // auth
 export const authLogin = state => { state.auth.pending = true }
@@ -10,3 +11,5 @@ export const authLogout = state => { state.auth.isLoggedIn = false; state.auth.u
 
 export const setActions = (state, actions) => { state.actions = actions }
 export const setRoles = (state, roles) => { state.roles = roles }
+
+// Categories
