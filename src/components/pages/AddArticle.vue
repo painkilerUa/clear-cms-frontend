@@ -259,6 +259,13 @@
               class="add-article-btn alignright">Add resource
             </button>
           </section>
+          <article-add-data
+            :title="'Test Video'"
+            :type="'video'"
+            v-for="(item, i) in additionalFormFields"
+            :key="i"
+            @addNewFieldGroup="addFieldGroup"
+            :formFields="item.fields"/>
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
@@ -294,6 +301,29 @@ export default {
   mixins: [forms],
   data () {
     return {
+      additionalFormFields: [
+        {
+          title: 'test video',
+          fields: [
+            {
+              tag: 'input',
+              attrs: {
+                type: 'url',
+                placeholder: 'input value'
+              }
+            },
+            {
+              tag: 'textarea',
+              attrs: {
+                type: null,
+                cols: 5,
+                rows: 6,
+                placeholder: 'input value'
+              }
+            }
+          ]
+        }
+      ],
       selectValues: {
         type: null,
         tags: [],
@@ -363,6 +393,16 @@ export default {
       .then((res) => { console.log(res) })
       .catch((err) => { this.submitErrors(err.body.errors) })
     },
+    addFieldGroup (event) {
+      let elem = {
+        tag: 'input',
+        attrs: {
+          type: 'url',
+          placeholder: 'input value'
+        }
+      }
+      this.additionalFormFields[0].fields.push(elem)
+    },
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
     },
@@ -398,7 +438,7 @@ export default {
     addFormElement (type) {
       this.addElements[type] += 1
     },
-    onThumbnailFileChange: function () {
+    onThumbnailFileChange () {
       var input = document.getElementById('uploadThumbnail')
       if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
         this.isThumbnailFileUploaded = true
