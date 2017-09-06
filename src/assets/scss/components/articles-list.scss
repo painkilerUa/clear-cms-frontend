@@ -64,3 +64,41 @@
         }
     }
 }
+.wrap-confirmation-popup{
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+}
+.confirmation-popup{
+  margin: 200px auto;
+  width: 400px;
+  height: 180px;
+  padding: 20px;
+  background-color: #ededed;
+  .caption{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .body{
+    margin-bottom: 20px;
+  }
+  .wrap-button{
+    text-align: center;
+    span{
+      display: inline-block;
+      padding: 10px 20px;
+      cursor: pointer;
+      &:first-child {
+        background-color: grey;
+        margin-right: 10px;
+      }
+      &:last-child {
+        background-color: #5fb6ff;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+

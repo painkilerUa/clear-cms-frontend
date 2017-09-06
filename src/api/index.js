@@ -21,6 +21,7 @@ api.URLS = {
   forgotPassword: `${api.serverURL}/resetting/send-email`,
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',
+  contentType: `${api.serverURL}/api/v1/contentType/`,
   tags: '/api/v1/tags',
   categories: '/api/v1/categories',
   actionsURLS: {
