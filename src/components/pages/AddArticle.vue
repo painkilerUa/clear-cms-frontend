@@ -2,6 +2,15 @@
   <!-- add-article -->
   <div class="add-article">
     <h1 class="add-article-title">Add new article</h1>
+    <icon name="info-circle" aria-hidden="true" class="add-article-icon-info" data-description=""/>
+    <div class="add-article-tooltip">
+      <span>Use your keyboard for easily navigate between fields and make selection:</span>
+      <ul>
+        <li>use <span>TAB</span> to switch from one selector to the next one.</li>
+        <li>use <span>UP</span> and <span>DOWN</span> arrows to navigate through suggestions of a selector</li>
+        <li>use <span>ENTER</span> to select an option</li>
+      </ul>
+    </div>
     <!-- .add-article-wrapper -->
     <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
@@ -275,7 +284,7 @@
             <icon name="eye" />
             <span>Preview Article</span>
           </button>
-          <button type="button" class="action-btn action-btn--exit icon-btn">Exit without saving</button>
+          <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit without saving</button>
           <button type="button" class="action-btn action-btn--draft icon-btn">Save as draft</button>
           <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle">Publish article</button>
         </div>
@@ -294,6 +303,7 @@ import forms from '@/mixins/forms'
 import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
+import 'vue-awesome/icons/info-circle'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters } from 'vuex'
@@ -548,7 +558,8 @@ export default {
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
           console.log('publishArticle', res)
-          alert('Article has been successfully added')
+//          alert('Article has been successfully added')
+          this.$router.push('/admin/articles-list')
         })
         .catch((err) => console.log(err))
     },

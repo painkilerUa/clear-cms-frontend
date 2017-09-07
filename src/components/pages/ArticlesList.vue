@@ -66,7 +66,7 @@
               <div class="table-search-wrap">
                 <input
                   v-model="filter.search"
-                  @input="fetchContent"
+                  @change="search"
                   type="search"
                   class="table-search"
                   placeholder="Search in articles..." />
@@ -79,7 +79,7 @@
             </th>
             <th>
               <v-select placeholder="Type"
-                        v-model="filter.contentType"
+                        v-model="contentType"
                         :options="getContentTypeForSelect"
                         :multiple="true"/>
             </th>
@@ -159,6 +159,9 @@
         <!-- END:.table table-data -->
       </div>
       <!-- END:.articles-list-body -->
+      <!--<div class="wrap-loading-spiner">-->
+        <!--<span>Loading...</span>-->
+      <!--</div>-->
     </div>
     <!-- END:.articles-list -->
   </div>
@@ -196,14 +199,30 @@ export default {
         action: '',
         isShown: false,
         articleId: null
-      }
+      },
+      contentInfo: {
+        typeAutoLoad: 'allContent',
+        curPage: 1,
+        numPages: 1,
+        locked: false
+      },
+      contentType: []
     }
   },
   methods: {
     ...mapActions([
       'getCategories'
     ]),
-    fetchContent () {
+    search () {
+      if (!this.filter.search) {
+        this.contentInfo.typeAutoLoad = 'allContent'
+        this.fetchAllContentByScroll(1, 20)
+        return
+      }
+      this.contentInfo.typeAutoLoad = 'searchContent'
+      this.fetchSearchContent()
+    },
+    fetchSearchContent () {
       console.log('fech content')
       if (!this.filter.search) return
       let queryString = `${api.URLS.search}`
@@ -211,16 +230,16 @@ export default {
         let value = this.filter[item]
         if (value && typeof (value) === 'string') {
           queryString += `&search=${value}`
-          return
         }
         if (value !== null && typeof (value) === 'object' && value.length) {
           let subString = ''
           value.forEach((it) => {
-            subString += `&${item}[]=${it.value}`
+            subString += `&${item}=${it.value}`
           })
           queryString += subString
         }
       })
+      if (this.contentType.length) queryString += '&contentType=' + this.contentType[0].value
       this.$http.get(`${queryString}`, api.headersAuthSettings)
         .then((res) => {
           let resData = res.body.data.items
@@ -251,6 +270,7 @@ export default {
           break
       }
       function removeArticle (articleId) {
+        self.clearAction()
         self.$http.delete(api.URLS.content + '/' + articleId, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
@@ -258,6 +278,35 @@ export default {
           })
           .catch((err) => console.log(err))
       }
+    },
+    handleScroll (event) {
+      let scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight)
+      let scrolledValue = window.pageYOffset + window.innerHeight
+
+      if (scrolledValue > scrollHeight - 300) {
+        if (!this.contentInfo.locked) {
+          this.contentInfo.locked = true
+          if (this.contentInfo.typeAutoLoad === 'allContent') {
+            this.fetchAllContentByScroll(this.contentInfo.curPage++, 20)
+          }
+        }
+      }
+    },
+    fetchAllContentByScroll (page, limit) {
+      this.$http.get(api.URLS.content + '?page=' + page + '&limit=' + limit, api.headersAuthSettings)
+        .then((res) => {
+          this.contentInfo.curPage = res.body.current_page_number
+          this.articles = [...this.articles, ...res.body.items]
+          this.contentInfo.locked = false
+          console.log(res)
+        })
+        .catch((err) => {
+          this.contentInfo.locked = false
+          console.log(err)
+        })
     }
   },
   computed: {
@@ -270,14 +319,18 @@ export default {
       'getCategoriesForSelect'
     ])
   },
+  watch: {
+    contentType: function () {
+      this.search()
+    }
+  },
   mounted () {
-    this.$http.get(api.URLS.content, api.headersAuthSettings)
-    .then((res) => {
-      this.articles = res.body.items
-      console.log(res)
-    })
-    .catch((err) => console.log(err))
+    this.fetchAllContentByScroll(1, 20)
     this.getCategories()
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
