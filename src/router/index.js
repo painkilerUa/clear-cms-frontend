@@ -12,7 +12,9 @@ import Reset from '@/components/pages/ResetPassword/Reset'
 import Content from '@/components/pages/Content'
 import ArticlesList from '@/components/pages/ArticlesList'
 import Article from '@/components/pages/Article'
+import CategoriesList from '@/components/pages/CategoriesList'
 import AddArticle from '@/components/pages/AddArticle'
+import EditArticle from '@/components/pages/EditArticle'
 import Error from '@/components/pages/Error'
 
 Vue.use(Router)
@@ -72,8 +74,18 @@ const router = new Router({
               path: 'add',
               name: 'add-article',
               component: AddArticle
+            },
+            {
+              path: 'edit/:id',
+              name: 'edit-article',
+              component: EditArticle
             }
           ]
+        },
+        {
+          path: 'categories',
+          name: 'categories',
+          component: CategoriesList
         }
       ]
     },

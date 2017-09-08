@@ -16,6 +16,10 @@
 				<li>
 					<router-link :to="{name: 'articles-list'}">Articles List</router-link>
 				</li>
+        <br />
+        <li>
+          <router-link :to="{name: 'categories'}">Categories</router-link>
+        </li>
 				<br />
 				<li>
 					<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>

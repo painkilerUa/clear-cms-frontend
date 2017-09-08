@@ -66,7 +66,7 @@
               <div class="table-search-wrap">
                 <input
                   v-model="filter.search"
-                  @change="search"
+                  @input="search"
                   type="search"
                   class="table-search"
                   placeholder="Search in articles..." />
@@ -134,8 +134,10 @@
             <td class="cellpadding">
               <button
                 type="button"
-                class="table-crud-btn icon-btn">
+                class="table-crud-btn icon-btn"
+                @click="editArticle(article.id)">
                 <icon name="pencil"/>
+
               </button>
             </td>
             <td class="cellpadding">
@@ -307,6 +309,9 @@ export default {
           this.contentInfo.locked = false
           console.log(err)
         })
+    },
+    editArticle (id) {
+      this.$router.push({path: `/admin/article/edit/${id}`})
     }
   },
   computed: {

@@ -1,0 +1,136 @@
+.categories-list{
+  display: inline-block;
+  width: 58%;
+  margin-right: 2%;
+  padding: 30px;
+  vertical-align: top;
+  background-color: #F4F4F4;
+  h2 {
+    font-size: 20px;
+    line-height:24px;
+  }
+}
+.wrap-add-category-form {
+  display: inline-block;
+  width: 38%;
+  margin-left: 2%;
+  padding: 30px;
+  vertical-align: top;
+  background-color: #F4F4F4;
+  h3 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .input-grout {
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+  .select-grout {
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+  .textarea-group{
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+  .input-category-name {
+    width: 100%;
+    height: 30px;
+  }
+  textarea {
+    width: 100%;
+  }
+}
+.wrap-categories-list{
+  width: 1300px;
+  margin: 0 auto;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: top;
+  h1 {
+    font-size: 24px;
+    line-height:28px;
+  }
+}
+.categories-list-actions{
+  display: inline-block;
+  width: 300px;
+  height: 40px;
+  .categories-list-inputwrap{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+}
+.categories-list-body{
+  font-size: 14px;
+  line-height: 16px;
+  background-color: #fff;
+}
+.categories-list-search-col{
+  width: 300px;
+}
+input.table-search {
+  height: 35px;
+}
+.wrap-control-panel{
+  button {
+    display: block;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .btn-cancel{
+    float: left;
+    width: 100px;
+    height: 40px;
+    background-color: #D5D5D5;
+  }
+  .btn-conf {
+    float: right;
+    width: 150px;
+    height: 40px;
+    background-color: #282F54;
+    color: #fff;
+  }
+}
+.wrap-confirmation-popup{
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+}
+.confirmation-popup{
+  margin: 200px auto;
+  width: 400px;
+  height: 180px;
+  padding: 20px;
+  background-color: #F3F3F3;
+  .caption{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .body{
+    margin-bottom: 20px;
+  }
+  .wrap-button{
+    text-align: center;
+    span{
+      display: inline-block;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #fff;
+      &:first-child {
+        background-color: #555555;
+        margin-right: 10px;
+      }
+      &:last-child {
+        background-color: #0a4bb7;
+        margin-left: 10px;
+      }
+    }
+  }
+}

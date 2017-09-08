@@ -24,6 +24,8 @@ api.URLS = {
   contentType: `${api.serverURL}/api/v1/contentType/`,
   tags: '/api/v1/tags',
   categories: '/api/v1/categories',
+  categories1: `${api.serverURL}/api/v1/categories`,
+  category: `${api.serverURL}/api/v1/category`,
   actionsURLS: {
     actions: '/api/v1/get-actions',
     permissions: `/api/v1/permissions`,

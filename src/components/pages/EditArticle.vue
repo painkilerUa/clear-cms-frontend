@@ -1,15 +1,14 @@
 <template>
   <!-- add-article -->
   <div class="add-article">
-    <h1 class="add-article-title">Add new article</h1>
-    <icon name="info-circle" aria-hidden="true" class="add-article-icon-info" data-description=""/>
-    <div class="add-article-tooltip">
-      <span>Use your keyboard for easily navigate between fields and make selection:</span>
-      <ul>
-        <li>use <span>TAB</span> to switch from one selector to the next one.</li>
-        <li>use <span>UP</span> and <span>DOWN</span> arrows to navigate through suggestions of a selector</li>
-        <li>use <span>ENTER</span> to select an option</li>
-      </ul>
+    <div class="wrap-title">
+      <div class="title">
+        <h1>{{article.title}}</h1>
+      </div>
+      <div class="control-panel">
+        <span>Archive article</span>
+        <span>Delete article</span>
+      </div>
     </div>
     <!-- .add-article-wrapper -->
     <form class="add-article-wrapper form" @submit.prevent="submit">
@@ -27,7 +26,7 @@
               id="addTitle"
               type="text"
               name="Title"
-              v-model="selectedValues.title"
+              v-model="article.title"
               data-vv-as='"Title"'
               v-validate="'required'"
               placeholder="Type in to add title..."
@@ -43,7 +42,6 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Language</label>
                   <v-select
-                  v-model="selectedValues.lng"
                   :options="languages"
                   name="Language"
                   data-vv-as="Language"
@@ -63,7 +61,7 @@
                   :options="getContentTypeTitles"
                   v-validate="'required'"
                   placeholder="Select"
-                  :on-change="getSubFormFields" />
+                  v-model="article.contentType"/>
                   <div
                     v-if="errors.has('Type')"
                     class="form-errors">{{ errors.first('Type') }}
@@ -77,7 +75,7 @@
                   name="Topic"
                   data-vv-as='"Topic"'
                   :options="getTagsForSelect"
-                  v-model="selectedValues.tags"
+                  v-model="article.tags"
                   v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
@@ -94,7 +92,7 @@
                   name="Category"
                   data-vv-as='"Category"'
                   :options="getTagsForSelect"
-                  v-model="selectedValues.categories"
+                  v-model="article.categories"
                   v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
@@ -110,7 +108,7 @@
                   <v-select
                   name="Access"
                   :options="getRoleTitles"
-                  v-model="selectedValues.roles"
+                  v-model="article.roles"
                   v-validate="'required'"
                   :multiple="true"
                   data-vv-as='"Access"'
@@ -146,7 +144,7 @@
                 @change="onThumbnailFileChange($event)"
                 class="form-control form-control--file" />
             </label>
-            <img id="thumbnailFilePreview" v-if="isThumbnailFileUploaded" src="" />
+            <img id="thumbnailFilePreview" v-if="isThumbnailFileUploaded" :src="srcImagePreview" />
             <div
               v-if="errors.has('Thumbnail')"
               class="form-errors">{{ errors.first('Thumbnail') }}
@@ -175,14 +173,28 @@
               class="article-editor"
               data-vv-as='"Content"'
               v-validate="'required'"
-              v-model="selectedValues.content" />
+              v-model="article.content" />
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}
             </div>
           </section>
-          <section class="add-article-section" v-if="subForm.type === 'video'">
+          <section class="add-article-section" v-if="article.contentType.label === 'video'">
             <h2 class="add-article-section__title">Article video</h2>
+            <div class="wrap-existing-resources">
+              <div class="existing-resource" v-for="(resource, i) in existingResources">
+                <div class="wrap-control">
+                  <!--<span>Delete</span>-->
+                </div>
+                <h4>Attachment {{i +1}}: URL and transcript</h4>
+                <div class="wrap-link">
+                  <span class="link">{{resource.link}}</span>
+                </div>
+                <div class="wrap-textarea">
+                  <textarea name="textarea" id="" cols="30" rows="5" :value="resource.textarea"></textarea>
+                </div>
+              </div>
+            </div>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.video">
               <!-- .form-element -->
@@ -215,7 +227,7 @@
               class="add-article-btn alignright">Add video
             </button>
           </section>
-          <section class="add-article-section" v-if="subForm.type === 'case_study'">
+          <section class="add-article-section" v-if="article.contentType.label === 'case_study'">
             <h2 class="add-article-section__title">Article Case Study</h2>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.case_study">
@@ -239,7 +251,7 @@
               class="add-article-btn alignright">Add element
             </button>
           </section>
-          <section class="add-article-section" v-if="subForm.type === 'screen_text'">
+          <section class="add-article-section" v-if="article.contentType.label === 'screen_text'">
             <h2 class="add-article-section__title">Article Screen Text</h2>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.screen_text">
@@ -263,7 +275,7 @@
               class="add-article-btn alignright">Add element
             </button>
           </section>
-          <section class="add-article-section" v-if="subForm.type === 'resource'">
+          <section class="add-article-section" v-if="article.contentType.label === 'resource'">
             <h2 class="add-article-section__title">Article resources</h2>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.resource">
@@ -332,9 +344,8 @@
             <icon name="eye" />
             <span>Preview Article</span>
           </button>
-          <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit without saving</button>
-          <button type="button" class="action-btn action-btn--draft icon-btn">Save as draft</button>
-          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle">Publish article</button>
+          <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit / Discard changes</button>
+          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="editArticle">Save changes & publish</button>
         </div>
         <!-- END:.add-article-actions -->
       </div>
@@ -361,68 +372,32 @@ export default {
   mixins: [forms],
   data () {
     return {
-      additionalFormFields: [
-        {
-          title: 'test video',
-          fields: [
-            {
-              tag: 'input',
-              attrs: {
-                type: 'url',
-                placeholder: 'input value'
-              }
-            },
-            {
-              tag: 'textarea',
-              attrs: {
-                type: null,
-                cols: 5,
-                rows: 6,
-                placeholder: 'input value'
-              }
-            }
-          ]
-        }
-      ],
-      selectedValues: {
+      articleId: this.$route.params.id,
+      article: {
         title: '',
-        content: '',
-        isActive: 1,
-        description: 'description',
-        contentType: null,
+        contentType: [],
         tags: [],
         categories: [],
         roles: [],
-        lng: null
+        content: '',
+        createdAt: '2017-08-05 11:45:43',
+        updatedAt: '2017-08-05 11:45:43',
+        publishedAt: '2017-08-05 11:45:43',
+        isActive: 1
       },
-      formInfo: {
-        title: '',
-        thumbnail: null,
-        language: null,
-        contentType: null,
-        tags: [],
-        access: [],
-        categories: [],
-        companySpecific: null,
-        content: ''
-      },
+      srcImagePreview: '',
+      existingResources: [],
       languages: ['English (UK)', 'English (US)'],
       tags: [],
       categories: [],
       roles: [],
-      isThumbnailFileUploaded: false,
+      isThumbnailFileUploaded: true,
       addElements: {
         video: 1,
         resource: 1,
         case_study: 1,
         screen_text: 1
       },
-      additionalForms: [
-        {
-          type: 'input'
-        }
-      ],
-      formData: new FormData(),
       subForm: {
         type: ''
       }
@@ -563,83 +538,47 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    publishArticle () {
+    editArticle () {
       let formData = new FormData()
-//      Object.keys(this.selectedValues).forEach((key) => {
-//        let fieldName = 'content[' + key + ']'
-//        formData.set(fieldName, this.selectedValues[key])
+//      Object.keys(this.article).forEach((fieldName) => {
+//        if (typeof this.article[fieldName] === 'string' || typeof this.article[fieldName] === 'number') {
+//          formData.set('category[' + fieldName + ']', this.article[fieldName])
+//        }
+//        if (typeof this.article[fieldName] === 'object') {
+//          this.article[fieldName].forEach((item, i) => {
+//            formData.set('category[' + fieldName + '][' + i + ']', item.value)
+//          })
+//        }
 //      })
-      formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
-      formData.set('content[title]', this.selectedValues.title)
-      formData.set('content[content]', this.selectedValues.content)
-      formData.set('content[description]', this.selectedValues.description)
-      formData.set('content[contentType]', this.selectedValues.contentType)
+      formData.set('content[title]', this.article.title)
+      formData.set('content[content]', this.article.content)
+      formData.set('content[description]', this.article.description)
+      formData.set('content[contentType]', this.article.contentType.value)
       formData.set('content[createdAt]', '2017-08-05 11:45:43')
       formData.set('content[updatedAt]', '2017-08-05 11:45:43')
       formData.set('content[publishedAt]', '2017-08-05 11:45:43')
-      formData.set('content[isActive]', this.selectedValues.isActive)
+      formData.set('content[isActive]', this.article.isActive)
 //  Add categories
-      this.selectedValues.categories.forEach((category, i) => {
+      this.article.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
         formData.set(fieldName, category.value)
       })
 //  Add tags
-      this.selectedValues.tags.forEach((tag, i) => {
+      this.article.tags.forEach((tag, i) => {
         let fieldName = 'content[tags][' + i + ']'
         formData.set(fieldName, tag.value)
       })
-      if (this.subForm.type === 'resource') {
-        let urls = [...document.getElementsByClassName('input-url-resource')]
-        let textareas = [...document.getElementsByClassName('input-textarea-resource')]
-        let files = [...document.getElementsByClassName('input-file-resource')]
-        if (!urls.length || !textareas.length || !files.length) return
-        urls.forEach((url, i) => {
-          formData.set('content[typeValues][' + i + '][link]', url.value)
-          if (!url.value) return
-        })
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-        files.forEach((file, i) => {
-          formData.set('content[typeValues][' + i + '][file]', file.files[0])
-          if (!file.files[0]) return
-        })
-        console.log(urls, textareas, files)
+      if (document.getElementById('uploadThumbnail').files[0]) {
+        formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
       }
-      if (this.subForm.type === 'video') {
-        let urls = [...document.getElementsByClassName('input-url-video')]
-        let textareas = [...document.getElementsByClassName('input-textarea-video')]
-        if (!urls.length || !textareas.length) return
-        urls.forEach((url, i) => {
-          formData.set('content[typeValues][' + i + '][link]', url.value)
-          if (!url.value) return
+      this.existingResources.forEach((item, i) => {
+        Object.keys(item).forEach((key) => {
+          formData.set('content[typeValues][' + i + '][' + key + ']', item[key])
         })
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-      }
-      if (this.subForm.type === 'screen_text') {
-        let textareas = [...document.getElementsByClassName('input-textarea-screen-text')]
-        if (!textareas.length) return
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-      }
-      if (this.subForm.type === 'case_study') {
-        let textareas = [...document.getElementsByClassName('input-textarea-case-study')]
-        if (!textareas.length) return
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-      }
-      this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
+      })
+      this.$http.post(api.URLS.content + '/' + this.articleId, formData, api.headersAuthSettings)
         .then((res) => {
-          console.log('publishArticle', res)
-//          alert('Article has been successfully added')
+          console.log('editArticle', res)
           this.$router.push('/admin/articles-list')
         })
         .catch((err) => console.log(err))
@@ -654,6 +593,34 @@ export default {
           console.log('getSubFormFields', res)
         })
         .catch((err) => console.log(err))
+    },
+    getArticleById (id) {
+      this.$http.get(api.URLS.content + '/' + id, api.headersAuthSettings)
+        .then((res) => {
+          this.article.title = res.body.title
+          this.article.contentType = {
+            label: res.body.content_type.type,
+            value: res.body.content_type.id
+          }
+          res.body.tags.forEach((tag) => {
+            this.article.tags.push({
+              label: tag.name,
+              value: tag.id
+            })
+          })
+          res.body.categories.forEach((category) => {
+            this.article.categories.push({
+              label: category.title,
+              value: category.id
+            })
+          })
+          this.article.content = res.body.content
+          this.existingResources = res.body.formResource
+// File preview
+          this.srcImagePreview = 'http://13.59.74.76' + res.body.image_path
+          console.log('getArticleById', res)
+        })
+        .catch((err) => console.log(err))
     }
   },
   components: {
@@ -661,12 +628,9 @@ export default {
     ArticleAddData
   },
   mounted () {
-    this.getTypes()
-    this.getTags()
-    this.getCategories()
-    this.getRoles()
+    this.getArticleById(this.$route.params.id)
   }
 }
 </script>
 
-<style src='@/assets/scss/components/add-article.scss' lang='scss' scoped />
+<style src='@/assets/scss/components/edit-article.scss' lang='scss' scoped />
