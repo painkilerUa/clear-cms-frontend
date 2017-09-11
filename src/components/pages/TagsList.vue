@@ -15,9 +15,9 @@
       </div>
     </div>
     <div class="wrap-categories-list">
-      <h1>Categories in "Topic"</h1>
+      <h1>Tags in "Topic"</h1>
       <div class="categories-list">
-        <h2>List with categories</h2>
+        <h2>List with tags</h2>
         <!--<div class="categories-list-actions">-->
           <!--<div class="categories-list-inputwrap">-->
             <!--<input type="checkbox" class="categories-list-input" />-->
@@ -38,28 +38,19 @@
                   <input
                     type="search"
                     class="table-search"
-                    placeholder="Search in categories..." />
+                    placeholder="Search in tags..." />
                 </div>
-              </th>
-              <th>
-                <v-select placeholder="Parent"
-                />
-              </th>
-              <th>
-                No of articles
               </th>
               <th colspan="2" class="cellpadding">Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="category in categories">
+            <tr v-for="tag in tags">
               <td class="text-center cellpadding">
-                <input type="checkbox" :id="category.id"/>
-                <label :for="category.id">{{category.id}}</label>
+                <input type="checkbox" :id="tag.id"/>
+                <label :for="tag.id">{{tag.id}}</label>
               </td>
-              <td class="cellpadding">{{category.title}}</td>
-              <td class="cellpadding"></td>
-              <td class="cellpadding">{{category.contents.length}}</td>
+              <td class="cellpadding">{{tag.name}}</td>
               <td class="cellpadding">
                 <button
                   type="button"
@@ -71,7 +62,7 @@
                 <button
                   type="button"
                   class="table-crud-btn icon-btn"
-                  @click="initAction('removeCategory', category.id)">
+                  @click="initAction('removeTag', tag.id)">
                   <icon name="times" />
                 </button>
               </td>
@@ -81,33 +72,21 @@
         </div>
       </div>
       <div class="wrap-add-category-form">
-        <h3>Add new category</h3>
+        <h3>Add new tag</h3>
         <div class="input-grout">
-          <label for="input-category-name">Category Name</label>
+          <label for="input-tag-name">Tag Name</label>
           <div class="wrap-input">
-            <input type="text" id="input-category-name" class="input-category-name" placeholder="Write category name" v-model="newCategory.title"/>
-          </div>
-        </div>
-        <div class="select-grout">
-          <label for="select-parent-category">Parent</label>
-          <div class="wrap-select">
-            <v-select
-              placeholder="Select parent category (optional)"
-              id="select-parent-category"
-              :option="getTagsForSelect"
-              :multiple="true"
-              v-model="newCategory.parent"/>
+            <input type="text" id="input-tag-name" class="input-category-name" placeholder="Write tag name" v-model="newTag.name"/>
           </div>
         </div>
         <div class="textarea-group">
-          <label for="textarea-category-desc">Category description</label>
+          <label for="textarea-tag-desc">Tag description</label>
           <div class="wrap-textarea">
-            <textarea name="category-desc" id="textarea-category-desc" cols="30" rows="10" v-model="newCategory.description"></textarea>
+            <textarea name="category-desc" id="textarea-tag-desc" cols="30" rows="10" v-model="newTag.description"></textarea>
           </div>
         </div>
         <div class="wrap-control-panel">
-          <button type="button" class="btn-cancel">Cancel</button>
-          <button type="button" class="btn-conf" @click="createCategory"> + Create category</button>
+          <button type="button" class="btn-conf" @click="createTag"> + Create tag</button>
         </div>
       </div>
 
@@ -127,10 +106,10 @@ import 'vue-awesome/icons/chevron-down'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'articles-list',
+  name: 'tags',
   data () {
     return {
-      categories: [],
+      tags: [],
       confirmation: {
         action: '',
         isShown: false,
@@ -142,20 +121,18 @@ export default {
         numPages: 1,
         locked: false
       },
-      newCategory: {
-        title: '',
+      newTag: {
+        name: '',
         isActive: 1,
         description: '',
         createdAt: '2017-08-05 11:45:43',
-        updatedAt: '2017-08-05 11:45:43',
-        parent: ''
+        updatedAt: '2017-08-05 11:45:43'
       }
     }
   },
   methods: {
     ...mapActions([
-      'getCategories',
-      'getCategories'
+      'getTags'
     ]),
     search () {
       if (!this.filter.search) {
@@ -243,11 +220,11 @@ export default {
     fetchAllContentByScroll (page, limit) {
       if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
       this.contentAutoloadInfo.locked = true
-      this.$http.get(api.URLS.categories1 + '?limit=' + limit + '&page=' + page, api.headersAuthSettings)
+      this.$http.get(api.URLS.tags1 + '?limit=' + limit + '&page=' + page, api.headersAuthSettings)
         .then((res) => {
           this.contentAutoloadInfo.curPage = res.body.current_page_number
           this.contentAutoloadInfo.numPages = Math.ceil(res.body.total_count / limit)
-          this.categories = [...this.categories, ...res.body.items]
+          this.tags = [...this.tags, ...res.body.items]
           this.contentAutoloadInfo.locked = false
           console.log(res)
         })
@@ -256,42 +233,37 @@ export default {
           console.log(err)
         })
     },
-    createCategory () {
-      if (!this.newCategory.title || !this.newCategory.description) return
+    createTag () {
+      if (!this.newTag.name || !this.newTag.description) return
       let formData = new FormData()
-      Object.keys(this.newCategory).forEach((fieldName) => {
-        if (typeof this.newCategory[fieldName] === 'string' || typeof this.newCategory[fieldName] === 'number') {
-          formData.set('category[' + fieldName + ']', this.newCategory[fieldName])
+      Object.keys(this.newTag).forEach((fieldName) => {
+        if (typeof this.newTag[fieldName] === 'string' || typeof this.newTag[fieldName] === 'number') {
+          formData.set('category[' + fieldName + ']', this.newTag[fieldName])
         }
-        if (typeof this.newCategory[fieldName] === 'object') {
-          this.newCategory[fieldName].forEach((item, i) => {
+        if (typeof this.newTag[fieldName] === 'object') {
+          this.newTag[fieldName].forEach((item, i) => {
             formData.set('category[' + fieldName + '][' + i + ']', item.value)
           })
         }
       })
-      this.$http.post(api.URLS.category, formData, api.headersAuthSettings)
+      this.$http.post(api.URLS.tag, formData, api.headersAuthSettings)
         .then((res) => {
-          console.log('createCategory', res)
-          alert('Category has been successfully added')
+          console.log('createTag', res)
+          alert('Tag has been successfully added')
         })
         .catch((err) => console.log(err))
     }
   },
   computed: {
     ...mapGetters([
-      'getCategoriesTitle',
-      'getCategoriesForSelect',
       'getTagsForSelect'
     ])
   },
-  watch: {
-    contentType: function () {
-      this.search()
-    }
-  },
+//  watch: {
+//  },
   mounted () {
     this.fetchAllContentByScroll(1, 20)
-    this.getCategories()
+    this.getTags()
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {

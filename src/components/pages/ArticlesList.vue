@@ -65,8 +65,8 @@
             <th class="articles-list-search-col text-left">
               <div class="table-search-wrap">
                 <input
-                  v-model="filter.search"
-                  @input="search"
+                  v-model="search"
+                  @input="mainSearch(1, 20)"
                   type="search"
                   class="table-search"
                   placeholder="Search in articles..." />
@@ -74,7 +74,6 @@
             </th>
             <th>
               <v-select placeholder="Lang"
-                        v-model="filter.lng"
                         :options="lngs"/>
             </th>
             <th>
@@ -86,13 +85,13 @@
             <th>
               <v-select placeholder="Topic"
                         :options="getTagsForSelect"
-                        v-model="filter.tags"
+                        v-model="tags"
                         :multiple="true" />
             </th>
             <th>
               <v-select placeholder="Category"
                         :options="getCategoriesForSelect"
-                        v-model="filter.category"
+                        v-model="categories"
                         :multiple="true" />
             </th>
             <th>
@@ -188,42 +187,35 @@ export default {
       getArticleListActions: ['Action 1', 'Action 2', 'Action 3'],
       selectedAction: null,
       lngs: ['English (UK)', 'English (US)'],
-      tags: [],
-      filter: {
-        search: '',
-        lng: null,
-        contentType: [],
-        tags: [],
-        category: [],
-        access: []
-      },
       confirmation: {
         action: '',
         isShown: false,
         articleId: null
       },
-      contentInfo: {
-        typeAutoLoad: 'allContent',
+      contentAutoloadInfo: {
         curPage: 1,
         numPages: 1,
         locked: false
       },
-      contentType: []
+      search: '',
+      contentType: [],
+      tags: [],
+      categories: []
     }
   },
   methods: {
     ...mapActions([
       'getCategories'
     ]),
-    search () {
-      if (!this.filter.search) {
-        this.contentInfo.typeAutoLoad = 'allContent'
-        this.fetchAllContentByScroll(1, 20)
-        return
-      }
-      this.contentInfo.typeAutoLoad = 'searchContent'
-      this.fetchSearchContent()
-    },
+//    search () {
+//      if (!this.filter.search) {
+//        this.contentInfo.typeAutoLoad = 'allContent'
+//        this.fetchAllContentByScroll(1, 20)
+//        return
+//      }
+//      this.contentInfo.typeAutoLoad = 'searchContent'
+//      this.fetchSearchContent()
+//    },
     fetchSearchContent () {
       console.log('fech content')
       if (!this.filter.search) return
@@ -282,20 +274,23 @@ export default {
       }
     },
     handleScroll (event) {
-      let scrollHeight = Math.max(
-        document.body.scrollHeight, document.documentElement.scrollHeight,
-        document.body.offsetHeight, document.documentElement.offsetHeight,
-        document.body.clientHeight, document.documentElement.clientHeight)
-      let scrolledValue = window.pageYOffset + window.innerHeight
+//      let scrollHeight = Math.max(
+//        document.body.scrollHeight, document.documentElement.scrollHeight,
+//        document.body.offsetHeight, document.documentElement.offsetHeight,
+//        document.body.clientHeight, document.documentElement.clientHeight)
+//      let fullScrolledValue = window.pageYOffset + window.innerHeight
 
-      if (scrolledValue > scrollHeight - 300) {
-        if (!this.contentInfo.locked) {
-          this.contentInfo.locked = true
-          if (this.contentInfo.typeAutoLoad === 'allContent') {
-            this.fetchAllContentByScroll(this.contentInfo.curPage++, 20)
-          }
-        }
-      }
+//      if (fullScrolledValue > scrollHeight - 200) {
+//        if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
+//        this.contentAutoloadInfo.locked = true
+//        this.fetchAllContentByScroll(++this.contentAutoloadInfo.curPage, 20)
+//        if (!this.contentInfo.locked) {
+//          this.contentInfo.locked = true
+//          if (this.contentInfo.typeAutoLoad === 'allContent') {
+//            this.fetchAllContentByScroll(this.contentInfo.curPage++, 20)
+//          }
+//        }
+//      }
     },
     fetchAllContentByScroll (page, limit) {
       this.$http.get(api.URLS.content + '?page=' + page + '&limit=' + limit, api.headersAuthSettings)
@@ -312,6 +307,62 @@ export default {
     },
     editArticle (id) {
       this.$router.push({path: `/admin/article/edit/${id}`})
+    },
+    mainSearch (page, limit) {
+      if (!this.search) {
+        this.searchByParams(1, 20)
+        return
+      }
+      let subTag = ''
+      this.tags.forEach((tag, i) => {
+        subTag += `&tags[${i}]=${tag.value}`
+      })
+      let subCategories = ''
+      this.categories.forEach((category, i) => {
+        subCategories += `&category[${i}]=${category.value}`
+      })
+      let subContentType = ''
+      if (this.contentType.length) {
+        subContentType = `&contentType=${this.contentType[0].value}`
+      }
+      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories}&page=${page}&limit=${limit}`
+      this.$http.get(urlString, api.headersAuthSettings)
+        .then((res) => {
+//          this.contentInfo.curPage = res.body.current_page_number
+          if (page === 1) {
+            this.articles = res.body.data.items ? res.body.data.items : []
+          } else {
+            this.articles = [...this.articles, ...res.body.items]
+          }
+//          this.contentInfo.locked = false
+          console.log('mainSearch', res)
+        })
+        .catch((err) => {
+//          this.contentInfo.locked = false
+          console.log(err)
+        })
+    },
+    searchByParams (page, limit) {
+      let body = {
+        contentType: this.contentType.map((item) => item.value),
+        tags: this.tags.map((item) => item.value),
+        categories: this.categories.map((item) => item.value)
+      }
+      this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
+        .then((res) => {
+//          this.contentInfo.curPage = res.body.current_page_number
+          if (page === 1) {
+            this.articles = res.body.items
+          } else {
+            this.articles = [...this.articles, ...res.body.items]
+          }
+//          this.contentInfo.locked = false
+          console.log('searchByParams', res)
+        })
+        .catch((err) => {
+//          this.contentInfo.locked = false
+          console.log(err)
+        })
     }
   },
   computed: {
@@ -325,12 +376,18 @@ export default {
     ])
   },
   watch: {
-    contentType: function () {
-      this.search()
+    contentType () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    categories () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    tags () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     }
   },
   mounted () {
-    this.fetchAllContentByScroll(1, 20)
+    this.searchByParams(1, 20)
     this.getCategories()
     window.addEventListener('scroll', this.handleScroll)
   },

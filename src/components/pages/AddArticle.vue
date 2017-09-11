@@ -93,7 +93,7 @@
                   <v-select
                   name="Category"
                   data-vv-as='"Category"'
-                  :options="getTagsForSelect"
+                  :options="getCategoriesForSelect"
                   v-model="selectedValues.categories"
                   v-validate="'required'"
                   :multiple="true"
@@ -387,7 +387,7 @@ export default {
       selectedValues: {
         title: '',
         content: '',
-        isActive: 1,
+        status: 1,
         description: 'description',
         contentType: null,
         tags: [],
@@ -577,7 +577,7 @@ export default {
       formData.set('content[createdAt]', '2017-08-05 11:45:43')
       formData.set('content[updatedAt]', '2017-08-05 11:45:43')
       formData.set('content[publishedAt]', '2017-08-05 11:45:43')
-      formData.set('content[isActive]', this.selectedValues.isActive)
+      formData.set('content[status]', this.selectedValues.status)
 //  Add categories
       this.selectedValues.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'

@@ -21,6 +21,10 @@
           <router-link :to="{name: 'categories'}">Categories</router-link>
         </li>
 				<br />
+        <li>
+          <router-link :to="{name: 'tags'}">Tags</router-link>
+        </li>
+        <br />
 				<li>
 					<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>
 				</li>

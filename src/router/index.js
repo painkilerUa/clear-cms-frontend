@@ -13,6 +13,7 @@ import Content from '@/components/pages/Content'
 import ArticlesList from '@/components/pages/ArticlesList'
 import Article from '@/components/pages/Article'
 import CategoriesList from '@/components/pages/CategoriesList'
+import TagsList from '@/components/pages/TagsList'
 import AddArticle from '@/components/pages/AddArticle'
 import EditArticle from '@/components/pages/EditArticle'
 import Error from '@/components/pages/Error'
@@ -86,6 +87,11 @@ const router = new Router({
           path: 'categories',
           name: 'categories',
           component: CategoriesList
+        },
+        {
+          path: 'tags',
+          name: 'tags',
+          component: TagsList
         }
       ]
     },

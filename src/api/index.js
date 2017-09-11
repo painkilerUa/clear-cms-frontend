@@ -22,7 +22,10 @@ api.URLS = {
   content: `${api.serverURL}/api/v1/content`,
   contentTypes: '/api/v1/contentTypes',
   contentType: `${api.serverURL}/api/v1/contentType/`,
+  contentSearch: `${api.serverURL}/api/v1/content-search`,
   tags: '/api/v1/tags',
+  tags1: `${api.serverURL}/api/v1/tags`,
+  tag: `${api.serverURL}/api/v1/tag`,
   categories: '/api/v1/categories',
   categories1: `${api.serverURL}/api/v1/categories`,
   category: `${api.serverURL}/api/v1/category`,
@@ -34,5 +37,4 @@ api.URLS = {
   roles: `/api/v1/roles`,
   createAdmin: `${api.serverURL}/api/v1/register-admin`
 }
-
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
