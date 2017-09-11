@@ -86,3 +86,9 @@ export const getCategories = ({ commit }, payload) => {
     .then((res) => commit('setCategories', res.body.items))
     .catch((err) => console.log(err))
 }
+
+export const getCompanies = ({ commit }, payload) => {
+  api.requestToServer(api.URLS.companies, 'get')
+    .then((res) => commit('setCompanies', res.body.items))
+    .catch((err) => console.log(err))
+}

@@ -44,3 +44,21 @@ export const getCategoriesForSelect = (state) => state.categories.map(item => {
   }
 //  }
 })
+// companies
+export const getCompaniesForSelect = (state) => state.companies.map(item => {
+//  if (item.is_active) {
+  return {
+    label: item.name,
+    value: item.id
+  }
+//  }
+})
+// roles
+export const getRolesForSelect = (state) => state.roles.map(item => {
+//  if (item.is_active) {
+  return {
+    label: item.name,
+    value: item.id
+  }
+//  }
+})

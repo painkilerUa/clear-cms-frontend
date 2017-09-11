@@ -205,7 +205,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getCategories'
+      'getCategories',
+      'getCompanies',
+      'getRoles'
     ]),
 //    search () {
 //      if (!this.filter.search) {
@@ -216,36 +218,36 @@ export default {
 //      this.contentInfo.typeAutoLoad = 'searchContent'
 //      this.fetchSearchContent()
 //    },
-    fetchSearchContent () {
-      console.log('fech content')
-      if (!this.filter.search) return
-      let queryString = `${api.URLS.search}`
-      Object.keys(this.filter).forEach((item) => {
-        let value = this.filter[item]
-        if (value && typeof (value) === 'string') {
-          queryString += `&search=${value}`
-        }
-        if (value !== null && typeof (value) === 'object' && value.length) {
-          let subString = ''
-          value.forEach((it) => {
-            subString += `&${item}=${it.value}`
-          })
-          queryString += subString
-        }
-      })
-      if (this.contentType.length) queryString += '&contentType=' + this.contentType[0].value
-      this.$http.get(`${queryString}`, api.headersAuthSettings)
-        .then((res) => {
-          let resData = res.body.data.items
-          if (!resData) {
-            this.articles = []
-            return
-          }
-          this.articles = resData
-          console.log('fetchContent', res)
-        })
-        .catch((err) => console.error(err))
-    },
+//    fetchSearchContent () {
+//      console.log('fech content')
+//      if (!this.filter.search) return
+//      let queryString = `${api.URLS.search}`
+//      Object.keys(this.filter).forEach((item) => {
+//        let value = this.filter[item]
+//        if (value && typeof (value) === 'string') {
+//          queryString += `&search=${value}`
+//        }
+//        if (value !== null && typeof (value) === 'object' && value.length) {
+//          let subString = ''
+//          value.forEach((it) => {
+//            subString += `&${item}=${it.value}`
+//          })
+//          queryString += subString
+//        }
+//      })
+//      if (this.contentType.length) queryString += '&contentType=' + this.contentType[0].value
+//      this.$http.get(`${queryString}`, api.headersAuthSettings)
+//        .then((res) => {
+//          let resData = res.body.data.items
+//          if (!resData) {
+//            this.articles = []
+//            return
+//          }
+//          this.articles = resData
+//          console.log('fetchContent', res)
+//        })
+//        .catch((err) => console.error(err))
+//    },
     initAction (name, id) {
       this.confirmation.action = name
       this.confirmation.articleId = id
@@ -273,38 +275,39 @@ export default {
           .catch((err) => console.log(err))
       }
     },
+    // TODO: Change scrool handler make cur page different for different search type
     handleScroll (event) {
-//      let scrollHeight = Math.max(
-//        document.body.scrollHeight, document.documentElement.scrollHeight,
-//        document.body.offsetHeight, document.documentElement.offsetHeight,
-//        document.body.clientHeight, document.documentElement.clientHeight)
-//      let fullScrolledValue = window.pageYOffset + window.innerHeight
+      let scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight)
+      let fullScrolledValue = window.pageYOffset + window.innerHeight
 
-//      if (fullScrolledValue > scrollHeight - 200) {
-//        if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
-//        this.contentAutoloadInfo.locked = true
-//        this.fetchAllContentByScroll(++this.contentAutoloadInfo.curPage, 20)
-//        if (!this.contentInfo.locked) {
-//          this.contentInfo.locked = true
-//          if (this.contentInfo.typeAutoLoad === 'allContent') {
-//            this.fetchAllContentByScroll(this.contentInfo.curPage++, 20)
-//          }
-//        }
-//      }
+      if (fullScrolledValue > scrollHeight - 200) {
+        if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
+        this.contentAutoloadInfo.locked = true
+        if (this.search) {
+          console.log('Autoload mainSearch')
+//          this.mainSearch(++this.contentAutoloadInfo.curPage, 20)
+        } else {
+          console.log('Autoload searchByParams')
+//          this.searchByParams(++this.contentAutoloadInfo.curPage, 20)
+        }
+      }
     },
-    fetchAllContentByScroll (page, limit) {
-      this.$http.get(api.URLS.content + '?page=' + page + '&limit=' + limit, api.headersAuthSettings)
-        .then((res) => {
-          this.contentInfo.curPage = res.body.current_page_number
-          this.articles = [...this.articles, ...res.body.items]
-          this.contentInfo.locked = false
-          console.log(res)
-        })
-        .catch((err) => {
-          this.contentInfo.locked = false
-          console.log(err)
-        })
-    },
+//    fetchAllContentByScroll (page, limit) {
+//      this.$http.get(api.URLS.content + '?page=' + page + '&limit=' + limit, api.headersAuthSettings)
+//        .then((res) => {
+//          this.contentInfo.curPage = res.body.current_page_number
+//          this.articles = [...this.articles, ...res.body.items]
+//          this.contentInfo.locked = false
+//          console.log(res)
+//        })
+//        .catch((err) => {
+//          this.contentInfo.locked = false
+//          console.log(err)
+//        })
+//    },
     editArticle (id) {
       this.$router.push({path: `/admin/article/edit/${id}`})
     },
@@ -328,17 +331,17 @@ export default {
       let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories}&page=${page}&limit=${limit}`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
-//          this.contentInfo.curPage = res.body.current_page_number
+//          this.contentAutoloadInfo.curPage = res.body.current_page_number
           if (page === 1) {
             this.articles = res.body.data.items ? res.body.data.items : []
           } else {
             this.articles = [...this.articles, ...res.body.items]
           }
-//          this.contentInfo.locked = false
+          this.contentAutoloadInfo.locked = false
           console.log('mainSearch', res)
         })
         .catch((err) => {
-//          this.contentInfo.locked = false
+          this.contentAutoloadInfo.locked = false
           console.log(err)
         })
     },
@@ -372,7 +375,8 @@ export default {
       'getTagTitles',
       'getContentTypeForSelect',
       'getTagsForSelect',
-      'getCategoriesForSelect'
+      'getCategoriesForSelect',
+      'getRolesForSelect'
     ])
   },
   watch: {
@@ -389,6 +393,8 @@ export default {
   mounted () {
     this.searchByParams(1, 20)
     this.getCategories()
+    this.getCompanies()
+    this.getRoles()
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {

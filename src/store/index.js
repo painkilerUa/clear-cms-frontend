@@ -18,6 +18,7 @@ const state = {
     pending: null
   },
   content: [],
+  companies: [],
   types: [],
   tags: [],
   actions: [],

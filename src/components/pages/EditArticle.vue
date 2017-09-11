@@ -61,6 +61,7 @@
                   :options="getContentTypeTitles"
                   v-validate="'required'"
                   placeholder="Select"
+                  :on-change="getSubFormFields"
                   v-model="article.contentType"/>
                   <div
                     v-if="errors.has('Type')"
@@ -123,7 +124,10 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Company Specific</label>
                   <v-select
-                  placeholder="Select" />
+                    v-model="article.companies"
+                    :options="getCompaniesForSelect"
+                    :multiple="true"
+                    placeholder="Select" />
                 </div>
                 <!-- END:.form-element -->
             </div>
@@ -179,156 +183,156 @@
               class="form-errors">{{ errors.first('Content') }}
             </div>
           </section>
-          <section class="add-article-section" v-if="article.contentType.label === 'video'">
-            <h2 class="add-article-section__title">Article video</h2>
-            <div class="wrap-existing-resources">
-              <div class="existing-resource" v-for="(resource, i) in existingResources">
-                <div class="wrap-control">
-                  <!--<span>Delete</span>-->
-                </div>
-                <h4>Attachment {{i +1}}: URL and transcript</h4>
-                <div class="wrap-link">
-                  <span class="link">{{resource.link}}</span>
-                </div>
-                <div class="wrap-textarea">
-                  <textarea name="textarea" id="" cols="30" rows="5" :value="resource.textarea"></textarea>
-                </div>
-              </div>
-            </div>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.video">
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="addVideoUrl" class="form-label">Video URL</label>
-                <input
-                id="addVideoUrl"
-                type="text"
-                placeholder="Insert video link here"
-                class="form-control input-url-video" />
-              </div>
-              <!-- END:.form-element -->
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="addTextarea" class="form-label">Transcript for video</label>
-                <textarea
-                id="addTextarea"
-                placeholder="Transcript for video"
-                class="form-control input-textarea-video"
-                cols="30"
-                rows="5">
-                </textarea>
-              </div>
-              <!-- END:.form-element -->
-              </div>
-            <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('video')"
-              class="add-article-btn alignright">Add video
-            </button>
-          </section>
-          <section class="add-article-section" v-if="article.contentType.label === 'case_study'">
-            <h2 class="add-article-section__title">Article Case Study</h2>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.case_study">
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="case-study-textarea" class="form-label">Case Study transcript</label>
-                <textarea
-                  id="case-study-textarea"
-                  placeholder="Case Study transcript"
-                  class="form-control input-textarea-case-study"
-                  cols="30"
-                  rows="5">
-                </textarea>
-              </div>
-              <!-- END:.form-element -->
-            </div>
-            <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('case_study')"
-              class="add-article-btn alignright">Add element
-            </button>
-          </section>
-          <section class="add-article-section" v-if="article.contentType.label === 'screen_text'">
-            <h2 class="add-article-section__title">Article Screen Text</h2>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.screen_text">
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="screen-text-textarea" class="form-label">Screen Text transcript</label>
-                <textarea
-                  id="screen-text-textarea"
-                  placeholder="Screen Text transcript"
-                  class="form-control input-textarea-screen-text"
-                  cols="30"
-                  rows="5">
-                </textarea>
-              </div>
-              <!-- END:.form-element -->
-            </div>
-            <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('screen_text')"
-              class="add-article-btn alignright">Add element
-            </button>
-          </section>
-          <section class="add-article-section" v-if="article.contentType.label === 'resource'">
-            <h2 class="add-article-section__title">Article resources</h2>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.resource">
-              <!-- .form-group -->
-              <div class="form-group">
-                <!-- .form-element -->
-                <div class="form-element form-element--half">
-                  <span class="form-label">Upload resource</span>
-                  <label class="form-label form-label--file-resource">
-                    <icon name="upload" />
-                    <span class="form-label__text">Upload resource</span>
-                    <span :id="'uploadedResource_' + n"></span>
-                    <input
-                    id=""
-                    type="file"
-                    @change="onResourceFileChange($event.target.value, n)"
-                    placeholder="Type in to add title..."
-                    class="form-control visually-hidden form-control--file input-file-resource" />
-                  </label>
-                </div>
-                <!-- END:.form-element -->
-                <!-- .form-element -->
-                <div class="form-element form-element--half">
-                  <label for="addTitle" class="form-label">Insert resource URL</label>
-                  <input
-                  id="addTitle"
-                  type="url"
-                  placeholder="Insert resource link here"
-                  class="form-control input-url-resource" />
-                </div>
-                <!-- END:.form-element -->
-                <!-- .form-element -->
-                <div class="form-element form-element--full">
-                  <label for="addTextarea" class="form-label">Transcript for resource</label>
-                  <textarea
-                  id="addTextarea"
-                  placeholder="Transcript for resource"
-                  class="form-control input-textarea-resource"
-                  cols="30"
-                  rows="5">
-                  </textarea>
-                </div>
-                <!-- END:.form-element -->
-              </div>
-              <!-- END:.form-group -->
-              </div>
-              <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('resource')"
-              class="add-article-btn alignright">Add resource
-            </button>
-          </section>
+          <!--<section class="add-article-section" v-if="article.contentType.label === 'video'">-->
+            <!--<h2 class="add-article-section__title">Article video</h2>-->
+            <!--<div class="wrap-existing-resources">-->
+              <!--<div class="existing-resource" v-for="(resource, i) in existingResources">-->
+                <!--<div class="wrap-control">-->
+                  <!--&lt;!&ndash;<span>Delete</span>&ndash;&gt;-->
+                <!--</div>-->
+                <!--<h4>Attachment {{i +1}}: URL and transcript</h4>-->
+                <!--<div class="wrap-link">-->
+                  <!--<input type="url" :value="resource.link" class="link" />-->
+                <!--</div>-->
+                <!--<div class="wrap-textarea">-->
+                  <!--<textarea name="textarea" id="" cols="30" rows="5" :value="resource.textarea"></textarea>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.video">-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="addVideoUrl" class="form-label">Video URL</label>-->
+                <!--<input-->
+                <!--id="addVideoUrl"-->
+                <!--type="text"-->
+                <!--placeholder="Insert video link here"-->
+                <!--class="form-control input-url-video" />-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="addTextarea" class="form-label">Transcript for video</label>-->
+                <!--<textarea-->
+                <!--id="addTextarea"-->
+                <!--placeholder="Transcript for video"-->
+                <!--class="form-control input-textarea-video"-->
+                <!--cols="30"-->
+                <!--rows="5">-->
+                <!--</textarea>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+              <!--</div>-->
+            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('video')"-->
+              <!--class="add-article-btn alignright">Add video-->
+            <!--</button>-->
+          <!--</section>-->
+          <!--<section class="add-article-section" v-if="article.contentType.label === 'case_study'">-->
+            <!--<h2 class="add-article-section__title">Article Case Study</h2>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.case_study">-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="case-study-textarea" class="form-label">Case Study transcript</label>-->
+                <!--<textarea-->
+                  <!--id="case-study-textarea"-->
+                  <!--placeholder="Case Study transcript"-->
+                  <!--class="form-control input-textarea-case-study"-->
+                  <!--cols="30"-->
+                  <!--rows="5">-->
+                <!--</textarea>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('case_study')"-->
+              <!--class="add-article-btn alignright">Add element-->
+            <!--</button>-->
+          <!--</section>-->
+          <!--<section class="add-article-section" v-if="article.contentType.label === 'screen_text'">-->
+            <!--<h2 class="add-article-section__title">Article Screen Text</h2>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.screen_text">-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="screen-text-textarea" class="form-label">Screen Text transcript</label>-->
+                <!--<textarea-->
+                  <!--id="screen-text-textarea"-->
+                  <!--placeholder="Screen Text transcript"-->
+                  <!--class="form-control input-textarea-screen-text"-->
+                  <!--cols="30"-->
+                  <!--rows="5">-->
+                <!--</textarea>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('screen_text')"-->
+              <!--class="add-article-btn alignright">Add element-->
+            <!--</button>-->
+          <!--</section>-->
+          <!--<section class="add-article-section" v-if="article.contentType.label === 'resource'">-->
+            <!--<h2 class="add-article-section__title">Article resources</h2>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.resource">-->
+              <!--&lt;!&ndash; .form-group &ndash;&gt;-->
+              <!--<div class="form-group">-->
+                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+                <!--<div class="form-element form-element&#45;&#45;half">-->
+                  <!--<span class="form-label">Upload resource</span>-->
+                  <!--<label class="form-label form-label&#45;&#45;file-resource">-->
+                    <!--<icon name="upload" />-->
+                    <!--<span class="form-label__text">Upload resource</span>-->
+                    <!--<span :id="'uploadedResource_' + n"></span>-->
+                    <!--<input-->
+                    <!--id=""-->
+                    <!--type="file"-->
+                    <!--@change="onResourceFileChange($event.target.value, n)"-->
+                    <!--placeholder="Type in to add title..."-->
+                    <!--class="form-control visually-hidden form-control&#45;&#45;file input-file-resource" />-->
+                  <!--</label>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+                <!--<div class="form-element form-element&#45;&#45;half">-->
+                  <!--<label for="addTitle" class="form-label">Insert resource URL</label>-->
+                  <!--<input-->
+                  <!--id="addTitle"-->
+                  <!--type="url"-->
+                  <!--placeholder="Insert resource link here"-->
+                  <!--class="form-control input-url-resource" />-->
+                <!--</div>-->
+                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+                <!--<div class="form-element form-element&#45;&#45;full">-->
+                  <!--<label for="addTextarea" class="form-label">Transcript for resource</label>-->
+                  <!--<textarea-->
+                  <!--id="addTextarea"-->
+                  <!--placeholder="Transcript for resource"-->
+                  <!--class="form-control input-textarea-resource"-->
+                  <!--cols="30"-->
+                  <!--rows="5">-->
+                  <!--</textarea>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-group &ndash;&gt;-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('resource')"-->
+              <!--class="add-article-btn alignright">Add resource-->
+            <!--</button>-->
+          <!--</section>-->
           <!--<article-add-data-->
             <!--:title="'Test Video'"-->
             <!--:type="'video'"-->
@@ -378,6 +382,7 @@ export default {
         contentType: [],
         tags: [],
         categories: [],
+        companies: [],
         roles: [],
         content: '',
         createdAt: '2017-08-05 11:45:43',
@@ -407,7 +412,9 @@ export default {
     ...mapGetters([
       'types',
       'getTagsForSelect',
-      'getCategoriesForSelect'
+      'getCategoriesForSelect',
+      'getRolesForSelect',
+      'getCompaniesForSelect'
     ]),
     getContentTypeTitles () {
       return this.types.map(item => item.type)
@@ -435,7 +442,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getTypes'
+      'getTypes',
+      'getCompanies',
+      'getRoles'
     ]),
     sendFormRequest () {
       this.selectType()
@@ -585,8 +594,9 @@ export default {
     },
     getSubFormFields (val) {
       if (!val) return
+//      console.log('getSubFormFields', val)
+//      console.log('getSubFormFields', this.types)
       let typeId = this.types.find(item => item.type === val).id
-      this.selectedValues.contentType = typeId
       this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
         .then((res) => {
           this.subForm.type = res.body.form.type
@@ -597,6 +607,7 @@ export default {
     getArticleById (id) {
       this.$http.get(api.URLS.content + '/' + id, api.headersAuthSettings)
         .then((res) => {
+          console.log('getArticleById', res)
           this.article.title = res.body.title
           this.article.contentType = {
             label: res.body.content_type.type,
@@ -614,6 +625,13 @@ export default {
               value: category.id
             })
           })
+          res.body.companies.forEach((company) => {
+            this.article.companies.push({
+              label: company.name,
+              value: company.id
+            })
+          })
+          // TODO: make for roles same thins
           this.article.content = res.body.content
           this.existingResources = res.body.formResource
 // File preview
@@ -629,6 +647,8 @@ export default {
   },
   mounted () {
     this.getArticleById(this.$route.params.id)
+    this.getCompanies()
+    this.getRoles()
   }
 }
 </script>

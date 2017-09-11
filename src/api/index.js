@@ -23,6 +23,7 @@ api.URLS = {
   contentTypes: '/api/v1/contentTypes',
   contentType: `${api.serverURL}/api/v1/contentType/`,
   contentSearch: `${api.serverURL}/api/v1/content-search`,
+  companies: '/api/v1/company',
   tags: '/api/v1/tags',
   tags1: `${api.serverURL}/api/v1/tags`,
   tag: `${api.serverURL}/api/v1/tag`,

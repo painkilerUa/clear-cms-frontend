@@ -12,4 +12,5 @@ export const authLogout = state => { state.auth.isLoggedIn = false; state.auth.u
 export const setActions = (state, actions) => { state.actions = actions }
 export const setRoles = (state, roles) => { state.roles = roles }
 
-// Categories
+// Companies
+export const setCompanies = (state, payload) => { state.companies = payload }

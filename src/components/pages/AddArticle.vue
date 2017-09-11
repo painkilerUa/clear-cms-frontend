@@ -109,7 +109,7 @@
                   <label class="form-label">Access</label>
                   <v-select
                   name="Access"
-                  :options="getRoleTitles"
+                  :options="getRolesForSelect"
                   v-model="selectedValues.roles"
                   v-validate="'required'"
                   :multiple="true"
@@ -125,7 +125,10 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Company Specific</label>
                   <v-select
-                  placeholder="Select" />
+                  placeholder="Select"
+                  :multiple="true"
+                  :options="getCompaniesForSelect"
+                  v-model="selectedValues.companies"/>
                 </div>
                 <!-- END:.form-element -->
             </div>
@@ -333,8 +336,8 @@
             <span>Preview Article</span>
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit without saving</button>
-          <button type="button" class="action-btn action-btn--draft icon-btn">Save as draft</button>
-          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle">Publish article</button>
+          <button type="button" class="action-btn action-btn--draft icon-btn" @click="publishArticle(0)">Save as draft</button>
+          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle(1)">Publish article</button>
         </div>
         <!-- END:.add-article-actions -->
       </div>
@@ -361,38 +364,15 @@ export default {
   mixins: [forms],
   data () {
     return {
-      additionalFormFields: [
-        {
-          title: 'test video',
-          fields: [
-            {
-              tag: 'input',
-              attrs: {
-                type: 'url',
-                placeholder: 'input value'
-              }
-            },
-            {
-              tag: 'textarea',
-              attrs: {
-                type: null,
-                cols: 5,
-                rows: 6,
-                placeholder: 'input value'
-              }
-            }
-          ]
-        }
-      ],
       selectedValues: {
         title: '',
         content: '',
-        status: 1,
         description: 'description',
         contentType: null,
         tags: [],
         categories: [],
         roles: [],
+        companies: [],
         lng: null
       },
       formInfo: {
@@ -432,7 +412,9 @@ export default {
     ...mapGetters([
       'types',
       'getTagsForSelect',
-      'getCategoriesForSelect'
+      'getCategoriesForSelect',
+      'getCompaniesForSelect',
+      'getRolesForSelect'
     ]),
     getContentTypeTitles () {
       return this.types.map(item => item.type)
@@ -460,7 +442,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getTypes'
+      'getTypes',
+      'getCompanies',
+      'getRoles'
     ]),
     sendFormRequest () {
       this.selectType()
@@ -563,7 +547,7 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    publishArticle () {
+    publishArticle (status) {
       let formData = new FormData()
 //      Object.keys(this.selectedValues).forEach((key) => {
 //        let fieldName = 'content[' + key + ']'
@@ -577,7 +561,7 @@ export default {
       formData.set('content[createdAt]', '2017-08-05 11:45:43')
       formData.set('content[updatedAt]', '2017-08-05 11:45:43')
       formData.set('content[publishedAt]', '2017-08-05 11:45:43')
-      formData.set('content[status]', this.selectedValues.status)
+      formData.set('content[status]', status)
 //  Add categories
       this.selectedValues.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
@@ -587,6 +571,15 @@ export default {
       this.selectedValues.tags.forEach((tag, i) => {
         let fieldName = 'content[tags][' + i + ']'
         formData.set(fieldName, tag.value)
+      })
+// Add companies
+      this.selectedValues.companies.forEach((company, i) => {
+        let fieldName = 'content[companies][' + i + ']'
+        formData.set(fieldName, company.value)
+      })
+      this.selectedValues.roles.forEach((role, i) => {
+        let fieldName = 'content[roles][' + i + ']'
+        formData.set(fieldName, role.value)
       })
       if (this.subForm.type === 'resource') {
         let urls = [...document.getElementsByClassName('input-url-resource')]
@@ -651,9 +644,12 @@ export default {
       this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
         .then((res) => {
           this.subForm.type = res.body.form.type
+          this.createSubForm(res.body.form)
           console.log('getSubFormFields', res)
         })
         .catch((err) => console.log(err))
+    },
+    createSubForm (data) {
     }
   },
   components: {
@@ -665,6 +661,7 @@ export default {
     this.getTags()
     this.getCategories()
     this.getRoles()
+    this.getCompanies()
   }
 }
 </script>
