@@ -1,7 +1,7 @@
 <template>
   <div class="ac-wrapper">
-    <input 
-      class="ac-input" 
+    <input
+      class="ac-input"
       v-model.trim="searchQuery"
       placeholder="Search..."
       @input="onInput($event.target.value)"
@@ -19,7 +19,7 @@
               <v-select placeholder="Type" value.sync="selectedType" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select placeholder="Topic" value.sync="selectedTags" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
+              <v-select placeholder="Tags" value.sync="selectedTags" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->
@@ -28,13 +28,13 @@
         <!-- ac-list -->
         <ul
         class="ac-list">
-          <li v-for="(option, index) in optionsComputed" 
+          <li v-for="(option, index) in optionsComputed"
             class="ac-list__item"
             :class="{highlighted: index === highlightedPosition}"
             @click="select(option.id)"
             @keydown.space.enter="select(option.id)"
-            @mouseenter="highlightedPosition = index" 
-            tabindex="0"> 
+            @mouseenter="highlightedPosition = index"
+            tabindex="0">
             <img v-if="option.content_type.icon" :src="option.content_type.icon" :alt="option.title" class="ac-thumbnail" />
             <!-- .ac-content -->
             <div class="ac-content">

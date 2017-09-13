@@ -83,7 +83,7 @@
                         :multiple="true"/>
             </th>
             <th>
-              <v-select placeholder="Topic"
+              <v-select placeholder="Tags"
                         :options="getTagsForSelect"
                         v-model="tags"
                         :multiple="true" />
@@ -118,13 +118,13 @@
               <input type="checkbox" :id="article.id"/>
               <label :for="article.id">{{article.id}}</label>
             </td>
-            <td class="cellpadding">{{article.content}}</td>
+            <td class="cellpadding">{{article.title}}</td>
             <td class="cellpadding"></td>
             <td class="cellpadding">{{article.content_type.type}}</td>
-            <td class="cellpadding">{{}}</td>
-            <td class="cellpadding">Category lor..</td>
+            <td class="cellpadding">{{article.tags.length ? article.tags[0].name : ''}}</td>
+            <td class="cellpadding">{{article.categories.length ? article.categories[0].title : ''}}</td>
             <td class="cellpadding">Clear assured</td>
-            <td class="cellpadding">Lorem ipsum.</td>
+            <td class="cellpadding">{{article.companies.length ? article.companies[0].name : ''}}</td>
             <td class="cellpadding">12 hours ago</td>
             <td class="cellpadding">Conan Simpson</td>
             <td class="cellpadding">

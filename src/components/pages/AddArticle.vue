@@ -72,18 +72,18 @@
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
-                  <label class="form-label">Topic</label>
+                  <label class="form-label">Tags</label>
                   <v-select
-                  name="Topic"
-                  data-vv-as='"Topic"'
+                  name="Tags"
+                  data-vv-as='"Tags"'
                   :options="getTagsForSelect"
                   v-model="selectedValues.tags"
                   v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
-                    v-if="errors.has('Topic')"
-                    class="form-errors">{{ errors.first('Topic') }}
+                    v-if="errors.has('Tags')"
+                    class="form-errors">{{ errors.first('Tags') }}
                   </div>
                 </div>
                 <!-- END:.form-element -->
@@ -402,10 +402,10 @@ export default {
           type: 'input'
         }
       ],
-      formData: new FormData(),
       subForm: {
         type: ''
-      }
+      },
+      disableAPI: false
     }
   },
   computed: {
@@ -444,7 +444,9 @@ export default {
     ...mapActions([
       'getTypes',
       'getCompanies',
-      'getRoles'
+      'getRoles',
+      'getCategories',
+      'getTags'
     ]),
     sendFormRequest () {
       this.selectType()
@@ -477,27 +479,27 @@ export default {
 //      })
 //      .catch((err) => console.log(err))
 //    },
-    getTags () {
-      this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
-      .then((res) => {
-        this.tags = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
-    getCategories () {
-      this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
-      .then((res) => {
-        this.categories = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
-    getRoles () {
-      this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
-      .then((res) => {
-        this.roles = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
+//    getTags () {
+//      this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
+//      .then((res) => {
+//        this.tags = res.body.items
+//      })
+//      .catch((err) => console.log(err))
+//    },
+//    getCategories () {
+//      this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
+//      .then((res) => {
+//        this.categories = res.body.items
+//      })
+//      .catch((err) => console.log(err))
+//    },
+//    getRoles () {
+//      this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
+//      .then((res) => {
+//        this.roles = res.body.items
+//      })
+//      .catch((err) => console.log(err))
+//    },
     addFormElement (type) {
       this.addElements[type] += 1
     },
@@ -548,12 +550,15 @@ export default {
       }
     },
     publishArticle (status) {
+      if (this.disableAPI) return
       let formData = new FormData()
 //      Object.keys(this.selectedValues).forEach((key) => {
 //        let fieldName = 'content[' + key + ']'
 //        formData.set(fieldName, this.selectedValues[key])
 //      })
-      formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
+      if (document.getElementById('uploadThumbnail').files.length) {
+        formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
+      }
       formData.set('content[title]', this.selectedValues.title)
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
@@ -629,13 +634,18 @@ export default {
           if (!textarea.value) return
         })
       }
+      this.disableAPI = true
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
+          this.disableAPI = false
           console.log('publishArticle', res)
 //          alert('Article has been successfully added')
           this.$router.push('/admin/articles-list')
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
     },
     getSubFormFields (val) {
       if (!val) return

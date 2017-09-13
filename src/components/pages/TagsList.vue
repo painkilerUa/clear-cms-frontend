@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="wrap-categories-list">
-      <h1>Tags in "Topic"</h1>
+      <h1>Tags List</h1>
       <div class="categories-list">
         <h2>List with tags</h2>
         <!--<div class="categories-list-actions">-->
@@ -45,26 +45,43 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="tag in tags">
-              <td class="text-center cellpadding">
+            <tr v-for="tag in updatedTags">
+              <td class="text-center cellpadding" v-if="tag.type === 'show'">
                 <input type="checkbox" :id="tag.id"/>
                 <label :for="tag.id">{{tag.id}}</label>
               </td>
-              <td class="cellpadding">{{tag.name}}</td>
-              <td class="cellpadding">
+              <td class="cellpadding" v-if="tag.type === 'show'">{{tag.name}}</td>
+              <td class="cellpadding" v-if="tag.type === 'show'">
                 <button
                   type="button"
-                  class="table-crud-btn icon-btn">
+                  class="table-crud-btn icon-btn"
+                  @click="showEditionForm(tag.id)">
                   <icon name="pencil"/>
                 </button>
               </td>
-              <td class="cellpadding">
+              <td class="cellpadding" v-if="tag.type === 'show'">
                 <button
                   type="button"
                   class="table-crud-btn icon-btn"
                   @click="initAction('removeTag', tag.id)">
                   <icon name="times" />
                 </button>
+              </td>
+              <td colspan="4" v-if="tag.type === 'edit'">
+                <div class="wrap-edit-form">
+                  <div class="row">
+                    <div class="wrap-title-input">
+                      <input type="text" v-model="tag.name">
+                    </div>
+                    <div class="wrap-desc-textarea">
+                      <textarea name="desc-textarea" cols="10" rows="3" v-model="tag.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="wrap-table-control-panel">
+                    <button type="button" @click="discardСhanges(tag.id)">Discard changes</button>
+                    <button type="button" @click="editTag(tag.id)">Save changes</button>
+                  </div>
+                </div>
               </td>
             </tr>
             </tbody>
@@ -106,10 +123,11 @@ import 'vue-awesome/icons/chevron-down'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'tags',
+  name: 'tags-list',
   data () {
     return {
       tags: [],
+      updatedTags: [],
       confirmation: {
         action: '',
         isShown: false,
@@ -127,7 +145,8 @@ export default {
         description: '',
         createdAt: '2017-08-05 11:45:43',
         updatedAt: '2017-08-05 11:45:43'
-      }
+      },
+      disableAPI: false
     }
   },
   methods: {
@@ -186,13 +205,13 @@ export default {
     confirmActionHandler () {
       let self = this
       switch (this.confirmation.action) {
-        case 'removeCategory':
-          removeCategory(this.confirmation.id)
+        case 'removeTag':
+          removeTag(this.confirmation.id)
           break
       }
-      function removeCategory (id) {
+      function removeTag (id) {
         self.clearAction()
-        self.$http.delete(api.URLS.category + '/' + id, api.headersAuthSettings)
+        self.$http.delete(api.URLS.tag + '/' + id, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
             alert('Successfully removed')
@@ -234,24 +253,80 @@ export default {
         })
     },
     createTag () {
+      if (this.disableAPI) return
       if (!this.newTag.name || !this.newTag.description) return
       let formData = new FormData()
       Object.keys(this.newTag).forEach((fieldName) => {
         if (typeof this.newTag[fieldName] === 'string' || typeof this.newTag[fieldName] === 'number') {
-          formData.set('category[' + fieldName + ']', this.newTag[fieldName])
+          formData.set('tag[' + fieldName + ']', this.newTag[fieldName])
         }
         if (typeof this.newTag[fieldName] === 'object') {
           this.newTag[fieldName].forEach((item, i) => {
-            formData.set('category[' + fieldName + '][' + i + ']', item.value)
+            formData.set('tag[' + fieldName + '][' + i + ']', item.value)
           })
         }
       })
+      this.disableAPI = true
       this.$http.post(api.URLS.tag, formData, api.headersAuthSettings)
         .then((res) => {
+          this.disableAPI = false
           console.log('createTag', res)
+          this.tags.push(res.body)
+          this.newTag.name = ''
+          this.newTag.description = ''
           alert('Tag has been successfully added')
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
+    },
+    showEditionForm (id) {
+      for (let tag of this.updatedTags) {
+        if (tag.type === 'edit') tag.type = null
+        if (tag.id === id && tag.type === null) {
+          tag.type = 'edit'
+        }
+      }
+    },
+    discardСhanges (id) {
+      for (let tag of this.updatedTags) {
+        if (tag.id === id && tag.type === 'edit') {
+          tag.type = null
+        }
+      }
+    },
+    editTag (id) {
+      if (this.disableAPI) return
+      let tag = this.updatedTags.find((tag) => tag.id === id && tag.type === 'edit')
+      let formData = {
+        tag: {
+          name: tag.name,
+          description: tag.description,
+          isActive: 1,
+          createdAt: '2017-08-05 11:45:43',
+          updatedAt: '2017-08-05 11:45:43'
+        }
+      }
+      this.disableAPI = true
+      this.$http.put(api.URLS.tag + '/' + id, formData, api.headersAuthSettings)
+        .then((res) => {
+          this.disableAPI = false
+          console.log('updateTag', res)
+          this.discardСhanges(id)
+          for (let i = 0; i < this.updatedTags.length; i++) {
+            if (this.updatedTags[i].id === id && this.updatedTags[i].type === 'show') {
+              let updatedData = res.body
+              updatedData.type = 'show'
+              this.updatedTags[i] = updatedData
+              break
+            }
+          }
+        })
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
     }
   },
   computed: {
@@ -259,8 +334,20 @@ export default {
       'getTagsForSelect'
     ])
   },
-//  watch: {
-//  },
+  watch: {
+    tags: function () {
+      this.tags.forEach((tag, i, arr) => {
+        tag.type = 'show'
+        this.updatedTags.push(tag)
+        this.updatedTags.push({
+          type: null,
+          id: tag.id,
+          name: tag.name,
+          description: tag.description
+        })
+      })
+    }
+  },
   mounted () {
     this.fetchAllContentByScroll(1, 20)
     this.getTags()
@@ -272,4 +359,4 @@ export default {
 }
 </script>
 
-<style src='@/assets/scss/components/categories-list.scss' lang='scss' scoped />
+<style src='@/assets/scss/components/tags-list.scss' lang='scss' scoped />

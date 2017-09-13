@@ -141,34 +141,18 @@ input.table-search {
     text-align: center;
     .wrap-title-input {
       display: inline-block;
-      width: 30%;
+      width: 40%;
       vertical-align: middle;
+      margin-right: 5%;
       input {
         width: 100%;
       }
     }
-    .wrap-parent-select {
-      display: inline-block;
-      width: 30%;
-      margin: 0 3% 0 3%;
-      vertical-align: middle;
-      .v-select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        display: block;
-        padding: 0;
-        background: none;
-        border: 1px solid rgba(60,60,60,.26);
-        border-radius: 4px;
-        white-space: normal;
-        transition: border-radius .25s;
-      }
-    }
     .wrap-desc-textarea {
       display: inline-block;
-      width: 30%;
+      width: 40%;
       vertical-align: middle;
+      margin-left: 5%;
       textarea {
         width: 100%;
       }

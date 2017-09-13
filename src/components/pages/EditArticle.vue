@@ -71,18 +71,18 @@
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
-                  <label class="form-label">Topic</label>
+                  <label class="form-label">Tags</label>
                   <v-select
-                  name="Topic"
-                  data-vv-as='"Topic"'
+                  name="Tags"
+                  data-vv-as='"Tags"'
                   :options="getTagsForSelect"
                   v-model="article.tags"
                   v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
-                    v-if="errors.has('Topic')"
-                    class="form-errors">{{ errors.first('Topic') }}
+                    v-if="errors.has('Tags')"
+                    class="form-errors">{{ errors.first('Tags') }}
                   </div>
                 </div>
                 <!-- END:.form-element -->
@@ -181,6 +181,46 @@
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}
+            </div>
+          </section>
+          <section class="edit-article-resources">
+            <h2 class="add-article-section__title">{{formResource.title}}</h2>
+            <div class="wrap-existing-resources">
+              <div class="existing-resource" v-for="(resource, i) in formResource.existingResources">
+                <div class="wrap-top-control-panel">
+                  <span>
+                    Delete
+                    <icon name="times-circle-o" />
+                  </span>
+                </div>
+                <h3></h3>
+                <div class="row">
+                  <span>
+                    <span>{{resource.file}}</span>
+                    <icon name="remove" />
+                  </span>
+                </div>
+                <div class="row">
+                  <textarea name="ext-desc" id="" cols="30" rows="5" v-model="resource.textarea"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="wrap-add-resource">
+              <div class="add-resource" v-for="(newResource, j) in formResource.newResources">
+                <label for="'add-resource-url-' + i">Video URL</label>
+                <div class="row">
+                  <input type="url" id="'add-resource-url-' + i" v-model="newResource.link">
+                  <!--<input type="url">v-model="formResource.newResources"-->
+                </div>
+                <label for="'add-resource-desc-' + i">Transcript for Video</label>
+                <div class="row">
+                  <textarea name="text" cols="30" rows="5" id="'add-resource-desc-' + i" v-model="newResource.textarea"></textarea>
+                </div>
+
+              </div>
+              <div class="wrap-bottom-control-panel">
+                <button @click="addResource">Add resource</button>
+              </div>
             </div>
           </section>
           <!--<section class="add-article-section" v-if="article.contentType.label === 'video'">-->
@@ -367,6 +407,7 @@ import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
 import 'vue-awesome/icons/info-circle'
+import 'vue-awesome/icons/remove'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
@@ -391,7 +432,6 @@ export default {
         isActive: 1
       },
       srcImagePreview: '',
-      existingResources: [],
       languages: ['English (UK)', 'English (US)'],
       tags: [],
       categories: [],
@@ -405,7 +445,8 @@ export default {
       },
       subForm: {
         type: ''
-      }
+      },
+      formResource: []
     }
   },
   computed: {
@@ -633,12 +674,24 @@ export default {
           })
           // TODO: make for roles same thins
           this.article.content = res.body.content
-          this.existingResources = res.body.formResource
+          let newResource = {}
+          Object.keys(res.body.content_type.form.form).forEach((key) => {
+            newResource[key] = ''
+          })
+          this.formResource = {
+            title: res.body.content_type.form.comment.title,
+            existingResources: res.body.formResource,
+            newResources: [newResource]
+          }
+//          this.existingResources = res.body.formResource
 // File preview
           this.srcImagePreview = 'http://13.59.74.76' + res.body.image_path
           console.log('getArticleById', res)
         })
         .catch((err) => console.log(err))
+    },
+    addResource () {
+      this.formResource.newResources.push(this.formResource.newResources[0])
     }
   },
   components: {

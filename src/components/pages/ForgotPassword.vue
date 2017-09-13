@@ -27,12 +27,12 @@
 		  <!-- END:popup-body -->
 		  <!-- popup-footer -->
 		  <template slot="footer">
-		  	<!-- popup-infolinks -->
-		  	<ul class="popup-infolinks">
-		  		<li class="popup-infolinks__item">
-		  			<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>
-		  		</li>
-		  	</ul>
+		  	 <!--popup-infolinks-->
+		  	<!--<ul class="popup-infolinks">-->
+		  		<!--<li class="popup-infolinks__item">-->
+		  			<!--<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>-->
+		  		<!--</li>-->
+		  	<!--</ul>-->
 		  	<!-- END:popup-infolinks -->
 		  </template>
 		  <!-- END:popup-footer -->

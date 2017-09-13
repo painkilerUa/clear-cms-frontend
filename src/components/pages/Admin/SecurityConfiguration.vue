@@ -21,7 +21,7 @@
       				class='table-checkbox'
       				:checked="checkIdLength(action.actionId, role.id)"
       				@change='select(action.actionId, action.actionName, role.id)' />
-      				Enable
+      				Disable
       			</label>
       		</div>
       	</div>

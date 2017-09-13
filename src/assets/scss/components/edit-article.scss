@@ -125,6 +125,62 @@
 .add-article-icon-info:hover + .add-article-tooltip:after {
   opacity: 1;
 }
+.edit-article-resources {
+  background-color: #F4F4F4;
+  padding: 20px;
+  .wrap-existing-resources {
+    background-color: #E6E6E6;
+    .existing-resource {
+      padding: 20px;
+      margin-bottom: 10px;
+      .wrap-top-control-panel {
+        text-align: right;
+        span {
+          color: red;
+          font-style: italic;
+        }
+      }
+      .row {
+        padding: 5px 0;
+        & > span {
+          display: inline-block;
+          background-color: #ffed95;
+          padding: 10px 20px;
+          border-top: 1px solid grey;
+          border-bottom: 1px solid grey;
+          //&:: before {
+          //  content: '';
+          //}
+          //&:: after {
+          //  content: '';
+          //}
+        }
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .wrap-add-resource {
+    .add-resource {
+      .row {
+        input {
+          width: 100%;
+        }
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+    .wrap-bottom-control-panel {
+      text-align: right;
+      button {
+        padding: 5px 20px;
+        background-color: #B70A37;
+      }
+    }
+  }
+}
 
 .wrap-title {
   font-size: 0;
@@ -163,26 +219,26 @@
     }
   }
 }
-
-.add-article-wrapper{
-  background-color: #f4f4f4;
-}
-.wrap-existing-resources {
-  padding: 20px;
-  background-color: #E6E6E6;
-  margin-bottom: 20px;
-  .wrap-link {
-    span {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #FFFDD8;
-    }
-    margin-bottom: 30px;
-  }
-  .wrap-textarea {
-    textarea {
-      width: 100%;
-    }
-    margin-bottom: 30px;
-  }
-}
+//
+//.add-article-wrapper{
+//  background-color: #f4f4f4;
+//}
+//.wrap-existing-resources {
+//  padding: 20px;
+//  background-color: #E6E6E6;
+//  margin-bottom: 20px;
+//  .wrap-link {
+//    span {
+//      display: inline-block;
+//      padding: 10px 20px;
+//      background-color: #FFFDD8;
+//    }
+//    margin-bottom: 30px;
+//  }
+//  .wrap-textarea {
+//    textarea {
+//      width: 100%;
+//    }
+//    margin-bottom: 30px;
+//  }
+//}
