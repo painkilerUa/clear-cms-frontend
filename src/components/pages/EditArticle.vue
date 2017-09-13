@@ -188,7 +188,7 @@
             <div class="wrap-existing-resources">
               <div class="existing-resource" v-for="(resource, i) in formResource.existingResources">
                 <div class="wrap-top-control-panel">
-                  <span>
+                  <span @click="deleteExistingResource(i)">
                     Delete
                     <icon name="times-circle-o" />
                   </span>
@@ -199,6 +199,9 @@
                     <span>{{resource.file}}</span>
                     <icon name="remove" />
                   </span>
+                  <div class="wrap-input-link" v-if="!resource.link">
+                    <input type="url" v-model="resource.link">
+                  </div>
                 </div>
                 <div class="row">
                   <textarea name="ext-desc" id="" cols="30" rows="5" v-model="resource.textarea"></textarea>
@@ -207,14 +210,17 @@
             </div>
             <div class="wrap-add-resource">
               <div class="add-resource" v-for="(newResource, j) in formResource.newResources">
-                <label for="'add-resource-url-' + i">Video URL</label>
                 <div class="row">
-                  <input type="url" id="'add-resource-url-' + i" v-model="newResource.link">
-                  <!--<input type="url">v-model="formResource.newResources"-->
+                  <div class="wrap-add-resource-file" v-if="newResource.file">
+                    <label for="'add-resource-file-' + j">Upload recource</label>
+                    <input type="file" id="'add-resource-file-' + j">
+                  </div>
+                  <label for="'add-resource-url-' + j">Video URL</label>
+                  <input type="url" id="'add-resource-url-' + j" v-model="newResource.link">
                 </div>
-                <label for="'add-resource-desc-' + i">Transcript for Video</label>
+                <label for="{'add-resource-desc-' + j}">Transcript for Video</label>
                 <div class="row">
-                  <textarea name="text" cols="30" rows="5" id="'add-resource-desc-' + i" v-model="newResource.textarea"></textarea>
+                  <textarea name="text" cols="30" rows="5" id="'add-resource-desc-' + j" v-model="newResource.textarea"></textarea>
                 </div>
 
               </div>
@@ -413,7 +419,7 @@ import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'add-article',
+  name: 'edit-article',
   mixins: [forms],
   data () {
     return {
@@ -692,6 +698,9 @@ export default {
     },
     addResource () {
       this.formResource.newResources.push(this.formResource.newResources[0])
+    },
+    deleteExistingResource (i) {
+      this.formResource.existingResources.splice(i, 1)
     }
   },
   components: {
