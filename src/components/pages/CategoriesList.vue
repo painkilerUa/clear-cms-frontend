@@ -36,6 +36,7 @@
               <th class="categories-list-search-col text-left">
                 <div class="table-search-wrap">
                   <input
+                    v-model="searchString"
                     type="search"
                     class="table-search"
                     placeholder="Category name..." />
@@ -43,11 +44,11 @@
               </th>
               <th>
                 <v-select
+                  v-model="parent"
                   name="Category"
                   data-vv-as='"Category"'
                   :options="getCategoriesForSelect"
                   v-validate="'required'"
-                  :multiple="true"
                   placeholder="Parent" />
               </th>
               <th>
@@ -77,7 +78,7 @@
                   <button
                     type="button"
                     class="table-crud-btn icon-btn"
-                    @click="initAction('removeCategory', category.id, i)">
+                    @click="initAction('removeCategory', category.id)">
                     <icon name="times" />
                   </button>
                 </td>
@@ -174,11 +175,13 @@ export default {
         title: '',
         isActive: 1,
         description: '',
-        createdAt: '2017-08-05 11:45:43',
-        updatedAt: '2017-08-05 11:45:43',
+//        createdAt: '2017-08-05 11:45:43',
+//        updatedAt: '2017-08-05 11:45:43',
         parent: ''
       },
-      disableAPI: false
+      disableAPI: false,
+      searchString: '',
+      parent: null
     }
   },
   methods: {
@@ -225,31 +228,34 @@ export default {
         })
         .catch((err) => console.error(err))
     },
-    initAction (name, id, i) {
+    initAction (name, id) {
       this.confirmation.action = name
       this.confirmation.id = id
       this.confirmation.isShown = true
-      this.confirmation.i = i
     },
     clearAction () {
       this.confirmation.action = ''
       this.confirmation.isShown = false
       this.confirmation.id = null
-      this.confirmation.i = null
     },
     confirmActionHandler () {
       let self = this
       switch (this.confirmation.action) {
         case 'removeCategory':
-          removeCategory(this.confirmation.id, this.confirmation.i)
+          removeCategory(this.confirmation.id)
           break
       }
-      function removeCategory (id, i) {
+      function removeCategory (id) {
         self.clearAction()
         self.$http.delete(api.URLS.category + '/' + id, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
-            self.categories.splice(i, 1)
+            for (let i = 0; i < self.categories.length; i++) {
+              if (self.categories[i].id === id) {
+                self.categories.splice(i, 1)
+                break
+              }
+            }
             alert('Successfully removed')
           })
           .catch((err) => console.log(err))
@@ -399,10 +405,10 @@ export default {
   mounted () {
     this.fetchAllContentByScroll(1, 20)
     this.getCategories()
-    window.addEventListener('scroll', this.handleScroll)
+//    window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
+//    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
