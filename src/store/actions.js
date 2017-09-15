@@ -92,3 +92,7 @@ export const getCompanies = ({ commit }, payload) => {
     .then((res) => commit('setCompanies', res.body.items))
     .catch((err) => console.log(err))
 }
+
+export const setDataPreviewArticle = ({ commit }, payload) => {
+  commit('setDataPreviewArticle', payload)
+}

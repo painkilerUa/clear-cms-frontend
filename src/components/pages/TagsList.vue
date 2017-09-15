@@ -15,9 +15,9 @@
       </div>
     </div>
     <div class="wrap-categories-list">
-      <h1>Tags List</h1>
+      <h1>Topics List</h1>
       <div class="categories-list">
-        <h2>List with tags</h2>
+        <h2>List with topics</h2>
         <!--<div class="categories-list-actions">-->
           <!--<div class="categories-list-inputwrap">-->
             <!--<input type="checkbox" class="categories-list-input" />-->
@@ -38,7 +38,7 @@
                   <input
                     type="search"
                     class="table-search"
-                    placeholder="Search in tags..." />
+                    placeholder="Search in topics..." />
                 </div>
               </th>
               <th colspan="2" class="cellpadding">Actions</th>
@@ -89,21 +89,21 @@
         </div>
       </div>
       <div class="wrap-add-category-form">
-        <h3>Add new tag</h3>
+        <h3>Add new topic</h3>
         <div class="input-grout">
-          <label for="input-tag-name">Tag Name</label>
+          <label for="input-tag-name">Topic Name</label>
           <div class="wrap-input">
-            <input type="text" id="input-tag-name" class="input-category-name" placeholder="Write tag name" v-model="newTag.name"/>
+            <input type="text" id="input-tag-name" class="input-category-name" placeholder="Write topic name" v-model="newTag.name"/>
           </div>
         </div>
         <div class="textarea-group">
-          <label for="textarea-tag-desc">Tag description</label>
+          <label for="textarea-tag-desc">Topic description</label>
           <div class="wrap-textarea">
             <textarea name="category-desc" id="textarea-tag-desc" cols="30" rows="10" v-model="newTag.description"></textarea>
           </div>
         </div>
         <div class="wrap-control-panel">
-          <button type="button" class="btn-conf" @click="createTag"> + Create tag</button>
+          <button type="button" class="btn-conf" @click="createTag"> + Create topic</button>
         </div>
       </div>
 

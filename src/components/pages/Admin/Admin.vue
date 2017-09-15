@@ -22,7 +22,7 @@
         </li>
 				<br />
         <li>
-          <router-link :to="{name: 'tags'}">Tags</router-link>
+          <router-link :to="{name: 'tags'}">Topics</router-link>
         </li>
         <br />
 				<li>

@@ -83,7 +83,7 @@
                         :multiple="true"/>
             </th>
             <th>
-              <v-select placeholder="Tags"
+              <v-select placeholder="Topics"
                         :options="getTagsForSelect"
                         v-model="tags"
                         :multiple="true" />
@@ -113,7 +113,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="article in articles">
+          <tr v-for="(article, i) in articles">
             <td class="text-center cellpadding">
               <input type="checkbox" :id="article.id"/>
               <label :for="article.id">{{article.id}}</label>
@@ -128,7 +128,7 @@
             <td class="cellpadding">12 hours ago</td>
             <td class="cellpadding">Conan Simpson</td>
             <td class="cellpadding">
-              <span class="status status--published">Published</span>
+              <span class="status status--published">{{getStatus(article.status)}}</span>
             </td>
             <td class="cellpadding">
               <button
@@ -136,21 +136,21 @@
                 class="table-crud-btn icon-btn"
                 @click="editArticle(article.id)">
                 <icon name="pencil"/>
-
               </button>
             </td>
             <td class="cellpadding">
               <button
                 type="button"
                 class="table-crud-btn icon-btn">
-                <icon name="folder"/>
+                <icon name="folder" v-if="article.status !== 2 "/>
+                <icon name="rotate-right" v-if="article.status === 2" />
               </button>
             </td>
             <td class="cellpadding">
               <button
                 type="button"
                 class="table-crud-btn icon-btn"
-                @click="initAction('removeArticle', article.id)">
+                @click="initAction('removeArticle', article.id, i)">
                 <icon name="times" />
               </button>
             </td>
@@ -177,6 +177,7 @@ import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
+import 'vue-awesome/icons/rotate-right'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -190,7 +191,8 @@ export default {
       confirmation: {
         action: '',
         isShown: false,
-        articleId: null
+        articleId: null,
+        i: null
       },
       contentAutoloadInfo: {
         curPage: 1,
@@ -248,34 +250,43 @@ export default {
 //        })
 //        .catch((err) => console.error(err))
 //    },
-    initAction (name, id) {
+    initAction (name, id, i) {
       this.confirmation.action = name
       this.confirmation.articleId = id
       this.confirmation.isShown = true
+      this.confirmation.i = i
     },
     clearAction () {
       this.confirmation.action = ''
       this.confirmation.isShown = false
       this.confirmation.articleId = null
+      this.confirmation.i = null
     },
     confirmActionHandler () {
       let self = this
       switch (this.confirmation.action) {
         case 'removeArticle':
-          removeArticle(this.confirmation.articleId)
+          removeArticle(this.confirmation.articleId, this.confirmation.i)
           break
       }
-      function removeArticle (articleId) {
+      function removeArticle (articleId, i) {
         self.clearAction()
         self.$http.delete(api.URLS.content + '/' + articleId, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
+            self.articles.splice(i, 1)
+//            for (let i = 0; i < this.articles.length; i++) {
+//              if (this.articles[i].id === articleId) {
+//                this.articles.slice(i, 1)
+//                break
+//              }
+//            }
             alert('Article has been successfully removed')
           })
           .catch((err) => console.log(err))
       }
     },
-    // TODO: Change scrool handler make cur page different for different search type
+    // TODO: Change scrool handler make cur page different for different search typeFdelete
     handleScroll (event) {
       let scrollHeight = Math.max(
         document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -366,6 +377,18 @@ export default {
 //          this.contentInfo.locked = false
           console.log(err)
         })
+    },
+    getStatus (st) {
+      switch (st) {
+        case 0:
+          return 'Draft'
+        case 1:
+          return 'Published'
+        case 2:
+          return 'Archived'
+        default:
+          return ''
+      }
     }
   },
   computed: {

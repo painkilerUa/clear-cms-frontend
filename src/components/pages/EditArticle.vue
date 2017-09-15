@@ -6,8 +6,8 @@
         <h1>{{article.title}}</h1>
       </div>
       <div class="control-panel">
-        <span>Archive article</span>
-        <span>Delete article</span>
+        <span @click="archiveArticle">Archive article</span>
+        <span @click="deleteArticle">Delete article</span>
       </div>
     </div>
     <!-- .add-article-wrapper -->
@@ -71,18 +71,18 @@
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
-                  <label class="form-label">Tags</label>
+                  <label class="form-label">Topic</label>
                   <v-select
-                  name="Tags"
-                  data-vv-as='"Tags"'
+                  name="Topic"
+                  data-vv-as='"Topic"'
                   :options="getTagsForSelect"
                   v-model="article.tags"
                   v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
-                    v-if="errors.has('Tags')"
-                    class="form-errors">{{ errors.first('Tags') }}
+                    v-if="errors.has('Topic')"
+                    class="form-errors">{{ errors.first('Topic') }}
                   </div>
                 </div>
                 <!-- END:.form-element -->
@@ -92,7 +92,7 @@
                   <v-select
                   name="Category"
                   data-vv-as='"Category"'
-                  :options="getTagsForSelect"
+                  :options="getCategoriesForSelect"
                   v-model="article.categories"
                   v-validate="'required'"
                   :multiple="true"
@@ -108,7 +108,7 @@
                   <label class="form-label">Access</label>
                   <v-select
                   name="Access"
-                  :options="getRoleTitles"
+                  :options="getRolesForSelect"
                   v-model="article.roles"
                   v-validate="'required'"
                   :multiple="true"
@@ -183,10 +183,10 @@
               class="form-errors">{{ errors.first('Content') }}
             </div>
           </section>
-          <section class="edit-article-resources">
+          <section class="edit-article-resources" v-if="!!Object.keys(formResource.newResources[0]).length">
             <h2 class="add-article-section__title">{{formResource.title}}</h2>
             <div class="wrap-existing-resources">
-              <div class="existing-resource" v-for="(resource, i) in formResource.existingResources">
+              <div class="existing-resource" v-for="(resource, i) in formResource.existingResources" v-if="!!Object.keys(resource).length">
                 <div class="wrap-top-control-panel">
                   <span @click="deleteExistingResource(i)">
                     Delete
@@ -194,13 +194,22 @@
                   </span>
                 </div>
                 <h3></h3>
-                <div class="row">
+                <div class="row" v-if="resource.file">
                   <span>
                     <span>{{resource.file}}</span>
-                    <icon name="remove" />
+                    <button type="button" @click="removeResourceFile(i)">
+                      <icon name="remove" />
+                    </button>
                   </span>
-                  <div class="wrap-input-link" v-if="!resource.link">
-                    <input type="url" v-model="resource.link">
+                </div>
+                <div class="row">
+                  <div class="wrap-add-resource-file" v-if="resource.file === ''">
+                    <label :for="'edit-resource-file-' + i">Upload recource</label>
+                    <input type="file" :id="'edit-resource-file-' + i" @change="uploadFileExistedResource(i)">
+                  </div>
+                  <div class="wrap-add-resource-url" v-if="!resource.file && resource.link !== undefined">
+                    <label :for="'add-resource-url-' + i">Video URL</label>
+                    <input type="url" :id="'add-resource-url-' + i" v-model="resource.link">
                   </div>
                 </div>
                 <div class="row">
@@ -211,186 +220,30 @@
             <div class="wrap-add-resource">
               <div class="add-resource" v-for="(newResource, j) in formResource.newResources">
                 <div class="row">
-                  <div class="wrap-add-resource-file" v-if="newResource.file">
-                    <label for="'add-resource-file-' + j">Upload recource</label>
-                    <input type="file" id="'add-resource-file-' + j">
+                  <div class="wrap-add-resource-file" v-if="newResource.file !== undefined">
+                    <label :for="'add-resource-file-' + j">Upload recource</label>
+                    <input type="file" :id="'add-resource-file-' + j" @change="uploadFileNewResource(j)">
                   </div>
-                  <label for="'add-resource-url-' + j">Video URL</label>
-                  <input type="url" id="'add-resource-url-' + j" v-model="newResource.link">
+                  <div class="wrap-add-resource-url" v-if="newResource.link !== undefined">
+                    <label :for="'add-resource-url-' + j">Video URL</label>
+                    <input type="url" :id="'add-resource-url-' + j" v-model="newResource.link">
+                  </div>
                 </div>
-                <label for="{'add-resource-desc-' + j}">Transcript for Video</label>
+                <label :for="'add-resource-desc-' + j">Transcript for Video</label>
                 <div class="row">
-                  <textarea name="text" cols="30" rows="5" id="'add-resource-desc-' + j" v-model="newResource.textarea"></textarea>
+                  <textarea name="text" cols="30" rows="5" :id="'add-resource-desc-' + j" v-model="newResource.textarea"></textarea>
                 </div>
-
               </div>
               <div class="wrap-bottom-control-panel">
                 <button @click="addResource">Add resource</button>
               </div>
             </div>
           </section>
-          <!--<section class="add-article-section" v-if="article.contentType.label === 'video'">-->
-            <!--<h2 class="add-article-section__title">Article video</h2>-->
-            <!--<div class="wrap-existing-resources">-->
-              <!--<div class="existing-resource" v-for="(resource, i) in existingResources">-->
-                <!--<div class="wrap-control">-->
-                  <!--&lt;!&ndash;<span>Delete</span>&ndash;&gt;-->
-                <!--</div>-->
-                <!--<h4>Attachment {{i +1}}: URL and transcript</h4>-->
-                <!--<div class="wrap-link">-->
-                  <!--<input type="url" :value="resource.link" class="link" />-->
-                <!--</div>-->
-                <!--<div class="wrap-textarea">-->
-                  <!--<textarea name="textarea" id="" cols="30" rows="5" :value="resource.textarea"></textarea>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
-            <!--<div class="form-elements" v-for="n in addElements.video">-->
-              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-              <!--<div class="form-element">-->
-                <!--<label for="addVideoUrl" class="form-label">Video URL</label>-->
-                <!--<input-->
-                <!--id="addVideoUrl"-->
-                <!--type="text"-->
-                <!--placeholder="Insert video link here"-->
-                <!--class="form-control input-url-video" />-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-              <!--<div class="form-element">-->
-                <!--<label for="addTextarea" class="form-label">Transcript for video</label>-->
-                <!--<textarea-->
-                <!--id="addTextarea"-->
-                <!--placeholder="Transcript for video"-->
-                <!--class="form-control input-textarea-video"-->
-                <!--cols="30"-->
-                <!--rows="5">-->
-                <!--</textarea>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-              <!--</div>-->
-            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
-            <!--<button-->
-              <!--type="button"-->
-              <!--@click="addFormElement('video')"-->
-              <!--class="add-article-btn alignright">Add video-->
-            <!--</button>-->
-          <!--</section>-->
-          <!--<section class="add-article-section" v-if="article.contentType.label === 'case_study'">-->
-            <!--<h2 class="add-article-section__title">Article Case Study</h2>-->
-            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
-            <!--<div class="form-elements" v-for="n in addElements.case_study">-->
-              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-              <!--<div class="form-element">-->
-                <!--<label for="case-study-textarea" class="form-label">Case Study transcript</label>-->
-                <!--<textarea-->
-                  <!--id="case-study-textarea"-->
-                  <!--placeholder="Case Study transcript"-->
-                  <!--class="form-control input-textarea-case-study"-->
-                  <!--cols="30"-->
-                  <!--rows="5">-->
-                <!--</textarea>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
-            <!--<button-->
-              <!--type="button"-->
-              <!--@click="addFormElement('case_study')"-->
-              <!--class="add-article-btn alignright">Add element-->
-            <!--</button>-->
-          <!--</section>-->
-          <!--<section class="add-article-section" v-if="article.contentType.label === 'screen_text'">-->
-            <!--<h2 class="add-article-section__title">Article Screen Text</h2>-->
-            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
-            <!--<div class="form-elements" v-for="n in addElements.screen_text">-->
-              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-              <!--<div class="form-element">-->
-                <!--<label for="screen-text-textarea" class="form-label">Screen Text transcript</label>-->
-                <!--<textarea-->
-                  <!--id="screen-text-textarea"-->
-                  <!--placeholder="Screen Text transcript"-->
-                  <!--class="form-control input-textarea-screen-text"-->
-                  <!--cols="30"-->
-                  <!--rows="5">-->
-                <!--</textarea>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
-            <!--<button-->
-              <!--type="button"-->
-              <!--@click="addFormElement('screen_text')"-->
-              <!--class="add-article-btn alignright">Add element-->
-            <!--</button>-->
-          <!--</section>-->
-          <!--<section class="add-article-section" v-if="article.contentType.label === 'resource'">-->
-            <!--<h2 class="add-article-section__title">Article resources</h2>-->
-            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
-            <!--<div class="form-elements" v-for="n in addElements.resource">-->
-              <!--&lt;!&ndash; .form-group &ndash;&gt;-->
-              <!--<div class="form-group">-->
-                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-                <!--<div class="form-element form-element&#45;&#45;half">-->
-                  <!--<span class="form-label">Upload resource</span>-->
-                  <!--<label class="form-label form-label&#45;&#45;file-resource">-->
-                    <!--<icon name="upload" />-->
-                    <!--<span class="form-label__text">Upload resource</span>-->
-                    <!--<span :id="'uploadedResource_' + n"></span>-->
-                    <!--<input-->
-                    <!--id=""-->
-                    <!--type="file"-->
-                    <!--@change="onResourceFileChange($event.target.value, n)"-->
-                    <!--placeholder="Type in to add title..."-->
-                    <!--class="form-control visually-hidden form-control&#45;&#45;file input-file-resource" />-->
-                  <!--</label>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-                <!--<div class="form-element form-element&#45;&#45;half">-->
-                  <!--<label for="addTitle" class="form-label">Insert resource URL</label>-->
-                  <!--<input-->
-                  <!--id="addTitle"-->
-                  <!--type="url"-->
-                  <!--placeholder="Insert resource link here"-->
-                  <!--class="form-control input-url-resource" />-->
-                <!--</div>-->
-                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-                <!--&lt;!&ndash; .form-element &ndash;&gt;-->
-                <!--<div class="form-element form-element&#45;&#45;full">-->
-                  <!--<label for="addTextarea" class="form-label">Transcript for resource</label>-->
-                  <!--<textarea-->
-                  <!--id="addTextarea"-->
-                  <!--placeholder="Transcript for resource"-->
-                  <!--class="form-control input-textarea-resource"-->
-                  <!--cols="30"-->
-                  <!--rows="5">-->
-                  <!--</textarea>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-group &ndash;&gt;-->
-              <!--</div>-->
-              <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
-            <!--<button-->
-              <!--type="button"-->
-              <!--@click="addFormElement('resource')"-->
-              <!--class="add-article-btn alignright">Add resource-->
-            <!--</button>-->
-          <!--</section>-->
-          <!--<article-add-data-->
-            <!--:title="'Test Video'"-->
-            <!--:type="'video'"-->
-            <!--v-for="(item, i) in additionalFormFields"-->
-            <!--:key="i"-->
-            <!--@addNewFieldGroup="addFieldGroup"-->
-            <!--:formFields="item.fields"/>-->
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
         <div class="add-article-actions">
-          <button type="button" class="action-btn action-btn--preview icon-btn">
+          <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
             <span>Preview Article</span>
           </button>
@@ -435,14 +288,14 @@ export default {
         createdAt: '2017-08-05 11:45:43',
         updatedAt: '2017-08-05 11:45:43',
         publishedAt: '2017-08-05 11:45:43',
-        isActive: 1
+        isActive: null
       },
       srcImagePreview: '',
       languages: ['English (UK)', 'English (US)'],
       tags: [],
       categories: [],
       roles: [],
-      isThumbnailFileUploaded: true,
+      isThumbnailFileUploaded: false,
       addElements: {
         video: 1,
         resource: 1,
@@ -452,7 +305,8 @@ export default {
       subForm: {
         type: ''
       },
-      formResource: []
+      formResource: [],
+      disableAPI: false
     }
   },
   computed: {
@@ -516,35 +370,6 @@ export default {
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
     },
-//    getTypes () {
-//      this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
-//      .then((res) => {
-//        this.types = res.body.items
-//        console.log('getTypes', res.body)
-//      })
-//      .catch((err) => console.log(err))
-//    },
-    getTags () {
-      this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
-      .then((res) => {
-        this.tags = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
-    getCategories () {
-      this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
-      .then((res) => {
-        this.categories = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
-    getRoles () {
-      this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
-      .then((res) => {
-        this.roles = res.body.items
-      })
-      .catch((err) => console.log(err))
-    },
     addFormElement (type) {
       this.addElements[type] += 1
     },
@@ -594,18 +419,9 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    editArticle () {
+    editArticle (e, status = this.article.isActive) {
+      if (this.disableAPI) return
       let formData = new FormData()
-//      Object.keys(this.article).forEach((fieldName) => {
-//        if (typeof this.article[fieldName] === 'string' || typeof this.article[fieldName] === 'number') {
-//          formData.set('category[' + fieldName + ']', this.article[fieldName])
-//        }
-//        if (typeof this.article[fieldName] === 'object') {
-//          this.article[fieldName].forEach((item, i) => {
-//            formData.set('category[' + fieldName + '][' + i + ']', item.value)
-//          })
-//        }
-//      })
       formData.set('content[title]', this.article.title)
       formData.set('content[content]', this.article.content)
       formData.set('content[description]', this.article.description)
@@ -613,7 +429,7 @@ export default {
       formData.set('content[createdAt]', '2017-08-05 11:45:43')
       formData.set('content[updatedAt]', '2017-08-05 11:45:43')
       formData.set('content[publishedAt]', '2017-08-05 11:45:43')
-      formData.set('content[isActive]', this.article.isActive)
+      formData.set('content[status]', status)
 //  Add categories
       this.article.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
@@ -624,29 +440,87 @@ export default {
         let fieldName = 'content[tags][' + i + ']'
         formData.set(fieldName, tag.value)
       })
+// Add companies
+      this.article.companies.forEach((company, i) => {
+        let fieldName = 'content[companies][' + i + ']'
+        formData.set(fieldName, company.value)
+      })
+// Add roles
+      this.article.roles.forEach((role, i) => {
+        let fieldName = 'content[roles][' + i + ']'
+        formData.set(fieldName, role.value)
+      })
       if (document.getElementById('uploadThumbnail').files[0]) {
         formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
       }
-      this.existingResources.forEach((item, i) => {
-        Object.keys(item).forEach((key) => {
-          formData.set('content[typeValues][' + i + '][' + key + ']', item[key])
+// Add resources
+      let countTypeValues = 0
+      this.formResource.existingResources.forEach((resource) => {
+        Object.keys(resource).forEach((key, i) => {
+          if (key === 'file' && resource[key]) {
+            formData.set('content[typeValues][' + countTypeValues + '][file]', resource.id)
+          }
+          if (key === 'file' && resource[key] === '') {
+            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('edit-resource-file-' + resource.id).files[0])
+          }
+          if (key === 'link') {
+            formData.set('content[typeValues][' + countTypeValues + '][link]', resource.link)
+          }
+          if (key === 'textarea') {
+            formData.set('content[typeValues][' + countTypeValues + '][textarea]', resource.textarea)
+          }
         })
+        countTypeValues++
       })
+      this.formResource.newResources.forEach((newResource) => {
+        Object.keys(newResource).forEach((key, i) => {
+//        Check filled fields
+          if (!newResource.textarea || (!newResource.link && !newResource.id.toString())) return
+          if (key === 'file' && document.getElementById('add-resource-file-' + newResource.id)) {
+            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('add-resource-file-' + newResource.id).files[0])
+          }
+          if (key === 'link') {
+            formData.set('content[typeValues][' + countTypeValues + '][link]', newResource.link)
+          }
+          if (key === 'textarea') {
+            formData.set('content[typeValues][' + countTypeValues + '][textarea]', newResource.textarea)
+          }
+        })
+        countTypeValues++
+      })
+      this.disableAPI = true
       this.$http.post(api.URLS.content + '/' + this.articleId, formData, api.headersAuthSettings)
         .then((res) => {
+          this.disableAPI = false
           console.log('editArticle', res)
           this.$router.push('/admin/articles-list')
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
+    },
+    uploadFileExistedResource (i) {
+      this.formResource.existingResources[i].id = i
+      console.log('uploadFileExistedResource', i)
+    },
+    uploadFileNewResource (j) {
+      this.formResource.newResources[j].id = j
     },
     getSubFormFields (val) {
       if (!val) return
-//      console.log('getSubFormFields', val)
-//      console.log('getSubFormFields', this.types)
       let typeId = this.types.find(item => item.type === val).id
       this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
         .then((res) => {
-          this.subForm.type = res.body.form.type
+          console.log('', res)
+          let newFormField = {}
+          if (res.body.form.form) {
+            Object.keys(res.body.form.form).forEach((key) => {
+              newFormField[key] = ''
+            })
+          }
+          this.formResource.existingResources = []
+          this.formResource.newResources = [newFormField]
           console.log('getSubFormFields', res)
         })
         .catch((err) => console.log(err))
@@ -656,6 +530,8 @@ export default {
         .then((res) => {
           console.log('getArticleById', res)
           this.article.title = res.body.title
+          this.article.description = res.body.description
+          this.article.isActive = +res.body.status
           this.article.contentType = {
             label: res.body.content_type.type,
             value: res.body.content_type.id
@@ -678,7 +554,14 @@ export default {
               value: company.id
             })
           })
-          // TODO: make for roles same thins
+          res.body.roles.forEach((role) => {
+            this.article.roles.push({
+              label: role.name,
+              value: role.id
+            })
+          })
+// Add image
+          this.isThumbnailFileUploaded = !!res.body.image_name
           this.article.content = res.body.content
           let newResource = {}
           Object.keys(res.body.content_type.form.form).forEach((key) => {
@@ -686,7 +569,7 @@ export default {
           })
           this.formResource = {
             title: res.body.content_type.form.comment.title,
-            existingResources: res.body.formResource,
+            existingResources: res.body.formResource ? res.body.formResource : [],
             newResources: [newResource]
           }
 //          this.existingResources = res.body.formResource
@@ -697,10 +580,34 @@ export default {
         .catch((err) => console.log(err))
     },
     addResource () {
-      this.formResource.newResources.push(this.formResource.newResources[0])
+      let newResource = {}
+      Object.keys(this.formResource.newResources[0]).forEach((key) => {
+        newResource[key] = ''
+      })
+      this.formResource.newResources.push(newResource)
     },
     deleteExistingResource (i) {
       this.formResource.existingResources.splice(i, 1)
+    },
+    removeResourceFile (i) {
+      this.formResource.existingResources[i].file = ''
+    },
+    previewArticle () {
+    },
+    archiveArticle () {
+      this.editArticle(null, 2)
+    },
+    deleteArticle () {
+      if (this.disableAPI) return
+      this.$http.delete(api.URLS.content + '/' + this.articleId, api.headersAuthSettings)
+        .then((res) => {
+          this.disableAPI = false
+          this.$router.push('/admin/articles-list')
+        })
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
     }
   },
   components: {

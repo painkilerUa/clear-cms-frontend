@@ -14,3 +14,5 @@ export const setRoles = (state, roles) => { state.roles = roles }
 
 // Companies
 export const setCompanies = (state, payload) => { state.companies = payload }
+//
+export const setDataPreviewArticle = (state, payload) => { state.articlePreview = payload }

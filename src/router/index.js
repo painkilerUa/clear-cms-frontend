@@ -16,6 +16,7 @@ import CategoriesList from '@/components/pages/CategoriesList'
 import TagsList from '@/components/pages/TagsList'
 import AddArticle from '@/components/pages/AddArticle'
 import EditArticle from '@/components/pages/EditArticle'
+import PreviewArticle from '@/components/pages/PreviewArticle'
 import Error from '@/components/pages/Error'
 
 Vue.use(Router)
@@ -80,6 +81,11 @@ const router = new Router({
               path: 'edit/:id',
               name: 'edit-article',
               component: EditArticle
+            },
+            {
+              path: 'preview',
+              name: 'preview-article',
+              component: PreviewArticle
             }
           ]
         },

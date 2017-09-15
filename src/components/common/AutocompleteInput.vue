@@ -19,7 +19,7 @@
               <v-select placeholder="Type" value.sync="selectedType" :on-change="selectType" :options="getContentTypeTitles" />
             </li>
             <li class="ac-filters-list__item">
-              <v-select placeholder="Tags" value.sync="selectedTags" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
+              <v-select placeholder="Topic" value.sync="selectedTags" :multiple="true" :on-change="selectTags" :options="getTagTitles" />
             </li>
           </ul>
           <!-- END:.ac-filters-list -->

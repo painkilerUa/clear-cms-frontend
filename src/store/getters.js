@@ -62,3 +62,5 @@ export const getRolesForSelect = (state) => state.roles.map(item => {
   }
 //  }
 })
+
+export const getArticlePreview = (state) => state.articlePreview

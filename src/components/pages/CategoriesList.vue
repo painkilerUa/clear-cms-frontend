@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="wrap-categories-list">
-      <h1>Categories in "Tags"</h1>
+      <h1>Categories in "Topics"</h1>
       <div class="categories-list">
         <h2>List with categories</h2>
         <!--<div class="categories-list-actions">-->
@@ -57,7 +57,7 @@
             </tr>
             </thead>
             <tbody>
-              <tr v-for="category in updatedCategories">
+              <tr v-for="(category, i) in updatedCategories">
                 <td class="text-center cellpadding" v-if="category.type === 'show'">
                   <input type="checkbox" :id="category.id"/>
                   <label :for="category.id">{{category.id}}</label>
@@ -77,7 +77,7 @@
                   <button
                     type="button"
                     class="table-crud-btn icon-btn"
-                    @click="initAction('removeCategory', category.id)">
+                    @click="initAction('removeCategory', category.id, i)">
                     <icon name="times" />
                   </button>
                 </td>
@@ -225,28 +225,31 @@ export default {
         })
         .catch((err) => console.error(err))
     },
-    initAction (name, id) {
+    initAction (name, id, i) {
       this.confirmation.action = name
       this.confirmation.id = id
       this.confirmation.isShown = true
+      this.confirmation.i = i
     },
     clearAction () {
       this.confirmation.action = ''
       this.confirmation.isShown = false
       this.confirmation.id = null
+      this.confirmation.i = null
     },
     confirmActionHandler () {
       let self = this
       switch (this.confirmation.action) {
         case 'removeCategory':
-          removeCategory(this.confirmation.id)
+          removeCategory(this.confirmation.id, this.confirmation.i)
           break
       }
-      function removeCategory (id) {
+      function removeCategory (id, i) {
         self.clearAction()
         self.$http.delete(api.URLS.category + '/' + id, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
+            self.categories.splice(i, 1)
             alert('Successfully removed')
           })
           .catch((err) => console.log(err))
@@ -378,10 +381,11 @@ export default {
   },
   watch: {
     categories: function () {
+      let updatedCategories = []
       this.categories.forEach((category, i, arr) => {
         category.type = 'show'
-        this.updatedCategories.push(category)
-        this.updatedCategories.push({
+        updatedCategories.push(category)
+        updatedCategories.push({
           type: null,
           id: category.id,
           title: category.title,
@@ -389,6 +393,7 @@ export default {
           description: category.description
         })
       })
+      this.updatedCategories = updatedCategories
     }
   },
   mounted () {
@@ -403,3 +408,5 @@ export default {
 </script>
 
 <style src='@/assets/scss/components/categories-list.scss' lang='scss' scoped />
+
+//TODO: Use updated categories commit it for correct removing

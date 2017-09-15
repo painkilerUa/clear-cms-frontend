@@ -72,10 +72,10 @@
                 <!-- END:.form-element -->
                 <!-- .form-element -->
                 <div class="form-element form-element--half">
-                  <label class="form-label">Tags</label>
+                  <label class="form-label">Topics</label>
                   <v-select
-                  name="Tags"
-                  data-vv-as='"Tags"'
+                  name="Topic"
+                  data-vv-as='"Topic"'
                   :options="getTagsForSelect"
                   v-model="selectedValues.tags"
                   v-validate="'required'"
@@ -331,7 +331,7 @@
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
         <div class="add-article-actions">
-          <button type="button" class="action-btn action-btn--preview icon-btn">
+          <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
             <span>Preview Article</span>
           </button>
@@ -446,7 +446,8 @@ export default {
       'getCompanies',
       'getRoles',
       'getCategories',
-      'getTags'
+      'getTags',
+      'setDataPreviewArticle'
     ]),
     sendFormRequest () {
       this.selectType()
@@ -660,6 +661,11 @@ export default {
         .catch((err) => console.log(err))
     },
     createSubForm (data) {
+    },
+    previewArticle () {
+//      this.setDataPreviewArticle(this.selectedValues)
+      localStorage.previewArticle = JSON.stringify(this.selectedValues)
+      window.open(location.origin + '/admin/article/preview')
     }
   },
   components: {
