@@ -36,6 +36,7 @@
               <th class="categories-list-search-col text-left">
                 <div class="table-search-wrap">
                   <input
+                    v-model="searchString"
                     type="search"
                     class="table-search"
                     placeholder="Search in topics..." />
@@ -146,7 +147,8 @@ export default {
         createdAt: '2017-08-05 11:45:43',
         updatedAt: '2017-08-05 11:45:43'
       },
-      disableAPI: false
+      disableAPI: false,
+      searchString: ''
     }
   },
   methods: {
@@ -214,6 +216,12 @@ export default {
         self.$http.delete(api.URLS.tag + '/' + id, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
+            for (let i = 0; i < self.tags.length; i++) {
+              if (self.tags[i].id === id) {
+                self.tags.splice(i, 1)
+                break
+              }
+            }
             alert('Successfully removed')
           })
           .catch((err) => console.log(err))
@@ -332,29 +340,34 @@ export default {
   computed: {
     ...mapGetters([
       'getTagsForSelect'
-    ])
+    ]),
+    filteredTags () {
+      return this.tags.filter((tag) => tag.name.toLowerCase().indexOf(this.searchString.toLowerCase()) > -1)
+    }
   },
   watch: {
-    tags: function () {
-      this.tags.forEach((tag, i, arr) => {
+    filteredTags: function () {
+      let updatedTags = []
+      this.filteredTags.forEach((tag, i, arr) => {
         tag.type = 'show'
-        this.updatedTags.push(tag)
-        this.updatedTags.push({
+        updatedTags.push(tag)
+        updatedTags.push({
           type: null,
           id: tag.id,
           name: tag.name,
           description: tag.description
         })
       })
+      this.updatedTags = updatedTags
     }
   },
   mounted () {
     this.fetchAllContentByScroll(1, 20)
     this.getTags()
-    window.addEventListener('scroll', this.handleScroll)
+//    window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
+//    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

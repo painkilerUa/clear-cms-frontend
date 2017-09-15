@@ -23,8 +23,7 @@ const state = {
   tags: [],
   actions: [],
   roles: [],
-  categories: [],
-  articlePreview: {}
+  categories: []
 }
 
 export default new Vuex.Store({

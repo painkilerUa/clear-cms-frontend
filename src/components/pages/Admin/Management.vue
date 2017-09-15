@@ -1,7 +1,7 @@
 <template>
 	<!-- .management -->
 	<div class="management">
-		<h1>Create Admin</h1>
+		<h1>Create User</h1>
 		<!-- .create-admin -->
 		<form action="#" class="form" ref="form" @submit.prevent="submit">
 			<!-- .form-element -->
@@ -19,7 +19,7 @@
 	  	<!-- END:.form-element -->
 			<!-- .form-element -->
 	  	<div class="form-element">
-	  		<input 
+	  		<input
 	  		type="text"
 	  		name="Last Name"
 	  		data-vv-as='"Last Name"'
@@ -82,8 +82,22 @@
 	  		:options="functionOptions" />
 	  		<div v-if="errors.has('Function')" class="form-errors">{{ errors.first('Function') }}</div>
 	  	</div>
-	  	<!-- END:.form-element -->
-	  	<!-- .form-element -->
+      <!-- END:.form-element -->
+      <!-- .form-element -->
+      <div class="form-element">
+        <v-select
+          placeholder="User Role"
+          name="userRole"
+          data-vv-name="userRole"
+          v-model="userRole"
+          v-validate="'required'"
+          data-vv-as='"userRole"'
+          class="form-control form-control--select"
+          :options="getRolesForSelect" />
+        <div v-if="errors.has('userRole')" class="form-errors">{{ errors.first('userRole') }}</div>
+      </div>
+      <!-- END:.form-element -->
+      <!-- .form-element -->
 	  	<div class="form-element">
 	  		<input
 	  		type="text"
@@ -96,7 +110,7 @@
 	  		<div v-if="errors.has('Job Title')" class="form-errors">{{ errors.first('Job Title') }}</div>
 	  	</div>
 	  	<!-- END:.form-element -->
-	  	<button type="submit" class="form-control form-submit">Create Admin</button>
+	  	<button type="submit" class="form-control form-submit">Create User</button>
 	  	<form-messages :messages="formServerMessages"/>
 		</form>
 		<!-- END:.create-admin -->
@@ -108,6 +122,7 @@
 import api from '@/api'
 import forms from '@/mixins/forms'
 import FormMessages from '@/components/common/FormMessages'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'admin-management',
@@ -125,12 +140,16 @@ export default {
         function: '',
         lastName: '',
         jobTitle: ''
-      }
+      },
+      userRole: null
     }
   },
   methods: {
+    ...mapActions([
+      'getRoles'
+    ]),
     sendFormRequest () {
-      this.$http.post(api.URLS.createAdmin, this.formJson)
+      this.$http.post(api.URLS.createAdmin + this.userRole.value, this.formJson)
       .then((res) => {
         this.submitSuccess(res.body)
       })
@@ -139,6 +158,14 @@ export default {
   },
   components: {
     FormMessages
+  },
+  computed: {
+    ...mapGetters([
+      'getRolesForSelect'
+    ])
+  },
+  mounted () {
+    this.getRoles()
   }
 }
 </script>

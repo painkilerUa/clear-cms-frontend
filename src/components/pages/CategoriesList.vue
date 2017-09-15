@@ -383,12 +383,16 @@ export default {
       'getCategoriesTitle',
       'getCategoriesForSelect',
       'getTagsForSelect'
-    ])
+    ]),
+    filteredCategories () {
+      return this.categories.filter((category) => category.title.toLowerCase().indexOf(this.searchString.toLowerCase()) > -1)
+        .filter((category) => this.parent === null || (category.parent && category.parent.id === this.parent.value))
+    }
   },
   watch: {
-    categories: function () {
+    filteredCategories: function () {
       let updatedCategories = []
-      this.categories.forEach((category, i, arr) => {
+      this.filteredCategories.forEach((category, i, arr) => {
         category.type = 'show'
         updatedCategories.push(category)
         updatedCategories.push({

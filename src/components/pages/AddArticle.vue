@@ -1,6 +1,42 @@
 <template>
   <!-- add-article -->
   <div class="add-article">
+    <div class="wrap-preview-article" v-if="articlePreview.isShown">
+      <button type="button" class="close-preview-button" @click="articlePreview.isShown = false">
+        <icon name="window-close-o"></icon>
+      </button>
+      <h3>{{selectedValues.title}}</h3>
+      <div class="wrap-main-content">
+        <div class="text-content">
+          <div v-html="selectedValues.content"></div>
+        </div>
+        <div class="graphic-content">
+          <div class="wrap-main-img" v-if="articlePreview.mainImg !== null">
+            <img :src="articlePreview.mainImg" alt="imgPreview">
+          </div>
+          <div class="wrap-resource">
+            <div class="wrap-resource-video" v-if="subForm.type === 'video'" v-for="resource in articlePreview.resources">
+              <h4>Video resources</h4>
+              <iframe
+              :src="resource.link">
+              </iframe>
+              <span>Transcript for video</span>
+              <section>{{resource.textarea}}</section>
+            </div>
+            <div class="wrap-resource-screen-text" v-if="subForm.type === 'resource'" v-for="resource in articlePreview.resources">
+              <h4>Article resources</h4>
+              <div class="wrap-file">
+                <span>File Name: </span>
+                <span>{{resource.fileName}}</span>
+              </div>
+              <section v-if="resource.link">{{resource.link}}</section>
+              <span>Description Resource</span>
+              <section>{{resource.textarea}}</section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <h1 class="add-article-title">Add new article</h1>
     <icon name="info-circle" aria-hidden="true" class="add-article-icon-info" data-description=""/>
     <div class="add-article-tooltip">
@@ -355,6 +391,7 @@ import 'vue-awesome/icons/eye'
 import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
 import 'vue-awesome/icons/info-circle'
+import 'vue-awesome/icons/window-close-o'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
@@ -405,7 +442,12 @@ export default {
       subForm: {
         type: ''
       },
-      disableAPI: false
+      disableAPI: false,
+      articlePreview: {
+        isShown: false,
+        mainImg: null,
+        resources: []
+      }
     }
   },
   computed: {
@@ -472,39 +514,11 @@ export default {
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
     },
-//    getTypes () {
-//      this.$http.get(`${api.serverURL}${api.URLS.contentTypes}`, api.headersAuthSettings)
-//      .then((res) => {
-//        this.types = res.body.items
-//        console.log('getTypes', res.body)
-//      })
-//      .catch((err) => console.log(err))
-//    },
-//    getTags () {
-//      this.$http.get(`${api.serverURL}${api.URLS.tags}`, api.headersAuthSettings)
-//      .then((res) => {
-//        this.tags = res.body.items
-//      })
-//      .catch((err) => console.log(err))
-//    },
-//    getCategories () {
-//      this.$http.get(`${api.serverURL}${api.URLS.categories}`, api.headersAuthSettings)
-//      .then((res) => {
-//        this.categories = res.body.items
-//      })
-//      .catch((err) => console.log(err))
-//    },
-//    getRoles () {
-//      this.$http.get(`${api.serverURL}${api.URLS.roles}`, api.headersAuthSettings)
-//      .then((res) => {
-//        this.roles = res.body.items
-//      })
-//      .catch((err) => console.log(err))
-//    },
     addFormElement (type) {
       this.addElements[type] += 1
     },
     onThumbnailFileChange (e) {
+      let self = this
       var input = document.getElementById('uploadThumbnail')
       if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
         this.isThumbnailFileUploaded = true
@@ -513,6 +527,7 @@ export default {
           var thumbnailFilePreview = document.getElementById('thumbnailFilePreview')
           thumbnailFilePreview.setAttribute('src', e.target.result)
           thumbnailFilePreview.setAttribute('alt', 'thumbnail')
+          self.articlePreview.mainImg = e.target.result
         }
         reader.readAsDataURL(input.files[0])
       }
@@ -663,9 +678,37 @@ export default {
     createSubForm (data) {
     },
     previewArticle () {
-//      this.setDataPreviewArticle(this.selectedValues)
-      localStorage.previewArticle = JSON.stringify(this.selectedValues)
-      window.open(location.origin + '/admin/article/preview')
+      this.articlePreview.resources = []
+      this.articlePreview.isShown = true
+      if (this.subForm.type === 'video') {
+        let urls = [...document.getElementsByClassName('input-url-video')]
+        let textareas = [...document.getElementsByClassName('input-textarea-video')]
+        if (!urls.length || !textareas.length) return
+        urls.forEach((url, i) => {
+          if (!url.value) return
+          this.articlePreview.resources.push({link: url.value})
+        })
+        textareas.forEach((textarea, i) => {
+          if (!textarea.value) return
+          this.articlePreview.resources[i].textarea = textarea.value
+        })
+      }
+      if (this.subForm.type === 'resource') {
+        let urls = [...document.getElementsByClassName('input-url-resource')]
+        let textareas = [...document.getElementsByClassName('input-textarea-resource')]
+        let files = [...document.getElementsByClassName('input-file-resource')]
+        if (!urls.length || !textareas.length || !files.length) return
+        textareas.forEach((textarea, i) => {
+          this.articlePreview.resources.push({textarea: textarea.value})
+        })
+        urls.forEach((url, i) => {
+          this.articlePreview.resources[i].link = url.value
+        })
+        files.forEach((file, i) => {
+          console.log(file)
+          this.articlePreview.resources[i].fileName = file.files[0].name
+        })
+      }
     }
   },
   components: {

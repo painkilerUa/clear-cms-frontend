@@ -64,8 +64,8 @@ export default {
         username: null,
         password: null,
         grant_type: 'password',
-        client_id: '1_7v14gfa6qigwwgss80kg484o8wc880owgo4s400kg4w4g4kgc',
-        client_secret: '5keno5qzn5gcoosswckcw0sgccggsk8ws4scggosgcgs08wksw'
+        client_id: '2_659vq9a3czggcws88wcws8s4kc8gc8gcss4wog4cwcsk08ggkg',
+        client_secret: '5ncmjzrt9ps8808cskk8ogwwgwkgks8ggc0kskg0cw48s08ks4'
       },
       secondPassword: null
     }

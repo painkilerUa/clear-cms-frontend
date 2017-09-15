@@ -36,6 +36,6 @@ api.URLS = {
     disallowed: `${api.serverURL}/api/v1/disallowed`
   },
   roles: `/api/v1/roles`,
-  createAdmin: `${api.serverURL}/api/v1/register-admin`
+  createAdmin: `${api.serverURL}/api/v1/register-admin/`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)
