@@ -183,7 +183,7 @@
               class="form-errors">{{ errors.first('Content') }}
             </div>
           </section>
-          <section class="edit-article-resources" v-if="!!Object.keys(formResource.newResources[0]).length">
+          <section class="edit-article-resources" v-if="formResource.newResources && !!Object.keys(formResource.newResources[0]).length">
             <h2 class="add-article-section__title">{{formResource.title}}</h2>
             <div class="wrap-existing-resources">
               <div class="existing-resource" v-for="(resource, i) in formResource.existingResources" v-if="!!Object.keys(resource).length">
@@ -521,6 +521,7 @@ export default {
           }
           this.formResource.existingResources = []
           this.formResource.newResources = [newFormField]
+          console.log('newFormField', newFormField)
           console.log('getSubFormFields', res)
         })
         .catch((err) => console.log(err))
@@ -564,11 +565,13 @@ export default {
           this.isThumbnailFileUploaded = !!res.body.image_name
           this.article.content = res.body.content
           let newResource = {}
-          Object.keys(res.body.content_type.form.form).forEach((key) => {
-            newResource[key] = ''
-          })
+          if (res.body.content_type.form.form) {
+            Object.keys(res.body.content_type.form.form).forEach((key) => {
+              newResource[key] = ''
+            })
+          }
           this.formResource = {
-            title: res.body.content_type.form.comment.title,
+            title: res.body.content_type.form.comment ? res.body.content_type.form.comment.title : '',
             existingResources: res.body.formResource ? res.body.formResource : [],
             newResources: [newResource]
           }

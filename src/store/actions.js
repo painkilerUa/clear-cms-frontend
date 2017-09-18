@@ -67,7 +67,10 @@ export const getActions = ({ commit }, payload) => {
   const urlEnd = api.URLS.actionsURLS.actions
   const type = 'get'
   api.requestToServer(urlEnd, type, payload)
-  .then((res) => commit('setActions', res.body.items))
+  .then((res) => {
+    console.log('getActions', res)
+    commit('setActions', res.body)
+  })
   .catch((err) => console.log(err))
 }
 

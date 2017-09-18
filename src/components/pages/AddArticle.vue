@@ -215,6 +215,7 @@
               data-vv-as='"Content"'
               v-validate="'required'"
               v-model="selectedValues.content" />
+              <!--:editorToolbar="customEditorToolbar"/>-->
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}
@@ -447,7 +448,12 @@ export default {
         isShown: false,
         mainImg: null,
         resources: []
-      }
+      },
+      customEditorToolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'list': 'blockquote'}, {'list': 'code-block'}],
+        [{'list': 'ordered'}, {'list': 'bullet'}]
+      ]
     }
   },
   computed: {

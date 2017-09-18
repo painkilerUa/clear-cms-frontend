@@ -95,10 +95,18 @@
                         :multiple="true" />
             </th>
             <th>
-              <v-select placeholder="Access" />
+              <v-select placeholder="Access"
+                        :options="getRolesForSelect"
+                        v-model="roles"
+                        :multiple="true"
+              />
             </th>
             <th>
-              <v-select placeholder="Com spec" />
+              <v-select placeholder="Com spec"
+                        :options="getCompaniesForSelect"
+                        v-model="companies"
+                        :multiple="true"
+              />
             </th>
             <th>
               <span>Last Edited</span>
@@ -202,54 +210,19 @@ export default {
       search: '',
       contentType: [],
       tags: [],
-      categories: []
+      categories: [],
+      roles: [],
+      companies: []
     }
   },
   methods: {
     ...mapActions([
+      'getTypes',
+      'getTags',
       'getCategories',
       'getCompanies',
       'getRoles'
     ]),
-//    search () {
-//      if (!this.filter.search) {
-//        this.contentInfo.typeAutoLoad = 'allContent'
-//        this.fetchAllContentByScroll(1, 20)
-//        return
-//      }
-//      this.contentInfo.typeAutoLoad = 'searchContent'
-//      this.fetchSearchContent()
-//    },
-//    fetchSearchContent () {
-//      console.log('fech content')
-//      if (!this.filter.search) return
-//      let queryString = `${api.URLS.search}`
-//      Object.keys(this.filter).forEach((item) => {
-//        let value = this.filter[item]
-//        if (value && typeof (value) === 'string') {
-//          queryString += `&search=${value}`
-//        }
-//        if (value !== null && typeof (value) === 'object' && value.length) {
-//          let subString = ''
-//          value.forEach((it) => {
-//            subString += `&${item}=${it.value}`
-//          })
-//          queryString += subString
-//        }
-//      })
-//      if (this.contentType.length) queryString += '&contentType=' + this.contentType[0].value
-//      this.$http.get(`${queryString}`, api.headersAuthSettings)
-//        .then((res) => {
-//          let resData = res.body.data.items
-//          if (!resData) {
-//            this.articles = []
-//            return
-//          }
-//          this.articles = resData
-//          console.log('fetchContent', res)
-//        })
-//        .catch((err) => console.error(err))
-//    },
     initAction (name, id, i) {
       this.confirmation.action = name
       this.confirmation.articleId = id
@@ -333,13 +306,21 @@ export default {
       })
       let subCategories = ''
       this.categories.forEach((category, i) => {
-        subCategories += `&category[${i}]=${category.value}`
+        subCategories += `&categories[${i}]=${category.value}`
       })
       let subContentType = ''
       if (this.contentType.length) {
         subContentType = `&contentType=${this.contentType[0].value}`
       }
-      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories}&page=${page}&limit=${limit}`
+      let subRole = ''
+      this.roles.forEach((role, i) => {
+        subRole += `&roles[${i}]=${role.value}`
+      })
+      let subCompany = ''
+      this.companies.forEach((company, i) => {
+        subCompany += `&companies[${i}]=${company.value}`
+      })
+      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany}&page=${page}&limit=${limit}`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
 //          this.contentAutoloadInfo.curPage = res.body.current_page_number
@@ -360,7 +341,9 @@ export default {
       let body = {
         contentType: this.contentType.map((item) => item.value),
         tags: this.tags.map((item) => item.value),
-        categories: this.categories.map((item) => item.value)
+        categories: this.categories.map((item) => item.value),
+        roles: this.roles.map((item) => item.value),
+        companies: this.companies.map((item) => item.value)
       }
       this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
         .then((res) => {
@@ -399,7 +382,8 @@ export default {
       'getContentTypeForSelect',
       'getTagsForSelect',
       'getCategoriesForSelect',
-      'getRolesForSelect'
+      'getRolesForSelect',
+      'getCompaniesForSelect'
     ])
   },
   watch: {
@@ -411,13 +395,21 @@ export default {
     },
     tags () {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    roles () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    companies () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     }
   },
   mounted () {
+    this.getTypes()
     this.searchByParams(1, 20)
     this.getCategories()
     this.getCompanies()
     this.getRoles()
+    this.getTags()
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {

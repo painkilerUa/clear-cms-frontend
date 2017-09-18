@@ -87,6 +87,7 @@ export default {
     this.getRoles()
     this.$http.get(`${api.serverURL}${api.URLS.actionsURLS.permissions}`, api.headersAuthSettings)
     .then((res) => {
+      console.log('permissions', res)
       this.allowedItems = res.body
     })
   }
