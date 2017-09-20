@@ -23,7 +23,12 @@ const state = {
   tags: [],
   actions: [],
   roles: [],
-  categories: []
+  categories: [],
+  confData: {
+    id: null,
+    actionName: null,
+    showPopup: false
+  }
 }
 
 export default new Vuex.Store({

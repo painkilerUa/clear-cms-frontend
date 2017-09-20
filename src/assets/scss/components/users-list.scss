@@ -1,0 +1,261 @@
+@import '../settings/settings';
+
+.users-list {
+    &-heading {
+        display: flex;
+        margin-bottom: 40px;
+        color: color('tableText');
+
+        align-items: center;
+        justify-content: flex-end;
+    }
+    &-actions {
+        display: none;
+        //display: flex;
+        align-items: center;
+    }
+    &-inputwrap {
+        display: inline-flex;
+        height: 34px;
+        border: 1px solid color('tableBorder');
+
+        align-items: center;
+    }
+    &-input {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    &-statusbar {
+        display: table;
+
+        align-items: center;
+        &__block {
+            display: table-cell;
+            padding: 9px;
+            border: 1px solid color('tableBorder');
+        }
+        &__contains {
+            border-right: none;
+            background-color: color('artcleListLibraryContainsTable');
+        }
+    }
+    &-statuses {
+        list-style: none;
+        &__item {
+            display: inline-block;
+            margin-right: 10px;
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+    &-add {
+        &__btn {
+            text-decoration: none;
+            padding: 9px;
+            color: #fff;
+            background: none;
+            background-color: color('articlesListActionBtn');
+        }
+    }
+    &-search {
+        &-col {
+            width: 200px;
+        }
+    }
+}
+.add-new-user {
+  position: absolute;
+  //width: 100%;
+  //height: 1000px;
+  color: #555555;
+  //background-color: rgba(0, 0, 0, 0.5);
+    &-form {
+      position: absolute;
+      z-index: 99;
+      width: 550px;
+      left: 375px;
+      top: 50px;
+      padding: 50px 30px;
+      background-color: #f4f4f4;
+      h3 {
+        font-size: 34px;
+      }
+    }
+  &-body-row {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+    margin-bottom: 20px;
+    label {
+      padding-left: 10px;
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 5px 10px;
+      border: 1px solid #d5d5d5;
+      font-size: 18px;
+      font-style: italic;
+      color: #777777;
+      &::placeholder {
+        color: #777777;
+      }
+    }
+    &-half-body {
+      display: inline-block;
+      font-size: 22px;
+      line-height: 26px;
+      vertical-align: top;
+      width: 50%;
+      &:first-child {
+        padding-right: 10px;
+      }
+      &:last-child {
+        padding-left: 10px;
+      }
+      &-errors {
+        font-size: 16px;
+        line-height: 20px;
+        color: #FF0000;
+        text-align: center;
+        padding: 5px;
+      }
+    }
+    &-inner-data {
+      font-size: 22px;
+      line-height: 26px;
+      vertical-align: top;
+    }
+  }
+  &-control-panel {
+    text-align: center;
+    margin-top: 60px;
+    button {
+      display: inline-block;
+      padding: 10px 0;
+      width: 170px;
+      font-size: 22px;
+      &:first-child {
+        margin-right: 20px;
+        background-color: #d5d5d5;
+      }
+      &:last-child {
+        margin-left: 20px;
+        color: #fff;
+        background-color: #282f54;
+        span {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+  &-server-validation {
+    margin-top: 20px;
+    span {
+      display: block;
+      font-size: 18px;
+      color: #FF0000;
+      text-align: center;
+    }
+  }
+}
+.edit-user {
+  padding: 20px 0;
+  background-color: #fffdd8;
+  &-row {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+    margin-bottom: 30px;
+    &-ceil {
+      display: inline-block;
+      width: 15%;
+      margin-right: (10% / 7);
+      font-size: 18px;
+      line-height: 22px;
+      vertical-align: top;
+      &:first-child {
+        margin-left: (10% / 7);
+      }
+      input {
+        width: 100%;
+        height: 40px;
+        padding: 5px 10px;
+        border: 1px solid #d5d5d5;
+        font-size: 18px;
+        font-style: italic;
+        color: #777777;
+        &::placeholder {
+          color: #777777;
+        }
+      }
+    }
+    &-errors {
+      span {
+        display: block;
+        font-size: 16px;
+        line-height: 20px;
+        color: #FF0000;
+        text-align: center;
+      }
+    }
+  }
+  &-control-panel {
+    text-align: center;
+    margin-bottom: 20px;
+    button {
+      display: inline-block;
+      padding: 10px 0;
+      width: 170px;
+      font-size: 22px;
+      &:first-child {
+        margin-right: 20px;
+        background-color: #d5d5d5;
+      }
+      &:last-child {
+        margin-left: 20px;
+        color: #fff;
+        background-color: #0a74b7;
+      }
+    }
+  }
+}
+
+.confirmation-popup {
+  &-inner {
+    position: absolute;
+    z-index: 99;
+    width: 520px;
+    left: 390px;
+    top: 300px;
+    background-color: #f3f3f3;
+    padding: 50px 20px;
+    font-size: 20px;
+    &-body {
+      margin-bottom: 30px;
+    }
+    &-caption {
+      text-align: center;;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    &-controll-panel {
+      text-align: center;
+      button {
+        display: inline-block;
+        width: 160px;
+        padding: 10px 0;
+        &:first-child {
+          color: #fff;
+          background-color: #555555;
+          margin-right: 50px;
+        }
+        &:last-child {
+          background-color: #0a4bb7;
+          margin-left: 50px;
+        }
+      }
+    }
+  }
+}

@@ -214,8 +214,8 @@
               class="article-editor"
               data-vv-as='"Content"'
               v-validate="'required'"
-              v-model="selectedValues.content" />
-              <!--:editorToolbar="customEditorToolbar"/>-->
+              v-model="selectedValues.content"
+              :editorToolbar="customEditorToolbar"/>
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}
@@ -585,9 +585,9 @@ export default {
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
       formData.set('content[contentType]', this.selectedValues.contentType)
-      formData.set('content[createdAt]', '2017-08-05 11:45:43')
-      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
-      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
+//      formData.set('content[createdAt]', '2017-08-05 11:45:43')
+//      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
+//      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
       formData.set('content[status]', status)
 //  Add categories
       this.selectedValues.categories.forEach((category, i) => {

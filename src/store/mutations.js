@@ -16,3 +16,15 @@ export const setRoles = (state, roles) => { state.roles = roles }
 export const setCompanies = (state, payload) => { state.companies = payload }
 //
 export const setDataPreviewArticle = (state, payload) => { state.articlePreview = payload }
+
+export const initConfAction = (state, payload) => {
+  state.confData.id = payload.id
+  state.confData.actionName = payload.actionName
+  state.confData.showPopup = true
+}
+
+export const clearConfAction = (state, payload) => {
+  state.confData.id = null
+  state.confData.actionName = null
+  state.confData.showPopup = false
+}

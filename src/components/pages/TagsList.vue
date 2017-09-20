@@ -143,9 +143,9 @@ export default {
       newTag: {
         name: '',
         isActive: 1,
-        description: '',
-        createdAt: '2017-08-05 11:45:43',
-        updatedAt: '2017-08-05 11:45:43'
+        description: ''
+//        createdAt: '2017-08-05 11:45:43',
+//        updatedAt: '2017-08-05 11:45:43'
       },
       disableAPI: false,
       searchString: ''
@@ -311,9 +311,9 @@ export default {
         tag: {
           name: tag.name,
           description: tag.description,
-          isActive: 1,
-          createdAt: '2017-08-05 11:45:43',
-          updatedAt: '2017-08-05 11:45:43'
+          isActive: 1
+//          createdAt: '2017-08-05 11:45:43',
+//          updatedAt: '2017-08-05 11:45:43'
         }
       }
       this.disableAPI = true

@@ -342,9 +342,9 @@ export default {
         category: {
           title: category.title,
           description: category.description,
-          isActive: 1,
-          createdAt: '2017-08-05 11:45:43',
-          updatedAt: '2017-08-05 11:45:43'
+          isActive: 1
+//          createdAt: '2017-08-05 11:45:43',
+//          updatedAt: '2017-08-05 11:45:43'
         }
       }
       if (category.parent && category.parent !== null) {

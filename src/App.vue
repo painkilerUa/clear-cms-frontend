@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!--<conf-popup />-->
   	<app-header />
     <router-view />
   </div>
@@ -7,11 +8,13 @@
 
 <script>
 import AppHeader from '@/components/common/AppHeader'
+import ConfPopup from '@/components/common/ConfPopup'
 
 export default {
   name: 'app',
   components: {
-    AppHeader
+    AppHeader,
+    ConfPopup
   }
 }
 </script>

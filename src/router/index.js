@@ -14,6 +14,7 @@ import ArticlesList from '@/components/pages/ArticlesList'
 import Article from '@/components/pages/Article'
 import CategoriesList from '@/components/pages/CategoriesList'
 import TagsList from '@/components/pages/TagsList'
+import UsersList from '@/components/pages/UsersList'
 import AddArticle from '@/components/pages/AddArticle'
 import EditArticle from '@/components/pages/EditArticle'
 import PreviewArticle from '@/components/pages/PreviewArticle'
@@ -98,6 +99,11 @@ const router = new Router({
           path: 'tags',
           name: 'tags',
           component: TagsList
+        },
+        {
+          path: 'users',
+          name: 'users',
+          component: UsersList
         }
       ]
     },

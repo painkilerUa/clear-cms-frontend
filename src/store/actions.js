@@ -99,3 +99,32 @@ export const getCompanies = ({ commit }, payload) => {
 export const setDataPreviewArticle = ({ commit }, payload) => {
   commit('setDataPreviewArticle', payload)
 }
+
+// export const initConfAction = ({ commit }, payload) => {
+//   commit('initConfAction', payload)
+// }
+//
+// export const clearConfAction = ({ commit }, payload) => {
+//   commit('clearConfAction', payload)
+// }
+//
+// export const removeUserById = ({ commit }, payload) => {
+//   const urlEnd = api.URLS.userRoles
+//   const type = 'get'
+//   api.requestToServer(urlEnd, type, payload)
+//     .then((res) => {
+//       let userRole = res.body[0]
+//       localStorage.setItem('userRole', userRole)
+//       commit('authLoginSetUserRole', userRole)
+//     })
+//     .catch((err) => console.log(err))
+// }
+//
+// export const confCurAction = ({ commit, state }, payload) => {
+//   switch (state.confData.actionName) {
+//     case 'removeUserById':
+//       removeUserById({ commit }, payload)
+//       break
+//   }
+//   clearConfAction({commit})
+// }

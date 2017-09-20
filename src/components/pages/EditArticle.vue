@@ -177,7 +177,8 @@
               class="article-editor"
               data-vv-as='"Content"'
               v-validate="'required'"
-              v-model="article.content" />
+              v-model="article.content"
+              :editorToolbar="customEditorToolbar" />
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}
@@ -208,7 +209,7 @@
                     <input type="file" :id="'edit-resource-file-' + i" @change="uploadFileExistedResource(i)">
                   </div>
                   <div class="wrap-add-resource-url" v-if="!resource.file && resource.link !== undefined">
-                    <label :for="'add-resource-url-' + i">Video URL</label>
+                    <label :for="'add-resource-url-' + i">Recource URL</label>
                     <input type="url" :id="'add-resource-url-' + i" v-model="resource.link">
                   </div>
                 </div>
@@ -225,7 +226,7 @@
                     <input type="file" :id="'add-resource-file-' + j" @change="uploadFileNewResource(j)">
                   </div>
                   <div class="wrap-add-resource-url" v-if="newResource.link !== undefined">
-                    <label :for="'add-resource-url-' + j">Video URL</label>
+                    <label :for="'add-resource-url-' + j">Recource URL</label>
                     <input type="url" :id="'add-resource-url-' + j" v-model="newResource.link">
                   </div>
                 </div>
@@ -285,9 +286,9 @@ export default {
         companies: [],
         roles: [],
         content: '',
-        createdAt: '2017-08-05 11:45:43',
-        updatedAt: '2017-08-05 11:45:43',
-        publishedAt: '2017-08-05 11:45:43',
+//        createdAt: '2017-08-05 11:45:43',
+//        updatedAt: '2017-08-05 11:45:43',
+//        publishedAt: '2017-08-05 11:45:43',
         isActive: null
       },
       srcImagePreview: '',
@@ -306,7 +307,12 @@ export default {
         type: ''
       },
       formResource: [],
-      disableAPI: false
+      disableAPI: false,
+      customEditorToolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'list': 'blockquote'}, {'list': 'code-block'}],
+        [{'list': 'ordered'}, {'list': 'bullet'}]
+      ]
     }
   },
   computed: {
@@ -426,9 +432,9 @@ export default {
       formData.set('content[content]', this.article.content)
       formData.set('content[description]', this.article.description)
       formData.set('content[contentType]', this.article.contentType.value)
-      formData.set('content[createdAt]', '2017-08-05 11:45:43')
-      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
-      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
+//      formData.set('content[createdAt]', '2017-08-05 11:45:43')
+//      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
+//      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
       formData.set('content[status]', status)
 //  Add categories
       this.article.categories.forEach((category, i) => {

@@ -1,0 +1,39 @@
+@import '../settings/settings';
+
+.confirmation-popup {
+  &-inner {
+    position: absolute;
+    z-index: 99;
+    width: 520px;
+    left: 390px;
+    top: 500px;
+    background-color: #f3f3f3;
+    padding: 50px 20px;
+    font-size: 20px;
+    &-body {
+      margin-bottom: 30px;
+    }
+    &-caption {
+      text-align: center;;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    &-controll-panel {
+      text-align: center;
+      button {
+        display: inline-block;
+        width: 160px;
+        padding: 10px 0;
+        &:first-child {
+          color: #fff;
+          background-color: #555555;
+          margin-right: 50px;
+        }
+        &:last-child {
+          background-color: #0a4bb7;
+          margin-left: 50px;
+        }
+      }
+    }
+  }
+}
