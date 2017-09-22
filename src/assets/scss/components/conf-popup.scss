@@ -1,12 +1,10 @@
-@import '../settings/settings';
-
 .confirmation-popup {
   &-inner {
     position: absolute;
     z-index: 99;
     width: 520px;
     left: 390px;
-    top: 500px;
+    top: 300px;
     background-color: #f3f3f3;
     padding: 50px 20px;
     font-size: 20px;

@@ -28,6 +28,12 @@ const state = {
     id: null,
     actionName: null,
     showPopup: false
+  },
+  informationMsg: {
+    text: null,
+    className: null,
+    style: {
+    }
   }
 }
 

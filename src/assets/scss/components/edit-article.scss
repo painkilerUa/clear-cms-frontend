@@ -1,7 +1,5 @@
 @import '../settings/settings';
 
-@import '../settings/settings';
-
 .add-article {
   counter-reset: addArticleSection;
   position: relative;
@@ -17,7 +15,6 @@
     @extend %clearfix;
     &__title {
       &::before {
-        content: counter(addArticleSection) '. ';
       }
     }
   }
@@ -164,6 +161,16 @@
   }
   .wrap-add-resource {
     .add-resource {
+      .wrap-top-control-panel {
+      }
+      .wrap-top-control-panel {
+        text-align: right;
+        span {
+          color: red;
+          font-style: italic;
+          cursor: pointer;
+        }
+      }
       .row {
         input {
           width: 100%;
@@ -220,26 +227,55 @@
     }
   }
 }
-//
-//.add-article-wrapper{
-//  background-color: #f4f4f4;
-//}
-//.wrap-existing-resources {
-//  padding: 20px;
-//  background-color: #E6E6E6;
-//  margin-bottom: 20px;
-//  .wrap-link {
-//    span {
-//      display: inline-block;
-//      padding: 10px 20px;
-//      background-color: #FFFDD8;
-//    }
-//    margin-bottom: 30px;
-//  }
-//  .wrap-textarea {
-//    textarea {
-//      width: 100%;
-//    }
-//    margin-bottom: 30px;
-//  }
-//}
+.wrap-preview-article {
+  position: absolute;
+  width: 1000px;
+  left: 150px;
+  top: 600px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  z-index: 99;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: top;
+  padding: 30px;
+  background: #fff;
+  .close-preview-button {
+    position: absolute;
+    z-index: 99;
+    right: -30px;
+    top: -30px;
+  }
+  h3 {
+    font-size: 36px;
+    margin: 30px 0;
+  }
+  .wrap-main-content {
+    .text-content {
+      display: inline-block;
+      width: 60%;
+      vertical-align: top;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .graphic-content {
+      padding: 20px;
+      display: inline-block;
+      width: 40%;
+      vertical-align: top;
+      .wrap-main-img {
+        margin-bottom: 30px;
+        img {
+          width: 100%;
+        }
+      }
+      .wrap-resource {
+        font-size: 16px;
+        line-height: 20px;
+        iframe {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

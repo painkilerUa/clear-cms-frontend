@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="wrap-confirmation-popup" v-if="confirmation.isShown">
-      <div class="confirmation-popup">
-        <div class="caption">
+    <div class="confirmation-popup" v-if="confirmation.isShown">
+      <div class="confirmation-popup-inner" :style="confirmation.style">
+        <div class="confirmation-popup-inner-caption">
           <span>Are you sure you want to perform this action?</span>
         </div>
-        <div class="body">
+        <div class="confirmation-popup-inner-body">
           <span>Please note that by deleting/arhiving/restoring this article you will</span>
         </div>
-        <div class="wrap-button">
-          <span @click="clearAction">No, cancel</span>
-          <span @click="confirmActionHandler">Yes, proceed</span>
+        <div class="confirmation-popup-inner-controll-panel">
+          <button type="button" @click="clearAction">No, cancel</button>
+          <button type="button" @click="confirmActionHandler">Yes, proceed</button>
         </div>
       </div>
     </div>
@@ -149,16 +149,24 @@
             <td class="cellpadding">
               <button
                 type="button"
-                class="table-crud-btn icon-btn">
-                <icon name="folder" v-if="article.status !== 2 "/>
-                <icon name="rotate-right" v-if="article.status === 2" />
+                class="table-crud-btn icon-btn"
+                v-if="article.status !== 2"
+                @click="initAction('changeStatusArticle', {articleId: article.id, status: 2, i: i})">
+                <icon name="folder" />
+              </button>
+              <button
+                type="button"
+                class="table-crud-btn icon-btn"
+                v-if="article.status === 2"
+                @click="initAction('changeStatusArticle', {articleId: article.id, status: 1, i: i})">
+                <icon name="rotate-right" />
               </button>
             </td>
             <td class="cellpadding">
               <button
                 type="button"
                 class="table-crud-btn icon-btn"
-                @click="initAction('removeArticle', article.id, i)">
+                @click="initAction('removeArticle', {articleId: article.id, i: i})">
                 <icon name="times" />
               </button>
             </td>
@@ -200,7 +208,10 @@ export default {
         action: '',
         isShown: false,
         articleId: null,
-        i: null
+        i: null,
+        style: {
+          top: '100px'
+        }
       },
       contentAutoloadInfo: {
         curPage: 1,
@@ -223,17 +234,20 @@ export default {
       'getCompanies',
       'getRoles'
     ]),
-    initAction (name, id, i) {
+    initAction (name, payload) {
       this.confirmation.action = name
-      this.confirmation.articleId = id
+      Object.keys(payload).forEach((key) => {
+        this.confirmation[key] = payload[key]
+      })
       this.confirmation.isShown = true
-      this.confirmation.i = i
     },
     clearAction () {
-      this.confirmation.action = ''
       this.confirmation.isShown = false
-      this.confirmation.articleId = null
-      this.confirmation.i = null
+      Object.keys(this.confirmation).forEach((key) => {
+        if (key !== 'isShown' && key !== 'style') {
+          this.confirmation[key] = null
+        }
+      })
     },
     confirmActionHandler () {
       let self = this
@@ -241,6 +255,10 @@ export default {
         case 'removeArticle':
           removeArticle(this.confirmation.articleId, this.confirmation.i)
           break
+        case 'changeStatusArticle':
+          changeStatusArticle(this.confirmation)
+          break
+
       }
       function removeArticle (articleId, i) {
         self.clearAction()
@@ -248,19 +266,18 @@ export default {
           .then((res) => {
             self.clearAction()
             self.articles.splice(i, 1)
-//            for (let i = 0; i < this.articles.length; i++) {
-//              if (this.articles[i].id === articleId) {
-//                this.articles.slice(i, 1)
-//                break
-//              }
-//            }
             alert('Article has been successfully removed')
           })
           .catch((err) => console.log(err))
       }
+      function changeStatusArticle (data) {
+        console.log(data)
+// TODO: Wait link from back-end
+      }
     },
     // TODO: Change scrool handler make cur page different for different search typeFdelete
     handleScroll (event) {
+      if (!this.articles.length) return
       let scrollHeight = Math.max(
         document.body.scrollHeight, document.documentElement.scrollHeight,
         document.body.offsetHeight, document.documentElement.offsetHeight,
@@ -268,14 +285,14 @@ export default {
       let fullScrolledValue = window.pageYOffset + window.innerHeight
 
       if (fullScrolledValue > scrollHeight - 200) {
-        if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
-        this.contentAutoloadInfo.locked = true
+//        this.contentAutoloadInfo.locked = true
         if (this.search) {
           console.log('Autoload mainSearch')
 //          this.mainSearch(++this.contentAutoloadInfo.curPage, 20)
         } else {
           console.log('Autoload searchByParams')
-//          this.searchByParams(++this.contentAutoloadInfo.curPage, 20)
+          let nextPage = this.contentAutoloadInfo.curPage + 1
+          this.searchByParams(nextPage, 20)
         }
       }
     },
@@ -338,6 +355,7 @@ export default {
         })
     },
     searchByParams (page, limit) {
+      if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
       let body = {
         contentType: this.contentType.map((item) => item.value),
         tags: this.tags.map((item) => item.value),
@@ -345,19 +363,21 @@ export default {
         roles: this.roles.map((item) => item.value),
         companies: this.companies.map((item) => item.value)
       }
+      this.contentAutoloadInfo.locked = true
       this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
         .then((res) => {
-//          this.contentInfo.curPage = res.body.current_page_number
+          this.contentAutoloadInfo.curPage = res.body.current_page_number
+          this.contentAutoloadInfo.numPages = Math.ceil(res.body.total_count / limit)
           if (page === 1) {
             this.articles = res.body.items
           } else {
             this.articles = [...this.articles, ...res.body.items]
           }
-//          this.contentInfo.locked = false
+          this.contentAutoloadInfo.locked = false
           console.log('searchByParams', res)
         })
         .catch((err) => {
-//          this.contentInfo.locked = false
+          this.contentAutoloadInfo.locked = false
           console.log(err)
         })
     },
@@ -401,6 +421,11 @@ export default {
     },
     companies () {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    'confirmation.isShown' (value) {
+      if (value) {
+        this.confirmation.style.top = window.pageYOffset - 100 + 'px'
+      }
     }
   },
   mounted () {

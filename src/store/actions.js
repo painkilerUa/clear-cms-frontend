@@ -100,6 +100,17 @@ export const setDataPreviewArticle = ({ commit }, payload) => {
   commit('setDataPreviewArticle', payload)
 }
 
+// Information block action
+export const setInformationMsg = ({commit}, payload) => {
+  commit('setInformationMsg', {'text': payload.text, 'className': payload.className})
+  setTimeout(() => {
+    commit('setInformationMsg', {'text': '', 'className': ''})
+  }, 5000)
+}
+
+export const setStyleForMsg = ({commit}, payload) => {
+  commit('setStyleForMsg', payload)
+}
 // export const initConfAction = ({ commit }, payload) => {
 //   commit('initConfAction', payload)
 // }

@@ -7,9 +7,11 @@ import Vue from 'vue'
 const api = {}
 
 export default api
-
 api.timeout = { timeout: 20000 }
-api.serverURL = 'http://13.59.74.76'
+// api.serverURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
+// api.staticServerURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
+api.serverURL = 'http://52.15.253.49'
+api.staticServerURL = 'http://52.15.253.49'
 api.token = localStorage.getItem('token')
 api.headersAuthSettings = { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} }
 
@@ -38,6 +40,7 @@ api.URLS = {
   roles: `/api/v1/roles`,
   user: `${api.serverURL}/api/v1/user`,
   users: `${api.serverURL}/api/v1/users`,
+  enabled: `${api.serverURL}/api/v1/enabled`,
   createAdmin: `${api.serverURL}/api/v1/register-admin/`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)

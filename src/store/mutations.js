@@ -28,3 +28,15 @@ export const clearConfAction = (state, payload) => {
   state.confData.actionName = null
   state.confData.showPopup = false
 }
+
+// Information block mutation
+export const setInformationMsg = (state, payload) => {
+  state.informationMsg.text = payload.text
+  if (payload.className) {
+    state.informationMsg.className[payload.className] = true
+  }
+}
+
+export const setStyleForMsg = (state, payload) => {
+  state.informationMsg.style = payload
+}

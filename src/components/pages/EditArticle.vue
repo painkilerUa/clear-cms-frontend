@@ -1,6 +1,42 @@
 <template>
   <!-- add-article -->
   <div class="add-article">
+    <div class="wrap-preview-article" v-if="articlePreview.isShown">
+      <button type="button" class="close-preview-button" @click="articlePreview.isShown = false">
+        <icon name="window-close-o"></icon>
+      </button>
+      <h3>{{article.title}}</h3>
+      <div class="wrap-main-content">
+        <div class="text-content">
+          <div v-html="article.content"></div>
+        </div>
+        <div class="graphic-content">
+          <div class="wrap-main-img" v-if="articlePreview.mainImg !== null">
+            <img :src="articlePreview.mainImg" alt="imgPreview">
+          </div>
+          <div class="wrap-resource">
+            <div class="wrap-resource-video" v-if="subForm.type === 'video'" v-for="resource in articlePreview.resources">
+              <h4>Video resources</h4>
+              <iframe
+                :src="resource.link">
+              </iframe>
+              <span>Transcript for video</span>
+              <section>{{resource.textarea}}</section>
+            </div>
+            <div class="wrap-resource-screen-text" v-if="subForm.type === 'resource'" v-for="resource in articlePreview.resources">
+              <h4>Article resources</h4>
+              <div class="wrap-file">
+                <span>File Name: </span>
+                <span>{{resource.fileName}}</span>
+              </div>
+              <section v-if="resource.link">{{resource.link}}</section>
+              <span>Description Resource</span>
+              <section>{{resource.textarea}}</section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="wrap-title">
       <div class="title">
         <h1>{{article.title}}</h1>
@@ -14,7 +50,7 @@
     <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
         <form-messages :messages="formServerMessages" class="text-left" />
-        <h2 class="add-article-section__title">Article details</h2>
+        <h2 class="add-article-section__title">1. Article details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
           <!-- .form-elements -->
@@ -58,10 +94,9 @@
                   <v-select
                   name="Type"
                   data-vv-as='"Type"'
-                  :options="getContentTypeTitles"
                   v-validate="'required'"
                   placeholder="Select"
-                  :on-change="getSubFormFields"
+                  disabled="true"
                   v-model="article.contentType"/>
                   <div
                     v-if="errors.has('Type')"
@@ -77,7 +112,6 @@
                   data-vv-as='"Topic"'
                   :options="getTagsForSelect"
                   v-model="article.tags"
-                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
@@ -94,7 +128,6 @@
                   data-vv-as='"Category"'
                   :options="getCategoriesForSelect"
                   v-model="article.categories"
-                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
@@ -110,7 +143,6 @@
                   name="Access"
                   :options="getRolesForSelect"
                   v-model="article.roles"
-                  v-validate="'required'"
                   :multiple="true"
                   data-vv-as='"Access"'
                   placeholder="Select" />
@@ -144,7 +176,6 @@
                 name="Thumbnail"
                 data-vv-as='"Thumbnail"'
                 value.sync="formInfo.thumbnail"
-                v-validate.reject="veeValidateFileUploadRules"
                 @change="onThumbnailFileChange($event)"
                 class="form-control form-control--file" />
             </label>
@@ -171,7 +202,7 @@
         <!-- .add-article-sections -->
         <div class="add-article-sections">
           <section class="add-article-section">
-            <h2 class="add-article-section__title">Article content</h2>
+            <h2 class="add-article-section__title">2. Article content</h2>
             <vue-editor
               name="Content"
               class="article-editor"
@@ -180,14 +211,14 @@
               v-model="article.content"
               :editorToolbar="customEditorToolbar" />
             <div
-              v-if="errors.has('Content')"
-              class="form-errors">{{ errors.first('Content') }}
+            v-if="errors.has('Content')"
+            class="form-errors">{{ errors.first('Content') }}
             </div>
           </section>
-          <section class="edit-article-resources" v-if="formResource.newResources && !!Object.keys(formResource.newResources[0]).length">
-            <h2 class="add-article-section__title">{{formResource.title}}</h2>
+          <section class="edit-article-resources" v-if="article.resources.title">
+            <h2 class="add-article-section__title">3. {{article.resources.title}}</h2>
             <div class="wrap-existing-resources">
-              <div class="existing-resource" v-for="(resource, i) in formResource.existingResources" v-if="!!Object.keys(resource).length">
+              <div class="existing-resource" v-for="(resource, i) in article.resources.data" v-if="resource.type === 'exist'">
                 <div class="wrap-top-control-panel">
                   <span @click="deleteExistingResource(i)">
                     Delete
@@ -206,7 +237,7 @@
                 <div class="row">
                   <div class="wrap-add-resource-file" v-if="resource.file === ''">
                     <label :for="'edit-resource-file-' + i">Upload recource</label>
-                    <input type="file" :id="'edit-resource-file-' + i" @change="uploadFileExistedResource(i)">
+                    <input type="file" :id="'edit-resource-file-' + i" @change="uploadFileExistedResource($event, i)">
                   </div>
                   <div class="wrap-add-resource-url" v-if="!resource.file && resource.link !== undefined">
                     <label :for="'add-resource-url-' + i">Recource URL</label>
@@ -219,24 +250,30 @@
               </div>
             </div>
             <div class="wrap-add-resource">
-              <div class="add-resource" v-for="(newResource, j) in formResource.newResources">
+              <div class="add-resource" v-for="(newResource, j) in article.resources.data" v-if="newResource.type === 'new'">
+                <div class="wrap-top-control-panel">
+                  <span @click="deleteNewResource(j)">
+                    Delete
+                    <icon name="times-circle-o" />
+                  </span>
+                </div>
                 <div class="row">
                   <div class="wrap-add-resource-file" v-if="newResource.file !== undefined">
-                    <label :for="'add-resource-file-' + j">Upload recource</label>
-                    <input type="file" :id="'add-resource-file-' + j" @change="uploadFileNewResource(j)">
+                    <label :for="'add-resource-file-' + j">{{newResource.file.title}}</label>
+                    <input type="file" :id="'add-resource-file-' + j" @change="uploadFileNewResource($event, j)" :placeholder="newResource.file.placeholder" :key="'add-resource-file-' + j">
                   </div>
                   <div class="wrap-add-resource-url" v-if="newResource.link !== undefined">
-                    <label :for="'add-resource-url-' + j">Recource URL</label>
-                    <input type="url" :id="'add-resource-url-' + j" v-model="newResource.link">
+                    <label :for="'add-resource-url-' + j">{{newResource.link.title}}</label>
+                    <input type="url" :id="'add-resource-url-' + j" :placeholder="newResource.link.placeholder" v-model="article.resources.data[j].link.value">
                   </div>
                 </div>
-                <label :for="'add-resource-desc-' + j">Transcript for Video</label>
+                <label :for="'add-resource-desc-' + j">{{newResource.textarea.title}}</label>
                 <div class="row">
-                  <textarea name="text" cols="30" rows="5" :id="'add-resource-desc-' + j" v-model="newResource.textarea"></textarea>
+                  <textarea name="text" cols="30" rows="5" :id="'add-resource-desc-' + j" :placeholder="newResource.textarea.placeholder" v-model="article.resources.data[j].textarea.value"></textarea>
                 </div>
               </div>
               <div class="wrap-bottom-control-panel">
-                <button @click="addResource">Add resource</button>
+                <button type="button" @click="addResource">Add resource</button>
               </div>
             </div>
           </section>
@@ -249,7 +286,8 @@
             <span>Preview Article</span>
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit / Discard changes</button>
-          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="editArticle">Save changes & publish</button>
+          <button type="button" class="action-btn action-btn--draft icon-btn" @click="editArticle(0)">Save as draft</button>
+          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="editArticle(1)">Save changes & publish</button>
         </div>
         <!-- END:.add-article-actions -->
       </div>
@@ -286,10 +324,12 @@ export default {
         companies: [],
         roles: [],
         content: '',
-//        createdAt: '2017-08-05 11:45:43',
-//        updatedAt: '2017-08-05 11:45:43',
-//        publishedAt: '2017-08-05 11:45:43',
-        isActive: null
+        publishedAt: '2017-08-05 11:45:43',
+        status: null,
+        resources: {
+          title: '',
+          data: []
+        }
       },
       srcImagePreview: '',
       languages: ['English (UK)', 'English (US)'],
@@ -312,7 +352,13 @@ export default {
         ['bold', 'italic', 'underline', 'strike'],
         [{'list': 'blockquote'}, {'list': 'code-block'}],
         [{'list': 'ordered'}, {'list': 'bullet'}]
-      ]
+      ],
+      formData: new FormData(),
+      articlePreview: {
+        isShown: false,
+        mainImg: null,
+        resources: []
+      }
     }
   },
   computed: {
@@ -351,28 +397,29 @@ export default {
     ...mapActions([
       'getTypes',
       'getCompanies',
-      'getRoles'
+      'getRoles',
+      'setInformationMsg'
     ]),
-    sendFormRequest () {
-      this.selectType()
-      this.selectTags()
-      this.selectCategories()
-      this.selectRoles()
-      console.log('formJson', this.formJson)
-      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
-      .then((res) => { console.log(res) })
-      .catch((err) => { this.submitErrors(err.body.errors) })
-    },
-    addFieldGroup (event) {
-      let elem = {
-        tag: 'input',
-        attrs: {
-          type: 'url',
-          placeholder: 'input value'
-        }
-      }
-      this.additionalFormFields[0].fields.push(elem)
-    },
+//    sendFormRequest () {
+//      this.selectType()
+//      this.selectTags()
+//      this.selectCategories()
+//      this.selectRoles()
+//      console.log('formJson', this.formJson)
+//      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
+//      .then((res) => { console.log(res) })
+//      .catch((err) => { this.submitErrors(err.body.errors) })
+//    },
+//    addFieldGroup (event) {
+//      let elem = {
+//        tag: 'input',
+//        attrs: {
+//          type: 'url',
+//          placeholder: 'input value'
+//        }
+//      }
+//      this.additionalFormFields[0].fields.push(elem)
+//    },
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
     },
@@ -380,6 +427,7 @@ export default {
       this.addElements[type] += 1
     },
     onThumbnailFileChange (e) {
+      var self = this
       var input = document.getElementById('uploadThumbnail')
       if (input.files && input.files[0] && input.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
         this.isThumbnailFileUploaded = true
@@ -388,8 +436,11 @@ export default {
           var thumbnailFilePreview = document.getElementById('thumbnailFilePreview')
           thumbnailFilePreview.setAttribute('src', e.target.result)
           thumbnailFilePreview.setAttribute('alt', 'thumbnail')
+          self.articlePreview.mainImg = e.target.result
         }
         reader.readAsDataURL(input.files[0])
+// Add to formData
+        this.formData.set('content[imageFile]', e.target.files[0])
       }
     },
     onResourceFileChange (value, i) {
@@ -400,6 +451,7 @@ export default {
       var input = document.getElementById('uploadThumbnail')
       input.value = null
       this.isThumbnailFileUploaded = false
+      this.articlePreview.mainImg = null
     },
     selectType () {
       if (this.selectedValues.type) {
@@ -425,120 +477,176 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    editArticle (e, status = this.article.isActive) {
+    editArticle (status = this.article.status) {
+      this.$validator.validateAll()
+      if (this.errors.items.length) return
       if (this.disableAPI) return
-      let formData = new FormData()
-      formData.set('content[title]', this.article.title)
-      formData.set('content[content]', this.article.content)
-      formData.set('content[description]', this.article.description)
-      formData.set('content[contentType]', this.article.contentType.value)
-//      formData.set('content[createdAt]', '2017-08-05 11:45:43')
-//      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
-//      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
-      formData.set('content[status]', status)
-//  Add categories
+      this.formData.set('content[title]', this.article.title)
+      this.formData.set('content[content]', this.article.content)
+      this.formData.set('content[description]', this.article.description)
+      this.formData.set('content[contentType]', this.article.contentType.value)
+      this.formData.set('content[publishedAt]', this.article.publishedAt)
+      this.formData.set('content[status]', status)
+// Add categories
       this.article.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
-        formData.set(fieldName, category.value)
+        this.formData.set(fieldName, category.value)
       })
-//  Add tags
+// Add tags
       this.article.tags.forEach((tag, i) => {
         let fieldName = 'content[tags][' + i + ']'
-        formData.set(fieldName, tag.value)
+        this.formData.set(fieldName, tag.value)
       })
 // Add companies
       this.article.companies.forEach((company, i) => {
         let fieldName = 'content[companies][' + i + ']'
-        formData.set(fieldName, company.value)
+        this.formData.set(fieldName, company.value)
       })
 // Add roles
       this.article.roles.forEach((role, i) => {
         let fieldName = 'content[roles][' + i + ']'
-        formData.set(fieldName, role.value)
+        this.formData.set(fieldName, role.value)
       })
-      if (document.getElementById('uploadThumbnail').files[0]) {
-        formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
-      }
 // Add resources
-      let countTypeValues = 0
-      this.formResource.existingResources.forEach((resource) => {
-        Object.keys(resource).forEach((key, i) => {
-          if (key === 'file' && resource[key]) {
-            formData.set('content[typeValues][' + countTypeValues + '][file]', resource.id)
+      this.article.resources.data.forEach((resource, i) => {
+        if (resource.type === 'exist') {
+          if (resource.id) {
+            this.formData.set('content[typeValues][' + i + '][file]', resource.id)
           }
-          if (key === 'file' && resource[key] === '') {
-            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('edit-resource-file-' + resource.id).files[0])
+          if (resource.link) {
+            this.formData.set('content[typeValues][' + i + '][link]', resource.link)
           }
-          if (key === 'link') {
-            formData.set('content[typeValues][' + countTypeValues + '][link]', resource.link)
+          if (resource.textarea) {
+            this.formData.set('content[typeValues][' + i + '][textarea]', resource.textarea)
           }
-          if (key === 'textarea') {
-            formData.set('content[typeValues][' + countTypeValues + '][textarea]', resource.textarea)
-          }
-        })
-        countTypeValues++
+        } else {
+          Object.keys(resource).forEach(key => {
+            if (resource[key]['value'] && key !== 'file') {
+              this.formData.set('content[typeValues][' + i + '][' + key + ']', resource[key]['value'])
+            }
+          })
+        }
       })
-      this.formResource.newResources.forEach((newResource) => {
-        Object.keys(newResource).forEach((key, i) => {
+//      let countTypeValues = 0
+//      this.formResource.existingResources.forEach((resource) => {
+//        Object.keys(resource).forEach((key, i) => {
+//          if (key === 'file' && resource[key]) {
+//            formData.set('content[typeValues][' + countTypeValues + '][file]', resource.id)
+//          }
+//          if (key === 'file' && resource[key] === '') {
+//            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('edit-resource-file-' + resource.id).files[0])
+//          }
+//          if (key === 'link') {
+//            formData.set('content[typeValues][' + countTypeValues + '][link]', resource.link)
+//          }
+//          if (key === 'textarea') {
+//            formData.set('content[typeValues][' + countTypeValues + '][textarea]', resource.textarea)
+//          }
+//        })
+//        countTypeValues++
+//      })
+//      this.formResource.newResources.forEach((newResource) => {
+//        Object.keys(newResource).forEach((key, i) => {
 //        Check filled fields
-          if (!newResource.textarea || (!newResource.link && !newResource.id.toString())) return
-          if (key === 'file' && document.getElementById('add-resource-file-' + newResource.id)) {
-            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('add-resource-file-' + newResource.id).files[0])
-          }
-          if (key === 'link') {
-            formData.set('content[typeValues][' + countTypeValues + '][link]', newResource.link)
-          }
-          if (key === 'textarea') {
-            formData.set('content[typeValues][' + countTypeValues + '][textarea]', newResource.textarea)
-          }
-        })
-        countTypeValues++
-      })
+//          if (!newResource.textarea || (!newResource.link && !newResource.id.toString())) return
+//          if (key === 'file' && document.getElementById('add-resource-file-' + newResource.id)) {
+//            formData.set('content[typeValues][' + countTypeValues + '][file]', document.getElementById('add-resource-file-' + newResource.id).files[0])
+//          }
+//          if (key === 'link') {
+//            formData.set('content[typeValues][' + countTypeValues + '][link]', newResource.link)
+//          }
+//          if (key === 'textarea') {
+//            formData.set('content[typeValues][' + countTypeValues + '][textarea]', newResource.textarea)
+//          }
+//        })
+//        countTypeValues++
+//      })
       this.disableAPI = true
-      this.$http.post(api.URLS.content + '/' + this.articleId, formData, api.headersAuthSettings)
+      this.$http.post(api.URLS.content + '/' + this.articleId, this.formData, api.headersAuthSettings)
         .then((res) => {
           this.disableAPI = false
           console.log('editArticle', res)
-          this.$router.push('/admin/articles-list')
+//          this.$router.push('/admin/articles-list')
+          let infMsg
+          switch (status) {
+            case 0:
+              infMsg = 'Article save as draft'
+              break
+            case 1:
+              infMsg = 'Article published'
+              break
+            case 2:
+              infMsg = 'Article archived'
+              break
+          }
+          this.setInformationMsg({text: infMsg})
         })
         .catch((err) => {
           this.disableAPI = false
+          let infMsg
+          switch (status) {
+            case 0:
+              infMsg = "Article has't saved as draft"
+              break
+            case 1:
+              infMsg = "Article has't published"
+              break
+            case 2:
+              infMsg = "Article has't archived"
+              break
+          }
+          this.setInformationMsg({text: infMsg})
           console.log(err)
         })
     },
-    uploadFileExistedResource (i) {
-      this.formResource.existingResources[i].id = i
-      console.log('uploadFileExistedResource', i)
+    uploadFileExistedResource (e, i) {
+      if (e.target.files.length) {
+        this.formData.set('content[typeValues][' + i + '][file]', e.target.files[0])
+      } else {
+        this.formData.delete('content[typeValues][' + i + '][file]')
+      }
     },
-    uploadFileNewResource (j) {
-      this.formResource.newResources[j].id = j
+    uploadFileNewResource (e, j) {
+      if (e.target.files.length) {
+        this.formData.set('content[typeValues][' + j + '][file]', e.target.files[0])
+      } else {
+        this.formData.delete('content[typeValues][' + j + '][file]')
+      }
     },
-    getSubFormFields (val) {
-      if (!val) return
-      let typeId = this.types.find(item => item.type === val).id
-      this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
-        .then((res) => {
-          console.log('', res)
-          let newFormField = {}
-          if (res.body.form.form) {
-            Object.keys(res.body.form.form).forEach((key) => {
-              newFormField[key] = ''
-            })
-          }
-          this.formResource.existingResources = []
-          this.formResource.newResources = [newFormField]
-          console.log('newFormField', newFormField)
-          console.log('getSubFormFields', res)
-        })
-        .catch((err) => console.log(err))
+    editResourceField (fieldName, e, j) {
+      console.log(fieldName, e.target.value, j)
+//      console.log(this.article.resources.data[j][fieldName]['value'])
+      this.article.resources.data[j][fieldName]['value'] = e.target.value
+//      console.log(this.article.resources.data[j][fieldName]['value'])
     },
+//    getSubFormFields (val) {
+//      if (!val) return
+//      let typeId = this.types.find(item => item.type === val).id
+//      this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
+//        .then((res) => {
+//          console.log('', res)
+//          let newFormField = {}
+//          if (res.body.form.form) {
+//            Object.keys(res.body.form.form).forEach((key) => {
+//              newFormField[key] = ''
+//            })
+//          }
+//          this.formResource.existingResources = []
+//          this.formResource.newResources = [newFormField]
+//          console.log('newFormField', newFormField)
+//          console.log('getSubFormFields', res)
+//        })
+//        .catch((err) => console.log(err))
+//    },
     getArticleById (id) {
       this.$http.get(api.URLS.content + '/' + id, api.headersAuthSettings)
         .then((res) => {
           console.log('getArticleById', res)
           this.article.title = res.body.title
           this.article.description = res.body.description
-          this.article.isActive = +res.body.status
+          this.article.content = res.body.content
+          this.article.status = +res.body.status
+
           this.article.contentType = {
             label: res.body.content_type.type,
             value: res.body.content_type.id
@@ -569,42 +677,85 @@ export default {
           })
 // Add image
           this.isThumbnailFileUploaded = !!res.body.image_name
-          this.article.content = res.body.content
-          let newResource = {}
-          if (res.body.content_type.form.form) {
-            Object.keys(res.body.content_type.form.form).forEach((key) => {
-              newResource[key] = ''
+// Image preview
+// TODO: change api
+          this.srcImagePreview = api.staticServerURL + res.body.image_path
+          if (res.body.image_name) {
+            this.articlePreview.mainImg = api.staticServerUrl + res.body.image_path
+          }
+// Add resources
+          if (res.body.formResource) {
+            Object.keys(res.body.formResource).forEach(key => {
+              res.body.formResource[key].type = 'exist'
+              this.article.resources.data.push(res.body.formResource[key])
             })
           }
-          this.formResource = {
-            title: res.body.content_type.form.comment ? res.body.content_type.form.comment.title : '',
-            existingResources: res.body.formResource ? res.body.formResource : [],
-            newResources: [newResource]
+          if (res.body.content_type.form.form) {
+            let resource = {type: 'new'}
+            Object.keys(res.body.content_type.form.form).forEach((key) => {
+              let field = res.body.content_type.form.form[key]
+              field.value = ''
+              resource[key] = field
+            })
+            this.article.resources.data.push(resource)
+            this.article.resources.title = res.body.content_type.form.comment.title
           }
-//          this.existingResources = res.body.formResource
-// File preview
-          this.srcImagePreview = 'http://13.59.74.76' + res.body.image_path
           console.log('getArticleById', res)
         })
         .catch((err) => console.log(err))
     },
     addResource () {
-      let newResource = {}
-      Object.keys(this.formResource.newResources[0]).forEach((key) => {
-        newResource[key] = ''
+      let resource = this.article.resources.data[this.article.resources.data.length - 1]
+      console.log(resource)
+      let newResource = {type: 'new'}
+      Object.keys(resource).forEach((key) => {
+        let fieldName = {}
+        if (key === 'type') return
+        Object.keys(resource[key]).forEach((k) => {
+          if (k === 'value') {
+            fieldName[k] = ''
+          } else {
+            fieldName[k] = resource[key][k]
+          }
+        })
+        newResource[key] = fieldName
       })
-      this.formResource.newResources.push(newResource)
+      this.article.resources.data.push(newResource)
+//      this.article.resources.data.push({
+//        link: {
+//          title: 'ddd',
+//          placeholder: 'sdfsf',
+//          value: ''
+//        },
+//        file: {
+//          title: 'ddd',
+//          placeholder: 'sdfsf',
+//          value: ''
+//        },
+//        textarea: {
+//          title: 'ddd',
+//          placeholder: 'sdfsf',
+//          value: ''
+//        },
+//        type: 'new'
+//      })
     },
     deleteExistingResource (i) {
-      this.formResource.existingResources.splice(i, 1)
+      this.article.resources.data.splice(i, 1)
+    },
+    deleteNewResource (i) {
+      this.article.resources.data.splice(i, 1)
     },
     removeResourceFile (i) {
-      this.formResource.existingResources[i].file = ''
+      this.article.resources.data[i].file = ''
+      this.article.resources.data[i].id = ''
     },
     previewArticle () {
+      this.articlePreview.resources = []
+      this.articlePreview.isShown = true
     },
     archiveArticle () {
-      this.editArticle(null, 2)
+      this.editArticle(2)
     },
     deleteArticle () {
       if (this.disableAPI) return

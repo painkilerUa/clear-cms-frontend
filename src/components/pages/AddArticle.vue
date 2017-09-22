@@ -94,12 +94,12 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Type</label>
                   <v-select
+                  v-model="selectedValues.contentType"
                   name="Type"
                   data-vv-as='"Type"'
-                  :options="getContentTypeTitles"
+                  :options="getContentTypeForSelect"
                   v-validate="'required'"
-                  placeholder="Select"
-                  :on-change="getSubFormFields" />
+                  placeholder="Select" />
                   <div
                     v-if="errors.has('Type')"
                     class="form-errors">{{ errors.first('Type') }}
@@ -114,7 +114,6 @@
                   data-vv-as='"Topic"'
                   :options="getTagsForSelect"
                   v-model="selectedValues.tags"
-                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
@@ -131,7 +130,6 @@
                   data-vv-as='"Category"'
                   :options="getCategoriesForSelect"
                   v-model="selectedValues.categories"
-                  v-validate="'required'"
                   :multiple="true"
                   placeholder="Select" />
                   <div
@@ -147,7 +145,6 @@
                   name="Access"
                   :options="getRolesForSelect"
                   v-model="selectedValues.roles"
-                  v-validate="'required'"
                   :multiple="true"
                   data-vv-as='"Access"'
                   placeholder="Select" />
@@ -186,10 +183,10 @@
                 class="form-control form-control--file" />
             </label>
             <img id="thumbnailFilePreview" v-if="isThumbnailFileUploaded" src="" />
-            <div
-              v-if="errors.has('Thumbnail')"
-              class="form-errors">{{ errors.first('Thumbnail') }}
-            </div>
+            <!--<div-->
+              <!--v-if="errors.has('Thumbnail')"-->
+              <!--class="form-errors">{{ errors.first('Thumbnail') }}-->
+            <!--</div>-->
             <button
               type="button"
               v-if="isThumbnailFileUploaded"
@@ -411,7 +408,8 @@ export default {
         categories: [],
         roles: [],
         companies: [],
-        lng: null
+        lng: null,
+        publishedAt: '2017-08-05 11:45:43'
       },
       formInfo: {
         title: '',
@@ -462,23 +460,24 @@ export default {
       'getTagsForSelect',
       'getCategoriesForSelect',
       'getCompaniesForSelect',
-      'getRolesForSelect'
+      'getRolesForSelect',
+      'getContentTypeForSelect'
     ]),
-    getContentTypeTitles () {
-      return this.types.map(item => item.type)
-    },
-    getTagTitles () {
-      return this.tags.map(item => item.name)
-    },
-    getCategoriesTitles () {
-      return this.categories.map(item => item.title)
-    },
-    getRoleTitles () {
-      return this.roles.map(item => item.name)
-    },
+//    getContentTypeTitles () {
+//      return this.types.map(item => item.type)
+//    },
+//    getTagTitles () {
+//      return this.tags.map(item => item.name)
+//    },
+//    getCategoriesTitles () {
+//      return this.categories.map(item => item.title)
+//    },
+//    getRoleTitles () {
+//      return this.roles.map(item => item.name)
+//    },
     veeValidateFileUploadRules () {
       return {
-        required: true,
+        required: false,
         mimes: 'image/*'
       }
     }
@@ -486,6 +485,9 @@ export default {
   watch: {
     'selectedValues.type' (value) {
       this.sendTypeRequest(value)
+    },
+    'selectedValues.contentType' (value) {
+      this.getSubFormFields(value)
     }
   },
   methods: {
@@ -495,31 +497,32 @@ export default {
       'getRoles',
       'getCategories',
       'getTags',
-      'setDataPreviewArticle'
+      'setDataPreviewArticle',
+      'setInformationMsg'
     ]),
-    sendFormRequest () {
-      this.selectType()
-      this.selectTags()
-      this.selectCategories()
-      this.selectRoles()
-      console.log('formJson', this.formJson)
-      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
-      .then((res) => { console.log(res) })
-      .catch((err) => { this.submitErrors(err.body.errors) })
-    },
-    addFieldGroup (event) {
-      let elem = {
-        tag: 'input',
-        attrs: {
-          type: 'url',
-          placeholder: 'input value'
-        }
-      }
-      this.additionalFormFields[0].fields.push(elem)
-    },
-    sendTypeRequest (value) {
-      console.log('sendTypeRequest', value)
-    },
+//    sendFormRequest () {
+//      this.selectType()
+//      this.selectTags()
+//      this.selectCategories()
+//      this.selectRoles()
+//      console.log('formJson', this.formJson)
+//      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
+//      .then((res) => { console.log(res) })
+//      .catch((err) => { this.submitErrors(err.body.errors) })
+//    },
+//    addFieldGroup (event) {
+//      let elem = {
+//        tag: 'input',
+//        attrs: {
+//          type: 'url',
+//          placeholder: 'input value'
+//        }
+//      }
+//      this.additionalFormFields[0].fields.push(elem)
+//    },
+//    sendTypeRequest (value) {
+//      console.log('sendTypeRequest', value)
+//    },
     addFormElement (type) {
       this.addElements[type] += 1
     },
@@ -546,6 +549,7 @@ export default {
       var input = document.getElementById('uploadThumbnail')
       input.value = null
       this.isThumbnailFileUploaded = false
+      this.articlePreview.mainImg = null
     },
     selectType () {
       if (this.selectedValues.type) {
@@ -572,6 +576,8 @@ export default {
       }
     },
     publishArticle (status) {
+      this.$validator.validateAll()
+      if (this.errors.items.length) return
       if (this.disableAPI) return
       let formData = new FormData()
 //      Object.keys(this.selectedValues).forEach((key) => {
@@ -584,10 +590,8 @@ export default {
       formData.set('content[title]', this.selectedValues.title)
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
-      formData.set('content[contentType]', this.selectedValues.contentType)
-//      formData.set('content[createdAt]', '2017-08-05 11:45:43')
-//      formData.set('content[updatedAt]', '2017-08-05 11:45:43')
-//      formData.set('content[publishedAt]', '2017-08-05 11:45:43')
+      formData.set('content[contentType]', this.selectedValues.contentType.value)
+      formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
 //  Add categories
       this.selectedValues.categories.forEach((category, i) => {
@@ -614,16 +618,16 @@ export default {
         let files = [...document.getElementsByClassName('input-file-resource')]
         if (!urls.length || !textareas.length || !files.length) return
         urls.forEach((url, i) => {
-          formData.set('content[typeValues][' + i + '][link]', url.value)
           if (!url.value) return
+          formData.set('content[typeValues][' + i + '][link]', url.value)
         })
         textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
           if (!textarea.value) return
+          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
         })
         files.forEach((file, i) => {
-          formData.set('content[typeValues][' + i + '][file]', file.files[0])
           if (!file.files[0]) return
+          formData.set('content[typeValues][' + i + '][file]', file.files[0])
         })
         console.log(urls, textareas, files)
       }
@@ -632,56 +636,76 @@ export default {
         let textareas = [...document.getElementsByClassName('input-textarea-video')]
         if (!urls.length || !textareas.length) return
         urls.forEach((url, i) => {
-          formData.set('content[typeValues][' + i + '][link]', url.value)
           if (!url.value) return
+          formData.set('content[typeValues][' + i + '][link]', url.value)
         })
         textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
           if (!textarea.value) return
+          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
         })
       }
-      if (this.subForm.type === 'screen_text') {
-        let textareas = [...document.getElementsByClassName('input-textarea-screen-text')]
-        if (!textareas.length) return
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-      }
-      if (this.subForm.type === 'case_study') {
-        let textareas = [...document.getElementsByClassName('input-textarea-case-study')]
-        if (!textareas.length) return
-        textareas.forEach((textarea, i) => {
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
-          if (!textarea.value) return
-        })
-      }
+//      if (this.subForm.type === 'screen_text') {
+//        let textareas = [...document.getElementsByClassName('input-textarea-screen-text')]
+//        if (!textareas.length) return
+//        textareas.forEach((textarea, i) => {
+//          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
+//          if (!textarea.value) return
+//        })
+//      }
+//      if (this.subForm.type === 'case_study') {
+//        let textareas = [...document.getElementsByClassName('input-textarea-case-study')]
+//        if (!textareas.length) return
+//        textareas.forEach((textarea, i) => {
+//          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
+//          if (!textarea.value) return
+//        })
+//      }
       this.disableAPI = true
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
           this.disableAPI = false
+          this.$router.push('/admin/article/edit/' + res.body.id)
           console.log('publishArticle', res)
-//          alert('Article has been successfully added')
-          this.$router.push('/admin/articles-list')
+          let infMsg
+          switch (status) {
+            case 0:
+              infMsg = 'Article save as draft'
+              break
+            case 1:
+              infMsg = 'Article published'
+              break
+            case 2:
+              infMsg = 'Article archived'
+              break
+          }
+          this.setInformationMsg({text: infMsg})
         })
         .catch((err) => {
           this.disableAPI = false
           console.log(err)
+          let infMsg
+          switch (status) {
+            case 0:
+              infMsg = "Article has't saved as draft"
+              break
+            case 1:
+              infMsg = "Article has't published"
+              break
+            case 2:
+              infMsg = "Article has't archived"
+              break
+          }
+          this.setInformationMsg({text: infMsg})
         })
     },
     getSubFormFields (val) {
       if (!val) return
-      let typeId = this.types.find(item => item.type === val).id
-      this.selectedValues.contentType = typeId
-      this.$http.get(api.URLS.contentType + typeId, api.headersAuthSettings)
+      this.$http.get(api.URLS.contentType + val.value, api.headersAuthSettings)
         .then((res) => {
           this.subForm.type = res.body.form.type
-          this.createSubForm(res.body.form)
           console.log('getSubFormFields', res)
         })
         .catch((err) => console.log(err))
-    },
-    createSubForm (data) {
     },
     previewArticle () {
       this.articlePreview.resources = []

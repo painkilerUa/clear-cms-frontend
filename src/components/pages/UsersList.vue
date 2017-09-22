@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="confirmation-popup" v-if="confirmation.isShown">
-      <div class="confirmation-popup-inner">
+      <div class="confirmation-popup-inner" :style="confirmation.style">
         <div class="confirmation-popup-inner-caption">
           <span>Are you sure you want to perform this action?</span>
         </div>
@@ -183,7 +183,7 @@
               <input type="checkbox" :id="user.id"/>
               <label :for="user.id">{{user.id}}</label>
             </td>
-            <td class="cellpadding" v-if="user.type === 'show'">{{user.username + '' + user.last_name}}</td>
+            <td class="cellpadding" v-if="user.type === 'show'">{{user.username + ' ' + user.last_name}}</td>
             <td class="cellpadding" v-if="user.type === 'show'">{{user.email}}</td>
             <td class="cellpadding" v-if="user.type === 'show'">{{user.company ? user.company.name : ''}}</td>
             <td class="cellpadding" v-if="user.type === 'show'"> {{user.role_users.length ? user.role_users[0].name : ''}}</td>
@@ -198,17 +198,25 @@
             </td>
             <td class="cellpadding" v-if="user.type === 'show'">
               <button
+                v-if="user.enabled"
                 type="button"
-                class="table-crud-btn icon-btn">
-                <!--<icon name="check-circle"/>-->
+                class="table-crud-btn icon-btn"
+                @click="initAction('changeUserStatus', {userId: user.id, userStatus: 0})">
                 <icon name="ban"/>
+              </button>
+              <button
+                v-if="!user.enabled"
+                type="button"
+                class="table-crud-btn icon-btn"
+                @click="initAction('changeUserStatus', {userId: user.id, userStatus: 1})">
+                <icon name="check-circle"/>
               </button>
             </td>
             <td class="cellpadding" v-if="user.type === 'show'">
               <button
                 type="button"
                 class="table-crud-btn icon-btn"
-                @click="initAction('removeUserById', user.id)">
+                @click="initAction('removeUserById', {userId: user.id})">
                 <icon name="times" />
               </button>
             </td>
@@ -262,7 +270,6 @@
                     <input type="password"
                            v-model="user.password"
                            name="Password"
-                           v-validate="'required'"
                            data-vv-name="userPassword"
                            data-vv-as="Password"
                            placeholder="password"/>
@@ -274,15 +281,13 @@
                       errors.has('userSurname') ||
                       errors.has('userEmail') ||
                       errors.has('userCompanyName') ||
-                      errors.has('userCompanyRole') ||
-                      errors.has('userPassword')"
+                      errors.has('userCompanyRole')"
                     class="edit-user-row-errors">
                     <span v-if="errors.has('userName')">{{errors.first('userName')}}</span>
                     <span v-if="errors.has('userSurname')">{{errors.first('userSurname')}}</span>
                     <span v-if="errors.has('userEmail')">{{errors.first('userEmail')}}</span>
                     <span v-if="errors.has('userCompanyName')">{{errors.first('userCompanyName')}}</span>
                     <span v-if="errors.has('userCompanyRole')">{{errors.first('userCompanyRole')}}</span>
-                    <span v-if="errors.has('userPassword')">{{errors.first('userPassword')}}</span>
                   </div>
                 </div>
                 <div class="edit-user-control-panel">
@@ -341,7 +346,10 @@ export default {
       confirmation: {
         action: '',
         isShown: false,
-        id: null
+        id: null,
+        style: {
+          top: '100px'
+        }
       }
     }
   },
@@ -376,6 +384,7 @@ export default {
       this.$http.post(api.URLS.createAdmin + this.newUser.role.value, user, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
+          this.users.push(res.body)
           this.newUserForm.isShown = false
           this.resetAddNewUserForm()
         })
@@ -418,53 +427,58 @@ export default {
       if (this.disableAPI) return
       this.$validator.validateAll()
       if (this.errors.items.length) return
-      this.discardСhanges(id)
-//      let user = this.editedUsers.find((user) => user.id === id && user.type === 'edit')
-//      let userData = {
-//        username: user.username,
-//        lastName: user.las_name,
-//        email: user.email,
-//        plainPassword: {
-//          first: user.password,
-//          second: user.password
-//        },
-//        company: user.company.value
-//      }
-//      this.disableAPI = true
-//      this.$http.put(api.URLS.category + '/' + id, userData, api.headersAuthSettings)
-//        .then((res) => {
-//          this.disableAPI = false
-//          console.log(res)
-//          this.discardСhanges(id)
-//          for (let i = 0; i < this.editedUsers.length; i++) {
-//            if (this.editedUsers[i].id === id && this.editedUsers[i].type === 'show') {
-//              let updatedData = res.body
-//              updatedData.type = 'show'
-//              this.editedUsers[i] = updatedData
-//              break
-//            }
-//          }
-//        })
-//        .catch((err) => {
-//          this.disableAPI = false
-//          console.log(err)
-//        })
+      let user = this.editedUsers.find((user) => user.id === id && user.type === 'edit')
+      let userData = {
+        username: user.username,
+        lastName: user.last_name,
+        email: user.email,
+        plainPassword: user.password,
+        company: user.company.value,
+        roleUsers: [user.role.value]
+      }
+      this.disableAPI = true
+      this.$http.put(api.URLS.user + '/' + id, userData, api.headersAuthSettings)
+        .then((res) => {
+          this.disableAPI = false
+          console.log(res)
+          this.discardСhanges(id)
+          for (let i = 0; i < this.editedUsers.length; i++) {
+            if (this.editedUsers[i].id === id && this.editedUsers[i].type === 'show') {
+              let updatedData = res.body
+              updatedData.type = 'show'
+              this.editedUsers[i] = updatedData
+              break
+            }
+          }
+        })
+        .catch((err) => {
+          this.disableAPI = false
+          console.log(err)
+        })
     },
-    initAction (name, id) {
+    initAction (name, payload) {
       this.confirmation.action = name
-      this.confirmation.id = id
+      Object.keys(payload).forEach((key) => {
+        this.confirmation[key] = payload[key]
+      })
       this.confirmation.isShown = true
     },
     clearAction () {
-      this.confirmation.action = ''
       this.confirmation.isShown = false
-      this.confirmation.id = null
+      Object.keys(this.confirmation).forEach((key) => {
+        if (key !== 'isShown' && key !== 'style') {
+          this.confirmation[key] = null
+        }
+      })
     },
     confirmActionHandler () {
       let self = this
       switch (this.confirmation.action) {
         case 'removeUserById':
-          removeUserById(this.confirmation.id)
+          removeUserById(this.confirmation.userId)
+          break
+        case 'changeUserStatus':
+          changeUserStatus(this.confirmation.userId, this.confirmation.userStatus)
           break
       }
       function removeUserById (id) {
@@ -479,6 +493,26 @@ export default {
               }
             }
             alert('Successfully removed')
+          })
+          .catch((err) => console.log(err))
+      }
+      function changeUserStatus (id, status) {
+        self.clearAction()
+        let data = {
+          user: {
+            enabled: status
+          }
+        }
+        self.$http.put(api.URLS.enabled + '/' + id, data, api.headersAuthSettings)
+          .then((res) => {
+            console.log(res)
+            for (let i = 0; i < self.users.length; i++) {
+              if (self.users[i].id === id && self.users[i].type === 'show') {
+                self.users[i].enabled = res.body.enabled
+                break
+              }
+            }
+            alert('Successfully updated')
           })
           .catch((err) => console.log(err))
       }
@@ -519,6 +553,11 @@ export default {
         })
       })
       this.editedUsers = editedUsers
+    },
+    'confirmation.isShown' (value) {
+      if (value) {
+        this.confirmation.style.top = window.pageYOffset - 100 + 'px'
+      }
     }
   },
   mounted () {

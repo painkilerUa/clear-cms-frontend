@@ -1,0 +1,16 @@
+@import '../settings/settings';
+
+.inf-msgs {
+  position: absolute;
+  z-index: 99;
+  width: 520px;
+  left: 390px;
+  top: 1200px;
+  background-color: #c7f5b8;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  span {
+
+  }
+}

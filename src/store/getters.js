@@ -66,3 +66,5 @@ export const getRolesForSelect = (state) => state.roles.map(item => {
 export const getArticlePreview = (state) => state.articlePreview
 
 export const getConfData = (state) => state.confData
+
+export const getInformationMsgs = (state) => state.informationMsg

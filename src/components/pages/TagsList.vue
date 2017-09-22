@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="wrap-confirmation-popup" v-if="confirmation.isShown">
-      <div class="confirmation-popup">
-        <div class="caption">
+    <div class="confirmation-popup" v-if="confirmation.isShown">
+      <div class="confirmation-popup-inner" :style="confirmation.style">
+        <div class="confirmation-popup-inner-caption">
           <span>Are you sure you want to perform this action?</span>
         </div>
-        <div class="body">
+        <div class="confirmation-popup-inner-body">
           <span>Please note that by deleting/arhiving/restoring this article you will</span>
         </div>
-        <div class="wrap-button">
-          <span @click="clearAction">No, cancel</span>
-          <span @click="confirmActionHandler">Yes, proceed</span>
+        <div class="confirmation-popup-inner-controll-panel">
+          <button type="button" @click="clearAction">No, cancel</button>
+          <button type="button" @click="confirmActionHandler">Yes, proceed</button>
         </div>
       </div>
     </div>
@@ -138,7 +138,10 @@ export default {
 //        typeAutoLoad: 'allContent',
         curPage: 1,
         numPages: 1,
-        locked: false
+        locked: false,
+        style: {
+          top: '100px'
+        }
       },
       newTag: {
         name: '',
@@ -359,6 +362,11 @@ export default {
         })
       })
       this.updatedTags = updatedTags
+    },
+    'confirmation.isShown' (value) {
+      if (value) {
+        this.confirmation.style.top = window.pageYOffset - 100 + 'px'
+      }
     }
   },
   mounted () {

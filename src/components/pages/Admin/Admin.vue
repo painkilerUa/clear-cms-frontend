@@ -22,6 +22,10 @@
         </li>
 				<br />
         <li>
+          <router-link :to="{name: 'tags'}">Topics</router-link>
+        </li>
+        <br />
+        <li>
           <router-link :to="{name: 'users'}">Users</router-link>
         </li>
         <br />
