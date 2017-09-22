@@ -10,7 +10,35 @@
 					<a href="/" class="main-logo" tabindex="-1">Lloyd's</a>
 					<!-- .app-header-description -->
 					<div class="app-header-description">
-						<p>Powered by <a href="#" class="app-header-description__link" tabindex="-1">the clear company</a></p>
+            <ul>
+              <li>
+                <router-link :to="{name: 'admin'}">Admin
+                </router-link>
+              </li>
+              <li>
+                <router-link :to="{name: 'management'}">Management</router-link>
+              </li>
+              <li>
+                <router-link :to="{name: 'articles-list'}">Articles List</router-link>
+              </li>
+              <li>
+                Categories
+                <ul>
+                  <li>
+                    <router-link :to="{name: 'categories'}">Category</router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{name: 'tags'}">Topics</router-link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <router-link :to="{name: 'users'}">Users</router-link>
+              </li>
+              <li>
+                <router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>
+              </li>
+            </ul>
 					</div>
 					<!-- END:.app-header-description -->
 				</div>
@@ -64,13 +92,13 @@
 		</div>
 		<!-- END:.app-header-info -->
 		<!-- .app-header-search -->
-		<div class="app-header-search">
-			<!-- .myContainer -->
-			<div class="myContainer">
-			  <autocomplete-input />
-			</div>
-			<!-- END:.myContainer -->
-		</div>
+		<!--<div class="app-header-search">-->
+			<!--&lt;!&ndash; .myContainer &ndash;&gt;-->
+			<!--<div class="myContainer">-->
+			  <!--<autocomplete-input />-->
+			<!--</div>-->
+			<!--&lt;!&ndash; END:.myContainer &ndash;&gt;-->
+		<!--</div>-->
 		<!-- END:.app-header-search -->
 	</header>
 	<!-- END:.app-header -->

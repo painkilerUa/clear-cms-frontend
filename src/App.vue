@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!--<conf-popup />-->
-    <inform-msgs />
-  	<app-header />
+    <!--<inform-msgs />-->
+  	<!--<app-header />-->
     <router-view />
   </div>
 </template>
