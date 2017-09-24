@@ -6,7 +6,7 @@
         background-color: color('appHeaderMain');
         &__container {
             display: flex;
-
+            padding: 20px 0;
             align-items: center;
             justify-content: space-between;
         }
@@ -23,16 +23,27 @@
         ul {
           font-size: 0;
           line-height: 0;
-          vertical-align: top;
+          vertical-align: middle;
           list-style: none;
+          margin-bottom: 0;
           li {
             display: inline-block;
-            padding: 5px 10px;
+            position: relative;
+            padding: 0 10px;
+            border-left: 1px solid #a0a0a0;
+            &:hover > .first-level-menu-header {
+              display: block;
+            }
             a {
-              color: #fff;
-              font-size: 20px;
-              line-height: 24px;
+              color: #a0a0a0;
+              font-size: 16px;
+              line-height: 20px;
               text-decoration: none;
+            }
+            span {
+              color: #a0a0a0;
+              font-size: 16px;
+              line-height: 20px;
             }
           }
         }
@@ -61,4 +72,13 @@
         color: #fff;
         background-color: color('appHeaderSearchBg');
     }
+}
+.first-level-menu-header {
+  display: none;
+  position: absolute;
+  width: 150px;
+  left: 10px;
+  background-color: #000000;
+  border: 1px solid #a0a0a0;
+  z-index: 99;
 }

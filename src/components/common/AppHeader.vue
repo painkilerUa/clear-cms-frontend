@@ -10,7 +10,7 @@
 					<a href="/" class="main-logo" tabindex="-1">Lloyd's</a>
 					<!-- .app-header-description -->
 					<div class="app-header-description">
-            <ul>
+            <ul class="main-menu-header">
               <li>
                 <router-link :to="{name: 'admin'}">Admin
                 </router-link>
@@ -19,11 +19,19 @@
                 <router-link :to="{name: 'management'}">Management</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'articles-list'}">Articles List</router-link>
+                <span>Articles</span>
+                <ul class="first-level-menu-header">
+                  <li>
+                    <router-link :to="{name: 'articles-list'}">All articles</router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{name: 'add-article'}">Add new article</router-link>
+                  </li>
+                </ul>
               </li>
               <li>
-                Categories
-                <ul>
+                <span>Categories</span>
+                <ul class="first-level-menu-header">
                   <li>
                     <router-link :to="{name: 'categories'}">Category</router-link>
                   </li>
