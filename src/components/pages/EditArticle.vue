@@ -15,23 +15,45 @@
             <img :src="articlePreview.mainImg" alt="imgPreview">
           </div>
           <div class="wrap-resource">
-            <div class="wrap-resource-video" v-if="subForm.type === 'video'" v-for="resource in articlePreview.resources">
-              <h4>Video resources</h4>
-              <iframe
-                :src="resource.link">
-              </iframe>
-              <span>Transcript for video</span>
-              <section>{{resource.textarea}}</section>
-            </div>
-            <div class="wrap-resource-screen-text" v-if="subForm.type === 'resource'" v-for="resource in articlePreview.resources">
-              <h4>Article resources</h4>
-              <div class="wrap-file">
-                <span>File Name: </span>
-                <span>{{resource.fileName}}</span>
+            <div class="wrap-resource-video" v-if="article.resources.type === 'video'" v-for="resource in article.resources.data">
+              <div class="existed-resource-video" v-if="resource.type === 'exist'">
+                <h4>Existed video resources</h4>
+                <iframe
+                  :src="resource.link">
+                </iframe>
+                <span>Transcript for video</span>
+                <section>{{resource.textarea}}</section>
               </div>
-              <section v-if="resource.link">{{resource.link}}</section>
-              <span>Description Resource</span>
-              <section>{{resource.textarea}}</section>
+              <div class="new-resource-video" v-if="resource.type === 'new' && resource.link.value">
+                <h4>New video resources</h4>
+                <iframe
+                  :src="resource.link.value">
+                </iframe>
+                <span>Transcript for video</span>
+                <section>{{resource.textarea.value}}</section>
+              </div>
+            </div>
+            <div class="wrap-resource" v-if="article.resources.type === 'resource'" v-for="resource in article.resources.data">
+              <div class="existed-resource" v-if="resource.type === 'exist'">
+                <h4>Existed article resources</h4>
+                <div class="wrap-file" v-if="resource.file">
+                  <span>File Name: </span>
+                  <span>{{resource.file}}</span>
+                </div>
+                <section v-if="resource.link">{{resource.link}}</section>
+                <span>Description Resource</span>
+                <section>{{resource.textarea}}</section>
+              </div>
+              <div class="new-resource" v-if="resource.type === 'new' && (resource.file.name || resource.link.value)">
+                <h4>New article resources</h4>
+                <div class="wrap-file" v-if="resource.file.name">
+                  <span>File Name: </span>
+                  <span>{{resource.file.name}}</span>
+                </div>
+                <section v-if="resource.link.value">{{resource.link.value}}</section>
+                <span v-if="resource.textarea.value">Description Resource</span>
+                <section>{{resource.textarea.value}}</section>
+              </div>
             </div>
           </div>
         </div>
@@ -94,7 +116,6 @@
                   <v-select
                   name="Type"
                   data-vv-as='"Type"'
-                  v-validate="'required'"
                   placeholder="Select"
                   disabled="true"
                   v-model="article.contentType"/>
@@ -227,25 +248,34 @@
                 </div>
                 <h3></h3>
                 <div class="row" v-if="resource.file">
-                  <span>
+                  <span class="existed-file-logo">
+                    <icon :name="getIconFileName(resource.file)" />
                     <span>{{resource.file}}</span>
                     <button type="button" @click="removeResourceFile(i)">
                       <icon name="remove" />
                     </button>
                   </span>
                 </div>
-                <div class="row">
-                  <div class="wrap-add-resource-file" v-if="resource.file === ''">
-                    <label :for="'edit-resource-file-' + i">Upload recource</label>
-                    <input type="file" :id="'edit-resource-file-' + i" @change="uploadFileExistedResource($event, i)">
+                <div class="row" :class="{'form-group': article.resources.type === 'resource'}">
+                  <div class="wrap-add-resource-file form-element-half" v-if="resource.file === ''">
+                    <span class="form-label">Upload resource</span>
+                    <label class="form-label form-label--file-resource">
+                      <icon name="upload" />
+                      <span class="form-label__text">Upload resource</span>
+                      <span :id="'uploadedResource_' + i"></span>
+                      <input type="file"
+                             @change="uploadFileExistedResource($event, i)"
+                             class="form-control visually-hidden form-control--file input-file-resource">
+                    </label>
                   </div>
-                  <div class="wrap-add-resource-url" v-if="!resource.file && resource.link !== undefined">
-                    <label :for="'add-resource-url-' + i">Recource URL</label>
-                    <input type="url" :id="'add-resource-url-' + i" v-model="resource.link">
+                  <div class="wrap-add-resource-url" v-if="!resource.file && resource.link !== undefined" :class="{'form-element-half': article.resources.type === 'resource'}">
+                    <label :for="'add-resource-url-' + i" class="form-label">{{article.resources.type === 'resource' ? 'Recource URL' : 'Video URL'}}</label>
+                    <input type="url" :id="'add-resource-url-' + i" v-model="resource.link" class="form-control">
                   </div>
                 </div>
                 <div class="row">
-                  <textarea name="ext-desc" id="" cols="30" rows="5" v-model="resource.textarea"></textarea>
+                  <label :for="'add-resource-textarea-' + i" class="form-label">{{article.resources.type === 'resource' ? 'Transcript for resource' : 'Transcript for video'}}</label>
+                  <textarea name="ext-desc" :id="'add-resource-textarea-' + i" class="form-control input-textarea-resource" cols="30" rows="5" v-model="resource.textarea"></textarea>
                 </div>
               </div>
             </div>
@@ -257,19 +287,27 @@
                     <icon name="times-circle-o" />
                   </span>
                 </div>
-                <div class="row">
-                  <div class="wrap-add-resource-file" v-if="newResource.file !== undefined">
-                    <label :for="'add-resource-file-' + j">{{newResource.file.title}}</label>
-                    <input type="file" :id="'add-resource-file-' + j" @change="uploadFileNewResource($event, j)" :placeholder="newResource.file.placeholder" :key="'add-resource-file-' + j">
+                <div class="row" :class="{'form-group': article.resources.type === 'resource'}">
+                  <div class="wrap-add-resource-file form-element-half" v-if="newResource.file !== undefined">
+                    <span class="form-label">Upload resource</span>
+                    <label class="form-label form-label--file-resource">
+                      <icon name="upload" />
+                      <span class="form-label__text">Upload resource</span>
+                      <span :id="'uploadedResource_' + j"></span>
+                      <input type="file"
+                             @change="uploadFileNewResource($event, j)"
+                             class="form-control visually-hidden form-control--file input-file-resource"
+                             :placeholder="newResource.file.placeholder">
+                    </label>
                   </div>
-                  <div class="wrap-add-resource-url" v-if="newResource.link !== undefined">
-                    <label :for="'add-resource-url-' + j">{{newResource.link.title}}</label>
-                    <input type="url" :id="'add-resource-url-' + j" :placeholder="newResource.link.placeholder" v-model="article.resources.data[j].link.value">
+                  <div class="wrap-add-resource-url" v-if="newResource.link !== undefined" :class="{'form-element-half': article.resources.type === 'resource'}">
+                    <label :for="'add-resource-url-' + j" class="form-label">{{newResource.link.title}}</label>
+                    <input type="url" :id="'add-resource-url-' + j" class="form-control" :placeholder="newResource.link.placeholder" v-model="article.resources.data[j].link.value">
                   </div>
                 </div>
-                <label :for="'add-resource-desc-' + j">{{newResource.textarea.title}}</label>
                 <div class="row">
-                  <textarea name="text" cols="30" rows="5" :id="'add-resource-desc-' + j" :placeholder="newResource.textarea.placeholder" v-model="article.resources.data[j].textarea.value"></textarea>
+                  <label :for="'add-resource-desc-' + j" class="form-label">{{newResource.textarea.title}}</label>
+                  <textarea name="text" cols="30" rows="5" class="form-control input-textarea-resource" :id="'add-resource-desc-' + j" :placeholder="newResource.textarea.placeholder" v-model="article.resources.data[j].textarea.value"></textarea>
                 </div>
               </div>
               <div class="wrap-bottom-control-panel">
@@ -306,6 +344,8 @@ import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
 import 'vue-awesome/icons/info-circle'
 import 'vue-awesome/icons/remove'
+import 'vue-awesome/icons/file-pdf-o'
+import 'vue-awesome/icons/file-word-o'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
@@ -337,12 +377,12 @@ export default {
       categories: [],
       roles: [],
       isThumbnailFileUploaded: false,
-      addElements: {
-        video: 1,
-        resource: 1,
-        case_study: 1,
-        screen_text: 1
-      },
+//      addElements: {
+//        video: 1,
+//        resource: 1,
+//        case_study: 1,
+//        screen_text: 1
+//      },
       subForm: {
         type: ''
       },
@@ -443,10 +483,10 @@ export default {
         this.formData.set('content[imageFile]', e.target.files[0])
       }
     },
-    onResourceFileChange (value, i) {
-      let valueTrimmed = value.replace(/^.*\\/, '')
-      document.getElementById('uploadedResource_' + i).innerHTML = valueTrimmed
-    },
+//    onResourceFileChange (value, i) {
+//      let valueTrimmed = value.replace(/^.*\\/, '')
+//      document.getElementById('uploadedResource_' + i).innerHTML = valueTrimmed
+//    },
     removeThumbnail () {
       var input = document.getElementById('uploadThumbnail')
       input.value = null
@@ -566,7 +606,7 @@ export default {
         .then((res) => {
           this.disableAPI = false
           console.log('editArticle', res)
-//          this.$router.push('/admin/articles-list')
+          this.getArticleById(res.body.id)
           let infMsg
           switch (status) {
             case 0:
@@ -600,6 +640,8 @@ export default {
         })
     },
     uploadFileExistedResource (e, i) {
+      let valueTrimmed = e.target.value.replace(/^.*\\/, '')
+      document.getElementById('uploadedResource_' + i).innerHTML = valueTrimmed
       if (e.target.files.length) {
         this.formData.set('content[typeValues][' + i + '][file]', e.target.files[0])
       } else {
@@ -607,10 +649,14 @@ export default {
       }
     },
     uploadFileNewResource (e, j) {
+      let valueTrimmed = e.target.value.replace(/^.*\\/, '')
+      document.getElementById('uploadedResource_' + j).innerHTML = valueTrimmed
       if (e.target.files.length) {
+        this.article.resources.data[j].file.name = e.target.files[0].name
         this.formData.set('content[typeValues][' + j + '][file]', e.target.files[0])
       } else {
         this.formData.delete('content[typeValues][' + j + '][file]')
+        this.article.resource.data[j].name = null
       }
     },
     editResourceField (fieldName, e, j) {
@@ -652,24 +698,28 @@ export default {
             value: res.body.content_type.id
           }
           res.body.tags.forEach((tag) => {
+            this.article.tags = []
             this.article.tags.push({
               label: tag.name,
               value: tag.id
             })
           })
           res.body.categories.forEach((category) => {
+            this.article.categories = []
             this.article.categories.push({
               label: category.title,
               value: category.id
             })
           })
           res.body.companies.forEach((company) => {
+            this.article.companies = []
             this.article.companies.push({
               label: company.name,
               value: company.id
             })
           })
           res.body.roles.forEach((role) => {
+            this.article.roles = []
             this.article.roles.push({
               label: role.name,
               value: role.id
@@ -678,12 +728,12 @@ export default {
 // Add image
           this.isThumbnailFileUploaded = !!res.body.image_name
 // Image preview
-// TODO: change api
           this.srcImagePreview = api.staticServerURL + res.body.image_path
           if (res.body.image_name) {
-            this.articlePreview.mainImg = api.staticServerUrl + res.body.image_path
+            this.articlePreview.mainImg = api.staticServerURL + res.body.image_path
           }
 // Add resources
+          this.article.resources = {title: '', data: []}
           if (res.body.formResource) {
             Object.keys(res.body.formResource).forEach(key => {
               res.body.formResource[key].type = 'exist'
@@ -699,6 +749,7 @@ export default {
             })
             this.article.resources.data.push(resource)
             this.article.resources.title = res.body.content_type.form.comment.title
+            this.article.resources.type = res.body.content_type.form.type
           }
           console.log('getArticleById', res)
         })
@@ -768,6 +819,14 @@ export default {
           this.disableAPI = false
           console.log(err)
         })
+    },
+    getIconFileName (fileName) {
+      switch (fileName.split('.')[1]) {
+        case 'pdf':
+          return 'file-pdf-o'
+        case 'doc':
+          return 'file-word-o'
+      }
     }
   },
   components: {

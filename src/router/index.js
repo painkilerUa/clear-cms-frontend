@@ -49,8 +49,8 @@ const router = new Router({
       name: 'admin',
       component: Admin,
       meta: {
-        requiresAuth: true,
-        requiresAuthAdmin: true
+        // requiresAuth: true,
+        // requiresAuthAdmin: true
       },
       children: [
         {
@@ -160,7 +160,7 @@ router.beforeEach((to, from, next) => {
   } if (to.matched.some(record => record.meta.requiresAuthAdmin)) {
     if (localStorage.getItem('userRole') !== 'Admin') {
       next({
-        path: '/login',
+        path: '/',
         query: {
           redirect: to.fullPath
         }

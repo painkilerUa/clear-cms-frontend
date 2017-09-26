@@ -32,7 +32,7 @@
         </div>
         <!-- END:.articles-list-actions -->
         <!-- .articles-list-statusbar -->
-        <div class="articles-list-statusbar">
+        <div class="articles-list-statusbar" v-if="!selectedFilters.length">
           <!-- .articles-list-statusbar__contains -->
           <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{articles.length}} Articles</div>
           <!-- END:.articles-list-statusbar__contains -->
@@ -45,11 +45,22 @@
           <!-- END:.articles-list-statuses -->
         </div>
         <!-- END:.articles-list-statusbar -->
+        <div class="articles-list-selected-filters" v-if="selectedFilters.length">
+          <div class="articles-list-selected-filters-remove-all" @click="removeAllFilters">
+            <span>Remove all filters</span>
+          </div>
+          <div class="articles-list-selected-filters-body">
+            <button v-for="filter in selectedFilters" type="button" @click="removeSelectedFilters(filter)">
+              <span>{{filter.label}}</span>
+              <icon name="times"></icon>
+            </button>
+          </div>
+        </div>
         <div class="articles-list-add">
           <router-link
             :to="{name: 'add-article'}"
             class="icon-btn articles-list-add__btn">
-            <icon name="plus" />
+            <!--<icon name="plus" />-->
             <span>Add new article</span>
           </router-link>
         </div>
@@ -61,8 +72,8 @@
         <table class="table table-data">
           <thead>
           <tr>
-            <th class="cellpadding">ID</th>
-            <th class="articles-list-search-col text-left">
+            <th class="cellpadding column-id-head">ID</th>
+            <th class="articles-list-search-col text-left column-search-head">
               <div class="table-search-wrap">
                 <input
                   v-model="search"
@@ -72,52 +83,53 @@
                   placeholder="Search in articles..." />
               </div>
             </th>
-            <th>
+            <th class="column-lng-head">
               <v-select placeholder="Lang"
                         :options="lngs"/>
             </th>
-            <th>
+            <th class="column-type-head">
               <v-select placeholder="Type"
                         v-model="contentType"
                         :options="getContentTypeForSelect"
-                        :multiple="true"/>
+                        :multiple="true"
+                        class="hello"/>
             </th>
-            <th>
+            <th class="column-topics-head">
               <v-select placeholder="Topics"
                         :options="getTagsForSelect"
                         v-model="tags"
                         :multiple="true" />
             </th>
-            <th>
+            <th class="column-categories-head">
               <v-select placeholder="Category"
                         :options="getCategoriesForSelect"
                         v-model="categories"
                         :multiple="true" />
             </th>
-            <th>
+            <th class="column-access-head">
               <v-select placeholder="Access"
                         :options="getRolesForSelect"
                         v-model="roles"
                         :multiple="true"
               />
             </th>
-            <th>
+            <th class="column-companies-head">
               <v-select placeholder="Com spec"
                         :options="getCompaniesForSelect"
                         v-model="companies"
                         :multiple="true"
               />
             </th>
-            <th>
+            <th class="column-last-edited-head">
               <span>Last Edited</span>
             </th>
-            <th>
+            <th class="column-author-head">
               <v-select placeholder="Upl/Edit" />
             </th>
-            <th>
+            <th class="column-status-head">
               <v-select placeholder="Status" />
             </th>
-            <th colspan="3" class="cellpadding">Actions</th>
+            <th colspan="3" class="cellpadding column-actions-head">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -214,7 +226,7 @@ export default {
         }
       },
       contentAutoloadInfo: {
-        curPage: 1,
+//        curPage: 1,
         numPages: 1,
         locked: false
       },
@@ -355,6 +367,7 @@ export default {
         })
     },
     searchByParams (page, limit) {
+      this.contentAutoloadInfo.curPage = page
       if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
       let body = {
         contentType: this.contentType.map((item) => item.value),
@@ -392,6 +405,46 @@ export default {
         default:
           return ''
       }
+    },
+    removeSelectedFilters (filter) {
+      console.log(filter)
+      this.contentType.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.contentType.splice(i, 1)
+          return
+        }
+      })
+      this.categories.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.categories.splice(i, 1)
+          return
+        }
+      })
+      this.tags.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.tags.splice(i, 1)
+          return
+        }
+      })
+      this.roles.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.roles.splice(i, 1)
+          return
+        }
+      })
+      this.companies.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.companies.splice(i, 1)
+          return
+        }
+      })
+    },
+    removeAllFilters () {
+      this.contentType = []
+      this.categories = []
+      this.tags = []
+      this.roles = []
+      this.companies = []
     }
   },
   computed: {
@@ -404,7 +457,10 @@ export default {
       'getCategoriesForSelect',
       'getRolesForSelect',
       'getCompaniesForSelect'
-    ])
+    ]),
+    selectedFilters () {
+      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies]
+    }
   },
   watch: {
     contentType () {

@@ -11,41 +11,50 @@
 					<!-- .app-header-description -->
 					<div class="app-header-description">
             <ul class="main-menu-header">
+              <!--<li>-->
+                <!--<router-link :to="{name: 'admin'}">Admin-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<router-link :to="{name: 'management'}">Management</router-link>-->
+              <!--</li>-->
               <li>
-                <router-link :to="{name: 'admin'}">Admin
-                </router-link>
-              </li>
-              <li>
-                <router-link :to="{name: 'management'}">Management</router-link>
-              </li>
-              <li>
-                <span>Articles</span>
-                <ul class="first-level-menu-header">
+                <icon name="file" class="icon icon-file"></icon>
+                <span>Content</span>
+                <ul class="first-level-menu-header articles">
                   <li>
-                    <router-link :to="{name: 'articles-list'}">All articles</router-link>
+                    <router-link :to="{name: 'articles-list'}">Articles</router-link>
                   </li>
                   <li>
                     <router-link :to="{name: 'add-article'}">Add new article</router-link>
                   </li>
+                  <li>
+                    <a>Things to do</a>
+                  </li>
+                  <li>
+                    <a>Add new TTD</a>
+                  </li>
                 </ul>
               </li>
               <li>
+                <icon name="tag" class="icon icon-tag"></icon>
                 <span>Categories</span>
-                <ul class="first-level-menu-header">
+                <ul class="first-level-menu-header categories">
                   <li>
                     <router-link :to="{name: 'categories'}">Category</router-link>
                   </li>
                   <li>
-                    <router-link :to="{name: 'tags'}">Topics</router-link>
+                    <router-link :to="{name: 'tags'}">Topic</router-link>
                   </li>
                 </ul>
               </li>
               <li>
+                <icon name="user-o" class="icon icon-user-o"></icon>
                 <router-link :to="{name: 'users'}">Users</router-link>
               </li>
-              <li>
-                <router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>
-              </li>
+              <!--<li>-->
+                <!--<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>-->
+              <!--</li>-->
             </ul>
 					</div>
 					<!-- END:.app-header-description -->
@@ -90,7 +99,7 @@
 					<!-- END:.app-header-login -->
 					<!-- .app-header-options -->
 					<div class="app-header-options">
-						<div class="app-header-options__text">Your accessibility options</div>
+						<!--<div class="app-header-options__text">Your accessibility options</div>-->
 					</div>
 					<!-- END:.app-header-options -->
 				</div>
@@ -114,6 +123,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import 'vue-awesome/icons/file'
+import 'vue-awesome/icons/tag'
+import 'vue-awesome/icons/user-o'
 
 export default {
   name: 'app-header',

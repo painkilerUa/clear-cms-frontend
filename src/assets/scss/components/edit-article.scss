@@ -140,19 +140,6 @@
       }
       .row {
         padding: 5px 0;
-        & > span {
-          display: inline-block;
-          background-color: #ffed95;
-          padding: 10px 20px;
-          border-top: 1px solid grey;
-          border-bottom: 1px solid grey;
-          //&:: before {
-          //  content: '';
-          //}
-          //&:: after {
-          //  content: '';
-          //}
-        }
         textarea {
           width: 100%;
         }
@@ -183,13 +170,27 @@
     .wrap-bottom-control-panel {
       text-align: right;
       button {
-        padding: 5px 20px;
-        background-color: #B70A37;
+        width: 130px;
+        padding: 12px;
+        color: #fff;
+        background-color: #555555;
       }
     }
   }
 }
-
+.existed-file-logo {
+  display: inline-block;
+  background-color: #fffdd8;
+  padding: 10px 20px;
+  border: 1px solid grey;
+  border-radius: 100px;
+  span {
+    padding: 0 10px;
+  }
+  button {
+    background-color: #fffdd8;
+  }
+}
 .wrap-title {
   font-size: 0;
   line-height: 0;
@@ -279,3 +280,12 @@
     }
   }
 }
+.form-group {
+  display: flex;
+}
+.form-element-half {
+  width: 47%;
+}
+//.form-control {
+//  width: 100%;
+//}

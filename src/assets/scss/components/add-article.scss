@@ -78,10 +78,17 @@
       position:absolute;
       left: 0px;
       top: 37px;
-      width: 540px;
+      width: 550px;
       height: 100px;
       opacity: 0;
       transition:.25s ease-in-out;
+      ul {
+        list-style-position: inside;
+        padding: 5px;
+        span {
+          font-weight: 600;
+        }
+      }
       &:after {
         content: '';
         display: block;
@@ -173,5 +180,13 @@
         }
       }
     }
+  }
+}
+.control-panel-top {
+  text-align: right;
+  span {
+    color: red;
+    font-style: italic;
+    cursor: pointer;
   }
 }

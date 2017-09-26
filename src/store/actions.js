@@ -2,7 +2,7 @@ import api from '@/api'
 import router from '@/router'
 
 const isLoggedIn = localStorage.getItem('token')
-export const redirect = () => { router.push('/'); router.go('/') }
+export const redirect = () => { router.push('/admin'); router.go('/admin') }
 
 // auth
 export const authLogout = ({ commit }, payload) => {

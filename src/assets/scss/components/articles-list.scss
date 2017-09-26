@@ -15,6 +15,35 @@
         opacity: 0;
         align-items: center;
     }
+    &-selected-filters {
+        display: flex;
+        width: 50%;
+        border: 1px solid #000;
+        &-remove-all {
+            width: 13%;
+            padding: 20px 10px;
+            background-color: #fffdd8;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        &-body {
+            width: 87%;
+            padding: 10px 20px;
+            border-left: 1px solid #d5d5d5;
+            background-color: #fafafa;
+            button {
+                background-color: transparent;
+                padding: 5px 10px;
+                border: 1px solid #d5d5d5;
+                border-radius: 50px;
+                margin: 0 10px 10px 0;
+                svg {
+                    width: 9px;
+                    color: #d5d5d5;
+                }
+            }
+        }
+    }
     &-inputwrap {
         display: inline-flex;
         height: 34px;
@@ -64,6 +93,49 @@
             width: 200px;
         }
     }
+}
+.column-id-head {
+  max-width: 40px;
+}
+.column-search-head {
+  max-width: 260px;
+}
+.column-lng-head {
+  max-width: 150px;
+}
+.column-type-head {
+  max-width: 80px;
+  .dropdown {
+    .dropdown-toggle {
+      span {
+        display: none !important;
+      }
+    }
+  }
+}
+.column-topics-head {
+  max-width: 90px;
+}
+.column-categories-head {
+  max-width: 120px;
+}
+.column-access-head {
+  max-width: 90px;
+}
+.column-companies-head {
+  max-width: 100px;
+}
+.column-last-edited-head {
+  max-width: 90px;
+}
+.column-author-head {
+  max-width: 100px;
+}
+.column-status-head {
+  max-width: 90px;
+}
+.column-actions-head {
+  max-width: 90px;
 }
 .articles-list-body{
   margin-bottom: 40px;

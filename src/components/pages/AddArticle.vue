@@ -210,7 +210,6 @@
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
-              v-validate="'required'"
               v-model="selectedValues.content"
               :editorToolbar="customEditorToolbar"/>
             <div
@@ -222,6 +221,12 @@
             <h2 class="add-article-section__title">Article video</h2>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.video">
+              <div class="control-panel-top" v-if="addElements['video'] > 1">
+                <span @click="deleteResourceField('video')">
+                  Delete
+                  <icon name="times-circle-o" />
+                </span>
+              </div>
               <!-- .form-element -->
               <div class="form-element">
                 <label for="addVideoUrl" class="form-label">Video URL</label>
@@ -252,58 +257,64 @@
               class="add-article-btn alignright">Add video
             </button>
           </section>
-          <section class="add-article-section" v-if="subForm.type === 'case_study'">
-            <h2 class="add-article-section__title">Article Case Study</h2>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.case_study">
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="case-study-textarea" class="form-label">Case Study transcript</label>
-                <textarea
-                  id="case-study-textarea"
-                  placeholder="Case Study transcript"
-                  class="form-control input-textarea-case-study"
-                  cols="30"
-                  rows="5">
-                </textarea>
-              </div>
-              <!-- END:.form-element -->
-            </div>
-            <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('case_study')"
-              class="add-article-btn alignright">Add element
-            </button>
-          </section>
-          <section class="add-article-section" v-if="subForm.type === 'screen_text'">
-            <h2 class="add-article-section__title">Article Screen Text</h2>
-            <!-- .form-elements -->
-            <div class="form-elements" v-for="n in addElements.screen_text">
-              <!-- .form-element -->
-              <div class="form-element">
-                <label for="screen-text-textarea" class="form-label">Screen Text transcript</label>
-                <textarea
-                  id="screen-text-textarea"
-                  placeholder="Screen Text transcript"
-                  class="form-control input-textarea-screen-text"
-                  cols="30"
-                  rows="5">
-                </textarea>
-              </div>
-              <!-- END:.form-element -->
-            </div>
-            <!-- END:.form-elements -->
-            <button
-              type="button"
-              @click="addFormElement('screen_text')"
-              class="add-article-btn alignright">Add element
-            </button>
-          </section>
+          <!--<section class="add-article-section" v-if="subForm.type === 'case_study'">-->
+            <!--<h2 class="add-article-section__title">Article Case Study</h2>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.case_study">-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="case-study-textarea" class="form-label">Case Study transcript</label>-->
+                <!--<textarea-->
+                  <!--id="case-study-textarea"-->
+                  <!--placeholder="Case Study transcript"-->
+                  <!--class="form-control input-textarea-case-study"-->
+                  <!--cols="30"-->
+                  <!--rows="5">-->
+                <!--</textarea>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('case_study')"-->
+              <!--class="add-article-btn alignright">Add element-->
+            <!--</button>-->
+          <!--</section>-->
+          <!--<section class="add-article-section" v-if="subForm.type === 'screen_text'">-->
+            <!--<h2 class="add-article-section__title">Article Screen Text</h2>-->
+            <!--&lt;!&ndash; .form-elements &ndash;&gt;-->
+            <!--<div class="form-elements" v-for="n in addElements.screen_text">-->
+              <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+              <!--<div class="form-element">-->
+                <!--<label for="screen-text-textarea" class="form-label">Screen Text transcript</label>-->
+                <!--<textarea-->
+                  <!--id="screen-text-textarea"-->
+                  <!--placeholder="Screen Text transcript"-->
+                  <!--class="form-control input-textarea-screen-text"-->
+                  <!--cols="30"-->
+                  <!--rows="5">-->
+                <!--</textarea>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-elements &ndash;&gt;-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--@click="addFormElement('screen_text')"-->
+              <!--class="add-article-btn alignright">Add element-->
+            <!--</button>-->
+          <!--</section>-->
           <section class="add-article-section" v-if="subForm.type === 'resource'">
             <h2 class="add-article-section__title">Article resources</h2>
             <!-- .form-elements -->
             <div class="form-elements" v-for="n in addElements.resource">
+              <div class="control-panel-top"  v-if="addElements['resource'] > 1">
+                <span @click="deleteResourceField('resource')">
+                  Delete
+                  <icon name="times-circle-o" />
+                </span>
+              </div>
               <!-- .form-group -->
               <div class="form-group">
                 <!-- .form-element -->
@@ -525,6 +536,9 @@ export default {
 //    },
     addFormElement (type) {
       this.addElements[type] += 1
+    },
+    deleteResourceField (type) {
+      this.addElements[type] -= 1
     },
     onThumbnailFileChange (e) {
       let self = this
