@@ -210,8 +210,7 @@
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
-              v-model="selectedValues.content"
-              :editorToolbar="customEditorToolbar"/>
+              v-model="selectedValues.content" />
             <div
               v-if="errors.has('Content')"
               class="form-errors">{{ errors.first('Content') }}

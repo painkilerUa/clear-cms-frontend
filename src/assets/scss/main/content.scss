@@ -1,0 +1,342 @@
+@import './settings/settings';
+
+#key {
+  .position {
+    padding-top: 30px;
+  }
+  .first-block {
+    padding-top: 30px;
+  }
+  .home {
+    padding-top: 30px;
+    a {
+      font-size: 140%;
+      text-align: justify;
+      color: $black;
+      img {
+        width: 16px;
+        margin: 0 5px 3px 0;
+      }
+    }
+  }
+  h2 {
+    font-size: 240%;
+    font-weight: bold;
+    letter-spacing: 0;
+    color: $dark-aquamarine;
+    padding-top: 20px;
+    margin-top: 0;
+  }
+  .text {
+    font-size: 130%;
+    line-height: 1.54;
+    text-align: left;
+    color: #000000;
+    ul {
+      padding-left: 16px;
+      margin-bottom: 10px;
+    }
+    li {
+      padding-bottom: 10px;
+    }
+    h3 {
+      color: $dark-aquamarine;
+      font-size: 140%;
+      font-weight: bold;
+      line-height: 1;
+      margin-top: 0;
+    }
+  }
+  .rectangle {
+    background-color: $aquamarine;
+    width: 265px;
+    color: $black;
+    padding-left: 27px;
+    padding-top: 18px;
+    padding-bottom: 20px;
+    .attention:before {
+      background-image: url(../../img/main/attention.png);
+      background-repeat: no-repeat;
+      background-size: 15px 13px;
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      content: "";
+      margin: 1px 4px -3px -16px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      padding-right: 40px;
+    }
+    p {
+      text-align: left;
+      font-size: 180%;
+      font-weight: bold;
+      line-height: 1.11;
+      margin-bottom: 6px;
+    }
+    li {
+      font-size: 140%;
+      line-height: 1.43;
+      padding-bottom: 7px;
+      padding-top: 18px;
+    }
+    a:after {
+      background-image: url(../../img/main/arrow.png);
+      background-repeat: no-repeat;
+      background-size: 15px 13px;
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      content: "";
+      float: right;
+      margin-top: 3px;
+    }
+  }
+  .second {
+    background-color: $grey;
+    margin-top: 20px;
+    li {
+      border: none;
+    }
+  }
+  .outer-block {
+    margin-right: 180px;
+    .main-key {
+      font-size: 120%;
+      font-weight: bold;
+      letter-spacing: 0;
+      color: $dark-aquamarine;
+      padding-top: 24px;
+    }
+  }
+  .container {
+    padding-bottom: 45px;
+  }
+  .see_more {
+    font-size: 120%;
+    font-weight: bold;
+    letter-spacing: 0;
+    color: #077280;
+    padding-top: 24px;
+  }
+}
+@media (max-width: 575px) {
+  /*---------- header ---------------*/
+  header {
+    padding-bottom: 10px;
+    .logo {
+      img.logo {
+        width: 90%;
+        padding: 15px;
+        margin-top: 5px;
+      }
+    }
+  }
+  #search {
+    .mobile-block {
+      background-color: $white;
+      border-top: solid 2px $aquamarine;
+      padding-right: 30px;
+      padding-left: 30px;
+      height: 56px;
+    }
+    .add-padding {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+  }
+  /*---------- main picter ---------------*/
+  #main_picter {
+    height: 400px;
+  }
+  /*---------- content ---------------*/
+  #content {
+    .button {
+      margin: 0 auto;
+      width: 65%;
+      margin-top: 40px;
+    }
+    .line {
+      border-left: 0;
+      padding-top: 70px
+    }
+    .line:before {
+      position:absolute;
+      top:0;
+      left:30px;
+      right: 30px;
+      border-top: solid 2px #979797;
+      content:"";
+    }
+    .mobile-block {
+      padding-bottom: 70px;
+    }
+  }
+  /*---------- footer ---------------*/
+  footer {
+    .container.footer {
+      .terms {
+        a {
+          display: block;
+        }
+      }
+    }
+    .address {
+      text-align: center;
+    }
+    .block-icon {
+      text-align: center;
+      padding-top: 25px;
+    }
+    img {
+      width: 29px;
+    }
+  }
+  /*------------------- key-----------------------*/
+  #key {
+    .container {
+      padding: 0 32px 35px;
+
+    }
+    h2 {
+      font-size: 230%;
+    }
+    .outer-block {
+      margin-right: 0;
+    }
+    .rectangle {
+      width: 106%;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /*---------- main picter ---------------*/
+  #main_picter {
+    height: 350px;
+  }
+  /*---------- header ---------------*/
+  header {
+    .tablet {
+      text-align: right;
+      padding-top: 20px;
+      img {
+        width: 20px;
+        margin-left: 5px;
+        margin-bottom: 9px
+      }
+      img:last-child {
+        margin-left: -3px
+      }
+      .login {
+        position: relative;
+        top: 1px;
+        right: 6px;
+      }
+      .delimiter {
+        position: relative;
+        top: -1px;
+        color: $aquamarine;
+        right: 1px;
+        font-size: 200%;
+      }
+    }
+    .logo {
+      padding-left: 30px;
+      padding-right: 30px;
+      img.logo {
+        margin-left: -20px;
+      }
+    }
+    .icon-letter {
+      position: relative;
+      top: 2px;
+      right: 4px;
+      left: 3px;
+      .small {
+        font-size: 70%;
+      }
+      .middle {
+        font-size: 100%;
+      }
+      .big {
+        font-size: 120%;
+      }
+    }
+  }
+  /*---------- content ---------------*/
+  #content {
+    padding-bottom: 30px;
+    .content-img {
+      height: 75px;
+    }
+    .button {
+      font-size: 110%;
+    }
+    .button-outer {
+      padding-left: 10px;
+      padding-right: 10px;
+      .tablet {
+        line-height: 1;
+        padding: 6px 0;
+      }
+    }
+    .row {
+      margin-left: 10px;
+    }
+  }
+  /*---------- footer ---------------*/
+  footer {
+    .container {
+      padding: 5px 50px 30px 50px;
+    }
+    .block-icon {
+      img {
+        width: 26px;
+      }
+    }
+  }
+  /*------------------- key-----------------------*/
+  #key {
+    padding-bottom: 45px;
+    .rectangle {
+      width: 100%;
+    }
+    .outer-block {
+      margin-right: 20px;
+    }
+    .position {
+      padding-left: 40px;
+    }
+    .container {
+      padding: 0 15px 0 40px;
+    }
+    .see_more {
+      padding-top: 0;
+    }
+  }
+  #header_picture {
+    height: 180px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  /*---------- content ---------------*/
+  #content .button-outer .tablet {
+    line-height: 1;
+    padding: 6px 0;
+  }
+  #key {
+    .outer-block {
+      .position {
+        padding-left: 65px;
+      }
+    }
+  }
+}

@@ -9,7 +9,6 @@ import SecurityConfiguration from '@/components/pages/Admin/SecurityConfiguratio
 import Management from '@/components/pages/Admin/Management'
 import Resetting from '@/components/pages/ResetPassword/Resetting'
 import Reset from '@/components/pages/ResetPassword/Reset'
-import Content from '@/components/pages/Content'
 import ArticlesList from '@/components/pages/ArticlesList'
 import Article from '@/components/pages/Article'
 import CategoriesList from '@/components/pages/CategoriesList'
@@ -19,6 +18,11 @@ import AddArticle from '@/components/pages/AddArticle'
 import EditArticle from '@/components/pages/EditArticle'
 import PreviewArticle from '@/components/pages/PreviewArticle'
 import Error from '@/components/pages/Error'
+// users frontend
+import Home from '@/components/main/Home'
+import Index from '@/components/main/Index'
+import Search from '@/components/main/Search'
+import Content from '@/components/main/Content'
 
 Vue.use(Router)
 
@@ -27,7 +31,26 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home'
+      name: 'home',
+      component: Home,
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: Index
+        },
+        {
+          path: 'search',
+          name: 'search',
+          component: Search
+        },
+        {
+          path: '/content/:id',
+          name: 'content',
+          props: true,
+          component: Content
+        }
+      ]
     },
     {
       path: '/login',
@@ -125,12 +148,6 @@ const router = new Router({
           component: Reset
         }
       ]
-    },
-    {
-      path: '/content/:id',
-      name: 'content',
-      props: true,
-      component: Content
     },
     {
       path: '/error',

@@ -228,9 +228,7 @@
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
-              v-validate="'required'"
-              v-model="article.content"
-              :editorToolbar="customEditorToolbar" />
+              v-model="article.content"/>
             <div
             v-if="errors.has('Content')"
             class="form-errors">{{ errors.first('Content') }}
@@ -247,7 +245,7 @@
                   </span>
                 </div>
                 <h3></h3>
-                <div class="row" v-if="resource.file">
+                <div class="resource-row" v-if="resource.file">
                   <span class="existed-file-logo">
                     <icon :name="getIconFileName(resource.file)" />
                     <span>{{resource.file}}</span>
@@ -256,7 +254,7 @@
                     </button>
                   </span>
                 </div>
-                <div class="row" :class="{'form-group': article.resources.type === 'resource'}">
+                <div class="resource-row" :class="{'form-group': article.resources.type === 'resource'}">
                   <div class="wrap-add-resource-file form-element-half" v-if="resource.file === ''">
                     <span class="form-label">Upload resource</span>
                     <label class="form-label form-label--file-resource">
@@ -273,7 +271,7 @@
                     <input type="url" :id="'add-resource-url-' + i" v-model="resource.link" class="form-control">
                   </div>
                 </div>
-                <div class="row">
+                <div class="resource-row">
                   <label :for="'add-resource-textarea-' + i" class="form-label">{{article.resources.type === 'resource' ? 'Transcript for resource' : 'Transcript for video'}}</label>
                   <textarea name="ext-desc" :id="'add-resource-textarea-' + i" class="form-control input-textarea-resource" cols="30" rows="5" v-model="resource.textarea"></textarea>
                 </div>
@@ -287,7 +285,7 @@
                     <icon name="times-circle-o" />
                   </span>
                 </div>
-                <div class="row" :class="{'form-group': article.resources.type === 'resource'}">
+                <div class="resource-row" :class="{'form-group': article.resources.type === 'resource'}">
                   <div class="wrap-add-resource-file form-element-half" v-if="newResource.file !== undefined">
                     <span class="form-label">Upload resource</span>
                     <label class="form-label form-label--file-resource">
@@ -305,7 +303,7 @@
                     <input type="url" :id="'add-resource-url-' + j" class="form-control" :placeholder="newResource.link.placeholder" v-model="article.resources.data[j].link.value">
                   </div>
                 </div>
-                <div class="row">
+                <div class="resource-row">
                   <label :for="'add-resource-desc-' + j" class="form-label">{{newResource.textarea.title}}</label>
                   <textarea name="text" cols="30" rows="5" class="form-control input-textarea-resource" :id="'add-resource-desc-' + j" :placeholder="newResource.textarea.placeholder" v-model="article.resources.data[j].textarea.value"></textarea>
                 </div>
@@ -390,7 +388,7 @@ export default {
       disableAPI: false,
       customEditorToolbar: [
         ['bold', 'italic', 'underline', 'strike'],
-        [{'list': 'blockquote'}, {'list': 'code-block'}],
+        ['blockquote', 'code-block', 'list', 'indent', 'picker'],
         [{'list': 'ordered'}, {'list': 'bullet'}]
       ],
       formData: new FormData(),
@@ -547,6 +545,11 @@ export default {
         let fieldName = 'content[roles][' + i + ']'
         this.formData.set(fieldName, role.value)
       })
+// Check if the main image exist, if it does't set empty string
+      if (!this.formData.has('content[imageFile]')) {
+//        this.formData.set('content[imageFile]', e.target.files[0])
+        this.formData.set('content[imageFile]', new Blob(), '')
+      }
 // Add resources
       this.article.resources.data.forEach((resource, i) => {
         if (resource.type === 'exist') {
@@ -687,10 +690,11 @@ export default {
     getArticleById (id) {
       this.$http.get(api.URLS.content + '/' + id, api.headersAuthSettings)
         .then((res) => {
+          this.formData = new FormData()
           console.log('getArticleById', res)
           this.article.title = res.body.title
           this.article.description = res.body.description
-          this.article.content = res.body.content
+          this.article.content = res.body.content ? res.body.content : ''
           this.article.status = +res.body.status
 
           this.article.contentType = {

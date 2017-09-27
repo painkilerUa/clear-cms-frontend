@@ -1,0 +1,51 @@
+@import '../settings/settings';
+
+footer {
+  background-color: $dark;
+  padding-top: 45px;
+  padding-bottom: 5px;
+  color: $white;
+  .address {
+    font-size: 130%;
+    line-height: 1.38;
+    span {
+      font-weight: bold;
+      line-height: 2.2;
+    }
+  }
+  img {
+    width: 34px;
+    margin-right: 5px;
+  }
+  .block-icon {
+    text-align: right;
+    padding-top: 15px;
+    p {
+      font-size: 130%;
+      line-height: 1.38;
+    }
+  }
+  .line_bottom {
+    border: solid 1px #ffffff;
+  }
+  .container {
+    padding-bottom: 30px;
+    .footer {
+      padding-bottom: 0;
+    }
+  }
+  .container.footer {
+    .terms {
+      text-align: center;
+      padding-top: 28px;
+      a {
+        margin-right: 20px;
+        margin-left: 20px;
+        text-decoration: underline;
+        font-size: 130%;
+        line-height: 1.38;
+      }
+    }
+  }
+}
+

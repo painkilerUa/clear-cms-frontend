@@ -1,0 +1,49 @@
+@import './settings/settings';
+
+#main_picter {
+  background: url("../../img/main/main_picter.png") no-repeat center center;
+  background-size: cover;
+  height: 450px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#header_picture {
+  background: url("../../img/main/header_picter.png") no-repeat center center;
+  background-size: cover;
+  height: 250px;
+  width: 100%;
+  margin: 0 auto;
+}
+#content {
+  padding-top: 40px;
+  padding-bottom: 50px;
+  .content-img {
+    height: 105px;
+    width: auto;
+  }
+  .button {
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+    background-color: $dark-aquamarine;
+    padding: 9px 0;
+    color: $white;
+    margin: 40px 0 0 0;
+  }
+  .button-outer {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .smaller-button {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  button.black {
+    background-color: $dark;
+  }
+  .line {
+    border-left: solid 2px #979797;
+  }
+}

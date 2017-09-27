@@ -1,7 +1,13 @@
 @import 'reset';
 @import 'fonts';
 @import 'base';
+@import 'bootstrap';
 
+
+// 'Problem' styles
 .app {
   height: 100%;
+}
+button.ql-image {
+  display: none !important;
 }
