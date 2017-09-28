@@ -16,7 +16,12 @@ import TagsList from '@/components/pages/TagsList'
 import UsersList from '@/components/pages/UsersList'
 import AddArticle from '@/components/pages/AddArticle'
 import EditArticle from '@/components/pages/EditArticle'
-import PreviewArticle from '@/components/pages/PreviewArticle'
+// Todo part
+import Todo from '@/components/admin/todo/Todo'
+import TodoList from '@/components/admin/todo/TodoList'
+import AddTodo from '@/components/admin/todo/AddTodo'
+import EditTodo from '@/components/admin/todo/EditTodo'
+// General part
 import Error from '@/components/pages/Error'
 // users frontend
 import Home from '@/components/main/Home'
@@ -105,13 +110,30 @@ const router = new Router({
               path: 'edit/:id',
               name: 'edit-article',
               component: EditArticle
-            },
-            {
-              path: 'preview',
-              name: 'preview-article',
-              component: PreviewArticle
             }
           ]
+        },
+        {
+          path: 'todo',
+          name: 'todo',
+          component: Todo,
+          children: [
+            {
+              path: 'add',
+              name: 'add-todo',
+              component: AddTodo
+            },
+            {
+              path: 'edit/:id',
+              name: 'edit-todo',
+              component: EditTodo
+            }
+          ]
+        },
+        {
+          path: 'todo-list',
+          name: 'todo-list',
+          component: TodoList
         },
         {
           path: 'categories',

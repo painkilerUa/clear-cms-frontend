@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <h1 class="add-article-title">Add new article</h1>
+    <h1 class="add-article-title">Add new TTD</h1>
     <icon name="info-circle" aria-hidden="true" class="add-article-icon-info" data-description=""/>
     <div class="add-article-tooltip">
       <span>Use your keyboard for easily navigate between fields and make selection:</span>
@@ -51,7 +51,7 @@
     <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
         <form-messages :messages="formServerMessages" class="text-left" />
-        <h2 class="add-article-section__title">Article details</h2>
+        <h2 class="add-article-section__title">Details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
           <!-- .form-elements -->
@@ -205,7 +205,7 @@
         <!-- .add-article-sections -->
         <div class="add-article-sections">
           <section class="add-article-section">
-            <h2 class="add-article-section__title">Article content</h2>
+            <h2 class="add-article-section__title">Content</h2>
             <vue-editor
               name="Content"
               class="article-editor"
@@ -217,30 +217,17 @@
             </div>
           </section>
           <section class="add-article-section">
-            <h2 class="add-article-section__title">TTD</h2>
-            <div class="form-group">
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToDo"
-                  :options="thingsToDoOptions"
-                  :multiple="true"
-                  v-model="selectedValues.thingsToDo"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToConsider"
-                  :options="thingsToConsiderOptions"
-                  :multiple="true"
-                  v-model="selectedValues.thingsToConsider"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
+            <h2 class="add-article-section__title">Things to consider</h2>
+            <div class="add-article-section-search-select">
+              <v-select
+                :debounce="250"
+                :on-search="getOptionsThingsToConsider"
+                :options="thingsToConsiderOptions"
+                :multiple="true"
+                v-model="selectedValues.thingsToConsider"
+                placeholder="Search..."
+              >
+              </v-select>
             </div>
           </section>
           <section class="add-article-section" v-if="subForm.type === 'video'">
@@ -356,11 +343,11 @@
         <div class="add-article-actions">
           <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
-            <span>Preview Article</span>
+            <span>Preview TTD</span>
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit without saving</button>
           <button type="button" class="action-btn action-btn--draft icon-btn" @click="publishArticle(0)">Save as draft</button>
-          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle(1)">Publish article</button>
+          <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="publishArticle(1)">Publish TTD</button>
         </div>
         <!-- END:.add-article-actions -->
       </div>
@@ -384,7 +371,7 @@ import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'add-article',
+  name: 'add-todo',
   mixins: [forms],
   data () {
     return {
@@ -399,8 +386,7 @@ export default {
         companies: [],
         lng: null,
         publishedAt: '2017-08-05 11:45:43',
-        thingsToConsider: [],
-        thingsToDo: []
+        thingsToConsider: []
       },
       formInfo: {
         title: '',
@@ -417,6 +403,7 @@ export default {
       tags: [],
       categories: [],
       roles: [],
+      thingsToConsiderOptions: [],
       isThumbnailFileUploaded: false,
       addElements: {
         video: 1,
@@ -438,13 +425,11 @@ export default {
         mainImg: null,
         resources: []
       },
-      thingsToConsiderOptions: [],
-      thingsToDoOptions: []
-//      customEditorToolbar: [
-//        ['bold', 'italic', 'underline', 'strike'],
-//        [{'list': 'blockquote'}, {'list': 'code-block'}],
-//        [{'list': 'ordered'}, {'list': 'bullet'}]
-//      ]
+      customEditorToolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'list': 'blockquote'}, {'list': 'code-block'}],
+        [{'list': 'ordered'}, {'list': 'bullet'}]
+      ]
     }
   },
   computed: {
@@ -461,6 +446,9 @@ export default {
         required: false,
         mimes: 'image/*'
       }
+    },
+    thingsToConsiderOptionsComputed () {
+      return this.thingsToConsiderOptions
     }
   },
   watch: {
@@ -481,29 +469,6 @@ export default {
       'setDataPreviewArticle',
       'setInformationMsg'
     ]),
-//    sendFormRequest () {
-//      this.selectType()
-//      this.selectTags()
-//      this.selectCategories()
-//      this.selectRoles()
-//      console.log('formJson', this.formJson)
-//      this.$http.post(api.URLS.content, this.formJson, api.headersAuthSettings)
-//      .then((res) => { console.log(res) })
-//      .catch((err) => { this.submitErrors(err.body.errors) })
-//    },
-//    addFieldGroup (event) {
-//      let elem = {
-//        tag: 'input',
-//        attrs: {
-//          type: 'url',
-//          placeholder: 'input value'
-//        }
-//      }
-//      this.additionalFormFields[0].fields.push(elem)
-//    },
-//    sendTypeRequest (value) {
-//      console.log('sendTypeRequest', value)
-//    },
     addFormElement (type) {
       this.addElements[type] += 1
     },
@@ -564,6 +529,10 @@ export default {
       if (this.errors.items.length) return
       if (this.disableAPI) return
       let formData = new FormData()
+//      Object.keys(this.selectedValues).forEach((key) => {
+//        let fieldName = 'content[' + key + ']'
+//        formData.set(fieldName, this.selectedValues[key])
+//      })
       if (document.getElementById('uploadThumbnail').files.length) {
         formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
       }
@@ -573,10 +542,10 @@ export default {
       formData.set('content[contentType]', this.selectedValues.contentType.value)
       formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
-      formData.set('content[isArticle]', 1)
+// Set parametr isArticle false for TTD
+      formData.set('content[isArticle]', 0)
 // Add children
-      let children = [...this.selectedValues.thingsToConsider, ...this.selectedValues.thingsToDo]
-      children.forEach((item, i) => {
+      this.selectedValues.thingsToConsider.forEach((item, i) => {
         let fieldName = 'content[children][' + i + ']'
         formData.set(fieldName, item.value)
       })
@@ -635,18 +604,18 @@ export default {
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
           this.disableAPI = false
-          this.$router.push('/admin/article/edit/' + res.body.id)
+          this.$router.push('/admin/todo/edit/' + res.body.id)
           console.log('publishArticle', res)
           let infMsg
           switch (status) {
             case 0:
-              infMsg = 'Article save as draft'
+              infMsg = 'TTD save as draft'
               break
             case 1:
-              infMsg = 'Article published'
+              infMsg = 'TTD published'
               break
             case 2:
-              infMsg = 'Article archived'
+              infMsg = 'TTD archived'
               break
           }
           this.setInformationMsg({text: infMsg})
@@ -657,17 +626,43 @@ export default {
           let infMsg
           switch (status) {
             case 0:
-              infMsg = "Article has't saved as draft"
+              infMsg = "TTD has't saved as draft"
               break
             case 1:
-              infMsg = "Article has't published"
+              infMsg = "TTD has't published"
               break
             case 2:
-              infMsg = "Article has't archived"
+              infMsg = "TTD has't archived"
               break
           }
           this.setInformationMsg({text: infMsg})
         })
+    },
+    getOptionsThingsToConsider (search, loading) {
+      loading(true)
+      let urlString = `${api.URLS.search}&search=${search}`
+      this.$http.get(urlString, api.headersAuthSettings)
+        .then((res) => {
+          console.log(res)
+          let items = res.body.data.items ? res.body.data.items : []
+          this.thingsToConsiderOptions = items.map(item => {
+            return {
+              value: item.id,
+              label: item.title
+            }
+          })
+          loading(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          loading(false)
+        })
+//      this.$http.get('https://api.github.com/search/repositories', {
+//        q: search
+//      }).then(resp => {
+//        this.options = resp.data.items
+//        loading(false)
+//      })
     },
     getSubFormFields (val) {
       if (!val) return
@@ -710,47 +705,6 @@ export default {
           this.articlePreview.resources[i].fileName = file.files[0].name
         })
       }
-    },
-    getOptionsThingsToConsider (search, loading) {
-      this.getOptionsThingsToSmth('toConsider', {search, loading})
-    },
-    getOptionsThingsToDo (search, loading) {
-      this.getOptionsThingsToSmth('toDo', {search, loading})
-    },
-    getOptionsThingsToSmth (type, payload) {
-      payload.loading(true)
-      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toDo'}`
-      this.$http.get(urlString, api.headersAuthSettings)
-        .then((res) => {
-          console.log(res)
-          let items = res.body.data.items ? res.body.data.items : []
-          if (type === 'toDo') {
-            this.thingsToDoOptions = items.map(item => {
-              return {
-                value: item.id,
-                label: item.title
-              }
-            })
-          } else {
-            this.thingsToConsiderOptions = items.map(item => {
-              return {
-                value: item.id,
-                label: item.title
-              }
-            })
-          }
-          payload.loading(false)
-        })
-        .catch((err) => {
-          console.log(err)
-          payload.loading(false)
-        })
-//      this.$http.get('https://api.github.com/search/repositories', {
-//        q: search
-//      }).then(resp => {
-//        this.options = resp.data.items
-//        loading(false)
-//      })
     }
   },
   components: {

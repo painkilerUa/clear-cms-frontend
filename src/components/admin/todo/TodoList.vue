@@ -34,7 +34,7 @@
         <!-- .articles-list-statusbar -->
         <div class="articles-list-statusbar" v-if="!selectedFilters.length">
           <!-- .articles-list-statusbar__contains -->
-          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{statusbar.all}} Articles</div>
+          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{articles.length}} Things to do</div>
           <!-- END:.articles-list-statusbar__contains -->
           <!-- .articles-list-statuses -->
           <ul class="articles-list-statuses articles-list-statusbar__block">
@@ -58,10 +58,10 @@
         </div>
         <div class="articles-list-add">
           <router-link
-            :to="{name: 'add-article'}"
+            :to="{name: 'add-todo'}"
             class="icon-btn articles-list-add__btn">
             <!--<icon name="plus" />-->
-            <span>Add new article</span>
+            <span>Add new TTD</span>
           </router-link>
         </div>
       </div>
@@ -80,13 +80,13 @@
                   @input="mainSearch(1, 20)"
                   type="search"
                   class="table-search"
-                  placeholder="Search in articles..." />
+                  placeholder="Search in TTDs..." />
               </div>
             </th>
             <th class="column-lng-head">
               <v-select placeholder="Lang"
-                        :options="lngs"
-                        :class="'hide-selected-items'"/>
+                        :class="'hide-selected-items'"
+                        :options="lngs"/>
             </th>
             <th class="column-type-head">
               <v-select placeholder="Type"
@@ -126,16 +126,16 @@
               />
             </th>
             <th class="column-last-edited-head">
-              <!--<datepicker />-->
               <span>Last Edited</span>
             </th>
             <th class="column-author-head">
               <v-select placeholder="Upl/Edit"
-                        :class="'hide-selected-items'"/>
+                        :class="'hide-selected-items'" />
             </th>
             <th class="column-status-head">
-              <v-select placeholder="Status"
-                        :class="'hide-selected-items'"/>
+              <v-select
+                placeholder="Status"
+                :class="'hide-selected-items'" />
             </th>
             <th colspan="3" class="cellpadding column-actions-head">Actions</th>
           </tr>
@@ -335,7 +335,7 @@ export default {
 //        })
 //    },
     editArticle (id) {
-      this.$router.push({path: `/admin/article/edit/${id}`})
+      this.$router.push({path: `/admin/todo/edit/${id}`})
     },
     mainSearch (page, limit) {
       if (!this.search) {
@@ -362,7 +362,7 @@ export default {
       this.companies.forEach((company, i) => {
         subCompany += `&companies[${i}]=${company.value}`
       })
-      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany}&page=${page}&limit=${limit}&isArticle=true`
+      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany}&page=${page}&limit=${limit}&isArticle=false`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
 //          this.contentAutoloadInfo.curPage = res.body.current_page_number
@@ -387,12 +387,12 @@ export default {
         tags: this.tags.map((item) => item.value),
         categories: this.categories.map((item) => item.value),
         roles: this.roles.map((item) => item.value),
-        companies: this.companies.map((item) => item.value)
+        companies: this.companies.map((item) => item.value),
+        isArticle: 0
       }
       this.contentAutoloadInfo.locked = true
       this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
         .then((res) => {
-          console.log('searchByParams', res)
           this.contentAutoloadInfo.curPage = res.body.data.current_page_number
           this.contentAutoloadInfo.numPages = Math.ceil(res.body.data.total_count / limit)
           if (page === 1) {
@@ -406,6 +406,7 @@ export default {
           this.statusbar.draft = count.Draft
           this.statusbar.archived = count.Archived
           this.contentAutoloadInfo.locked = false
+          console.log('searchByParams', res)
         })
         .catch((err) => {
           this.contentAutoloadInfo.locked = false

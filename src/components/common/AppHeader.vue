@@ -29,10 +29,10 @@
                     <router-link :to="{name: 'add-article'}">Add new article</router-link>
                   </li>
                   <li>
-                    <a>Things to do</a>
+                    <router-link :to="{name: 'todo-list'}">Things to do</router-link>
                   </li>
                   <li>
-                    <a>Add new TTD</a>
+                    <router-link :to="{name: 'add-todo'}">Add new TTD</router-link>
                   </li>
                 </ul>
               </li>

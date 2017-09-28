@@ -64,15 +64,15 @@
         <h1>{{article.title}}</h1>
       </div>
       <div class="control-panel">
-        <span @click="archiveArticle">Archive article</span>
-        <span @click="deleteArticle">Delete article</span>
+        <span @click="archiveArticle">Archive TTD</span>
+        <span @click="deleteArticle">Delete TTD</span>
       </div>
     </div>
     <!-- .add-article-wrapper -->
     <form class="add-article-wrapper form" @submit.prevent="submit">
       <section class="add-article-section add-article-section--heading">
         <form-messages :messages="formServerMessages" class="text-left" />
-        <h2 class="add-article-section__title">1. Article details</h2>
+        <h2 class="add-article-section__title">1. TTD details</h2>
         <!-- .add-article-details -->
         <div class="add-article-details">
           <!-- .form-elements -->
@@ -223,7 +223,7 @@
         <!-- .add-article-sections -->
         <div class="add-article-sections">
           <section class="add-article-section">
-            <h2 class="add-article-section__title">2. Article content</h2>
+            <h2 class="add-article-section__title">2. TTD content</h2>
             <vue-editor
               name="Content"
               class="article-editor"
@@ -236,29 +236,16 @@
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">3. Things to consider</h2>
-            <div class="form-group">
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToConsider"
-                  :options="thingsToConsiderOptions"
-                  :multiple="true"
-                  v-model="article.thingsToConsider"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToDo"
-                  :options="thingsToDoOptions"
-                  :multiple="true"
-                  v-model="article.thingsToDo"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
+            <div class="add-article-section-search-select">
+              <v-select
+                :debounce="250"
+                :on-search="getOptionsThingsToConsider"
+                :options="thingsToConsiderOptions"
+                :multiple="true"
+                v-model="article.thingsToConsider"
+                placeholder="Search..."
+              >
+              </v-select>
             </div>
           </section>
           <section class="edit-article-resources" v-if="article.resources.title">
@@ -346,7 +333,7 @@
         <div class="add-article-actions">
           <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
-            <span>Preview Article</span>
+            <span>Preview TTD</span>
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit / Discard changes</button>
           <button type="button" class="action-btn action-btn--draft icon-btn" @click="editArticle(0)">Save as draft</button>
@@ -376,7 +363,7 @@ import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'edit-article',
+  name: 'edit-todo',
   mixins: [forms],
   data () {
     return {
@@ -396,20 +383,15 @@ export default {
           data: []
         },
         thingsToConsider: [],
-        thingsToDo: []
+        isArticle: 0
       },
+      thingsToConsiderOptions: [],
       srcImagePreview: '',
       languages: ['English (UK)', 'English (US)'],
       tags: [],
       categories: [],
       roles: [],
       isThumbnailFileUploaded: false,
-//      addElements: {
-//        video: 1,
-//        resource: 1,
-//        case_study: 1,
-//        screen_text: 1
-//      },
       subForm: {
         type: ''
       },
@@ -425,9 +407,7 @@ export default {
         isShown: false,
         mainImg: null,
         resources: []
-      },
-      thingsToConsiderOptions: [],
-      thingsToDoOptions: []
+      }
     }
   },
   computed: {
@@ -492,10 +472,6 @@ export default {
         this.formData.set('content[imageFile]', e.target.files[0])
       }
     },
-//    onResourceFileChange (value, i) {
-//      let valueTrimmed = value.replace(/^.*\\/, '')
-//      document.getElementById('uploadedResource_' + i).innerHTML = valueTrimmed
-//    },
     removeThumbnail () {
       var input = document.getElementById('uploadThumbnail')
       input.value = null
@@ -536,7 +512,6 @@ export default {
       this.formData.set('content[contentType]', this.article.contentType.value)
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
-      this.formData.set('content[isArticle]', 1)
 // Add categories
       this.article.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
@@ -562,9 +537,10 @@ export default {
 //        this.formData.set('content[imageFile]', e.target.files[0])
         this.formData.set('content[imageFile]', new Blob(), '')
       }
+// Set parametr isArticle false for TTD
+      this.formData.set('content[isArticle]', this.article.isArticle)
 // Add children
-      let children = [...this.article.thingsToConsider, ...this.article.thingsToDo]
-      children.forEach((item, i) => {
+      this.article.thingsToConsider.forEach((item, i) => {
         let fieldName = 'content[children][' + i + ']'
         this.formData.set(fieldName, item.value)
       })
@@ -597,13 +573,13 @@ export default {
           let infMsg
           switch (status) {
             case 0:
-              infMsg = 'Article save as draft'
+              infMsg = 'TTD save as draft'
               break
             case 1:
-              infMsg = 'Article published'
+              infMsg = 'TTD published'
               break
             case 2:
-              infMsg = 'Article archived'
+              infMsg = 'TTD archived'
               break
           }
           this.setInformationMsg({text: infMsg})
@@ -613,13 +589,13 @@ export default {
           let infMsg
           switch (status) {
             case 0:
-              infMsg = "Article has't saved as draft"
+              infMsg = "TTD has't saved as draft"
               break
             case 1:
-              infMsg = "Article has't published"
+              infMsg = "TTD has't published"
               break
             case 2:
-              infMsg = "Article has't archived"
+              infMsg = "TTD has't archived"
               break
           }
           this.setInformationMsg({text: infMsg})
@@ -701,23 +677,14 @@ export default {
           if (res.body.image_name) {
             this.articlePreview.mainImg = api.staticServerURL + res.body.image_path
           }
-// Add children
-          let children = res.body.children ? res.body.children : []
-          let thingsToConsider = []
-          let thingsToDo = []
-          for (let child of children) {
-            let item = {
-              value: child.id,
-              label: child.title
+// Add thingsToConsider
+          let thingsToConsider = res.body.children ? res.body.children : []
+          this.article.thingsToConsider = thingsToConsider.map(item => {
+            return {
+              value: item.id,
+              label: item.title
             }
-            if (child.is_article) {
-              thingsToConsider.push(item)
-            } else {
-              thingsToDo.push(item)
-            }
-          }
-          this.article.thingsToConsider = thingsToConsider
-          this.article.thingsToDo = thingsToDo
+          })
 // Add resources
           this.article.resources = {title: '', data: []}
           if (res.body.formResource) {
@@ -760,38 +727,23 @@ export default {
       this.article.resources.data.push(newResource)
     },
     getOptionsThingsToConsider (search, loading) {
-      this.getOptionsThingsToSmth('toConsider', {search, loading})
-    },
-    getOptionsThingsToDo (search, loading) {
-      this.getOptionsThingsToSmth('toDo', {search, loading})
-    },
-    getOptionsThingsToSmth (type, payload) {
-      payload.loading(true)
-      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toConsider'}`
+      loading(true)
+      let urlString = `${api.URLS.search}&search=${search}`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
           let items = res.body.data.items ? res.body.data.items : []
-          if (type === 'toDo') {
-            this.thingsToDoOptions = items.map(item => {
-              return {
-                value: item.id,
-                label: item.title
-              }
-            })
-          } else {
-            this.thingsToConsiderOptions = items.map(item => {
-              return {
-                value: item.id,
-                label: item.title
-              }
-            })
-          }
-          payload.loading(false)
+          this.thingsToConsiderOptions = items.map(item => {
+            return {
+              value: item.id,
+              label: item.title
+            }
+          })
+          loading(false)
         })
         .catch((err) => {
           console.log(err)
-          payload.loading(false)
+          loading(false)
         })
     },
     deleteExistingResource (i) {

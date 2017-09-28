@@ -11,3 +11,9 @@
 button.ql-image {
   display: none !important;
 }
+
+.hide-selected-items {
+  .selected-tag {
+    display: none;
+  }
+}
