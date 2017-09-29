@@ -100,7 +100,8 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Language</label>
                   <v-select
-                  :options="languages"
+                  v-model="article.language"
+                  :options="getLanguagesForSelect"
                   name="Language"
                   data-vv-as="Language"
                   placeholder="Select" />
@@ -236,33 +237,28 @@
           </section>
           <section class="add-article-section">
             <h2 class="add-article-section__title">3. Things to consider</h2>
-            <div class="form-group">
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToConsider"
-                  :options="thingsToConsiderOptions"
-                  :multiple="true"
-                  v-model="article.thingsToConsider"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToDo"
-                  :options="thingsToDoOptions"
-                  :multiple="true"
-                  v-model="article.thingsToDo"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
-            </div>
+              <v-select
+                :debounce="250"
+                :on-search="getOptionsThingsToConsider"
+                :options="thingsToConsiderOptions"
+                :multiple="true"
+                v-model="article.thingsToConsider"
+                placeholder="Search..."
+              />
+          </section>
+          <section class="add-article-section">
+            <h2 class="add-article-section__title">4. Things to do</h2>
+            <v-select
+              :debounce="250"
+              :on-search="getOptionsThingsToDo"
+              :options="thingsToDoOptions"
+              :multiple="true"
+              v-model="article.thingsToDo"
+              placeholder="Search..."
+            />
           </section>
           <section class="edit-article-resources" v-if="article.resources.title">
-            <h2 class="add-article-section__title">4. {{article.resources.title}}</h2>
+            <h2 class="add-article-section__title">5. {{article.resources.title}}</h2>
             <div class="wrap-existing-resources">
               <div class="existing-resource" v-for="(resource, i) in article.resources.data" v-if="resource.type === 'exist'">
                 <div class="wrap-top-control-panel">
@@ -436,7 +432,8 @@ export default {
       'getTagsForSelect',
       'getCategoriesForSelect',
       'getRolesForSelect',
-      'getCompaniesForSelect'
+      'getCompaniesForSelect',
+      'getLanguagesForSelect'
     ]),
     getContentTypeTitles () {
       return this.types.map(item => item.type)
@@ -467,7 +464,8 @@ export default {
       'getTypes',
       'getCompanies',
       'getRoles',
-      'setInformationMsg'
+      'setInformationMsg',
+      'getLngs'
     ]),
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
@@ -534,6 +532,7 @@ export default {
       this.formData.set('content[content]', this.article.content)
       this.formData.set('content[description]', this.article.description)
       this.formData.set('content[contentType]', this.article.contentType.value)
+      this.formData.set('content[language]', this.article.language.value)
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
       this.formData.set('content[isArticle]', 1)
@@ -666,29 +665,35 @@ export default {
             label: res.body.content_type.type,
             value: res.body.content_type.id
           }
+// get language
+          let language = res.body.language ? res.body.language : {}
+          this.article.language = {
+            label: language.name,
+            value: language.id
+          }
+          this.article.tags = []
           res.body.tags.forEach((tag) => {
-            this.article.tags = []
             this.article.tags.push({
               label: tag.name,
               value: tag.id
             })
           })
+          this.article.categories = []
           res.body.categories.forEach((category) => {
-            this.article.categories = []
             this.article.categories.push({
               label: category.title,
               value: category.id
             })
           })
+          this.article.companies = []
           res.body.companies.forEach((company) => {
-            this.article.companies = []
             this.article.companies.push({
               label: company.name,
               value: company.id
             })
           })
+          this.article.roles = []
           res.body.roles.forEach((role) => {
-            this.article.roles = []
             this.article.roles.push({
               label: role.name,
               value: role.id
@@ -840,6 +845,7 @@ export default {
     this.getArticleById(this.$route.params.id)
     this.getCompanies()
     this.getRoles()
+    this.getLngs()
   }
 }
 </script>

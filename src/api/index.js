@@ -40,6 +40,7 @@ api.URLS = {
   roles: `/api/v1/roles`,
   user: `${api.serverURL}/api/v1/user`,
   users: `${api.serverURL}/api/v1/users`,
+  languages: '/api/v1/language',
   enabled: `${api.serverURL}/api/v1/enabled`,
   createAdmin: `${api.serverURL}/api/v1/register-admin/`
 }

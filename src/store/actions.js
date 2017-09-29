@@ -96,6 +96,12 @@ export const getCompanies = ({ commit }, payload) => {
     .catch((err) => console.log(err))
 }
 
+export const getLngs = ({ commit }, payload) => {
+  api.requestToServer(api.URLS.languages, 'get')
+    .then((res) => commit('setLanguages', res.body.items))
+    .catch((err) => console.log(err))
+}
+
 export const setDataPreviewArticle = ({ commit }, payload) => {
   commit('setDataPreviewArticle', payload)
 }

@@ -16,7 +16,8 @@ export const setRoles = (state, roles) => { state.roles = roles }
 export const setCompanies = (state, payload) => { state.companies = payload }
 //
 export const setDataPreviewArticle = (state, payload) => { state.articlePreview = payload }
-
+// Lngs
+export const setLanguages = (state, payload) => { state.languages = payload }
 export const initConfAction = (state, payload) => {
   state.confData.id = payload.id
   state.confData.actionName = payload.actionName

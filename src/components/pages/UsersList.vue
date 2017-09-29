@@ -362,7 +362,7 @@ export default {
       this.$http.get(api.URLS.users + '?limit=' + limit + '&page=' + page, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
-          this.users = res.body.items
+          this.users = res.body.data.items
         })
         .catch((err) => {
           console.log(err)

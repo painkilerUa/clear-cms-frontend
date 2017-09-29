@@ -24,6 +24,7 @@ const state = {
   actions: [],
   roles: [],
   categories: [],
+  languages: [],
   confData: {
     id: null,
     actionName: null,

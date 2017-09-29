@@ -34,7 +34,7 @@
         <!-- .articles-list-statusbar -->
         <div class="articles-list-statusbar" v-if="!selectedFilters.length">
           <!-- .articles-list-statusbar__contains -->
-          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{statusbar.all}} Articles</div>
+          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{+statusbar.published + +statusbar.archived + +statusbar.draft}} Articles</div>
           <!-- END:.articles-list-statusbar__contains -->
           <!-- .articles-list-statuses -->
           <ul class="articles-list-statuses articles-list-statusbar__block">
@@ -85,7 +85,7 @@
             </th>
             <th class="column-lng-head">
               <v-select placeholder="Lang"
-                        :options="lngs"
+                        :options="getLanguagesForSelect"
                         :class="'hide-selected-items'"/>
             </th>
             <th class="column-type-head">
@@ -126,8 +126,43 @@
               />
             </th>
             <th class="column-last-edited-head">
-              <!--<datepicker />-->
-              <span>Last Edited</span>
+              <!--<span>Last Edited</span>-->
+              <span @click="datepicker.isShown = !datepicker.isShown">Last Edited</span>
+              <div class="datepicker" v-if="datepicker.isShown">
+                <div class="datepicker-statusbar">
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>From</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.from, '/')}}</div>
+                    </div>
+                  </div>
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>To</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.to, '/')}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="datepicker-calendar">
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.from"
+                      :format="'dd MM yyyy'"
+                    />
+                  </div>
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.to"
+                      :format="'dd MM yyyy'"
+                    />
+                </div>
+                </div>
+                <div class="datepicker-control-panel">
+                  <button type="button" @click="changeDateFilter">Ok</button>
+                </div>
+              </div>
             </th>
             <th class="column-author-head">
               <v-select placeholder="Upl/Edit"
@@ -135,6 +170,9 @@
             </th>
             <th class="column-status-head">
               <v-select placeholder="Status"
+                        v-model="status"
+                        :options="statusOptions"
+                        :multiple="true"
                         :class="'hide-selected-items'"/>
             </th>
             <th colspan="3" class="cellpadding column-actions-head">Actions</th>
@@ -153,7 +191,7 @@
             <td class="cellpadding">{{article.categories.length ? article.categories[0].title : ''}}</td>
             <td class="cellpadding">Clear assured</td>
             <td class="cellpadding">{{article.companies.length ? article.companies[0].name : ''}}</td>
-            <td class="cellpadding">12 hours ago</td>
+            <td class="cellpadding">{{convertDate(article.updated_at, '.')}}</td>
             <td class="cellpadding">Conan Simpson</td>
             <td class="cellpadding">
               <span class="status status--published">{{getStatus(article.status)}}</span>
@@ -214,6 +252,7 @@ import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
 import 'vue-awesome/icons/rotate-right'
+// import DPicker from '@/components/admin/article/components/vue.datepicker.min.js'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -244,6 +283,14 @@ export default {
       categories: [],
       roles: [],
       companies: [],
+      lastEdited: [],
+      status: [],
+      statusOptions: [],
+      datepicker: {
+        isShown: false,
+        from: null,
+        to: null
+      },
       statusbar: {
         published: 0,
         archived: 0,
@@ -257,7 +304,8 @@ export default {
       'getTags',
       'getCategories',
       'getCompanies',
-      'getRoles'
+      'getRoles',
+      'getLngs'
     ]),
     initAction (name, payload) {
       this.confirmation.action = name
@@ -362,7 +410,22 @@ export default {
       this.companies.forEach((company, i) => {
         subCompany += `&companies[${i}]=${company.value}`
       })
-      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany}&page=${page}&limit=${limit}&isArticle=true`
+// filter by time
+      let subLastEdited = ''
+      this.lastEdited.forEach((item) => {
+        if (item.from) {
+          subLastEdited += `&from=${item.from}`
+        }
+        if (item.to) {
+          subLastEdited += `&to=${item.to}`
+        }
+      })
+// status
+      let subStatus = ''
+      this.status.forEach((status, i) => {
+        subStatus += `&status[${i}]=${status.value}`
+      })
+      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany + subLastEdited + subStatus}&page=${page}&limit=${limit}&isArticle=true`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
 //          this.contentAutoloadInfo.curPage = res.body.current_page_number
@@ -387,24 +450,44 @@ export default {
         tags: this.tags.map((item) => item.value),
         categories: this.categories.map((item) => item.value),
         roles: this.roles.map((item) => item.value),
-        companies: this.companies.map((item) => item.value)
+        companies: this.companies.map((item) => item.value),
+        isArticle: 1,
+        status: this.status.map((item) => item.value)
       }
+      this.lastEdited.forEach((item) => {
+        if (item.from) {
+          body.from = item.from
+        }
+        if (item.to) {
+          body.to = item.to
+        }
+      })
       this.contentAutoloadInfo.locked = true
       this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
         .then((res) => {
+// Set status options
+          this.statusOptions = []
+          let statusOptions = res.body.status ? res.body.status : {}
+          Object.keys(statusOptions).forEach(key => {
+            this.statusOptions.push({
+              label: key,
+              value: +statusOptions[key].id
+            })
+          })
+//
           console.log('searchByParams', res)
           this.contentAutoloadInfo.curPage = res.body.data.current_page_number
-          this.contentAutoloadInfo.numPages = Math.ceil(res.body.data.total_count / limit)
+          this.contentAutoloadInfo.numPages = Math.ceil(res.body.data.total_count / limit) !== 0 ? Math.ceil(res.body.data.total_count / limit) : 1
           if (page === 1) {
             this.articles = res.body.data.items
           } else {
             this.articles = [...this.articles, ...res.body.data.items]
           }
 // set article count
-          let count = res.body.count
-          this.statusbar.published = count.Published
-          this.statusbar.draft = count.Draft
-          this.statusbar.archived = count.Archived
+          let count = res.body.status
+          this.statusbar.published = count.Published.count
+          this.statusbar.draft = count.Draft.count
+          this.statusbar.archived = count.Archived.count
           this.contentAutoloadInfo.locked = false
         })
         .catch((err) => {
@@ -456,6 +539,20 @@ export default {
           return
         }
       })
+// Last edited
+      this.lastEdited.forEach((item, i) => {
+        if (item.id === null && item.label === filter.label) {
+          this.lastEdited.splice(i, 1)
+          return
+        }
+      })
+// Status
+      this.status.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.status.splice(i, 1)
+          return
+        }
+      })
     },
     removeAllFilters () {
       this.contentType = []
@@ -463,6 +560,42 @@ export default {
       this.tags = []
       this.roles = []
       this.companies = []
+      this.lastEdited = []
+      this.status = []
+    },
+    convertDate (payload, delimetr) {
+      if (!payload) return
+      let date = new Date(payload)
+      let fullYear = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      function toDoubleDigit (num) {
+        return num.toString().length < 2 ? '0' + num : num.toString()
+      }
+      return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
+    },
+    changeDateFilter () {
+      this.datepicker.isShown = false
+      if (!this.datepicker.from || !this.datepicker.to) return
+      let label = (this.datepicker.from ? this.convertDate(this.datepicker.from, '.') : 'n/a') +
+        ' - ' + (this.datepicker.to ? this.convertDate(this.datepicker.to, '.') : 'n/a')
+      this.lastEdited = [{
+        label,
+        id: null,
+        from: this.datepicker.from ? convertDate(this.datepicker.from, '-') : null,
+        to: this.datepicker.to ? convertDate(this.datepicker.to, '-') : null
+      }]
+      function convertDate (payload, delimetr) {
+        if (!payload) return
+        let date = new Date(payload)
+        let fullYear = date.getFullYear()
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+        return fullYear + delimetr + toDoubleDigit(month) + delimetr + toDoubleDigit(day)
+        function toDoubleDigit (num) {
+          return num.toString().length < 2 ? '0' + num : num.toString()
+        }
+      }
     }
   },
   computed: {
@@ -474,10 +607,11 @@ export default {
       'getTagsForSelect',
       'getCategoriesForSelect',
       'getRolesForSelect',
-      'getCompaniesForSelect'
+      'getCompaniesForSelect',
+      'getLanguagesForSelect'
     ]),
     selectedFilters () {
-      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies]
+      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies, ...this.lastEdited, ...this.status]
     }
   },
   watch: {
@@ -496,11 +630,19 @@ export default {
     companies () {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     },
+    lastEdited () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    status () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
     'confirmation.isShown' (value) {
       if (value) {
         this.confirmation.style.top = window.pageYOffset - 100 + 'px'
       }
     }
+  },
+  components: {
   },
   mounted () {
     this.getTypes()
@@ -509,6 +651,7 @@ export default {
     this.getCompanies()
     this.getRoles()
     this.getTags()
+    this.getLngs()
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {

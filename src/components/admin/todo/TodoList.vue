@@ -34,7 +34,7 @@
         <!-- .articles-list-statusbar -->
         <div class="articles-list-statusbar" v-if="!selectedFilters.length">
           <!-- .articles-list-statusbar__contains -->
-          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{articles.length}} Things to do</div>
+          <div class="articles-list-statusbar__contains articles-list-statusbar__block">Library contains {{+statusbar.published + +statusbar.archived + +statusbar.draft}} Things to do</div>
           <!-- END:.articles-list-statusbar__contains -->
           <!-- .articles-list-statuses -->
           <ul class="articles-list-statuses articles-list-statusbar__block">
@@ -401,10 +401,10 @@ export default {
             this.articles = [...this.articles, ...res.body.data.items]
           }
 // set article count
-          let count = res.body.count
-          this.statusbar.published = count.Published
-          this.statusbar.draft = count.Draft
-          this.statusbar.archived = count.Archived
+          let count = res.body.status
+          this.statusbar.published = count.Published.count
+          this.statusbar.draft = count.Draft.count
+          this.statusbar.archived = count.Archived.count
           this.contentAutoloadInfo.locked = false
           console.log('searchByParams', res)
         })

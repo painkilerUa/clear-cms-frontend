@@ -62,7 +62,15 @@ export const getRolesForSelect = (state) => state.roles.map(item => {
   }
 //  }
 })
-
+// languages
+export const getLanguagesForSelect = (state) => state.languages.map(item => {
+//  if (item.is_active) {
+  return {
+    label: item.name,
+    value: item.id
+  }
+//  }
+})
 export const getArticlePreview = (state) => state.articlePreview
 
 export const getConfData = (state) => state.confData

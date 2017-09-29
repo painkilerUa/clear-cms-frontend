@@ -79,8 +79,8 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Language</label>
                   <v-select
-                  v-model="selectedValues.lng"
-                  :options="languages"
+                  v-model="selectedValues.language"
+                  :options="getLanguagesForSelect"
                   name="Language"
                   data-vv-as="Language"
                   placeholder="Select" />
@@ -217,9 +217,18 @@
             </div>
           </section>
           <section class="add-article-section">
-            <h2 class="add-article-section__title">TTD</h2>
-            <div class="form-group">
-              <div class="form-element--half">
+            <h2 class="add-article-section__title">Things to consider</h2>
+              <v-select
+                :debounce="250"
+                :on-search="getOptionsThingsToConsider"
+                :options="thingsToConsiderOptions"
+                :multiple="true"
+                v-model="selectedValues.thingsToConsider"
+                placeholder="Search..."
+              />
+          </section>
+          <section class="add-article-section">
+            <h2 class="add-article-section__title">Things to do</h2>
                 <v-select
                   :debounce="250"
                   :on-search="getOptionsThingsToDo"
@@ -227,21 +236,7 @@
                   :multiple="true"
                   v-model="selectedValues.thingsToDo"
                   placeholder="Search..."
-                >
-                </v-select>
-              </div>
-              <div class="form-element--half">
-                <v-select
-                  :debounce="250"
-                  :on-search="getOptionsThingsToConsider"
-                  :options="thingsToConsiderOptions"
-                  :multiple="true"
-                  v-model="selectedValues.thingsToConsider"
-                  placeholder="Search..."
-                >
-                </v-select>
-              </div>
-            </div>
+                />
           </section>
           <section class="add-article-section" v-if="subForm.type === 'video'">
             <h2 class="add-article-section__title">Article video</h2>
@@ -397,7 +392,7 @@ export default {
         categories: [],
         roles: [],
         companies: [],
-        lng: null,
+        language: null,
         publishedAt: '2017-08-05 11:45:43',
         thingsToConsider: [],
         thingsToDo: []
@@ -405,7 +400,7 @@ export default {
       formInfo: {
         title: '',
         thumbnail: null,
-        language: null,
+        languages: null,
         contentType: null,
         tags: [],
         access: [],
@@ -413,7 +408,7 @@ export default {
         companySpecific: null,
         content: ''
       },
-      languages: ['English (UK)', 'English (US)'],
+      language: ['English (UK)', 'English (US)'],
       tags: [],
       categories: [],
       roles: [],
@@ -454,7 +449,8 @@ export default {
       'getCategoriesForSelect',
       'getCompaniesForSelect',
       'getRolesForSelect',
-      'getContentTypeForSelect'
+      'getContentTypeForSelect',
+      'getLanguagesForSelect'
     ]),
     veeValidateFileUploadRules () {
       return {
@@ -479,7 +475,8 @@ export default {
       'getCategories',
       'getTags',
       'setDataPreviewArticle',
-      'setInformationMsg'
+      'setInformationMsg',
+      'getLngs'
     ]),
 //    sendFormRequest () {
 //      this.selectType()
@@ -571,6 +568,7 @@ export default {
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
       formData.set('content[contentType]', this.selectedValues.contentType.value)
+      formData.set('content[language]', this.selectedValues.language.value)
       formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
       formData.set('content[isArticle]', 1)
@@ -763,6 +761,7 @@ export default {
     this.getCategories()
     this.getRoles()
     this.getCompanies()
+    this.getLngs()
   }
 }
 </script>

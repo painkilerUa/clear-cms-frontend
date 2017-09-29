@@ -642,29 +642,29 @@ export default {
             label: res.body.content_type.type,
             value: res.body.content_type.id
           }
+          this.article.tags = []
           res.body.tags.forEach((tag) => {
-            this.article.tags = []
             this.article.tags.push({
               label: tag.name,
               value: tag.id
             })
           })
+          this.article.categories = []
           res.body.categories.forEach((category) => {
-            this.article.categories = []
             this.article.categories.push({
               label: category.title,
               value: category.id
             })
           })
+          this.article.companies = []
           res.body.companies.forEach((company) => {
-            this.article.companies = []
             this.article.companies.push({
               label: company.name,
               value: company.id
             })
           })
+          this.article.roles = []
           res.body.roles.forEach((role) => {
-            this.article.roles = []
             this.article.roles.push({
               label: role.name,
               value: role.id

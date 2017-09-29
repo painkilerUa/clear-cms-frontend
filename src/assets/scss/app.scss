@@ -17,3 +17,10 @@ button.ql-image {
     display: none;
   }
 }
+.vdp-datepicker__calendar {
+  width: 100% !important;
+  .cell {
+    height: 30px !important;
+    line-height: 30px !important;
+  }
+}

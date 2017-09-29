@@ -127,6 +127,7 @@
 }
 .column-last-edited-head {
   max-width: 90px;
+  position: relative;
 }
 .column-author-head {
   max-width: 100px;
@@ -154,5 +155,51 @@
     display: inline-block;
     padding: 10px 20px;
     background-color: #E6E6E6;
+  }
+}
+.datepicker {
+  position: absolute;
+  left: calc(50% - 325px);
+  width: 650px;
+  height: 380px;
+  background-color: #f3f3f3;
+  padding: 20px 30px;
+  &-statusbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &-half {
+      display: flex;
+      width: 47%;
+      justify-content: center;
+      &-inner {
+        text-align: left;
+      }
+      &-input {
+        width: 100px;
+        height: 30px;
+        border: 1px solid #a0a0a0;
+        background-color: #fff;
+        line-height: 2;
+        text-align: center;
+      }
+    }
+  }
+  &-calendar {
+    display: flex;
+    justify-content: space-between;
+    &-half {
+      width: 47%;
+    }
+  }
+  &-control-panel {
+    text-align: center;
+    padding: 20px 0;
+    button {
+      background-color: #fff;
+      border-radius: 3px;
+      padding: 3px 5px;
+      border: 1px solid #a0a0a0;
+    }
   }
 }
