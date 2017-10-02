@@ -18,7 +18,7 @@
             <div class="wrap-resource-video" v-if="subForm.type === 'video'" v-for="resource in articlePreview.resources">
               <h4>Video resources</h4>
               <iframe
-              :src="resource.link">
+              :src="changeLinkForPreview(resource.link)">
               </iframe>
               <span>Transcript for video</span>
               <section>{{resource.textarea}}</section>
@@ -709,6 +709,10 @@ export default {
         })
       }
     },
+    changeLinkForPreview (oldLink) {
+      let splited = oldLink.split('/')
+      return 'https://www.youtube.com/embed/' + splited[splited.length - 1]
+    },
     getOptionsThingsToConsider (search, loading) {
       this.getOptionsThingsToSmth('toConsider', {search, loading})
     },
@@ -717,7 +721,7 @@ export default {
     },
     getOptionsThingsToSmth (type, payload) {
       payload.loading(true)
-      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toDo'}`
+      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toConsider'}`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
@@ -743,12 +747,6 @@ export default {
           console.log(err)
           payload.loading(false)
         })
-//      this.$http.get('https://api.github.com/search/repositories', {
-//        q: search
-//      }).then(resp => {
-//        this.options = resp.data.items
-//        loading(false)
-//      })
     }
   },
   components: {

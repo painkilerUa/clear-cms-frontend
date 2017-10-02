@@ -10,8 +10,10 @@ export default api
 api.timeout = { timeout: 20000 }
 // api.serverURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
 // api.staticServerURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
-api.serverURL = 'http://52.15.253.49'
-api.staticServerURL = 'http://52.15.253.49'
+// api.serverURL = 'http://52.15.253.49'
+// api.staticServerURL = 'http://52.15.253.49'
+api.serverURL = 'http://18.220.13.196'
+api.staticServerURL = 'http://18.220.13.196'
 api.token = localStorage.getItem('token')
 api.headersAuthSettings = { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} }
 
@@ -40,8 +42,10 @@ api.URLS = {
   roles: `/api/v1/roles`,
   user: `${api.serverURL}/api/v1/user`,
   users: `${api.serverURL}/api/v1/users`,
+  usersSearch: `${api.serverURL}/api/v1/user-search`,
   languages: '/api/v1/language',
   enabled: `${api.serverURL}/api/v1/enabled`,
-  createAdmin: `${api.serverURL}/api/v1/register-admin/`
+  createAdmin: `${api.serverURL}/api/v1/register-admin/`,
+  changeStatus: `${api.serverURL}/api/v1/change-status`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)

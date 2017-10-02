@@ -126,16 +126,61 @@
               />
             </th>
             <th class="column-last-edited-head">
-              <span>Last Edited</span>
+              <!--<span>Last Edited</span>-->
+              <span @click="datepicker.isShown = !datepicker.isShown">Last Edited</span>
+              <div class="datepicker" v-if="datepicker.isShown">
+                <div class="datepicker-statusbar">
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>From</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.from, '/')}}</div>
+                    </div>
+                  </div>
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>To</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.to, '/')}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="datepicker-calendar">
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.from"
+                      :format="'dd MM yyyy'"
+                    />
+                  </div>
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.to"
+                      :format="'dd MM yyyy'"
+                    />
+                  </div>
+                </div>
+                <div class="datepicker-control-panel">
+                  <button type="button" @click="changeDateFilter">Ok</button>
+                </div>
+              </div>
             </th>
             <th class="column-author-head">
-              <v-select placeholder="Upl/Edit"
-                        :class="'hide-selected-items'" />
+              <v-select
+                :debounce="250"
+                :on-search="getOptionsLastEditors"
+                :options="lastEditorsOptions"
+                :multiple="true"
+                v-model="lastEditors"
+                :class="'hide-selected-items'"
+                placeholder="Upl/Edit"
+              />
             </th>
             <th class="column-status-head">
-              <v-select
-                placeholder="Status"
-                :class="'hide-selected-items'" />
+              <v-select placeholder="Status"
+                        v-model="status"
+                        :options="statusOptions"
+                        :multiple="true"
+                        :class="'hide-selected-items'"/>
             </th>
             <th colspan="3" class="cellpadding column-actions-head">Actions</th>
           </tr>
@@ -153,8 +198,8 @@
             <td class="cellpadding">{{article.categories.length ? article.categories[0].title : ''}}</td>
             <td class="cellpadding">Clear assured</td>
             <td class="cellpadding">{{article.companies.length ? article.companies[0].name : ''}}</td>
-            <td class="cellpadding">12 hours ago</td>
-            <td class="cellpadding">Conan Simpson</td>
+            <td class="cellpadding">{{convertDate(article.updated_at, '.')}}</td>
+            <td class="cellpadding">{{article.user.username + ' ' + article.user.last_name}}</td>
             <td class="cellpadding">
               <span class="status status--published">{{getStatus(article.status)}}</span>
             </td>
@@ -200,6 +245,7 @@
         <!--<span>Loading...</span>-->
       <!--</div>-->
     </div>
+    <app-spiner v-if="isLoading" />
     <!-- END:.articles-list -->
   </div>
 </template>
@@ -244,6 +290,17 @@ export default {
       categories: [],
       roles: [],
       companies: [],
+      lastEdited: [],
+      lastEditors: [],
+      status: [],
+      statusOptions: [],
+      lastEditorsOptions: [],
+      datepicker: {
+        isShown: false,
+        from: null,
+        to: null
+      },
+      isLoading: false,
       statusbar: {
         published: 0,
         archived: 0,
@@ -281,7 +338,7 @@ export default {
           removeArticle(this.confirmation.articleId, this.confirmation.i)
           break
         case 'changeStatusArticle':
-          changeStatusArticle(this.confirmation)
+          changeStatusArticle(this.confirmation.articleId, this.confirmation.status, this.confirmation.i)
           break
 
       }
@@ -295,9 +352,27 @@ export default {
           })
           .catch((err) => console.log(err))
       }
-      function changeStatusArticle (data) {
-        console.log(data)
-// TODO: Wait link from back-end
+      function changeStatusArticle (articleId, status, i) {
+        self.clearAction()
+        let body = {
+          status: {
+            status: status,
+            isArticle: false
+          }
+        }
+        self.$http.post(api.URLS.changeStatus + '/' + articleId, body, api.headersAuthSettings)
+          .then((res) => {
+            self.clearAction()
+            let status = res.body.data.status
+            self.articles[i].status = status
+// set article count
+            let statuses = res.body.statuses
+            self.statusbar.published = statuses.Published.count
+            self.statusbar.draft = statuses.Draft.count
+            self.statusbar.archived = statuses.Archived.count
+            console.log(res)
+          })
+          .catch((err) => console.log(err))
       }
     },
     // TODO: Change scrool handler make cur page different for different search typeFdelete
@@ -350,10 +425,12 @@ export default {
       this.categories.forEach((category, i) => {
         subCategories += `&categories[${i}]=${category.value}`
       })
+// filter by contentType
       let subContentType = ''
-      if (this.contentType.length) {
-        subContentType = `&contentType=${this.contentType[0].value}`
-      }
+      this.contentType.forEach((item, i) => {
+        subContentType += `&contentType[${i}]=${item.value}`
+      })
+// filter by roles
       let subRole = ''
       this.roles.forEach((role, i) => {
         subRole += `&roles[${i}]=${role.value}`
@@ -362,7 +439,28 @@ export default {
       this.companies.forEach((company, i) => {
         subCompany += `&companies[${i}]=${company.value}`
       })
-      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany}&page=${page}&limit=${limit}&isArticle=false`
+// filter by time
+      let subLastEdited = ''
+      this.lastEdited.forEach((item) => {
+        if (item.from) {
+          subLastEdited += `&from=${item.from}`
+        }
+        if (item.to) {
+          subLastEdited += `&to=${item.to}`
+        }
+      })
+// filter by lastEditors
+      let subLastEditors = ''
+      this.lastEditors.forEach((editor, i) => {
+        subLastEditors += `&authorId[${i}]=${editor.value}`
+      })
+// status
+      let subStatus = ''
+      this.status.forEach((status, i) => {
+        subStatus += `&status[${i}]=${status.value}`
+      })
+      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany + subLastEdited + subLastEditors + subStatus}&page=${page}&limit=${limit}&isArticle=false`
+      this.isLoading = true
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
 //          this.contentAutoloadInfo.curPage = res.body.current_page_number
@@ -372,10 +470,12 @@ export default {
             this.articles = [...this.articles, ...res.body.items]
           }
           this.contentAutoloadInfo.locked = false
+          this.isLoading = true
           console.log('mainSearch', res)
         })
         .catch((err) => {
           this.contentAutoloadInfo.locked = false
+          this.isLoading = true
           console.log(err)
         })
     },
@@ -388,11 +488,31 @@ export default {
         categories: this.categories.map((item) => item.value),
         roles: this.roles.map((item) => item.value),
         companies: this.companies.map((item) => item.value),
-        isArticle: 0
+        isArticle: 0,
+        authorId: this.lastEditors.map((item) => item.value),
+        status: this.status.map((item) => item.value)
       }
+      this.lastEdited.forEach((item) => {
+        if (item.from) {
+          body.from = item.from
+        }
+        if (item.to) {
+          body.to = item.to
+        }
+      })
       this.contentAutoloadInfo.locked = true
+      this.isLoading = true
       this.$http.post(api.URLS.contentSearch + '?page=' + page + '&limit=' + limit, body, api.headersAuthSettings)
         .then((res) => {
+// Set status options
+          this.statusOptions = []
+          let statusOptions = res.body.status ? res.body.status : {}
+          Object.keys(statusOptions).forEach(key => {
+            this.statusOptions.push({
+              label: key,
+              value: +statusOptions[key].id
+            })
+          })
           this.contentAutoloadInfo.curPage = res.body.data.current_page_number
           this.contentAutoloadInfo.numPages = Math.ceil(res.body.data.total_count / limit)
           if (page === 1) {
@@ -406,10 +526,12 @@ export default {
           this.statusbar.draft = count.Draft.count
           this.statusbar.archived = count.Archived.count
           this.contentAutoloadInfo.locked = false
+          this.isLoading = false
           console.log('searchByParams', res)
         })
         .catch((err) => {
           this.contentAutoloadInfo.locked = false
+          this.isLoading = false
           console.log(err)
         })
     },
@@ -457,6 +579,27 @@ export default {
           return
         }
       })
+// Last edited
+      this.lastEdited.forEach((item, i) => {
+        if (item.id === null && item.label === filter.label) {
+          this.lastEdited.splice(i, 1)
+          return
+        }
+      })
+// Last editors
+      this.lastEditors.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.lastEditors.splice(i, 1)
+          return
+        }
+      })
+// Status
+      this.status.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.status.splice(i, 1)
+          return
+        }
+      })
     },
     removeAllFilters () {
       this.contentType = []
@@ -464,6 +607,68 @@ export default {
       this.tags = []
       this.roles = []
       this.companies = []
+      this.lastEdited = []
+      this.lastEditors = []
+      this.status = []
+    },
+    convertDate (payload, delimetr) {
+      if (!payload) return
+      let date = new Date(payload)
+      let fullYear = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      function toDoubleDigit (num) {
+        return num.toString().length < 2 ? '0' + num : num.toString()
+      }
+      return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
+    },
+    changeDateFilter () {
+      this.datepicker.isShown = false
+      if (!this.datepicker.from || !this.datepicker.to) return
+      let label = (this.datepicker.from ? this.convertDate(this.datepicker.from, '.') : 'n/a') +
+        ' - ' + (this.datepicker.to ? this.convertDate(this.datepicker.to, '.') : 'n/a')
+      this.lastEdited = [{
+        label,
+        id: null,
+        from: this.datepicker.from ? convertDate(this.datepicker.from, '-') : null,
+        to: this.datepicker.to ? convertDate(this.datepicker.to, '-') : null
+      }]
+      function convertDate (payload, delimetr) {
+        if (!payload) return
+        let date = new Date(payload)
+        let fullYear = date.getFullYear()
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+        return fullYear + delimetr + toDoubleDigit(month) + delimetr + toDoubleDigit(day)
+        function toDoubleDigit (num) {
+          return num.toString().length < 2 ? '0' + num : num.toString()
+        }
+      }
+    },
+    getOptionsLastEditors (search, loading) {
+      loading(true)
+      let body = {
+        name: search
+      }
+      this.$http.post(api.URLS.usersSearch, body, api.headersAuthSettings)
+        .then((res) => {
+          console.log(res)
+          let users = res.body.items ? res.body.items : []
+          this.lastEditorsOptions = users.map(user => {
+            return {
+              value: user.id,
+              label: user.username + ' ' + user.last_name
+            }
+          })
+          loading(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          loading(false)
+        })
+    },
+    initSearch () {
+      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     }
   },
   computed: {
@@ -478,24 +683,33 @@ export default {
       'getCompaniesForSelect'
     ]),
     selectedFilters () {
-      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies]
+      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies, ...this.lastEdited, ...this.lastEditors, ...this.status]
     }
   },
   watch: {
     contentType () {
-      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+      this.initSearch()
     },
     categories () {
-      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+      this.initSearch()
     },
     tags () {
-      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+      this.initSearch()
     },
     roles () {
-      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+      this.initSearch()
     },
     companies () {
-      this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+      this.initSearch()
+    },
+    lastEdited () {
+      this.initSearch()
+    },
+    lastEditors () {
+      this.initSearch()
+    },
+    status () {
+      this.initSearch()
     },
     'confirmation.isShown' (value) {
       if (value) {

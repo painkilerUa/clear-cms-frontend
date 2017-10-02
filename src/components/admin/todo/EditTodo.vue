@@ -100,10 +100,11 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Language</label>
                   <v-select
-                  :options="languages"
-                  name="Language"
-                  data-vv-as="Language"
-                  placeholder="Select" />
+                    v-model="article.language"
+                    :options="getLanguagesForSelect"
+                    name="Language"
+                    data-vv-as="Language"
+                    placeholder="Select" />
                   <div
                     v-if="errors.has('Language')"
                     class="form-errors">{{ errors.first('Language') }}
@@ -371,6 +372,7 @@ export default {
       article: {
         title: '',
         contentType: [],
+        language: {},
         tags: [],
         categories: [],
         companies: [],
@@ -416,7 +418,8 @@ export default {
       'getTagsForSelect',
       'getCategoriesForSelect',
       'getRolesForSelect',
-      'getCompaniesForSelect'
+      'getCompaniesForSelect',
+      'getLanguagesForSelect'
     ]),
     getContentTypeTitles () {
       return this.types.map(item => item.type)
@@ -447,7 +450,8 @@ export default {
       'getTypes',
       'getCompanies',
       'getRoles',
-      'setInformationMsg'
+      'setInformationMsg',
+      'getLngs'
     ]),
     sendTypeRequest (value) {
       console.log('sendTypeRequest', value)
@@ -510,6 +514,7 @@ export default {
       this.formData.set('content[content]', this.article.content)
       this.formData.set('content[description]', this.article.description)
       this.formData.set('content[contentType]', this.article.contentType.value)
+      this.formData.set('content[language]', this.article.language.value)
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
 // Add categories
@@ -641,6 +646,12 @@ export default {
           this.article.contentType = {
             label: res.body.content_type.type,
             value: res.body.content_type.id
+          }
+// get language
+          let language = res.body.language ? res.body.language : {}
+          this.article.language = {
+            label: language.name,
+            value: language.id
           }
           this.article.tags = []
           res.body.tags.forEach((tag) => {
@@ -792,6 +803,7 @@ export default {
     this.getArticleById(this.$route.params.id)
     this.getCompanies()
     this.getRoles()
+    this.getLngs()
   }
 }
 </script>

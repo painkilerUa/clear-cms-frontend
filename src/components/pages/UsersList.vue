@@ -114,7 +114,7 @@
         <div class="add-new-user-control-panel">
           <button type="button" @click="hideAddNewUserForm">Cancel</button>
           <button type="button" @click="createNewUser()">
-            <icon name="plus"></icon>
+            <!--<icon name="plus"></icon>-->
             <span>Add new user</span>
           </button>
         </div>
@@ -139,7 +139,7 @@
         </div>
         <div class="users-list-add">
           <button type="button" class="users-list-add__btn" @click="newUserForm.isShown = true">
-            <icon name="plus"></icon>
+            <!--<icon name="plus"></icon>-->
             <span>Add new user</span>
           </button>
         </div>
@@ -180,8 +180,9 @@
           <tbody>
           <tr v-for="(user, i) in editedUsers">
             <td class="text-center cellpadding" v-if="user.type === 'show'">
-              <input type="checkbox" :id="user.id"/>
-              <label :for="user.id">{{user.id}}</label>
+              <!--<input type="checkbox" :id="user.id"/>-->
+              <!--<label :for="user.id">{{user.id}}</label>-->
+              {{user.id}}
             </td>
             <td class="cellpadding" v-if="user.type === 'show'">{{user.username + ' ' + user.last_name}}</td>
             <td class="cellpadding" v-if="user.type === 'show'">{{user.email}}</td>
@@ -301,6 +302,7 @@
         </table>
       </div>
     </div>
+    <app-spiner v-if="false" />
   </div>
 </template>
 

@@ -48,8 +48,9 @@
             <tbody>
             <tr v-for="tag in updatedTags">
               <td class="text-center cellpadding" v-if="tag.type === 'show'">
-                <input type="checkbox" :id="tag.id"/>
-                <label :for="tag.id">{{tag.id}}</label>
+                <!--<input type="checkbox" :id="tag.id"/>-->
+                <!--<label :for="tag.id">{{tag.id}}</label>-->
+                {{tag.id}}
               </td>
               <td class="cellpadding" v-if="tag.type === 'show'">{{tag.name}}</td>
               <td class="cellpadding" v-if="tag.type === 'show'">
@@ -104,7 +105,7 @@
           </div>
         </div>
         <div class="wrap-control-panel">
-          <button type="button" class="btn-conf" @click="createTag"> + Create topic</button>
+          <button type="button" class="btn-conf" @click="createTag">Create topic</button>
         </div>
       </div>
 

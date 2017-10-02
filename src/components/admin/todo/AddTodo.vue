@@ -18,7 +18,7 @@
             <div class="wrap-resource-video" v-if="subForm.type === 'video'" v-for="resource in articlePreview.resources">
               <h4>Video resources</h4>
               <iframe
-              :src="resource.link">
+              :src="changeLinkForPreview(resource.link)">
               </iframe>
               <span>Transcript for video</span>
               <section>{{resource.textarea}}</section>
@@ -79,11 +79,11 @@
                 <div class="form-element form-element--half">
                   <label class="form-label">Language</label>
                   <v-select
-                  v-model="selectedValues.lng"
-                  :options="languages"
-                  name="Language"
-                  data-vv-as="Language"
-                  placeholder="Select" />
+                    v-model="selectedValues.language"
+                    :options="getLanguagesForSelect"
+                    name="Language"
+                    data-vv-as="Language"
+                    placeholder="Select" />
                   <div
                     v-if="errors.has('Language')"
                     class="form-errors">{{ errors.first('Language') }}
@@ -384,7 +384,7 @@ export default {
         categories: [],
         roles: [],
         companies: [],
-        lng: null,
+        language: null,
         publishedAt: '2017-08-05 11:45:43',
         thingsToConsider: []
       },
@@ -439,7 +439,8 @@ export default {
       'getCategoriesForSelect',
       'getCompaniesForSelect',
       'getRolesForSelect',
-      'getContentTypeForSelect'
+      'getContentTypeForSelect',
+      'getLanguagesForSelect'
     ]),
     veeValidateFileUploadRules () {
       return {
@@ -467,7 +468,8 @@ export default {
       'getCategories',
       'getTags',
       'setDataPreviewArticle',
-      'setInformationMsg'
+      'setInformationMsg',
+      'getLngs'
     ]),
     addFormElement (type) {
       this.addElements[type] += 1
@@ -540,6 +542,7 @@ export default {
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
       formData.set('content[contentType]', this.selectedValues.contentType.value)
+      formData.set('content[language]', this.selectedValues.language.value)
       formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
 // Set parametr isArticle false for TTD
@@ -638,9 +641,13 @@ export default {
           this.setInformationMsg({text: infMsg})
         })
     },
+    changeLinkForPreview (oldLink) {
+      let splited = oldLink.split('/')
+      return 'https://www.youtube.com/embed/' + splited[splited.length - 1]
+    },
     getOptionsThingsToConsider (search, loading) {
       loading(true)
-      let urlString = `${api.URLS.search}&search=${search}`
+      let urlString = `${api.URLS.search}&search=${search}&isArticle=true`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
@@ -657,12 +664,6 @@ export default {
           console.log(err)
           loading(false)
         })
-//      this.$http.get('https://api.github.com/search/repositories', {
-//        q: search
-//      }).then(resp => {
-//        this.options = resp.data.items
-//        loading(false)
-//      })
     },
     getSubFormFields (val) {
       if (!val) return
@@ -717,6 +718,7 @@ export default {
     this.getCategories()
     this.getRoles()
     this.getCompanies()
+    this.getLngs()
   }
 }
 </script>

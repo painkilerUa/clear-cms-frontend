@@ -15,6 +15,7 @@ import Icon from 'vue-awesome/components/Icon'
 import Datepicker from 'vuejs-datepicker'
 import VueFroala from 'vue-froala-wysiwyg'
 import VueEditor from 'vue2-editor'
+import AppSpiner from './components/common/AppSpiner.vue'
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,7 @@ Vue.component('icon', Icon)
 Vue.component('v-select', vSelect)
 Vue.component('popup', Popup)
 Vue.component('datepicker', Datepicker)
+Vue.component('app-spiner', AppSpiner)
 
 Vue.use(VueResource)
 Vue.use(Vuex)

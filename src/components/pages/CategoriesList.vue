@@ -28,6 +28,11 @@
             <!--class="select-bulk-action"/>-->
           <!--<span class="categories-statusbar">54 subcategories</span>-->
         <!--</div>-->
+        <div class="categories-list-statusbar">
+          <div class="categories-list-statusbar__contains">
+            <span>{{categories.length}} subcategories</span>
+          </div>
+        </div>
         <div class="categories-list-body">
           <table class="table table-data">
             <thead>
@@ -60,10 +65,11 @@
             <tbody>
               <tr v-for="(category, i) in updatedCategories">
                 <td class="text-center cellpadding" v-if="category.type === 'show'">
-                  <input type="checkbox" :id="category.id"/>
-                  <label :for="category.id">{{category.id}}</label>
+                  <!--<input type="checkbox" :id="category.id"/>-->
+                  <!--<label :for="category.id">{{category.id}}</label>-->
+                  {{category.id}}
                 </td>
-                <td class="cellpadding" v-if="category.type === 'show'">{{category.title}}</td>
+                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? '- ' + category.title : category.title}}</td>
                 <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? category.parent.title : ''}}</td>
                 <td class="cellpadding" v-if="category.type === 'show'">{{category.contents.length}}</td>
                 <td class="cellpadding" v-if="category.type === 'show'">
@@ -135,7 +141,7 @@
           </div>
         </div>
         <div class="wrap-control-panel">
-          <button type="button" class="btn-conf" @click="createCategory"> + Create category</button>
+          <button type="button" class="btn-conf" @click="createCategory">Create category</button>
         </div>
       </div>
 
@@ -178,8 +184,6 @@ export default {
         title: '',
         isActive: 1,
         description: '',
-//        createdAt: '2017-08-05 11:45:43',
-//        updatedAt: '2017-08-05 11:45:43',
         parent: ''
       },
       disableAPI: false,
@@ -189,7 +193,6 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getCategories',
       'getCategories'
     ]),
     search () {
@@ -323,6 +326,7 @@ export default {
           this.newCategory.title = ''
           this.newCategory.parent = null
           this.newCategory.description = ''
+          this.getCategories()
           alert('Category has been successfully added')
         })
         .catch((err) => {
