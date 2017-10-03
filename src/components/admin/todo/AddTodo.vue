@@ -542,7 +542,9 @@ export default {
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
       formData.set('content[contentType]', this.selectedValues.contentType.value)
-      formData.set('content[language]', this.selectedValues.language.value)
+      if (this.selectedValues.language) {
+        formData.set('content[language]', this.selectedValues.language.value)
+      }
       formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
 // Set parametr isArticle false for TTD
@@ -621,7 +623,7 @@ export default {
               infMsg = 'TTD archived'
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -638,7 +640,7 @@ export default {
               infMsg = "TTD has't archived"
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'warning'})
         })
     },
     changeLinkForPreview (oldLink) {

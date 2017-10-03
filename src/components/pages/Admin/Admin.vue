@@ -1,8 +1,8 @@
 <template>
   <div class="w1">
     <div class="wrap-admin">
-      <inform-msgs />
       <app-header />
+      <inform-msgs />
       <!-- .admin -->
       <div class="admin">
         <!-- .myContainer -->
@@ -99,7 +99,7 @@ export default {
   }
   .footer {
     display: table-footer-group;
-    background-color: #282f54;
+    background-color: #141414;
     .footer-inner {
       display: table-cell;
       height: 1%;

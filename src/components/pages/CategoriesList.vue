@@ -16,53 +16,47 @@
     </div>
     <div class="wrap-categories-list">
       <h1>Categories in "Topics"</h1>
-      <div class="categories-list">
-        <h2>List with categories</h2>
-        <!--<div class="categories-list-actions">-->
-          <!--<div class="categories-list-inputwrap">-->
-            <!--<input type="checkbox" class="categories-list-input" />-->
-          <!--</div>-->
-          <!--<v-select-->
-            <!--placeholder="Bulk action"-->
-            <!--:options="['Action 1', 'Action 2']"-->
-            <!--class="select-bulk-action"/>-->
-          <!--<span class="categories-statusbar">54 subcategories</span>-->
-        <!--</div>-->
-        <div class="categories-list-statusbar">
-          <div class="categories-list-statusbar__contains">
-            <span>{{categories.length}} subcategories</span>
+      <div class="categories">
+        <div class="categories-list">
+          <div class="categories-list-statusbar">
+            <div class="categories-list-statusbar__contains">
+              <span>{{categories.length}} subcategories</span>
+            </div>
           </div>
-        </div>
-        <div class="categories-list-body">
-          <table class="table table-data">
-            <thead>
-            <tr>
-              <th class="cellpadding">ID</th>
-              <th class="categories-list-search-col text-left">
-                <div class="table-search-wrap">
-                  <input
-                    v-model="searchString"
-                    type="search"
-                    class="table-search"
-                    placeholder="Category name..." />
-                </div>
-              </th>
-              <th>
-                <v-select
-                  v-model="parent"
-                  name="Category"
-                  data-vv-as='"Category"'
-                  :options="getCategoriesForSelect"
-                  v-validate="'required'"
-                  placeholder="Parent" />
-              </th>
-              <th>
-                No of articles
-              </th>
-              <th colspan="2" class="cellpadding">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+          <div class="categories-list-body">
+            <table class="table table-data">
+              <thead class="categories-list-body__head">
+              <tr>
+                <th class="cellpadding categories-list-body__head_id">ID</th>
+                <th class="categories-list-search-col text-left categories-list-body__head_search">
+                  <div class="categories-list-body__head_search-inner">
+                    <div class="categories-list-body__head_search-inner-input">
+                      <input
+                        v-model="searchString"
+                        type="search"
+                        placeholder="Category name..." />
+                    </div>
+                    <div class="categories-list-body__head_search-inner-icon">
+                      <icon name="search"></icon>
+                    </div>
+                  </div>
+                </th>
+                <th class="categories-list-body__head_parent-select">
+                  <v-select
+                    v-model="parent"
+                    name="Category"
+                    data-vv-as='"Category"'
+                    :options="getCategoriesForSelect"
+                    v-validate="'required'"
+                    placeholder="Parent" />
+                </th>
+                <th class="categories-list-body__head_count-articles">
+                  No of articles
+                </th>
+                <th colspan="2" class="cellpadding categories-list-body__head_actions">Actions</th>
+              </tr>
+              </thead>
+              <tbody class="categories-list-body__body">
               <tr v-for="(category, i) in updatedCategories">
                 <td class="text-center cellpadding" v-if="category.type === 'show'">
                   <!--<input type="checkbox" :id="category.id"/>-->
@@ -70,27 +64,27 @@
                   {{category.id}}
                 </td>
                 <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? '- ' + category.title : category.title}}</td>
-                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? category.parent.title : ''}}</td>
+                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? category.parent.title : '-'}}</td>
                 <td class="cellpadding" v-if="category.type === 'show'">{{category.contents.length}}</td>
-                <td class="cellpadding" v-if="category.type === 'show'">
+                <td class="cellpadding text-center" v-if="category.type === 'show'">
                   <button
                     type="button"
-                    class="table-crud-btn icon-btn"
+                    class="table-crud-btn icon-btn-m"
                     @click="showEditionForm(category.id)">
                     <icon name="pencil"/>
                   </button>
                 </td>
-                <td class="cellpadding" v-if="category.type === 'show'">
+                <td class="cellpadding text-center" v-if="category.type === 'show'">
                   <button
                     type="button"
-                    class="table-crud-btn icon-btn"
+                    class="table-crud-btn icon-btn-m"
                     @click="initAction('removeCategory', category.id)">
                     <icon name="times" />
                   </button>
                 </td>
                 <td colspan="6" v-if="category.type === 'edit'">
                   <div class="wrap-edit-form">
-                    <div class="row">
+                    <div class="row-edit-form">
                       <div class="wrap-title-input">
                         <input type="text" v-model="category.title">
                       </div>
@@ -112,40 +106,47 @@
                   </div>
                 </td>
               </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="categories-add-form">
+          <h3>Add new category</h3>
+          <div class="form-elements">
+            <div class="form-element">
+              <label for="input-category-name" class="form-label">Category Name</label>
+              <input type="text" id="input-category-name" class="form-control" placeholder="Write category name" v-model="newCategory.title"/>
+            </div>
+            <div class="form-element">
+              <label for="select-parent-category" class="form-label">Parent</label>
+              <div class="form-control-add-category">
+                <v-select
+                  v-model="newCategory.parent"
+                  name="Category"
+                  :options="getCategoriesForSelect"
+                  placeholder="Select parent category (optional)"
+                  id="select-parent-category" />
+              </div>
+            </div>
+            <div class="form-element">
+              <label for="textarea-category-desc" class="form-label-add-category"><span>Category description</span> (will not show up in articles)</label>
+              <textarea
+                name="category-desc"
+                id="textarea-category-desc"
+                cols="30"
+                rows="5"
+                v-model="newCategory.description"
+                class="form-control">
+              </textarea>
+            </div>
+          </div>
+            <div class="categories-add-form-control-panel">
+              <button type="button" class="categories-add-form-control-panel-btn-conf" @click="createCategory">Create category</button>
+            </div>
         </div>
       </div>
-      <div class="wrap-add-category-form">
-        <h3>Add new category</h3>
-        <div class="input-grout">
-          <label for="input-category-name">Category Name</label>
-          <div class="wrap-input">
-            <input type="text" id="input-category-name" class="input-category-name" placeholder="Write category name" v-model="newCategory.title"/>
-          </div>
-        </div>
-        <div class="select-grout">
-          <label for="select-parent-category">Parent</label>
-          <div class="wrap-select">
-            <v-select
-              v-model="newCategory.parent"
-              name="Category"
-              :options="getCategoriesForSelect"
-              placeholder="Select parent category (optional)" />
-          </div>
-        </div>
-        <div class="textarea-group">
-          <label for="textarea-category-desc">Category description (will not show up in articles)</label>
-          <div class="wrap-textarea">
-            <textarea name="category-desc" id="textarea-category-desc" cols="30" rows="10" v-model="newCategory.description"></textarea>
-          </div>
-        </div>
-        <div class="wrap-control-panel">
-          <button type="button" class="btn-conf" @click="createCategory">Create category</button>
-        </div>
-      </div>
-
     </div>
+  </div>
   </div>
 </template>
 
@@ -302,7 +303,7 @@ export default {
     },
     createCategory () {
       if (this.disableAPI) return
-      if (!this.newCategory.title || !this.newCategory.description) return
+      if (!this.newCategory.title) return
       let formData = new FormData()
       Object.keys(this.newCategory).forEach((fieldName) => {
         if (typeof this.newCategory[fieldName] === 'string' || typeof this.newCategory[fieldName] === 'number') {

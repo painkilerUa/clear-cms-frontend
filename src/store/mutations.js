@@ -33,6 +33,9 @@ export const clearConfAction = (state, payload) => {
 // Information block mutation
 export const setInformationMsg = (state, payload) => {
   state.informationMsg.text = payload.text
+  for (let className in state.informationMsg.className) {
+    state.informationMsg.className[className] = false
+  }
   if (payload.className) {
     state.informationMsg.className[payload.className] = true
   }

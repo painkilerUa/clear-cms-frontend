@@ -7,7 +7,9 @@
 			<div class="myContainer">
 				<!-- .app-header-main__container -->
 				<div class="app-header-main__container">
-					<a href="/" class="main-logo" tabindex="-1">Lloyd's</a>
+					<a href="/" class="main-logo" tabindex="-1">
+            <img src="../../assets/img/admin/logo.png" alt="logo">
+          </a>
 					<!-- .app-header-description -->
 					<div class="app-header-description">
             <ul class="main-menu-header">

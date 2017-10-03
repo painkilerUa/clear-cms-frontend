@@ -568,7 +568,9 @@ export default {
       formData.set('content[content]', this.selectedValues.content)
       formData.set('content[description]', this.selectedValues.description)
       formData.set('content[contentType]', this.selectedValues.contentType.value)
-      formData.set('content[language]', this.selectedValues.language.value)
+      if (this.selectedValues.language) {
+        formData.set('content[language]', this.selectedValues.language.value)
+      }
       formData.set('content[publishedAt]', this.selectedValues.publishedAt)
       formData.set('content[status]', status)
       formData.set('content[isArticle]', 1)
@@ -633,7 +635,6 @@ export default {
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
           this.disableAPI = false
-          this.$router.push('/admin/article/edit/' + res.body.id)
           console.log('publishArticle', res)
           let infMsg
           switch (status) {
@@ -647,7 +648,8 @@ export default {
               infMsg = 'Article archived'
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'success'})
+          this.$router.push('/admin/article/edit/' + res.body.id)
         })
         .catch((err) => {
           this.disableAPI = false
@@ -664,7 +666,7 @@ export default {
               infMsg = "Article has't archived"
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'warning'})
         })
     },
     getSubFormFields (val) {

@@ -355,10 +355,8 @@ export default {
       function changeStatusArticle (articleId, status, i) {
         self.clearAction()
         let body = {
-          status: {
-            status: status,
-            isArticle: false
-          }
+          status: status,
+          isArticle: false
         }
         self.$http.post(api.URLS.changeStatus + '/' + articleId, body, api.headersAuthSettings)
           .then((res) => {
@@ -470,12 +468,12 @@ export default {
             this.articles = [...this.articles, ...res.body.items]
           }
           this.contentAutoloadInfo.locked = false
-          this.isLoading = true
+          this.isLoading = false
           console.log('mainSearch', res)
         })
         .catch((err) => {
           this.contentAutoloadInfo.locked = false
-          this.isLoading = true
+          this.isLoading = false
           console.log(err)
         })
     },

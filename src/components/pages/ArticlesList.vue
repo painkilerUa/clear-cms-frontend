@@ -357,10 +357,8 @@ export default {
       function changeStatusArticle (articleId, status, i) {
         self.clearAction()
         let body = {
-          status: {
-            status: status,
-            isArticle: true
-          }
+          status: status,
+          isArticle: true
         }
         self.$http.post(api.URLS.changeStatus + '/' + articleId, body, api.headersAuthSettings)
           .then((res) => {

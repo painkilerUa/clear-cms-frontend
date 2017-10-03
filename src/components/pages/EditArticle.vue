@@ -532,7 +532,9 @@ export default {
       this.formData.set('content[content]', this.article.content)
       this.formData.set('content[description]', this.article.description)
       this.formData.set('content[contentType]', this.article.contentType.value)
-      this.formData.set('content[language]', this.article.language.value)
+      if (this.selectedValues.language) {
+        this.formData.set('content[language]', this.selectedValues.language.value)
+      }
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
       this.formData.set('content[isArticle]', 1)
@@ -605,7 +607,7 @@ export default {
               infMsg = 'Article archived'
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -621,7 +623,7 @@ export default {
               infMsg = "Article has't archived"
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'warning'})
           console.log(err)
         })
     },
@@ -666,10 +668,13 @@ export default {
             value: res.body.content_type.id
           }
 // get language
-          let language = res.body.language ? res.body.language : {}
-          this.article.language = {
-            label: language.name,
-            value: language.id
+          if (res.body.language) {
+            this.article.language = {
+              label: res.body.language.name,
+              value: res.body.language.id
+            }
+          } else {
+            this.article.language = null
           }
           this.article.tags = []
           res.body.tags.forEach((tag) => {
@@ -772,7 +777,7 @@ export default {
     },
     getOptionsThingsToSmth (type, payload) {
       payload.loading(true)
-      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toConsider'}`
+      let urlString = `${api.URLS.search}&search=${payload.search}&isArticle=${type === 'toConsider'}&content=${this.articleId}`
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
           console.log(res)

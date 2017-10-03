@@ -173,6 +173,13 @@
         vertical-align: middle;
     }
 }
+.icon-btn-m {
+  border: none;
+  background: none;
+  .fa-icon {
+    vertical-align: middle;
+  }
+}
 
 .action {
     &-btn {

@@ -34,7 +34,7 @@
     &-login {
         &__item {
             text-decoration: none;
-            color: #fff;
+            color: #000;
             &--name {
                 margin-right: 15px;
             }
@@ -62,13 +62,13 @@
     }
     a {
       display: inline-block;
-      color: #a0a0a0;
+      color: #777777;
       font-size: 16px;
       line-height: 20px;
       text-decoration: none;
     }
     span {
-      color: #a0a0a0;
+      color: #777777;
       font-size: 16px;
       line-height: 20px;
     }
@@ -77,12 +77,12 @@
 .first-level-menu-header {
   display: none;
   position: absolute;
-  background-color: #000000;
-  border: 1px solid #a0a0a0;
+  background-color: #22b6cd;
+  border: 1px solid #777777;
   z-index: 99;
   li {
     display: block;
-    border-bottom: 1px solid #a0a0a0;
+    border-bottom: 1px solid #777777;
     border-left: none;
     width: 100%;
     &:last-child {
@@ -104,7 +104,7 @@
     width:0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid #000;
+    border-bottom: 8px solid #22b6cd;
   }
   &:before {
     content: '';
@@ -117,7 +117,7 @@
     width:0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid #a0a0a0;
+    border-bottom: 8px solid #777777;
   }
 }
 .articles {
@@ -130,7 +130,7 @@
 }
 .icon {
   vertical-align: top;
-  color: #a0a0a0;
+  color: #777777;
   margin-right: 5px;
 }
 .icon-file {

@@ -514,7 +514,9 @@ export default {
       this.formData.set('content[content]', this.article.content)
       this.formData.set('content[description]', this.article.description)
       this.formData.set('content[contentType]', this.article.contentType.value)
-      this.formData.set('content[language]', this.article.language.value)
+      if (this.article.language) {
+        this.formData.set('content[language]', this.article.language.value)
+      }
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
 // Add categories
@@ -587,7 +589,7 @@ export default {
               infMsg = 'TTD archived'
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -603,7 +605,7 @@ export default {
               infMsg = "TTD has't archived"
               break
           }
-          this.setInformationMsg({text: infMsg})
+          this.setInformationMsg({text: infMsg, className: 'warning'})
           console.log(err)
         })
     },
@@ -648,10 +650,13 @@ export default {
             value: res.body.content_type.id
           }
 // get language
-          let language = res.body.language ? res.body.language : {}
-          this.article.language = {
-            label: language.name,
-            value: language.id
+          if (res.body.language) {
+            this.article.language = {
+              label: res.body.language.name,
+              value: res.body.language.id
+            }
+          } else {
+            this.article.language = null
           }
           this.article.tags = []
           res.body.tags.forEach((tag) => {
@@ -779,7 +784,7 @@ export default {
       this.$http.delete(api.URLS.content + '/' + this.articleId, api.headersAuthSettings)
         .then((res) => {
           this.disableAPI = false
-          this.$router.push('/admin/articles-list')
+          this.$router.push('/admin/todo-list')
         })
         .catch((err) => {
           this.disableAPI = false

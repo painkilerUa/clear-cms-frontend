@@ -32,7 +32,7 @@ const state = {
   },
   informationMsg: {
     text: null,
-    className: null,
+    className: {'success': false, 'danger': false, 'warning': false},
     style: {
     }
   }

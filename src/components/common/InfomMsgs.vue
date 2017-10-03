@@ -1,6 +1,8 @@
 <template>
-  <div class="inf-msgs" v-if="getInformationMsgs.text" :style="getInformationMsgs.style">
-    <span>{{getInformationMsgs.text}}</span>
+  <div class="inf-msgs" v-if="getInformationMsgs.text">
+    <div class="msg" :class="getInformationMsgs.className">
+      <span>{{getInformationMsgs.text}}</span>
+    </div>
   </div>
 </template>
 
@@ -20,11 +22,11 @@ export default {
     ])
   },
   watch: {
-    'getInformationMsgs.text' (value) {
-      console.log('getInformationMsgs has changed', value)
-      let top = window.pageYOffset + 100 + 'px'
-      this.setStyleForMsg({top: top})
-    }
+//    'getInformationMsgs.text' (value) {
+//      console.log('getInformationMsgs has changed', value)
+//      let top = window.pageYOffset + 100 + 'px'
+//      this.setStyleForMsg({top: top})
+//    }
   }
 }
 </script>

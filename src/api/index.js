@@ -8,12 +8,14 @@ const api = {}
 
 export default api
 api.timeout = { timeout: 20000 }
-// api.serverURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
-// api.staticServerURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
+api.serverURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
+api.staticServerURL = location.hostname === '18.220.188.74' ? 'http://52.15.253.49' : 'http://18.220.13.196'
+// For production
 // api.serverURL = 'http://52.15.253.49'
 // api.staticServerURL = 'http://52.15.253.49'
-api.serverURL = 'http://18.220.13.196'
-api.staticServerURL = 'http://18.220.13.196'
+// For development
+// api.serverURL = 'http://18.220.13.196'
+// api.staticServerURL = 'http://18.220.13.196'
 api.token = localStorage.getItem('token')
 api.headersAuthSettings = { headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`} }
 
