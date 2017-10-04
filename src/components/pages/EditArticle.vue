@@ -64,8 +64,20 @@
         <h1>{{article.title}}</h1>
       </div>
       <div class="control-panel">
-        <span @click="archiveArticle">Archive article</span>
-        <span @click="deleteArticle">Delete article</span>
+        <div class="wrap-button">
+          <button type="button" @click="changeArtStatus">
+            <icon name="folder" class="icon-btn-ctr" ></icon>
+            <span>
+            {{ctrBtnTitle}}
+          </span>
+          </button>
+          <button type="button" @click="deleteArticle" >
+            <icon name="remove" class="icon-btn-ctr"></icon>
+            <span>
+            Delete article
+          </span>
+          </button>
+        </div>
       </div>
     </div>
     <!-- .add-article-wrapper -->
@@ -452,6 +464,16 @@ export default {
         required: true,
         mimes: 'image/*'
       }
+    },
+    ctrBtnTitle () {
+      switch (this.article.status) {
+        case 0:
+          return 'Publish article'
+        case 1:
+          return 'Archive article'
+        case 2:
+          return 'Re-publish article'
+      }
     }
   },
   watch: {
@@ -532,8 +554,8 @@ export default {
       this.formData.set('content[content]', this.article.content)
       this.formData.set('content[description]', this.article.description)
       this.formData.set('content[contentType]', this.article.contentType.value)
-      if (this.selectedValues.language) {
-        this.formData.set('content[language]', this.selectedValues.language.value)
+      if (this.article.language) {
+        this.formData.set('content[language]', this.article.language.value)
       }
       this.formData.set('content[publishedAt]', this.article.publishedAt)
       this.formData.set('content[status]', status)
@@ -818,8 +840,20 @@ export default {
       this.articlePreview.resources = []
       this.articlePreview.isShown = true
     },
-    archiveArticle () {
-      this.editArticle(2)
+    changeArtStatus () {
+      let newStatus
+      switch (this.article.status) {
+        case 0:
+          newStatus = 1
+          break
+        case 1:
+          newStatus = 2
+          break
+        case 2:
+          newStatus = 1
+          break
+      }
+      this.editArticle(newStatus)
     },
     deleteArticle () {
       if (this.disableAPI) return

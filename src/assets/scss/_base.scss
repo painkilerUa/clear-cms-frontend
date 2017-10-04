@@ -216,6 +216,10 @@
 .table {
     display: table;
     width: 100%;
+    thead {
+      background-color: #fafafa;
+      font-size: 110%;
+    },
     th,
     td {
         vertical-align: middle;
@@ -227,7 +231,7 @@
         .dropdown-toggle {
             border: none;
         }
-    }
+    },
     &-heading {
         display: table-header-group;
     }

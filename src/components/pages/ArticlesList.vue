@@ -45,12 +45,19 @@
           <!-- END:.articles-list-statuses -->
         </div>
         <!-- END:.articles-list-statusbar -->
-        <div class="articles-list-selected-filters" v-if="selectedFilters.length">
-          <div class="articles-list-selected-filters-remove-all" @click="removeAllFilters">
-            <span>Remove all filters</span>
+        <div class="articles-list-selected-filters" v-if="selectedFilters.length" :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+          <div class="articles-list-selected-filters-remove-all"
+               @click="removeAllFilters"
+               @mouseover="statusbar.filter.isHover = true"
+               @mouseleave="statusbar.filter.isHover = false"
+               :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+            <span>{{statusbar.filter.isHover ? 'Remove all filters' : 'Aplied filters'}}</span>
           </div>
           <div class="articles-list-selected-filters-body">
-            <button v-for="filter in selectedFilters" type="button" @click="removeSelectedFilters(filter)">
+            <button v-for="filter in selectedFilters"
+                    type="button"
+                    @click="removeSelectedFilters(filter)"
+                    :class="{hover: isExist(filter)}">
               <span>{{filter.label}}</span>
               <icon name="times"></icon>
             </button>
@@ -75,41 +82,56 @@
             <th class="cellpadding column-id-head">ID</th>
             <th class="articles-list-search-col text-left column-search-head">
               <div class="table-search-wrap">
-                <input
-                  v-model="search"
-                  @input="mainSearch(1, 20)"
-                  type="search"
-                  class="table-search"
-                  placeholder="Search in articles..." />
+                <div class="wrap-input">
+                  <input
+                    v-model="search"
+                    @input="mainSearch(1, 20)"
+                    type="search"
+                    class="table-search"
+                    placeholder="Search in articles..." />
+                </div>
+                <div class="wrap-search-icon">
+                  <icon name="search"></icon>
+                </div>
               </div>
             </th>
-            <th class="column-lng-head">
-              <v-select placeholder="Lang"
+            <th class="column-lng-head"
+              @mouseover="addHoverElement(getLanguagesForSelect)"
+              @mouseleave="removeHoverElements">
+              <v-select placeholder="Language"
                         :options="getLanguagesForSelect"
                         :class="'hide-selected-items'"/>
             </th>
-            <th class="column-type-head">
+            <th class="column-type-head"
+                @mouseover="addHoverElement(getContentTypeForSelect)"
+                @mouseleave="removeHoverElements" >
               <v-select placeholder="Type"
                         v-model="contentType"
                         :options="getContentTypeForSelect"
                         :multiple="true"
                         :class="'hide-selected-items'"/>
             </th>
-            <th class="column-topics-head">
+            <th class="column-topics-head"
+                @mouseover="addHoverElement(getTagsForSelect)"
+                @mouseleave="removeHoverElements">
               <v-select placeholder="Topics"
                         :options="getTagsForSelect"
                         v-model="tags"
                         :multiple="true"
                         :class="'hide-selected-items'"/>
             </th>
-            <th class="column-categories-head">
+            <th class="column-categories-head"
+                @mouseover="addHoverElement(getCategoriesForSelect)"
+                @mouseleave="removeHoverElements">
               <v-select placeholder="Category"
                         :options="getCategoriesForSelect"
                         v-model="categories"
                         :multiple="true"
                         :class="'hide-selected-items'"/>
             </th>
-            <th class="column-access-head">
+            <th class="column-access-head"
+                @mouseover="addHoverElement(getRolesForSelect)"
+                @mouseleave="removeHoverElements">
               <v-select placeholder="Access"
                         :options="getRolesForSelect"
                         v-model="roles"
@@ -117,8 +139,10 @@
                         :class="'hide-selected-items'"
               />
             </th>
-            <th class="column-companies-head">
-              <v-select placeholder="Com spec"
+            <th class="column-companies-head"
+                @mouseover="addHoverElement(getCompaniesForSelect)"
+                @mouseleave="removeHoverElements">
+              <v-select placeholder="Comp spec"
                         :options="getCompaniesForSelect"
                         v-model="companies"
                         :multiple="true"
@@ -126,7 +150,6 @@
               />
             </th>
             <th class="column-last-edited-head">
-              <!--<span>Last Edited</span>-->
               <span @click="datepicker.isShown = !datepicker.isShown">Last Edited</span>
               <div class="datepicker" v-if="datepicker.isShown">
                 <div class="datepicker-statusbar">
@@ -164,7 +187,9 @@
                 </div>
               </div>
             </th>
-            <th class="column-author-head">
+            <th class="column-author-head"
+                @mouseover="addHoverElement(lastEditorsOptions)"
+                @mouseleave="removeHoverElements">
               <v-select
                 :debounce="250"
                 :on-search="getOptionsLastEditors"
@@ -175,7 +200,9 @@
                 placeholder="Upl/Edit"
               />
             </th>
-            <th class="column-status-head">
+            <th class="column-status-head"
+                @mouseover="addHoverElement(statusOptions)"
+                @mouseleave="removeHoverElements">
               <v-select placeholder="Status"
                         v-model="status"
                         :options="statusOptions"
@@ -192,16 +219,17 @@
               <label :for="article.id">{{article.id}}</label>
             </td>
             <td class="cellpadding">{{article.title}}</td>
-            <td class="cellpadding"></td>
-            <td class="cellpadding">{{article.content_type.type}}</td>
-            <td class="cellpadding">{{article.tags.length ? article.tags[0].name : ''}}</td>
-            <td class="cellpadding">{{article.categories.length ? article.categories[0].title : ''}}</td>
-            <td class="cellpadding">Clear assured</td>
-            <td class="cellpadding">{{article.companies.length ? article.companies[0].name : ''}}</td>
-            <td class="cellpadding">{{convertDate(article.updated_at, '.')}}</td>
-            <td class="cellpadding">{{article.user.username + ' ' + article.user.last_name}}</td>
-            <td class="cellpadding">
-              <span class="status status--published">{{getStatus(article.status)}}</span>
+            <td class="cellpadding text-center">{{article.language ? article.language.name : ''}}</td>
+            <td class="cellpadding text-center">{{article.content_type.type}}</td>
+            <td class="cellpadding text-center">{{article.tags.length ? article.tags[0].name : ''}}</td>
+            <td class="cellpadding text-center">{{article.categories.length ? article.categories[0].title : ''}}</td>
+            <td class="cellpadding text-center" v-html="articleRoles(article.roles)">
+            </td>
+            <td class="cellpadding text-center">{{article.companies.length ? article.companies[0].name : ''}}</td>
+            <td class="cellpadding text-center">{{convertDate(article.updated_at, '.')}}</td>
+            <td class="cellpadding text-center">{{article.user.username + ' ' + article.user.last_name}}</td>
+            <td class="cellpadding text-center">
+              <span class="status" :class="{'status--archived': article.status === 2, 'status--published': article.status === 1, 'status--draft': article.status === 0}">{{getStatus(article.status)}}</span>
             </td>
             <td class="cellpadding">
               <button
@@ -304,9 +332,17 @@ export default {
       statusbar: {
         published: 0,
         archived: 0,
-        draft: 0
+        draft: 0,
+        filter: {
+          isHover: false,
+          style: {
+            backgroundColor: '#fffdd8',
+            borderColor: '#000'
+          }
+        }
       },
-      isLoading: true
+      isLoading: true,
+      hoverElements: []
     }
   },
   methods: {
@@ -626,7 +662,7 @@ export default {
     },
     changeDateFilter () {
       this.datepicker.isShown = false
-      if (!this.datepicker.from || !this.datepicker.to) return
+      if (!this.datepicker.from && !this.datepicker.to) return
       let label = (this.datepicker.from ? this.convertDate(this.datepicker.from, '.') : 'n/a') +
         ' - ' + (this.datepicker.to ? this.convertDate(this.datepicker.to, '.') : 'n/a')
       this.lastEdited = [{
@@ -671,6 +707,28 @@ export default {
     },
     initSearch () {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
+    },
+    addHoverElement (elements) {
+      console.log(elements)
+      this.hoverElements = elements
+    },
+    removeHoverElements () {
+      this.hoverElements = []
+    },
+    isExist (element) {
+      let el = this.hoverElements.find(item => {
+        if (element.value === item.value && element.label === item.label) {
+          return true
+        }
+      })
+      return !!el
+    },
+    articleRoles (roles) {
+      let string = ''
+      roles.forEach(role => {
+        string += role.name + '</br>'
+      })
+      return string
     }
   },
   computed: {

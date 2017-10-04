@@ -19,13 +19,13 @@
     &-selected-filters {
         display: flex;
         width: 50%;
-        border: 1px solid #000;
+        border: 1px solid #d5d5d5;
         &-remove-all {
             width: 13%;
             padding: 20px 10px;
-            background-color: #fffdd8;
-            font-size: 16px;
+            background-color: #f3f3f3;
             cursor: pointer;
+            font-style: italic;
         }
         &-body {
             width: 87%;
@@ -34,7 +34,7 @@
             background-color: #fafafa;
             button {
                 background-color: transparent;
-                padding: 5px 10px;
+                padding: 3px 10px;
                 border: 1px solid #d5d5d5;
                 border-radius: 50px;
                 margin: 0 10px 10px 0;
@@ -58,7 +58,7 @@
     }
     &-statusbar {
         display: table;
-
+        font-style: italic;
         align-items: center;
         &__block {
             display: table-cell;
@@ -83,7 +83,7 @@
     &-add {
         &__btn {
             text-decoration: none;
-            padding: 9px;
+            padding: 9px 15px;
             color: #fff;
             background: none;
             background-color: color('articlesListActionBtn');
@@ -100,9 +100,28 @@
 }
 .column-search-head {
   max-width: 260px;
+  min-width: 260px;
+  padding: 0;
+}
+.table-search-wrap {
+  display: flex;
+  align-items: center;
+  .wrap-input {
+    width: 90%;
+    input {
+      background-color: transparent;
+      height: 30px;
+      width: 100%;
+    }
+  }
+}
+.wrap-search-icon {
+  padding: 20px;
+  background-color: #f3f3f3;
 }
 .column-lng-head {
   max-width: 150px;
+  min-width: 150px;
 }
 .column-type-head {
   max-width: 80px;
@@ -116,39 +135,51 @@
 }
 .column-topics-head {
   max-width: 90px;
+  min-width: 90px;
 }
 .column-categories-head {
   max-width: 120px;
+  min-width: 120px;
 }
 .column-access-head {
   max-width: 90px;
+  min-width: 90px;
 }
 .column-companies-head {
   max-width: 100px;
+  min-width: 100px;
 }
 .column-last-edited-head {
   max-width: 90px;
+  min-width: 90px;
   position: relative;
 }
 .column-author-head {
   max-width: 100px;
+  min-width: 100px;
 }
 .column-status-head {
   max-width: 90px;
+  min-width: 90px;
 }
 .column-actions-head {
   max-width: 90px;
+  min-width: 90px;
 }
 .articles-list-body{
   margin-bottom: 40px;
 }
-.wrap-confirmation-popup{
-  top: 0;
-  left: 0;
-  position: absolute;
-  z-index: 99;
-  width: 100%;
+.hover {
+  border-color: #000 !important;
+  background-color: #fffdd8 !important;
 }
+//.wrap-confirmation-popup{
+//  top: 0;
+//  left: 0;
+//  position: absolute;
+//  z-index: 99;
+//  width: 100%;
+//}
 .wrap-loading-spiner{
   text-align: center;
   margin-bottom: 40px;
@@ -203,4 +234,7 @@
       border: 1px solid #a0a0a0;
     }
   }
+}
+.status--published {
+  color: #0a74b7;
 }

@@ -64,8 +64,20 @@
         <h1>{{article.title}}</h1>
       </div>
       <div class="control-panel">
-        <span @click="archiveArticle">Archive TTD</span>
-        <span @click="deleteArticle">Delete TTD</span>
+        <div class="wrap-button">
+          <button type="button" @click="changeArtStatus">
+            <icon name="folder" class="icon-btn-ctr" ></icon>
+            <span>
+            {{ctrBtnTitle}}
+          </span>
+          </button>
+          <button type="button" @click="deleteArticle" >
+            <icon name="remove" class="icon-btn-ctr"></icon>
+            <span>
+            Delete article
+          </span>
+          </button>
+        </div>
       </div>
     </div>
     <!-- .add-article-wrapper -->
@@ -438,6 +450,16 @@ export default {
         required: true,
         mimes: 'image/*'
       }
+    },
+    ctrBtnTitle () {
+      switch (this.article.status) {
+        case 0:
+          return 'Publish article'
+        case 1:
+          return 'Archive article'
+        case 2:
+          return 'Re-publish article'
+      }
     }
   },
   watch: {
@@ -776,8 +798,20 @@ export default {
       this.articlePreview.resources = []
       this.articlePreview.isShown = true
     },
-    archiveArticle () {
-      this.editArticle(2)
+    changeArtStatus () {
+      let newStatus
+      switch (this.article.status) {
+        case 0:
+          newStatus = 1
+          break
+        case 1:
+          newStatus = 2
+          break
+        case 2:
+          newStatus = 1
+          break
+      }
+      this.editArticle(newStatus)
     },
     deleteArticle () {
       if (this.disableAPI) return

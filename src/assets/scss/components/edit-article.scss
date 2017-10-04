@@ -192,38 +192,34 @@
   }
 }
 .wrap-title {
-  font-size: 0;
-  line-height: 0;
-  vertical-align: top;
+  display: flex;
   padding: 30px;
   background-color: #f4f4f4;
   margin-bottom: 30px;
   .title {
-    display: inline-block;
     width: 85%;
-    vertical-align: top;
-    h1 {
-      font-size: 24px;
-      line-height: 28px;
-    }
   }
   .control-panel {
-    display: inline-block;
     width: 15%;
-    vertical-align: top;
-    span {
-      display: block;
-      text-align: center;
-      padding: 10px 5px;
-      font-size: 16px;
-      line-height: 18px;
-      color: #fff;
-      margin-bottom: 10px;
-      &:first-child {
-        background-color: #0A74B7;
-      }
-      &:last-child {
-        background-color: #B70A37;
+    .wrap-button {
+      display: flex;
+      flex-direction: column;
+      button {
+        width: 100%;
+        text-align: left;
+        padding: 10px 20px 10px 20px;
+        color: #fff;
+        margin-bottom: 10px;
+        vertical-align: middle;
+        &:first-child {
+          background-color: #0A74B7;
+        }
+        &:last-child {
+          background-color: #B70A37;
+        }
+        .icon-btn-ctr {
+          margin: 0 5px 2px 0;
+        }
       }
     }
   }
