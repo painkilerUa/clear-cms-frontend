@@ -96,6 +96,7 @@
               </div>
             </th>
             <th class="column-lng-head"
+              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2}"
               @mouseover="addHoverElement(getLanguagesForSelect)"
               @mouseleave="removeHoverElements">
               <v-select placeholder="Language"
@@ -103,13 +104,33 @@
                         :class="'hide-selected-items'"/>
             </th>
             <th class="column-type-head"
+                :class="{'active-ceil-head': filerTableHead.selectedCeil === 2}"
                 @mouseover="addHoverElement(getContentTypeForSelect)"
                 @mouseleave="removeHoverElements" >
-              <v-select placeholder="Type"
-                        v-model="contentType"
-                        :options="getContentTypeForSelect"
-                        :multiple="true"
-                        :class="'hide-selected-items'"/>
+              <span
+                @click="showHideSubMenu(2)"
+              >Type</span>
+              <span class="active-chevron" v-if="filerTableHead.selectedCeil === 2">
+                <icon
+                  name="chevron-up"
+                ></icon>
+              </span>
+              <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 2">
+                <icon
+                  name="chevron-down"
+                ></icon>
+              </span>
+              <div class="wrap-dropdown-table-head"
+                id="sub-menu-2"
+                v-show="filerTableHead.selectedCeil === 2"
+                tabindex="-1"
+                @focusout="filerTableHead.selectedCeil = null">
+                <v-select v-model="contentType"
+                          placeholder="Search here ..."
+                          :options="getContentTypeForSelect"
+                          :multiple="true"
+                          :class="'table-head-select'" />
+              </div>
             </th>
             <th class="column-topics-head"
                 @mouseover="addHoverElement(getTagsForSelect)"
@@ -342,7 +363,10 @@ export default {
         }
       },
       isLoading: true,
-      hoverElements: []
+      hoverElements: [],
+      filerTableHead: {
+        selectedCeil: null
+      }
     }
   },
   methods: {
@@ -729,6 +753,19 @@ export default {
         string += role.name + '</br>'
       })
       return string
+    },
+    showHideSubMenu (num) {
+      if (!this.filerTableHead.selectedCeil) {
+        this.filerTableHead.selectedCeil = num
+//        setTimeout(() => {
+//          document.getElementById('sub-menu-' + num).focus()
+//        })
+      } else {
+        this.filerTableHead.selectedCeil = null
+      }
+    },
+    checkClickTableHead (e) {
+      console.log(e)
     }
   },
   computed: {
@@ -789,9 +826,11 @@ export default {
     this.getTags()
     this.getLngs()
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('click', this.checkClickTableHead)
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
+    window.addEventListener('click', this.checkClickTableHead)
   }
 }
 </script>

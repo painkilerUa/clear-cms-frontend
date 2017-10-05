@@ -1,7 +1,7 @@
 @import 'reset';
 @import 'fonts';
 @import 'base';
-@import 'bootstrap';
+//@import 'bootstrap';
 
 
 // 'Problem' styles
@@ -16,6 +16,47 @@ button.ql-image {
   .selected-tag {
     display: none;
   }
+}
+.wrap-dropdown-table-head {
+  position: absolute;
+  top: 56px;
+  left: -1px;
+  z-index: 99;
+  background-color: #f3f3f3;
+  width: 250px;
+  padding: 20px;
+  border: 1px solid #a0a0a0;
+  .selected-tag {
+    display: none;
+  }
+  .dropdown-toggle {
+    input {
+      width: 192px !important;
+      border: 1px solid #d5d5d5;
+      background-color: #fff !important;
+      font-style: italic;
+      &:focus {
+        border: 1px solid #d5d5d5;
+        background-color: #fff !important;
+      }
+    }
+  }
+  .open-indicator {
+    display: none;
+  }
+  .dropdown-menu {
+    position: relative !important;
+    background-color: #fff !important;
+    margin-top: 20px !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.table-head-select {
 }
 .vdp-datepicker__calendar {
   width: 100% !important;
