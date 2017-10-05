@@ -2,25 +2,21 @@
   <header class="front-header">
     <!-- .container -->
     <div class="container">
-      <!-- .row -->
-      <div class="row">
-        <!-- .front-header-top -->
-        <div class="front-header-top">
-          <a href="/" class="logo-link">
-            <img
-              width="222px"
-              height="26px"
-              class="logo-img"
-              src="../../../assets/img/main/logo.png"
-              alt="logo" />
-          </a>
-          <div class="front-header-text">
-            helping talent shine through
-          </div>
+      <!-- .front-header-top -->
+      <div class="front-header-top">
+        <a href="/" class="logo-link">
+          <img
+            width="222px"
+            height="26px"
+            class="logo-img"
+            src="../../../assets/img/main/logo.png"
+            alt="logo" />
+        </a>
+        <div class="front-header-text">
+          helping talent shine through
         </div>
-        <!-- END:.front-header-top -->
       </div>
-      <!-- END:.row -->
+      <!-- END:.front-header-top -->
     </div>
     <!-- END:.container -->
     <div class="col-sm-8 tablet visible-sm">
