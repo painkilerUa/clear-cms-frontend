@@ -1,20 +1,33 @@
 <template>
-  <header>
+  <header class="front-header">
+    <!-- .container -->
     <div class="container">
-      <div class="row logo">
-        <div class="col-md-2  col-sm-4 logo-img">
-          <img class="logo" src="../../../assets/img/main/logo.png" alt="logo" />
+      <!-- .row -->
+      <div class="row">
+        <!-- .front-header-top -->
+        <div class="front-header-top">
+          <a href="/" class="logo-link">
+            <img
+              width="222px"
+              height="26px"
+              class="logo-img"
+              src="../../../assets/img/main/logo.png"
+              alt="logo" />
+          </a>
+          <div class="front-header-text">
+            helping talent shine through
+          </div>
         </div>
-        <div class="col-md-10 hidden-xs hidden-sm">
-          <div class="text">helping talent shine through</div>
-        </div>
-        <div class="col-sm-8 tablet visible-sm">
-          <span class="login">login</span> <span class="delimiter">|</span>
-          <span class="icon-letter"><a href="#" class="small"> A </a><a href="#" class="middle"> A </a><a href="#" class="big"> A </a></span>
-          <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
-          <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
-        </div>
+        <!-- END:.front-header-top -->
       </div>
+      <!-- END:.row -->
+    </div>
+    <!-- END:.container -->
+    <div class="col-sm-8 tablet visible-sm">
+      <span class="login">login</span> <span class="delimiter">|</span>
+      <span class="icon-letter"><a href="#" class="small"> A </a><a href="#" class="middle"> A </a><a href="#" class="big"> A </a></span>
+      <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
+      <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
     </div>
     <section id="search">
       <div class="container">

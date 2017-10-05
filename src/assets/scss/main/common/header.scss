@@ -1,28 +1,28 @@
 @import '../settings/settings';
-header {
-  .logo {
-    img.logo {
-      width: 100%;
-      position: absolute;
-      margin: auto;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      margin-left: 15px;
-    }
-    .text {
-      font-size: 160%;
-      text-align: right;
-      color: $aquamarine;
-      line-height: 60px;
-    }
+.front-header {
+  &-top{
+    padding: 17px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
-  .logo-img {
-    height: 60px;
-    position: relative;
+  &-text{
+    color: #22b6cd;
+    font-size: 16px;
+    font-family: Arial;
   }
 }
+
+.logo {
+  &-link{
+    display: inline-block;
+    text-decoration: none;
+  }
+  &-img{
+    vertical-align: middle;
+  }
+}
+
 #search {
   background-color: $aquamarine;
   .search {
