@@ -37,18 +37,18 @@
               <template v-if="getUserRole === 'Admin'">
                 <router-link
                   :to="{name: 'admin'}"
-                  class="app-header-login__item app-header-login__item--name"
+                  class="front-header-login-link"
                   tabindex="-1"
                   v-if="getUsername">{{getUsername}}</router-link>
               </template>
               <template v-else>
                 <router-link
                   :to="{name: 'profile'}"
-                  class="app-header-login__item app-header-login__item--name"
+                  class="front-header-login-link"
                   tabindex="-1"
                   v-if="getUsername">{{getUsername}}</router-link>
               </template>
-              <a href="#" class="app-header-login__item" tabindex="-1" @click.prevent="authLogout">Logout</a>
+              <a href="#" class="front-header-login-link" tabindex="-1" @click.prevent="authLogout">Logout</a>
             </template>
             <template v-else>
               <router-link
