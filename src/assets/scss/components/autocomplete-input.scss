@@ -19,9 +19,22 @@
         padding: 10px 50px 10px 10px;
         color: color('appHeaderSearchBg');
         border: none;
+        background-size: 30px 30px;
         background-image: url('../../img/base/search-icon.svg');
         background-repeat: no-repeat;
-        background-position: 99% center;
+        background-position: 98% center;
+        &::-webkit-input-placeholder {
+            color: #077380;
+        }
+        &::-moz-placeholder {
+            color: #077380;
+        }
+        &:-moz-placeholder {
+            color: #077380;
+        }
+        &:-ms-input-placeholder {
+            color: #077380;
+        }
     }
     &-blocktitle {
         color: color('highlightedArticleBg');
@@ -84,10 +97,10 @@
         }
     }
     &-content {
-      padding-left: 20px;
+        padding-left: 20px;
     }
     &-more {
-      background-color: transparent;
-      margin-left: 20px;
+        margin-left: 20px;
+        background-color: transparent;
     }
 }
