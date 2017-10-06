@@ -270,11 +270,11 @@ export default {
       let formData = new FormData()
       Object.keys(this.newTag).forEach((fieldName) => {
         if (typeof this.newTag[fieldName] === 'string' || typeof this.newTag[fieldName] === 'number') {
-          formData.set('tag[' + fieldName + ']', this.newTag[fieldName])
+          formData.append('tag[' + fieldName + ']', this.newTag[fieldName])
         }
         if (typeof this.newTag[fieldName] === 'object') {
           this.newTag[fieldName].forEach((item, i) => {
-            formData.set('tag[' + fieldName + '][' + i + ']', item.value)
+            formData.append('tag[' + fieldName + '][' + i + ']', item.value)
           })
         }
       })

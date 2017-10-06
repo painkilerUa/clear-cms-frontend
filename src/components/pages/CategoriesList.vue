@@ -307,16 +307,16 @@ export default {
       let formData = new FormData()
       Object.keys(this.newCategory).forEach((fieldName) => {
         if (typeof this.newCategory[fieldName] === 'string' || typeof this.newCategory[fieldName] === 'number') {
-          formData.set('category[' + fieldName + ']', this.newCategory[fieldName])
+          formData.append('category[' + fieldName + ']', this.newCategory[fieldName])
         }
         if (typeof this.newCategory[fieldName] === 'object' && fieldName !== 'parent') {
           this.newCategory[fieldName].forEach((item, i) => {
-            formData.set('category[' + fieldName + '][' + i + ']', item.value)
+            formData.append('category[' + fieldName + '][' + i + ']', item.value)
           })
         }
       })
       if (this.newCategory.parent) {
-        formData.set('category[parent]', this.newCategory.parent.value)
+        formData.append('category[parent]', this.newCategory.parent.value)
       }
       this.disableAPI = true
       this.$http.post(api.URLS.category, formData, api.headersAuthSettings)

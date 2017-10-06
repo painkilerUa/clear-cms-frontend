@@ -437,8 +437,8 @@
                 class="table-crud-btn icon-btn"
                 @click="editArticle(article.id)">
                 <icon name="pencil"/>
+                <span class="table-tooltip-edit">Edit</span>
               </button>
-              <span class="table-tooltip-edit">Edit</span>
             </td>
             <td class="cellpadding">
               <button

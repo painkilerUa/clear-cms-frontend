@@ -567,42 +567,42 @@ export default {
       if (this.disableAPI) return
       let formData = new FormData()
       if (document.getElementById('uploadThumbnail').files.length) {
-        formData.set('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
+        formData.append('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
       }
-      formData.set('content[title]', this.selectedValues.title)
-      formData.set('content[content]', this.selectedValues.content)
-      formData.set('content[description]', this.selectedValues.description)
-      formData.set('content[contentType]', this.selectedValues.contentType.value)
+      formData.append('content[title]', this.selectedValues.title)
+      formData.append('content[content]', this.selectedValues.content)
+      formData.append('content[description]', this.selectedValues.description)
+      formData.append('content[contentType]', this.selectedValues.contentType.value)
       if (this.selectedValues.language) {
-        formData.set('content[language]', this.selectedValues.language.value)
+        formData.append('content[language]', this.selectedValues.language.value)
       }
-      formData.set('content[publishedAt]', this.selectedValues.publishedAt)
-      formData.set('content[status]', status)
-      formData.set('content[isArticle]', 1)
+      formData.append('content[publishedAt]', this.selectedValues.publishedAt)
+      formData.append('content[status]', status)
+      formData.append('content[isArticle]', 1)
 // Add children
       let children = [...this.selectedValues.thingsToConsider, ...this.selectedValues.thingsToDo]
       children.forEach((item, i) => {
         let fieldName = 'content[children][' + i + ']'
-        formData.set(fieldName, item.value)
+        formData.append(fieldName, item.value)
       })
 //  Add categories
       this.selectedValues.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
-        formData.set(fieldName, category.value)
+        formData.append(fieldName, category.value)
       })
 //  Add tags
       this.selectedValues.tags.forEach((tag, i) => {
         let fieldName = 'content[tags][' + i + ']'
-        formData.set(fieldName, tag.value)
+        formData.append(fieldName, tag.value)
       })
 // Add companies
       this.selectedValues.companies.forEach((company, i) => {
         let fieldName = 'content[companies][' + i + ']'
-        formData.set(fieldName, company.value)
+        formData.append(fieldName, company.value)
       })
       this.selectedValues.roles.forEach((role, i) => {
         let fieldName = 'content[roles][' + i + ']'
-        formData.set(fieldName, role.value)
+        formData.append(fieldName, role.value)
       })
       if (this.subForm.type === 'resource') {
         let urls = [...document.getElementsByClassName('input-url-resource')]
@@ -611,15 +611,15 @@ export default {
         if (!urls.length || !textareas.length || !files.length) return
         urls.forEach((url, i) => {
           if (!url.value) return
-          formData.set('content[typeValues][' + i + '][link]', url.value)
+          formData.append('content[typeValues][' + i + '][link]', url.value)
         })
         textareas.forEach((textarea, i) => {
           if (!textarea.value) return
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
+          formData.append('content[typeValues][' + i + '][textarea]', textarea.value)
         })
         files.forEach((file, i) => {
           if (!file.files[0]) return
-          formData.set('content[typeValues][' + i + '][file]', file.files[0])
+          formData.append('content[typeValues][' + i + '][file]', file.files[0])
         })
         console.log(urls, textareas, files)
       }
@@ -629,11 +629,11 @@ export default {
         if (!urls.length || !textareas.length) return
         urls.forEach((url, i) => {
           if (!url.value) return
-          formData.set('content[typeValues][' + i + '][link]', url.value)
+          formData.append('content[typeValues][' + i + '][link]', url.value)
         })
         textareas.forEach((textarea, i) => {
           if (!textarea.value) return
-          formData.set('content[typeValues][' + i + '][textarea]', textarea.value)
+          formData.append('content[typeValues][' + i + '][textarea]', textarea.value)
         })
       }
       this.disableAPI = true
