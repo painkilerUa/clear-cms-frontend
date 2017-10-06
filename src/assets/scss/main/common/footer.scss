@@ -1,5 +1,45 @@
 @import '../settings/settings';
 
+.front-footer{
+  font-family: 'Arial';
+  padding: 0;
+  &-top{
+    padding-top: 48px;
+    padding-bottom: 29px;
+    &__inner{
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+  &-info{
+    font-size: 0.81rem;
+    line-height: 1.38;
+    p{
+      margin-bottom: 4px;
+    }
+  }
+  a[href^="tel"],
+  &-phone {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover,
+    &:focus{
+      text-decoration: underline;
+    }
+  }
+  &-social{
+    &__title{
+      font-size: 0.8rem;
+      line-height: 1.38;
+      margin-bottom: 7px;
+      font-weight: normal;
+    }
+  }
+}
+
 footer {
   background-color: $dark;
   padding-top: 45px;
