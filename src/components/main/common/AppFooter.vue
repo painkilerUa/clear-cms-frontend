@@ -37,6 +37,33 @@
       <!-- END:.myContainer -->
     </div>
     <!-- END:.front-footer-top -->
+
+    <!-- .front-footer-links -->
+    <div class="front-footer-links">
+      <!-- .myContainer -->
+      <div class="myContainer">
+        <!-- .front-footer-links__inner -->
+        <div class="front-footer-links__inner">
+          <!-- front-footer-links-list -->
+          <ul class="front-footer-links-list">
+            <li class="front-footer-links-list__item">
+              <a href="#" class="front-footer-links-list__link">Terms and conditions</a>
+            </li>
+            <li class="front-footer-links-list__item">
+              <a href="#" class="front-footer-links-list__link">Privacy statement</a>
+            </li>
+            <li class="front-footer-links-list__item">
+              <a href="#" class="front-footer-links-list__link">Accessibility section</a>
+            </li>
+          </ul>
+          <!-- END:front-footer-links-list -->
+        </div>
+        <!-- END:.front-footer-links__inner -->
+      </div>
+      <!-- END:.myContainer -->
+    </div>
+    <!-- END:.front-footer-links -->
+
     <!-- <div class="col-md-5 col-md-offset-4 block-icon col-sm-5 col-sm-offset-3">
       <p>Join us on...</p>
       <a href="#"><img src="../../../assets/img/main/footer/icon/youtube.png" alt="youtube" /></a>
