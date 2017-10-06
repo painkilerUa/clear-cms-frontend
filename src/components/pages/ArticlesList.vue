@@ -79,8 +79,9 @@
         <table class="table table-data">
           <thead>
           <tr>
-            <th class="cellpadding column-id-head">ID</th>
-            <th class="articles-list-search-col text-left column-search-head">
+            <th class="cellpadding column-id-head table-head-ceil">ID</th>
+            <th class="articles-list-search-col text-left column-search-head table-head-ceil"
+              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 1}">
               <div class="table-search-wrap">
                 <div class="wrap-input">
                   <input
@@ -95,31 +96,58 @@
                 </div>
               </div>
             </th>
-            <th class="column-lng-head"
-              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2}"
+            <th class="column-lng-head table-head-hover table-head-ceil"
+              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2, 'active-ceil-head': filerTableHead.selectedCeil === 1}"
               @mouseover="addHoverElement(getLanguagesForSelect)"
               @mouseleave="removeHoverElements">
-              <v-select placeholder="Language"
-                        :options="getLanguagesForSelect"
-                        :class="'hide-selected-items'"/>
+              <div class="caption-head" @click="showHideSubMenu(1)">
+                <div class="caption-head-text">
+                  <span>Language</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 1">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 1">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                 id="sub-menu-1"
+                 v-show="filerTableHead.selectedCeil === 1"
+                 tabindex="-1"
+                 @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
+                          :options="getLanguagesForSelect"
+                          :class="'hide-selected-items'"/>
+              </div>
             </th>
-            <th class="column-type-head"
-                :class="{'active-ceil-head': filerTableHead.selectedCeil === 2}"
+            <th class="column-type-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 3, 'active-ceil-head': filerTableHead.selectedCeil === 2}"
                 @mouseover="addHoverElement(getContentTypeForSelect)"
                 @mouseleave="removeHoverElements" >
-              <span
-                @click="showHideSubMenu(2)"
-              >Type</span>
-              <span class="active-chevron" v-if="filerTableHead.selectedCeil === 2">
-                <icon
-                  name="chevron-up"
-                ></icon>
-              </span>
-              <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 2">
-                <icon
-                  name="chevron-down"
-                ></icon>
-              </span>
+              <div class="caption-head" @click="showHideSubMenu(2)">
+                <div class="caption-head-text">
+                  <span>Type</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 2">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 2">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
               <div class="wrap-dropdown-table-head"
                 id="sub-menu-2"
                 v-show="filerTableHead.selectedCeil === 2"
@@ -132,46 +160,149 @@
                           :class="'table-head-select'" />
               </div>
             </th>
-            <th class="column-topics-head"
+            <th class="column-topics-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 4, 'active-ceil-head': filerTableHead.selectedCeil === 3}"
                 @mouseover="addHoverElement(getTagsForSelect)"
                 @mouseleave="removeHoverElements">
-              <v-select placeholder="Topics"
-                        :options="getTagsForSelect"
-                        v-model="tags"
-                        :multiple="true"
-                        :class="'hide-selected-items'"/>
+              <div class="caption-head" @click="showHideSubMenu(3)">
+                <div class="caption-head-text">
+                  <span>Topics</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 3">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 3">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                id="sub-menu-3"
+                v-show="filerTableHead.selectedCeil === 3"
+                tabindex="-1"
+                @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
+                          :options="getTagsForSelect"
+                          v-model="tags"
+                          :multiple="true"
+                          :class="'hide-selected-items'"/>
+              </div>
             </th>
-            <th class="column-categories-head"
+            <th class="column-categories-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 5, 'active-ceil-head': filerTableHead.selectedCeil === 4}"
                 @mouseover="addHoverElement(getCategoriesForSelect)"
                 @mouseleave="removeHoverElements">
-              <v-select placeholder="Category"
+              <div class="caption-head" @click="showHideSubMenu(4)">
+                <div class="caption-head-text">
+                  <span>Category</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 4">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                  <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 4">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-4"
+                   v-show="filerTableHead.selectedCeil === 4"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
                         :options="getCategoriesForSelect"
                         v-model="categories"
                         :multiple="true"
                         :class="'hide-selected-items'"/>
+              </div>
             </th>
-            <th class="column-access-head"
+            <th class="column-access-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 6, 'active-ceil-head': filerTableHead.selectedCeil === 5}"
                 @mouseover="addHoverElement(getRolesForSelect)"
                 @mouseleave="removeHoverElements">
-              <v-select placeholder="Access"
-                        :options="getRolesForSelect"
-                        v-model="roles"
-                        :multiple="true"
-                        :class="'hide-selected-items'"
-              />
+              <div class="caption-head" @click="showHideSubMenu(5)">
+                <div class="caption-head-text">
+                  <span>Access</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 5">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 5">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                id="sub-menu-5"
+                v-show="filerTableHead.selectedCeil === 5"
+                tabindex="-1"
+                @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
+                          :options="getRolesForSelect"
+                          v-model="roles"
+                          :multiple="true"
+                          :class="'hide-selected-items'"
+                />
+              </div>
             </th>
-            <th class="column-companies-head"
+            <th class="column-companies-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 7, 'active-ceil-head': filerTableHead.selectedCeil === 6}"
                 @mouseover="addHoverElement(getCompaniesForSelect)"
                 @mouseleave="removeHoverElements">
-              <v-select placeholder="Comp spec"
-                        :options="getCompaniesForSelect"
-                        v-model="companies"
-                        :multiple="true"
-                        :class="'hide-selected-items'"
-              />
+              <div class="caption-head" @click="showHideSubMenu(6)">
+                <div class="caption-head-text">
+                  <span>Company specific</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 6">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 6">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-6"
+                   v-show="filerTableHead.selectedCeil === 6"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
+                          :options="getCompaniesForSelect"
+                          v-model="companies"
+                          :multiple="true"
+                          :class="'hide-selected-items'"
+                />
+              </div>
             </th>
-            <th class="column-last-edited-head">
-              <span @click="datepicker.isShown = !datepicker.isShown">Last Edited</span>
+            <th class="column-last-edited-head table-head-hover table-head-ceil">
+              <div class="caption-head" @click="datepicker.isShown = !datepicker.isShown">
+                <div class="caption-head-text">
+                  <span >Last Edited</span>
+                </div>
+                <div class="caption-head-icon">
+
+                </div>
+              </div>
               <div class="datepicker" v-if="datepicker.isShown">
                 <div class="datepicker-statusbar">
                   <div class="datepicker-statusbar-half">
@@ -208,29 +339,77 @@
                 </div>
               </div>
             </th>
-            <th class="column-author-head"
+            <th class="column-author-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 9, 'active-ceil-head': filerTableHead.selectedCeil === 8}"
                 @mouseover="addHoverElement(lastEditorsOptions)"
                 @mouseleave="removeHoverElements">
-              <v-select
-                :debounce="250"
-                :on-search="getOptionsLastEditors"
-                :options="lastEditorsOptions"
-                :multiple="true"
-                v-model="lastEditors"
-                :class="'hide-selected-items'"
-                placeholder="Upl/Edit"
-              />
+              <div class="caption-head">
+                <div class="caption-head-text" @click="showHideSubMenu(8)">
+                  <span>Uploader / Editor</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 8">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 8">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-8"
+                   v-show="filerTableHead.selectedCeil === 8"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select
+                  :debounce="250"
+                  :on-search="getOptionsLastEditors"
+                  :options="lastEditorsOptions"
+                  :multiple="true"
+                  v-model="lastEditors"
+                  :class="'hide-selected-items'"
+                  placeholder="Search here ..."
+                />
+              </div>
             </th>
-            <th class="column-status-head"
+            <th class="column-status-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 10, 'active-ceil-head': filerTableHead.selectedCeil === 9}"
                 @mouseover="addHoverElement(statusOptions)"
                 @mouseleave="removeHoverElements">
-              <v-select placeholder="Status"
-                        v-model="status"
-                        :options="statusOptions"
-                        :multiple="true"
-                        :class="'hide-selected-items'"/>
+              <div class="caption-head" @click="showHideSubMenu(9)">
+                <div class="caption-head-text">
+                  <span>Status</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 9">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 9">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-9"
+                   v-show="filerTableHead.selectedCeil === 9"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
+                          v-model="status"
+                          :options="statusOptions"
+                          :multiple="true"
+                          :class="'hide-selected-items'"/>
+              </div>
             </th>
-            <th colspan="3" class="cellpadding column-actions-head">Actions</th>
+            <th colspan="3" class="cellpadding column-actions-head table-head-ceil">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -259,6 +438,7 @@
                 @click="editArticle(article.id)">
                 <icon name="pencil"/>
               </button>
+              <span class="table-tooltip-edit">Edit</span>
             </td>
             <td class="cellpadding">
               <button

@@ -211,6 +211,7 @@
   left: calc(50% - 325px);
   width: 650px;
   height: 380px;
+  z-index: 99;
   background-color: #f3f3f3;
   padding: 20px 30px;
   &-statusbar {

@@ -8,9 +8,6 @@
 .app {
   height: 100%;
 }
-button.ql-image {
-  display: none !important;
-}
 
 .hide-selected-items {
   .selected-tag {
@@ -19,7 +16,7 @@ button.ql-image {
 }
 .wrap-dropdown-table-head {
   position: absolute;
-  top: 56px;
+  top: 59px;
   left: -1px;
   z-index: 99;
   background-color: #f3f3f3;
@@ -31,7 +28,7 @@ button.ql-image {
   }
   .dropdown-toggle {
     input {
-      width: 192px !important;
+      width: 208px !important;
       border: 1px solid #d5d5d5;
       background-color: #fff !important;
       font-style: italic;
@@ -56,7 +53,16 @@ button.ql-image {
   }
 }
 
-.table-head-select {
+.caption-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  cursor: pointer;
+  &-text {
+  }
+  &-icon {
+  }
 }
 .vdp-datepicker__calendar {
   width: 100% !important;

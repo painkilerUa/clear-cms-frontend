@@ -207,9 +207,9 @@
           <section class="add-article-section">
             <h2 class="add-article-section__title">Article content</h2>
             <vue-editor
+              :editorToolbar="editorToolbar"
               name="Content"
               class="article-editor"
-              data-vv-as='"Content"'
               v-model="selectedValues.content" />
             <div
               v-if="errors.has('Content')"
@@ -385,7 +385,7 @@ export default {
     return {
       selectedValues: {
         title: '',
-        content: '',
+        content: null,
         description: 'description',
         contentType: null,
         tags: [],
@@ -434,12 +434,17 @@ export default {
         resources: []
       },
       thingsToConsiderOptions: [],
-      thingsToDoOptions: []
-//      customEditorToolbar: [
-//        ['bold', 'italic', 'underline', 'strike'],
-//        [{'list': 'blockquote'}, {'list': 'code-block'}],
-//        [{'list': 'ordered'}, {'list': 'bullet'}]
-//      ]
+      thingsToDoOptions: [],
+      editorToolbar: [
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        ['bold', 'italic', 'underline', 'strike', {'color': []}, {'background': []}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        ['blockquote', 'code-block', 'image', 'link'],
+        [{'font': []}],
+        [{'align': []}],
+        ['clean']
+      ]
     }
   },
   computed: {

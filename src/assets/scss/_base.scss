@@ -219,9 +219,6 @@
     thead {
       background-color: #fafafa;
     },
-    th {
-      cursor: pointer;
-    },
     th,
     td {
         position: relative;
@@ -282,4 +279,13 @@
     &-editor {
         margin-bottom: 15px;
     }
+}
+
+.table-head-ceil {
+  font-size: 120%;
+}
+.table-head-hover {
+  &:hover {
+    background-color: #fffdd8;
+  }
 }
