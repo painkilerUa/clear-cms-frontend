@@ -49,7 +49,7 @@
             <template v-else>
               <router-link
                 :to="{name: 'login'}"
-                class="app-header-login__item"
+                class="front-header-login-link"
                 tabindex="-1">Login</router-link>
             </template>
           </div>
