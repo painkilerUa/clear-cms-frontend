@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 172.667 89.963" style="enable-background:new 0 0 172.667 89.963;" xml:space="preserve">
+	 viewBox="0 0 172.925 90.13" style="enable-background:new 0 0 172.925 90.13;" xml:space="preserve">
 <style type="text/css">
 	.st0{filter:url(#Adobe_OpacityMaskFilter);}
 	.st1{fill:#FFFFFF;}
@@ -26,137 +26,180 @@
 	.st20{mask:url(#mask-20_2_);fill:#077280;}
 	.st21{fill:#22B6CD;}
 </style>
-<g id="XMLID_1_">
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="122.765" y="30" width="55.28" height="41.023">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="122.765" y="30" width="55.28" height="41.023" id="mask-2_2_">
-		<g class="st0">
-			<path id="path-1_2_" class="st1" d="M140.966,38.401c-2.79,0-5.451-0.533-7.887-1.495c-1.15,2.513-2.813,4.758-4.86,6.611
-				c6.841,2.087,20.668,7.552,20.668,17.594v4.643h23.705V50.431c0-9.274-16.96-14.237-20.456-15.161
-				C148.898,37.25,145.069,38.401,140.966,38.401z"/>
+<g id="XMLID_3_">
+	<g id="Group-3" transform="translate(128.000000, 35.000000)">
+		<g id="Clip-2">
 		</g>
-	</mask>
-	<polygon id="Fill-1" class="st2" points="122.765,71.023 178.045,71.023 178.045,30 122.765,30 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="118.813" y="-5.098" width="43.195" height="45.129">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="118.813" y="-5.098" width="43.195" height="45.129" id="mask-4_2_">
-		<g class="st3">
-			<path id="path-3_2_" class="st1" d="M124.081,10.752c5.847,3.583,9.764,10.092,9.764,17.51c0,1.767-0.222,3.483-0.639,5.12
-				c2.013,0.851,4.22,1.323,6.538,1.323c9.388,0,16.998-7.717,16.998-17.239c0-9.519-7.61-17.237-16.998-17.237
-				C132.702,0.228,126.662,4.568,124.081,10.752z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-5.144" y="-4.833" width="55.28" height="41.023">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.144" y="-4.833" width="55.28" height="41.023" id="mask-2_2_">
+			<g class="st0">
+				<path id="path-1_2_" class="st1" d="M13.057,3.568c-2.79,0-5.451-0.533-7.887-1.495C4.02,4.586,2.357,6.831,0.31,8.684
+					c6.841,2.087,20.668,7.552,20.668,17.594v4.643h23.705V15.597c0-9.274-16.96-14.237-20.456-15.161
+					C20.99,2.417,17.161,3.568,13.057,3.568z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-1" class="st2" points="-5.144,36.19 50.137,36.19 50.137,-4.833 -5.144,-4.833 		"/>
+	</g>
+	<g id="Group-6" transform="translate(124.000000, 0.000000)">
+		<g id="Clip-5">
 		</g>
-	</mask>
-	<polygon id="Fill-4" class="st4" points="118.813,40.031 162.008,40.031 162.008,-5.098 118.813,-5.098 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_2_" filterUnits="userSpaceOnUse" x="-5.303" y="30" width="55.467" height="41.023">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="-5.303" y="30" width="55.467" height="41.023" id="mask-6_2_">
-		<g class="st5">
-			<path id="path-5_2_" class="st1" d="M0.201,50.431v15.323h23.597v-4.643c0-10.042,13.955-15.507,20.861-17.594
-				c-2.038-1.826-3.699-4.034-4.857-6.505c-2.382,0.894-4.971,1.389-7.679,1.389c-4.143,0-8.008-1.151-11.276-3.131
-				C17.317,36.195,0.201,41.157,0.201,50.431z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="-5.095" y="-4.931" width="43.195" height="45.129">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.095" y="-4.931" width="43.195" height="45.129" id="mask-4_2_">
+			<g class="st3">
+				<path id="path-3_2_" class="st1" d="M0.172,10.919c5.847,3.583,9.764,10.092,9.764,17.51c0,1.767-0.222,3.483-0.639,5.12
+					c2.013,0.851,4.22,1.323,6.538,1.323c9.388,0,16.998-7.717,16.998-17.239c0-9.519-7.61-17.237-16.998-17.237
+					C8.794,0.395,2.753,4.734,0.172,10.919z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-4" class="st4" points="-5.095,40.198 38.099,40.198 38.099,-4.931 -5.095,-4.931 		"/>
+	</g>
+	<g id="Group-9" transform="translate(0.000000, 35.000000)">
+		<g id="Clip-8">
 		</g>
-	</mask>
-	<polygon id="Fill-7" class="st6" points="-5.303,71.023 50.163,71.023 50.163,30 -5.303,30 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_3_" filterUnits="userSpaceOnUse" x="9.789" y="-5.098" width="43.129" height="45.129">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="9.789" y="-5.098" width="43.129" height="45.129" id="mask-8_2_">
-		<g class="st7">
-			<path id="path-7_2_" class="st1" d="M15.056,17.465c0,9.522,7.611,17.239,17,17.239c2.209,0,4.317-0.432,6.253-1.209
-				c-0.437-1.671-0.671-3.425-0.671-5.234c0-7.523,4.028-14.109,10.012-17.659C45.034,4.499,39.039,0.228,32.056,0.228
-				C22.667,0.228,15.056,7.946,15.056,17.465z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_2_" filterUnits="userSpaceOnUse" x="-5.212" y="-4.833" width="55.467" height="41.023">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.212" y="-4.833" width="55.467" height="41.023" id="mask-6_2_">
+			<g class="st5">
+				<path id="path-5_2_" class="st1" d="M0.292,15.597V30.92h23.597v-4.643c0-10.042,13.955-15.507,20.861-17.594
+					c-2.038-1.826-3.699-4.034-4.857-6.505c-2.382,0.894-4.971,1.389-7.679,1.389c-4.143,0-8.008-1.151-11.276-3.131
+					C17.408,1.361,0.292,6.324,0.292,15.597z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-7" class="st6" points="-5.212,36.19 50.255,36.19 50.255,-4.833 -5.212,-4.833 		"/>
+	</g>
+	<g id="Group-12" transform="translate(15.000000, 0.000000)">
+		<g id="Clip-11">
 		</g>
-	</mask>
-	<polygon id="Fill-10" class="st8" points="9.789,40.031 52.917,40.031 52.917,-5.098 9.789,-5.098 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_4_" filterUnits="userSpaceOnUse" x="83.051" y="-2.949" width="41.013" height="27.129">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="83.051" y="-2.949" width="41.013" height="27.129" id="mask-10_2_">
-		<g class="st9">
-			<path id="path-9_2_" class="st1" d="M88.389,17.927c1.341,0.197,2.64,0.522,3.888,0.955C95.908,11.734,103.3,7.17,111.399,7.17
-				c2.572,0,5.039,0.455,7.326,1.285c-3.161-3.733-7.891-6.107-13.18-6.107C96.559,2.348,89.185,9.193,88.389,17.927z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_3_" filterUnits="userSpaceOnUse" x="-5.12" y="-4.931" width="43.129" height="45.129">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.12" y="-4.931" width="43.129" height="45.129" id="mask-8_2_">
+			<g class="st7">
+				<path id="path-7_2_" class="st1" d="M0.148,17.632c0,9.522,7.611,17.239,17,17.239c2.209,0,4.317-0.432,6.253-1.209
+					c-0.437-1.671-0.671-3.425-0.671-5.234c0-7.523,4.028-14.109,10.012-17.659C30.126,4.666,24.13,0.395,17.147,0.395
+					C7.758,0.395,0.148,8.113,0.148,17.632z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-10" class="st8" points="-5.12,40.198 38.009,40.198 38.009,-4.931 -5.12,-4.931 		"/>
+	</g>
+	<g id="Group-15" transform="translate(88.000000, 2.000000)">
+		<g id="Clip-14">
 		</g>
-	</mask>
-	<polygon id="Fill-13" class="st10" points="83.051,24.179 124.064,24.179 124.064,-2.949 83.051,-2.949 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_5_" filterUnits="userSpaceOnUse" x="92.043" y="6.8" width="43.065" height="44.356">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="92.043" y="6.8" width="43.065" height="44.356" id="mask-12_2_">
-		<g class="st11">
-			<path id="path-11_2_" class="st1" d="M97.31,22.094c5.916,3.506,9.89,9.94,9.89,17.284c0,1.838-0.25,3.62-0.716,5.313
-				c1.965,0.791,4.11,1.23,6.359,1.23c9.388,0,16.998-7.586,16.998-16.944c0-9.356-7.61-16.942-16.998-16.942
-				C105.914,12.035,99.958,16.169,97.31,22.094z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_4_" filterUnits="userSpaceOnUse" x="-4.857" y="-4.783" width="41.013" height="27.129">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-4.857" y="-4.783" width="41.013" height="27.129" id="mask-10_2_">
+			<g class="st9">
+				<path id="path-9_2_" class="st1" d="M0.481,16.093c1.341,0.197,2.64,0.522,3.888,0.955C7.999,9.901,15.392,5.337,23.491,5.337
+					c2.572,0,5.039,0.455,7.326,1.285c-3.161-3.733-7.891-6.107-13.18-6.107C8.651,0.514,1.276,7.359,0.481,16.093z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-13" class="st10" points="-4.857,22.346 36.156,22.346 36.156,-4.783 -4.857,-4.783 		"/>
+	</g>
+	<g id="Group-18" transform="translate(97.000000, 12.000000)">
+		<g id="Clip-17">
 		</g>
-	</mask>
-	<polygon id="Fill-16" class="st12" points="92.043,51.156 135.108,51.156 135.108,6.8 92.043,6.8 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_6_" filterUnits="userSpaceOnUse" x="94.667" y="41.811" width="55.53" height="41.023">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="94.667" y="41.811" width="55.53" height="41.023" id="mask-14_2_">
-		<g class="st13">
-			<path id="path-13_2_" class="st1" d="M112.771,50.211c-2.761,0-5.398-0.514-7.819-1.442c-1.155,2.406-2.788,4.558-4.781,6.345
-				c6.906,2.087,20.862,7.552,20.862,17.594v4.855h23.66V62.241c0-9.275-17.118-14.237-20.647-15.161
-				C120.778,49.06,116.913,50.211,112.771,50.211z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_5_" filterUnits="userSpaceOnUse" x="-4.866" y="-5.033" width="43.065" height="44.356">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-4.866" y="-5.033" width="43.065" height="44.356" id="mask-12_2_">
+			<g class="st11">
+				<path id="path-11_2_" class="st1" d="M0.401,10.26c5.916,3.506,9.89,9.94,9.89,17.284c0,1.838-0.25,3.62-0.716,5.313
+					c1.965,0.791,4.11,1.23,6.359,1.23c9.388,0,16.998-7.586,16.998-16.944c0-9.356-7.61-16.942-16.998-16.942
+					C9.006,0.202,3.049,4.335,0.401,10.26z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-16" class="st12" points="-4.866,39.322 38.199,39.322 38.199,-5.033 -4.866,-5.033 		"/>
+	</g>
+	<g id="Group-21" transform="translate(100.000000, 47.000000)">
+		<g id="Clip-20">
 		</g>
-	</mask>
-	<polygon id="Fill-19" class="st14" points="94.667,82.833 150.197,82.833 150.197,41.811 94.667,41.811 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_7_" filterUnits="userSpaceOnUse" x="43.745" y="-5.329" width="43.284" height="30.446">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="43.745" y="-5.329" width="43.284" height="30.446" id="mask-16_2_">
-		<g class="st15">
-			<path id="path-15_2_" class="st1" d="M49.144,9.208c2.762-1.323,5.835-2.068,9.074-2.068c8.248,0,15.732,4.833,19.386,12.409
-				c1.288-0.485,2.633-0.847,4.021-1.072c0.001-0.071,0.005-0.141,0.005-0.212c0-9.954-7.8-18.023-17.423-18.023
-				C57.776,0.241,52.164,3.847,49.144,9.208z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_6_" filterUnits="userSpaceOnUse" x="-5.242" y="-5.023" width="55.53" height="41.023">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.242" y="-5.023" width="55.53" height="41.023" id="mask-14_2_">
+			<g class="st13">
+				<path id="path-13_2_" class="st1" d="M12.862,3.378c-2.761,0-5.398-0.514-7.819-1.442C3.889,4.342,2.256,6.494,0.262,8.282
+					c6.906,2.087,20.862,7.552,20.862,17.594v4.855h23.66V15.408c0-9.275-17.118-14.237-20.647-15.161
+					C20.87,2.227,17.004,3.378,12.862,3.378z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-19" class="st14" points="-5.242,36 50.289,36 50.289,-5.023 -5.242,-5.023 		"/>
+	</g>
+	<g id="Group-24" transform="translate(49.000000, 0.000000)">
+		<g id="Clip-23">
 		</g>
-	</mask>
-	<polygon id="Fill-22" class="st16" points="43.745,25.117 58.781,25.117 87.029,25.117 87.029,-5.329 43.745,-5.329 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_8_" filterUnits="userSpaceOnUse" x="35.777" y="6.8" width="43.132" height="44.356">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="35.777" y="6.8" width="43.132" height="44.356" id="mask-18_2_">
-		<g class="st17">
-			<path id="path-17_2_" class="st1" d="M41.044,28.977c0,9.358,7.61,16.944,16.998,16.944c2.357,0,4.602-0.478,6.643-1.344
-				c-0.446-1.659-0.686-3.402-0.686-5.2c0-7.24,3.863-13.598,9.642-17.136c-2.614-6.004-8.613-10.207-15.6-10.207
-				C48.654,12.035,41.044,19.621,41.044,28.977z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_7_" filterUnits="userSpaceOnUse" x="-5.163" y="-5.162" width="43.284" height="30.446">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.163" y="-5.162" width="43.284" height="30.446" id="mask-16_2_">
+			<g class="st15">
+				<path id="path-15_2_" class="st1" d="M0.235,9.374C2.998,8.051,6.07,7.306,9.31,7.306c8.248,0,15.732,4.833,19.386,12.409
+					c1.288-0.485,2.633-0.847,4.021-1.072c0.001-0.071,0.005-0.141,0.005-0.212c0-9.954-7.8-18.023-17.423-18.023
+					C8.868,0.407,3.255,4.014,0.235,9.374z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-22" class="st16" points="-5.163,25.284 9.873,25.284 38.121,25.284 38.121,-5.162 -5.163,-5.162 		"/>
+	</g>
+	<g id="Group-27" transform="translate(41.000000, 12.000000)">
+		<g id="Clip-26">
 		</g>
-	</mask>
-	<polygon id="Fill-25" class="st18" points="35.777,51.156 78.909,51.156 78.909,6.8 35.777,6.8 	"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_9_" filterUnits="userSpaceOnUse" x="21.732" y="41.811" width="55.342" height="41.023">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="21.732" y="41.811" width="55.342" height="41.023" id="mask-20_2_">
-		<g class="st19">
-			<path id="path-19_2_" class="st1" d="M27.184,62.241v15.323h23.769v-4.855c0-10.04,13.825-15.506,20.667-17.594
-				c-2.005-1.813-3.642-4.002-4.789-6.452c-2.472,0.996-5.18,1.548-8.02,1.548c-4.104,0-7.932-1.151-11.171-3.131
-				C44.144,48.004,27.184,52.966,27.184,62.241z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_8_" filterUnits="userSpaceOnUse" x="-5.131" y="-5.033" width="43.132" height="44.356">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.131" y="-5.033" width="43.132" height="44.356" id="mask-18_2_">
+			<g class="st17">
+				<path id="path-17_2_" class="st1" d="M0.136,17.143c0,9.358,7.61,16.944,16.998,16.944c2.357,0,4.602-0.478,6.643-1.344
+					c-0.446-1.659-0.686-3.402-0.686-5.2c0-7.24,3.863-13.598,9.642-17.136C30.12,4.404,24.12,0.202,17.134,0.202
+					C7.746,0.202,0.136,7.787,0.136,17.143z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-25" class="st18" points="-5.131,39.322 38.001,39.322 38.001,-5.033 -5.131,-5.033 		"/>
+	</g>
+	<g id="Group-30" transform="translate(27.000000, 47.000000)">
+		<g id="Clip-29">
 		</g>
-	</mask>
-	<polygon id="Fill-28" class="st20" points="21.732,82.834 77.074,82.834 77.074,41.811 21.732,41.811 	"/>
-	<path id="Stroke-31" class="st21" d="M97.308,58.963c-3.276,2.014-7.151,3.184-11.303,3.184c-4.152,0-8.027-1.17-11.303-3.184
-		c-3.54,0.941-20.697,5.987-20.697,15.418v15.582h32h32V74.381C118.006,64.949,100.846,59.903,97.308,58.963z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_9_" filterUnits="userSpaceOnUse" x="-5.177" y="-5.023" width="55.342" height="41.023">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="-5.177" y="-5.023" width="55.342" height="41.023" id="mask-20_2_">
+			<g class="st19">
+				<path id="path-19_2_" class="st1" d="M0.276,15.408v15.323h23.769v-4.855c0-10.04,13.825-15.506,20.667-17.594
+					C42.707,6.469,41.07,4.28,39.923,1.83c-2.472,0.996-5.18,1.548-8.02,1.548c-4.104,0-7.932-1.151-11.171-3.131
+					C17.236,1.171,0.276,6.133,0.276,15.408z"/>
+			</g>
+		</mask>
+		<polygon id="Fill-28" class="st20" points="-5.177,36 50.166,36 50.166,-5.023 -5.177,-5.023 		"/>
+	</g>
+	<g id="XMLID_2_">
+		<path id="Stroke-31" class="st21" d="M97.4,59.13c-3.276,2.014-7.151,3.184-11.303,3.184c-4.152,0-8.027-1.17-11.303-3.184
+			c-3.54,0.941-20.697,5.987-20.697,15.418V90.13h32h32V74.547C118.097,65.116,100.937,60.07,97.4,59.13z"/>
+		<circle id="XMLID_1_" class="st21" cx="86.097" cy="40.198" r="16.5"/>
+	</g>
 </g>
 </svg>
