@@ -1,18 +1,21 @@
 @import '../settings/settings';
 .front-header {
-  &-top{
-    padding: 17px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  &-top {
+    &__inner {
+      padding: 17px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
-  &-text{
+  &-text {
     color: #22b6cd;
     font-size: 16px;
     font-family: Arial;
   }
-  &-login{
-    &-link{
+  &-login {
+    &-link {
       color: #000;
       font-size: 12px;
     }
@@ -20,11 +23,11 @@
 }
 
 .logo {
-  &-link{
+  &-link {
     display: inline-block;
     text-decoration: none;
   }
-  &-img{
+  &-img {
     vertical-align: middle;
   }
 }
@@ -62,9 +65,11 @@
     }
   }
 }
+
 .wrap-autocomplete-input {
   padding: 13px 0;
 }
+
 @media (max-width: 575px) {
   /*---------- header ---------------*/
   header {
@@ -106,12 +111,12 @@
       padding-top: 70px
     }
     .line:before {
-      position:absolute;
-      top:0;
-      left:30px;
+      position: absolute;
+      top: 0;
+      left: 30px;
       right: 30px;
       border-top: solid 2px #979797;
-      content:"";
+      content: "";
     }
     .mobile-block {
       padding-bottom: 70px;
@@ -141,7 +146,6 @@
   #key {
     .container {
       padding: 0 32px 35px;
-
     }
     h2 {
       font-size: 230%;
@@ -155,9 +159,7 @@
   }
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-
-}
+@media (min-width: 576px) and (max-width: 767px) {}
 
 @media (min-width: 768px) and (max-width: 991px) {
   /*---------- main picter ---------------*/
