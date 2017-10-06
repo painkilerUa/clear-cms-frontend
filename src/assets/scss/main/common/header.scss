@@ -1,4 +1,5 @@
 @import '../settings/settings';
+
 .front-header {
   font-family: 'Arial';
   &-top {
@@ -19,14 +20,48 @@
       color: #000;
       font-size: 12px;
       text-decoration: none;
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
-  &-actions{
-    &__inner{
+  &-actions {
+    &__inner {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+  &-capabilities{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    &-sizes{
+      list-style: none;
+      margin-bottom: 0;
+      margin-right: 10px;
+      &__item{
+        display: inline-block;
+      }
+      &__link{
+        text-decoration: none;
+        &:hover,
+        &:focus{
+          text-decoration: underline;
+        }
+        &.small{
+          font-size: 0.6rem;
+        }
+        &.medium{
+          font-size: 0.84rem;
+        }
+        &.large{
+          font-size: 1.14rem;
+        }
+      }
     }
   }
 }

@@ -57,17 +57,31 @@
                 tabindex="-1">Login</router-link>
             </template>
           </div>
+          <!-- END:front-header-login -->
+
           <!-- wrap-autocomplete-input -->
           <div class="wrap-autocomplete-input">
               <autocomplete-input />
           </div>
           <!-- END:wrap-autocomplete-input -->
-          <!-- END:front-header-login -->
-          <div class="">
-            <span class="icon-letter"><a href="#" class="small"> A </a><a href="#" class="middle"> A </a><a href="#" class="big"> A </a></span>
+
+          <!-- front-header-capabilities -->
+          <div class="front-header-capabilities">
+            <ul class="front-header-capabilities-sizes">
+              <li class="front-header-capabilities-sizes__item">
+                <a href="#" class="front-header-capabilities-sizes__link small">A</a>
+              </li>
+              <li class="front-header-capabilities-sizes__item">
+                <a href="#" class="front-header-capabilities-sizes__link medium">A</a>
+              </li>
+              <li class="front-header-capabilities-sizes__item">
+                <a href="#" class="front-header-capabilities-sizes__link large">A</a>
+              </li>
+            </ul>
             <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
             <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
           </div>
+          <!-- END:front-header-capabilities -->
         </div>
       </div>
       <!-- END:.myContainer -->

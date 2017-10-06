@@ -1,6 +1,10 @@
 @import './settings/settings';
 @import './settings/settings-assets/scrollbar';
 
+html{
+    font-size: 16px;
+}
+
 .myContainer {
     max-width: gridValue('mainContainer');
 
