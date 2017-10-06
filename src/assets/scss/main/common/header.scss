@@ -1,5 +1,6 @@
 @import '../settings/settings';
 .front-header {
+  font-family: 'Arial';
   &-top {
     &__inner {
       padding: 17px 0;
@@ -12,12 +13,12 @@
   &-text {
     color: #22b6cd;
     font-size: 16px;
-    font-family: Arial;
   }
   &-login {
     &-link {
       color: #000;
       font-size: 12px;
+      text-decoration: none;
     }
   }
   &-actions{
