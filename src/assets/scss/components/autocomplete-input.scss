@@ -1,6 +1,10 @@
 @import '../settings/settings';
 
 .ac {
+    &-title{
+        font-size: 0.75rem;
+        line-height: 1.33;
+    }
     &-wrapper {
         position: relative;
         min-width: gridValue('autocompleteInput');
@@ -49,6 +53,9 @@
         flex-wrap: wrap;
         &-title {
             margin-right: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #077280;
         }
         &-list {
             margin-bottom: 0;
@@ -62,17 +69,6 @@
                 .form-control {
                     cursor: pointer;
                 }
-                /* &:not(:last-of-type) {
-                    &::after {
-                        display: inline-block;
-                        width: 1px;
-                        height: 15px;
-                        margin: 0 10px;
-                        content: '';
-                        vertical-align: middle;
-                        background-color: #000;
-                    }
-                } */
             }
         }
     }
@@ -82,10 +78,10 @@
         margin-bottom: 0;
         &__item {
             display: flex;
-            padding: 0 20px;
+            padding: 16.3px 20px;
             cursor: pointer;
             color: #000;
-            border-bottom: 2px solid #979797;
+            border-bottom: 1px solid #979797;
 
             align-items: center;
             @extend %default-transition;
@@ -94,15 +90,27 @@
             &.highlighted {
                 color: color('highlightedArticleFont');
                 outline: none;
-                background-color: color('highlightedArticleBg');
+                background-color: #077280;
+                svg {
+                    path {
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+        > li {
+            &:last-child{
+                padding: 10.5px 20px;
             }
         }
     }
     &-content {
-        padding-left: 20px;
+        padding-left: 26px;
     }
     &-more {
-        margin-left: 20px;
+        font-size: 0.75em;
+        font-weight: bold;
+        color: #077280;
         background-color: transparent;
     }
 }

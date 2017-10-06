@@ -3,7 +3,7 @@
     <input
       class="ac-input"
       v-model.trim="searchQuery"
-      placeholder="Search..."
+      placeholder="Search"
       @input="onInput($event.target.value)"
       @keyup.esc="close"/>
       <!-- .ac-results -->
