@@ -3,7 +3,7 @@
 .ac {
     &-wrapper {
         position: relative;
-        max-width: gridValue('autocompleteInput');
+        min-width: gridValue('autocompleteInput');
         margin: 0 auto;
     }
     &-results {

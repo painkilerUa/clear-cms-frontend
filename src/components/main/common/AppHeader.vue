@@ -26,10 +26,13 @@
       <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
       <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
     </div> -->
-    <section id="search">
-      <div class="container">
-        <div class="row search">
-          <div class="col-md-2 col-xs-4 mobile-block hidden-sm">
+
+    <div id="search" class="front-header-actions">
+      <!-- .myContainer -->
+      <div class="myContainer">
+        <div class="front-header-actions__inner">
+          <!-- front-header-login -->
+          <div class="front-header-login">
             <template v-if="getIsLoggedIn">
               <template v-if="getUserRole === 'Admin'">
                 <router-link
@@ -54,22 +57,21 @@
                 tabindex="-1">Login</router-link>
             </template>
           </div>
-          <div class="col-md-2 wrap_block col-md-push-8  col-xs-8 mobile-block hidden-sm">
+          <!-- wrap-autocomplete-input -->
+          <div class="wrap-autocomplete-input">
+              <autocomplete-input />
+          </div>
+          <!-- END:wrap-autocomplete-input -->
+          <!-- END:front-header-login -->
+          <div class="">
             <span class="icon-letter"><a href="#" class="small"> A </a><a href="#" class="middle"> A </a><a href="#" class="big"> A </a></span>
             <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
             <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
           </div>
-          <div class="col-md-8 col-md-pull-2  col-xs-12 add-padding col-sm-8 col-sm-offset-2 col-md-offset-0">
-            <!--<form>-->
-              <!--<input type="text" class="form-control" placeholder="Search">-->
-            <!--</form>-->
-            <div class="wrap-autocomplete-input">
-              <autocomplete-input />
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+      <!-- END:.myContainer -->
+    </div>
   </header>
 </template>
 
