@@ -9,7 +9,7 @@
             width="222px"
             height="26px"
             class="logo-img"
-            src="../../../assets/img/main/logo.png"
+            src="../../../assets/img/main/svg/main-logo.svg"
             alt="logo" />
         </a>
         <div class="front-header-text">
