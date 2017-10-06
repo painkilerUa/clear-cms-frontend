@@ -38,6 +38,7 @@
     &__title{
       font-size: 0.8rem;
       line-height: 1.38;
+      text-align: right;
       margin-bottom: 7px;
       font-weight: normal;
     }
@@ -53,9 +54,9 @@
       }
       &__link{
         color: #fff;
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
         border: 2px solid #fff;
         border-radius: 50%;
         display: inline-flex;
@@ -99,10 +100,6 @@ footer {
       font-weight: bold;
       line-height: 2.2;
     }
-  }
-  img {
-    width: 34px;
-    margin-right: 5px;
   }
   .block-icon {
     text-align: right;

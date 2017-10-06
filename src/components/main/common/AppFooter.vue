@@ -18,14 +18,72 @@
             <ul class="front-footer-social-list">
               <li class="front-footer-social-list__item">
                 <a href="#" class="front-footer-social-list__link">
-                  link
-                  <img src="" alt="" class="front-footer-social-list__icon" />
+                  <img
+                    width="14"
+                    height="10"
+                    src="../../../assets/img/main/footer/svg/youtube.svg"
+                    alt="youtube"
+                    class="front-footer-social-list__icon" />
                 </a>
               </li>
               <li class="front-footer-social-list__item">
                 <a href="#" class="front-footer-social-list__link">
-                  link
-                  <img src="" alt="" class="front-footer-social-list__icon" />
+                  <img
+                    width="12.5"
+                    height="12.5"
+                    src="../../../assets/img/main/footer/svg/instagram.svg"
+                    alt="instagram"
+                    class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                    width="7.7"
+                    height="14.7"
+                    src="../../../assets/img/main/footer/svg/facebook.svg"
+                    alt="facebook"
+                    class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                    width="15.8"
+                    height="12.9"
+                    src="../../../assets/img/main/footer/svg/twitter.svg"
+                    alt="twitter"
+                    class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                    width="20"
+                    height="12"
+                    src="../../../assets/img/main/footer/svg/googlePlus.svg"
+                    alt="googlePlus"
+                    class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                    width="20"
+                    height="12"
+                    src="../../../assets/img/main/footer/svg/linkedIn.svg"
+                    alt="linkedIn"
+                    class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                    width="11.7"
+                    height="15.1"
+                    src="../../../assets/img/main/footer/svg/pinterest.svg"
+                    alt="pinterest"
+                    class="front-footer-social-list__icon" />
                 </a>
               </li>
             </ul>
