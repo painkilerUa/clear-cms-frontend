@@ -238,6 +238,7 @@
           <section class="add-article-section">
             <h2 class="add-article-section__title">2. Article content</h2>
             <vue-editor
+              :editorToolbar="editorToolbar"
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
@@ -423,10 +424,15 @@ export default {
       },
       formResource: [],
       disableAPI: false,
-      customEditorToolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block', 'list', 'indent', 'picker'],
-        [{'list': 'ordered'}, {'list': 'bullet'}]
+      editorToolbar: [
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        ['bold', 'italic', 'underline', 'strike', {'color': []}, {'background': []}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        ['blockquote', 'code-block', 'image', 'link'],
+        [{'font': []}],
+        [{'align': []}],
+        ['clean']
       ],
       formData: new FormData(),
       articlePreview: {
@@ -435,7 +441,10 @@ export default {
         resources: []
       },
       thingsToConsiderOptions: [],
-      thingsToDoOptions: []
+      thingsToDoOptions: [],
+      flags: {
+        hasImg: null
+      }
     }
   },
   computed: {
@@ -509,7 +518,8 @@ export default {
         }
         reader.readAsDataURL(input.files[0])
 // Add to formData
-        this.formData.set('content[imageFile]', e.target.files[0])
+        this.formData.append('content[imageFile]', e.target.files[0])
+        this.flags.hasImg = true
       }
     },
 //    onResourceFileChange (value, i) {
@@ -550,63 +560,63 @@ export default {
       this.$validator.validateAll()
       if (this.errors.items.length) return
       if (this.disableAPI) return
-      this.formData.set('content[title]', this.article.title)
-      this.formData.set('content[content]', this.article.content)
-      this.formData.set('content[description]', this.article.description)
-      this.formData.set('content[contentType]', this.article.contentType.value)
+      this.formData.append('content[title]', this.article.title)
+      this.formData.append('content[content]', this.article.content)
+      this.formData.append('content[description]', this.article.description)
+      this.formData.append('content[contentType]', this.article.contentType.value)
       if (this.article.language) {
-        this.formData.set('content[language]', this.article.language.value)
+        this.formData.append('content[language]', this.article.language.value)
       }
-      this.formData.set('content[publishedAt]', this.article.publishedAt)
-      this.formData.set('content[status]', status)
-      this.formData.set('content[isArticle]', 1)
+      this.formData.append('content[publishedAt]', this.article.publishedAt)
+      this.formData.append('content[status]', status)
+      this.formData.append('content[isArticle]', 1)
 // Add categories
       this.article.categories.forEach((category, i) => {
         let fieldName = 'content[categories][' + i + ']'
-        this.formData.set(fieldName, category.value)
+        this.formData.append(fieldName, category.value)
       })
 // Add tags
       this.article.tags.forEach((tag, i) => {
         let fieldName = 'content[tags][' + i + ']'
-        this.formData.set(fieldName, tag.value)
+        this.formData.append(fieldName, tag.value)
       })
 // Add companies
       this.article.companies.forEach((company, i) => {
         let fieldName = 'content[companies][' + i + ']'
-        this.formData.set(fieldName, company.value)
+        this.formData.append(fieldName, company.value)
       })
 // Add roles
       this.article.roles.forEach((role, i) => {
         let fieldName = 'content[roles][' + i + ']'
-        this.formData.set(fieldName, role.value)
+        this.formData.append(fieldName, role.value)
       })
 // Check if the main image exist, if it does't set empty string
-      if (!this.formData.has('content[imageFile]')) {
-//        this.formData.set('content[imageFile]', e.target.files[0])
-        this.formData.set('content[imageFile]', new Blob(), '')
+      if (!this.flags.hasImg) {
+//        this.formData.append('content[imageFile]', e.target.files[0])
+        this.formData.append('content[imageFile]', new Blob(), '')
       }
 // Add children
       let children = [...this.article.thingsToConsider, ...this.article.thingsToDo]
       children.forEach((item, i) => {
         let fieldName = 'content[children][' + i + ']'
-        this.formData.set(fieldName, item.value)
+        this.formData.append(fieldName, item.value)
       })
 // Add resources
       this.article.resources.data.forEach((resource, i) => {
         if (resource.type === 'exist') {
           if (resource.id) {
-            this.formData.set('content[typeValues][' + i + '][file]', resource.id)
+            this.formData.append('content[typeValues][' + i + '][file]', resource.id)
           }
           if (resource.link) {
-            this.formData.set('content[typeValues][' + i + '][link]', resource.link)
+            this.formData.append('content[typeValues][' + i + '][link]', resource.link)
           }
           if (resource.textarea) {
-            this.formData.set('content[typeValues][' + i + '][textarea]', resource.textarea)
+            this.formData.append('content[typeValues][' + i + '][textarea]', resource.textarea)
           }
         } else {
           Object.keys(resource).forEach(key => {
             if (resource[key]['value'] && key !== 'file') {
-              this.formData.set('content[typeValues][' + i + '][' + key + ']', resource[key]['value'])
+              this.formData.append('content[typeValues][' + i + '][' + key + ']', resource[key]['value'])
             }
           })
         }
@@ -653,7 +663,7 @@ export default {
       let valueTrimmed = e.target.value.replace(/^.*\\/, '')
       document.getElementById('uploadedResource_' + i).innerHTML = valueTrimmed
       if (e.target.files.length) {
-        this.formData.set('content[typeValues][' + i + '][file]', e.target.files[0])
+        this.formData.append('content[typeValues][' + i + '][file]', e.target.files[0])
       } else {
         this.formData.delete('content[typeValues][' + i + '][file]')
       }
@@ -663,7 +673,7 @@ export default {
       document.getElementById('uploadedResource_' + j).innerHTML = valueTrimmed
       if (e.target.files.length) {
         this.article.resources.data[j].file.name = e.target.files[0].name
-        this.formData.set('content[typeValues][' + j + '][file]', e.target.files[0])
+        this.formData.append('content[typeValues][' + j + '][file]', e.target.files[0])
       } else {
         this.formData.delete('content[typeValues][' + j + '][file]')
         this.article.resource.data[j].name = null

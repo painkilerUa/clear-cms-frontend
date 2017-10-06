@@ -6,13 +6,60 @@
 .app {
   height: 100%;
 }
-button.ql-image {
-  display: none !important;
-}
 
 .hide-selected-items {
   .selected-tag {
     display: none;
+  }
+}
+.wrap-dropdown-table-head {
+  position: absolute;
+  top: 59px;
+  left: -1px;
+  z-index: 99;
+  background-color: #f3f3f3;
+  width: 250px;
+  padding: 20px;
+  border: 1px solid #a0a0a0;
+  .selected-tag {
+    display: none;
+  }
+  .dropdown-toggle {
+    input {
+      width: 208px !important;
+      border: 1px solid #d5d5d5;
+      background-color: #fff !important;
+      font-style: italic;
+      &:focus {
+        border: 1px solid #d5d5d5;
+        background-color: #fff !important;
+      }
+    }
+  }
+  .open-indicator {
+    display: none;
+  }
+  .dropdown-menu {
+    position: relative !important;
+    background-color: #fff !important;
+    margin-top: 20px !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.caption-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  cursor: pointer;
+  &-text {
+  }
+  &-icon {
   }
 }
 .vdp-datepicker__calendar {

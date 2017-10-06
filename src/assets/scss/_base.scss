@@ -233,10 +233,10 @@ html{
     width: 100%;
     thead {
       background-color: #fafafa;
-      font-size: 110%;
     },
     th,
     td {
+        position: relative;
         vertical-align: middle;
         color: color('tableText');
         border: 1px solid color('tableBorder');
@@ -286,7 +286,14 @@ html{
         }
     }
     &-crud-btn {
+        position: relative;
         color: color('tableCrudBtn');
+        &:hover {
+          color: #000;
+        }
+        &:hover > .table-tooltip-edit {
+          display: block;
+        }
     }
 }
 
@@ -294,4 +301,55 @@ html{
     &-editor {
         margin-bottom: 15px;
     }
+}
+
+.table-head-ceil {
+  font-size: 110%;
+}
+.table-head-hover {
+  &:hover {
+    background-color: #fffdd8;
+  }
+}
+.table-tooltip-edit {
+  display: none;
+  transition:.25s ease-in-out;
+  position: absolute;
+  z-index: 99;
+  padding: 5px 10px;
+  left: -100%;
+  top: 23px;
+  border: 1px solid #dadada;
+  background-color: #fffdd8;
+  color: #000;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -7px;
+    left:50%;
+    margin-left:-8px;
+    height:0;
+    width:0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #FFFDD8;
+    transition:.25s ease-in-out;
+    opacity: 1;
+  }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -9px;
+    left:50%;
+    margin-left:-8px;
+    height:0;
+    width:0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #dadada;
+    transition:.25s ease-in-out;
+    opacity: 1;
+  }
 }
