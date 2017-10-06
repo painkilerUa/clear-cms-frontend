@@ -1,7 +1,8 @@
 <template>
   <main class="main">
-    <section id="main_picter">
-    </section>
+    <!-- .page-banner -->
+    <div class="page-banner page-banner--home"></div>
+    <!-- END:.page-banner -->
     <section id="content">
       <div class="container">
         <div class="row">

@@ -8,6 +8,17 @@
     @extned %clearfix;
 }
 
+.page-banner {
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    &--home {
+        height: 450px;
+        background-image: url(/static/img/main_picter.4c420cf.png);
+    }
+}
+
 .ac {
     &-content {
         flex-grow: 1;
