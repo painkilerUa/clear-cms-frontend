@@ -37,6 +37,29 @@
       margin-bottom: 7px;
       font-weight: normal;
     }
+    &-list{
+      list-style: none;
+      margin-bottom: 0;
+      &__item{
+        margin-right: 10px;
+        display: inline-block;
+        &:last-of-type{
+          margin-right: 0;
+        }
+      }
+      &__link{
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+    }
   }
 }
 

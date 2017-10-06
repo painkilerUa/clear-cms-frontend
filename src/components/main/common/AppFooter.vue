@@ -15,7 +15,20 @@
           <!-- .front-footer-social -->
           <div class="front-footer-social">
             <h4 class="front-footer-social__title">Join us on...</h4>
-            ul.front-footer-social-list>li.-item>a.-link>img
+            <ul class="front-footer-social-list">
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  link
+                  <img src="" alt="" class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  link
+                  <img src="" alt="" class="front-footer-social-list__icon" />
+                </a>
+              </li>
+            </ul>
           </div>
           <!-- END:.front-footer-social -->
         </div>
