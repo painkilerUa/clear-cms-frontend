@@ -67,6 +67,7 @@
 
           <!-- front-header-capabilities -->
           <div class="front-header-capabilities">
+            <!-- front-header-capabilities-sizes -->
             <ul class="front-header-capabilities-sizes">
               <li class="front-header-capabilities-sizes__item">
                 <a href="#" class="front-header-capabilities-sizes__link small">A</a>
@@ -78,8 +79,28 @@
                 <a href="#" class="front-header-capabilities-sizes__link large">A</a>
               </li>
             </ul>
-            <img src="../../../assets/img/main/header/theme1.png" alt="theme1">
-            <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
+            <!-- END:front-header-capabilities-sizes -->
+
+            <!-- .front-header-capabilities-colors -->
+            <ul class="front-header-capabilities-colors">
+              <li class="front-header-capabilities-colors__item">
+                <a href="#" class="front-header-capabilities-colors__link">
+                  <img
+                    src="../../../assets/img/main/header/capabilities-color-dyslexia.svg"
+                    alt="capabilities-color"
+                    class="front-header-capabilities-colors__icon" />
+                </a>
+              </li>
+              <li class="front-header-capabilities-colors__item">
+                <a href="#" class="front-header-capabilities-colors__link">
+                  <img
+                    src="../../../assets/img/main/header/capabilities-color-normal.svg"
+                    alt="capabilities-color"
+                    class="front-header-capabilities-colors__icon" />
+                </a>
+              </li>
+            </ul>
+            <!-- END:.front-header-capabilities-colors -->
           </div>
           <!-- END:front-header-capabilities -->
         </div>

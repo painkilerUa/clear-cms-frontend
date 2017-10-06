@@ -63,6 +63,13 @@
         }
       }
     }
+    &-colors{
+      list-style: none;
+      margin-bottom: 0;
+      &__item{
+        display: inline-block;
+      }
+    }
   }
 }
 
