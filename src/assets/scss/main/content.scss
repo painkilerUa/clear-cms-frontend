@@ -1,5 +1,65 @@
 @import './settings/settings';
 
+.article {
+  &-page{
+    &-title {
+      color: #087280;
+      font-weight: bold;
+      font-size: 32px;
+      margin-bottom: 49px;
+    }
+  }
+  &-list{
+    list-style: none;
+    margin-bottom: 0;
+    &__item{
+      display: block;
+    }
+    &__link{
+      display: block;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+  }
+}
+
+.content{
+  &-main{
+    padding-top: 48px;
+    padding-bottom: 120px;
+    font-family: 'Arial';
+    &-inner{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+  &-sidebar{
+    margin-right: 54px;
+    flex-basis: 26.6%;
+    &-section{
+      margin-bottom: 17px;
+      padding: 24px 36px 38px 26px;
+      background-color: #CDCDCD;
+      &:last-of-type{
+        margin-bottom: 0;
+      }
+      &--accent{
+        background-color: #00B7D0;
+      }
+    }
+    &-title{
+      font-size: 1.125rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+  &-info {
+    flex-grow: 1;
+    flex-basis: 66%;
+  }
+}
+
 #key {
   .position {
     padding-top: 30px;
