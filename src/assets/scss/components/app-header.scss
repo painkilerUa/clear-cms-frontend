@@ -2,11 +2,12 @@
 
 .app-header {
     color: #fff;
+    font-size: 0.875rem;
     &-main {
         background-color: color('appHeaderMain');
         &__container {
             display: flex;
-            padding: 20px 0;
+            padding: 15px 0;
             align-items: center;
             justify-content: space-between;
         }
@@ -37,7 +38,12 @@
             color: #000;
             &--name {
                 margin-right: 15px;
+                font-weight: 600;
             }
+        }
+        &-icon {
+            color: #000;
+            margin-right: 5px;
         }
     }
     &-search {
@@ -57,8 +63,15 @@
     position: relative;
     padding: 0 10px;
     border-left: 1px solid #a0a0a0;
+    cursor: pointer;
     &:hover > .first-level-menu-header {
       display: block;
+    }
+    &:hover > svg {
+      color: #22b6cd;
+    }
+    &:hover > span {
+      color: #000;
     }
     a {
       display: inline-block;
@@ -134,4 +147,12 @@
   margin-right: 5px;
 }
 .icon-file {
+}
+.admin-header {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.icon-menu-header {
+  margin: 0 10px;
 }

@@ -4,7 +4,7 @@
 		<!-- .app-header-main -->
 		<div class="app-header-main">
 			<!-- .myContainer -->
-			<div class="myContainer">
+			<div class="admin-header">
 				<!-- .app-header-main__container -->
 				<div class="app-header-main__container">
 					<a href="/" class="main-logo" tabindex="-1">
@@ -21,7 +21,7 @@
                 <!--<router-link :to="{name: 'management'}">Management</router-link>-->
               <!--</li>-->
               <li>
-                <icon name="file" class="icon icon-file"></icon>
+                <icon name="file" class="icon icon-file icon-menu-header"></icon>
                 <span>Content</span>
                 <ul class="first-level-menu-header articles">
                   <li>
@@ -39,7 +39,7 @@
                 </ul>
               </li>
               <li>
-                <icon name="tag" class="icon icon-tag"></icon>
+                <icon name="tag" class="icon icon-tag icon-menu-header"></icon>
                 <span>Categories</span>
                 <ul class="first-level-menu-header categories">
                   <li>
@@ -51,7 +51,7 @@
                 </ul>
               </li>
               <li>
-                <icon name="user-o" class="icon icon-user-o"></icon>
+                <icon name="user-o" class="icon icon-user-o icon-menu-header"></icon>
                 <router-link :to="{name: 'users'}">Users</router-link>
               </li>
               <!--<li>-->
@@ -69,13 +69,16 @@
 		<!-- .app-header-info -->
 		<div class="app-header-info">
 			<!-- .myContainer -->
-			<div class="myContainer">
+			<div class="admin-header">
 				<!-- .app-header-info__container -->
 				<div class="app-header-info__container">
 					<!-- .app-header-login -->
 					<div class="app-header-login">
 						<template v-if="getIsLoggedIn">
 							<template v-if="getUserRole === 'Admin'">
+                <span class="app-header-login-icon">
+                  <icon name="lock"></icon>
+                </span>
 								<router-link
 								:to="{name: 'admin'}"
 								class="app-header-login__item app-header-login__item--name"
@@ -128,6 +131,7 @@ import { mapGetters, mapActions } from 'vuex'
 import 'vue-awesome/icons/file'
 import 'vue-awesome/icons/tag'
 import 'vue-awesome/icons/user-o'
+import 'vue-awesome/icons/lock'
 
 export default {
   name: 'app-header',

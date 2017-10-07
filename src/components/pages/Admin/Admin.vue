@@ -115,7 +115,7 @@ export default {
           padding: 5px 30px;
           a {
             color: #fff;
-            font-size: 18px;
+            font-size: 0.875rem;
             line-height: 22px;
           }
         }

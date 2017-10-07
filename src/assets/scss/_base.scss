@@ -234,6 +234,9 @@ html{
     thead {
       background-color: #fafafa;
     },
+    tbody {
+      font-size: 0.875rem;
+    },
     th,
     td {
         position: relative;
@@ -280,6 +283,7 @@ html{
         width: 100%;
         padding-left: 10px;
         border: none;
+        font-size: 1rem;
         .icon-wrap {
             display: inline-block;
             background-color: color('artcleListLibraryContainsTable');
@@ -304,7 +308,7 @@ html{
 }
 
 .table-head-ceil {
-  font-size: 110%;
+  font-size: 1rem;
 }
 .table-head-hover {
   &:hover {

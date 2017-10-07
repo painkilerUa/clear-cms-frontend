@@ -266,7 +266,7 @@ export default {
     },
     createTag () {
       if (this.disableAPI) return
-      if (!this.newTag.name || !this.newTag.description) return
+      if (!this.newTag.name) return
       let formData = new FormData()
       Object.keys(this.newTag).forEach((fieldName) => {
         if (typeof this.newTag[fieldName] === 'string' || typeof this.newTag[fieldName] === 'number') {

@@ -5,6 +5,7 @@
 // 'Problem' styles
 .app {
   height: 100%;
+  font-family: Arial;
 }
 
 .hide-selected-items {
@@ -14,7 +15,7 @@
 }
 .wrap-dropdown-table-head {
   position: absolute;
-  top: 59px;
+  top: 100%;
   left: -1px;
   z-index: 99;
   background-color: #f3f3f3;

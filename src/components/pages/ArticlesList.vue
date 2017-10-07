@@ -294,13 +294,24 @@
                 />
               </div>
             </th>
-            <th class="column-last-edited-head table-head-hover table-head-ceil">
+            <th class="column-last-edited-head table-head-hover table-head-ceil"
+                @mouseover="addHoverElement([{id: null, label: lastEdited.length ? lastEdited[0].label : null}])"
+                @mouseleave="removeHoverElements">
               <div class="caption-head" @click="datepicker.isShown = !datepicker.isShown">
                 <div class="caption-head-text">
                   <span >Last Edited</span>
                 </div>
                 <div class="caption-head-icon">
-
+                  <span class="active-chevron" v-if="this.datepicker.isShown">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                  <span class="passive-chevron" v-if="!this.datepicker.isShown">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
                 </div>
               </div>
               <div class="datepicker" v-if="datepicker.isShown">
@@ -921,7 +932,7 @@ export default {
     },
     isExist (element) {
       let el = this.hoverElements.find(item => {
-        if (element.value === item.value && element.label === item.label) {
+        if ((element.value === item.value || item.value === null) && element.label === item.label) {
           return true
         }
       })
