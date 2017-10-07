@@ -36,7 +36,15 @@
             <section class="content-sidebar-section">
               <h3 class="content-sidebar-section-title">Things to do</h3>
               <ul class="article-list">
-                <li class="article-list__item">
+                <li class="article-list__item article-list__item--tooltip">
+                  <button type="button" class="article-list__tooltip">
+                    <img
+                      width="11.9px"
+                      height="11.7px"
+                      class="article-list__tooltip-icon"
+                      src="../../assets/img/content/exclamation-mark.svg"
+                      alt="tooltip" />
+                  </button>
                   <a href="#" class="article-list__link">Targeting diverse talent</a>
                 </li>
                 <li class="article-list__item">
@@ -127,6 +135,26 @@
               <!-- END:article-download-list -->
             </div>
             <!-- END:.article-download -->
+            <!-- .article-content -->
+            <section class="article-content">
+              <h3 class="article-content-title">Key information</h3>
+              <!-- .article-content-area -->
+              <div class="article-content-area">
+                <ul>
+                  <li>Anxiety is a feeling of unease, such as worry or fear, that can be mild or severe.</li>
+                  <li>People often experience physical, psychological and behavioural symptoms when they feel anxious or stressed.</li>
+                  <li>There are steps you can take to create a supportive environment. By helping an anxious candidate feel more comfortable you will help them perform better</li>
+                  <li>Try to put the candidate at ease when they arrive by being professional and friendly this can be as simple as offering to get them a drink</li>
+                  <li>Make sure your interview room is quiet, comfortable and easy to get to</li>
+                </ul>
+                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. 
+                Dis doles cient, ipsa nisi int omnihic imustio doloris asa quibea sed qui ali a pelesto reprerchit audam invel ipsanda eriorectur tiscil moluptatur ani hit eatis ped ene aut offi c temquos etum dipidelenis qui omni omnihic tesequid erferuntiu  m re ex et volorum rerum res.</p>
+
+                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. </p>
+              </div>
+              <!-- END:.article-content-area -->
+            </section>
+            <!-- END:.article-content -->
           </div>
           <!-- END:.content-info -->
         </div>
