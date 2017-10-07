@@ -16,6 +16,18 @@
                 <li class="article-list__item">
                   <a href="#" class="article-list__link">Assesments</a>
                 </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Reasonable Adjustments</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Language And Tone</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Inclusive Job Descriptions</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Mental Health</a>
+                </li>
               </ul>
             </section>
             <!-- END:.content-sidebar-section -->
@@ -25,7 +37,13 @@
               <h3 class="content-sidebar-section-title">Things to do</h3>
               <ul class="article-list">
                 <li class="article-list__item">
-                  <a href="#" class="article-list__link">Assesments</a>
+                  <a href="#" class="article-list__link">Targeting diverse talent</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Unconscious Bias Training</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Disability Basics</a>
                 </li>
               </ul>
             </section>

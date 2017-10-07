@@ -13,12 +13,31 @@
     list-style: none;
     margin-bottom: 0;
     &__item{
+      position: relative;
       display: block;
+      margin-bottom: 29px;
+      &:last-of-type{
+        margin-bottom: 0;
+      }
     }
     &__link{
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 0.875rem;
+      position: relative;
       text-decoration: none;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 14px;
+        flex-basis: 14px;
+        min-width: 14px;
+        height: 10px;
+        margin-left: 12px;
+        background-repeat: no-repeat;
+        background-image: url(../../img/content/article-arrow-right.svg);
+      }
     }
   }
 }
@@ -36,7 +55,7 @@
   }
   &-sidebar{
     margin-right: 54px;
-    flex-basis: 26.6%;
+    width: 26.6%;
     &-section{
       margin-bottom: 17px;
       padding: 24px 36px 38px 26px;
