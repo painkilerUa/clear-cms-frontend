@@ -51,7 +51,82 @@
           </aside>
           <!-- .content-info -->
           <div class="content-info">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam itaque, optio corporis quae nulla aspernatur in, alias at numquam rerum ea, excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum!
+            <!-- .content-info-imgwrap -->
+            <div class="content-info-imgwrap">
+              <img
+                class="content-info-img"
+                src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"
+                alt="content-info-img" />
+            </div>
+            <!-- END:.content-info-imgwrap -->
+            <!-- .article-download -->
+            <div class="article-download">
+              <!-- article-download-list -->
+              <ul class="article-download-list">
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Document name can be longer like this & can go until right hereeeeeeee</span>
+                  </a>
+                </li>
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Download document here</span>
+                  </a>
+                </li>
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Download document here longer name that doesn’t fit in a row, so we’ll display...</span>
+                  </a>
+                </li>
+              </ul>
+              <!-- END:article-download-list -->
+            </div>
+            <!-- END:.article-download -->
           </div>
           <!-- END:.content-info -->
         </div>

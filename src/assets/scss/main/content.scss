@@ -40,6 +40,53 @@
       }
     }
   }
+  &-download{
+    margin-bottom: 50px;
+    &-list{
+      list-style: none;
+      margin-bottom: 0;
+      &__icon{
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        min-width: 20px;
+        min-height: 20px;
+        path{
+          fill: #BFBFBF;
+          transition: all 0.15s ease-in;
+        }
+      }
+      &__item{
+        display: block;
+      }
+      &__link {
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 0.92rem;
+        line-height: normal;
+        background-color: #F6F6F6;
+        color: #4f4f4f;
+        transition: all 0.15s ease-in;
+        &-text {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &:hover {
+          color: #fff;
+          background-color: #007381;
+          .article-download-list__icon {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .content{
@@ -76,6 +123,9 @@
   &-info {
     flex-grow: 1;
     flex-basis: 66%;
+    &-imgwrap{
+      margin-bottom: 34px;
+    }
   }
 }
 
