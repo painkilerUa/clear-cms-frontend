@@ -105,6 +105,9 @@ html{
         width: 100%;
         margin-bottom: 25px;
         padding: 10px 12px;
+        font-size: 0.875rem;
+        font-family: Arial;
+        font-style: italic;
         &--select {
             padding: 0;
         }
@@ -244,7 +247,7 @@ html{
         color: color('tableText');
         border: 1px solid color('tableBorder');
         &.cellpadding {
-            padding: 7px;
+            padding: 12px;
         }
         .dropdown-toggle {
             border: none;
@@ -320,7 +323,7 @@ html{
   transition:.25s ease-in-out;
   position: absolute;
   z-index: 99;
-  padding: 5px 10px;
+  padding: 5px 11px;
   left: -100%;
   top: 23px;
   border: 1px solid #dadada;
@@ -356,4 +359,8 @@ html{
     transition:.25s ease-in-out;
     opacity: 1;
   }
+}
+.dropdown-toggle {
+  border-radius: 0 !important;
+  background-color: #fff !important;
 }

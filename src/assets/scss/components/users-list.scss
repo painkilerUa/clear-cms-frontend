@@ -6,7 +6,6 @@
         display: flex;
         margin-bottom: 40px;
         color: color('tableText');
-
         align-items: center;
         justify-content: flex-end;
     }
@@ -28,10 +27,11 @@
     }
     &-statusbar {
         display: table;
-
+        margin-right: 300px;
         align-items: center;
         &__block {
             display: table-cell;
+            background-color: #fafafa;
             padding: 9px;
             border: 1px solid color('tableBorder');
         }
@@ -39,6 +39,36 @@
             border-right: none;
             background-color: color('artcleListLibraryContainsTable');
         }
+    }
+    &-selected-filters {
+      display: flex;
+      width: 40%;
+      border: 1px solid #d5d5d5;
+      margin-right: 200px;
+      &-remove-all {
+        width: 20%;
+        padding: 20px 10px;
+        background-color: #f3f3f3;
+        cursor: pointer;
+        font-style: italic;
+      }
+      &-body {
+        width: 80%;
+        padding: 10px 20px;
+        border-left: 1px solid #d5d5d5;
+        background-color: #fafafa;
+        button {
+          background-color: transparent;
+          padding: 3px 10px;
+          border: 1px solid #d5d5d5;
+          border-radius: 50px;
+          margin: 0 10px 10px 0;
+          svg {
+            width: 9px;
+            color: #d5d5d5;
+          }
+        }
+      }
     }
     &-statuses {
         list-style: none;
@@ -65,6 +95,34 @@
         }
     }
 }
+.column-id-head {
+  min-width: 45px;
+  max-width: 45px;
+}
+.column-search-head {
+  min-width: 350px;
+  max-width: 350px;
+}
+.column-email-head {
+  min-width: 260px;
+  max-width: 260px;
+}
+.column-company-head {
+  min-width: 190px;
+  max-width: 190px;
+}
+.column-role-head {
+  min-width: 170px;
+  max-width: 170px;
+}
+.column-last-active-head {
+  min-width: 130px;
+  max-width: 130px;
+}
+.column-actions-head {
+  min-width: 155px;
+  max-width: 155px;
+}
 .add-new-user {
   position: absolute;
   //width: 100%;
@@ -76,11 +134,11 @@
       z-index: 99;
       width: 550px;
       left: 375px;
-      top: 50px;
+      top: 0px;
       padding: 50px 30px;
       background-color: #f4f4f4;
       h3 {
-        font-size: 34px;
+        font-size: 1.5625rem;
       }
     }
   &-body-row {
@@ -131,12 +189,11 @@
   }
   &-control-panel {
     text-align: center;
-    margin-top: 60px;
     button {
       display: inline-block;
       padding: 10px 0;
       width: 170px;
-      font-size: 22px;
+      font-size: 1rem;
       &:first-child {
         margin-right: 20px;
         background-color: #d5d5d5;
@@ -162,43 +219,25 @@
   }
 }
 .edit-user {
-  padding: 20px 0;
+  padding: 20px 10px;
   background-color: #fffdd8;
   &-row {
-    font-size: 0;
-    line-height: 0;
-    vertical-align: top;
-    margin-bottom: 30px;
-    &-ceil {
-      display: inline-block;
-      width: 15%;
-      margin-right: (10% / 7);
-      font-size: 18px;
-      line-height: 22px;
-      vertical-align: top;
-      &:first-child {
-        margin-left: (10% / 7);
-      }
-      input {
-        width: 100%;
-        height: 40px;
-        padding: 5px 10px;
-        border: 1px solid #d5d5d5;
-        font-size: 18px;
-        font-style: italic;
-        color: #777777;
-        &::placeholder {
-          color: #777777;
-        }
-      }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 10px 5px;
+      font-size: 0.875rem;
     }
-    &-errors {
-      span {
-        display: block;
-        font-size: 16px;
-        line-height: 20px;
-        color: #FF0000;
-        text-align: center;
+    &-ceil {
+      width: 15%;
+      .v-select {
+        border: 1px solid #d5d5d5;
+        background-color: #fff;
+        height: 40px;
       }
     }
   }
@@ -209,7 +248,7 @@
       display: inline-block;
       padding: 10px 0;
       width: 170px;
-      font-size: 22px;
+      font-size: 1rem;
       &:first-child {
         margin-right: 20px;
         background-color: #d5d5d5;
@@ -221,5 +260,8 @@
       }
     }
   }
+}
+.caption-head-inner-text {
+  padding: 15px 100px 15px 0;
 }
 

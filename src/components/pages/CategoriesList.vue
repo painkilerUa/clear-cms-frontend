@@ -15,33 +15,79 @@
       </div>
     </div>
     <div class="wrap-categories-list">
-      <h1>Categories in "Topics"</h1>
+      <h1 class="main-caption">Categories in "Topics"</h1>
       <div class="categories">
         <div class="categories-list">
-          <div class="categories-list-statusbar">
-            <div class="categories-list-statusbar__contains">
-              <span>{{categories.length}} subcategories</span>
+          <div class="categories-list-heading">
+            <div class="categories-list-statusbar" v-if="!parent">
+              <div class="categories-list-statusbar__contains">
+                <span>{{categories.length}} subcategories</span>
+              </div>
+            </div>
+            <div class="categories-list-selected-filters" v-if="parent" :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+              <div class="categories-list-selected-filters-remove-all"
+                   @click="removeAllFilters"
+                   @mouseover="statusbar.filter.isHover = true"
+                   @mouseleave="statusbar.filter.isHover = false"
+                   :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+                <span>{{statusbar.filter.isHover ? 'Remove all filters' : 'Aplied filters'}}</span>
+              </div>
+              <div class="categories-list-selected-filters-body">
+                <button
+                  type="button"
+                  @click="removeSelectedFilters"
+                  :class="{'hover-filter-element': isExist(this.parent)}">
+                  <span>{{parent.label}}</span>
+                  <icon name="times"></icon>
+                </button>
+              </div>
             </div>
           </div>
           <div class="categories-list-body">
             <table class="table table-data">
               <thead class="categories-list-body__head">
               <tr>
-                <th class="cellpadding categories-list-body__head_id">ID</th>
-                <th class="categories-list-search-col text-left categories-list-body__head_search">
-                  <div class="categories-list-body__head_search-inner">
-                    <div class="categories-list-body__head_search-inner-input">
+                <th class="cellpadding categories-list-body__head_id table-head-ceil">ID</th>
+                <th class="categories-list-search-col text-left categories-list-body__head_search table-head-ceil">
+                  <div class="table-search-wrap">
+                    <div class="wrap-input">
                       <input
                         v-model="searchString"
                         type="search"
+                        class="table-search"
                         placeholder="Category name..." />
                     </div>
-                    <div class="categories-list-body__head_search-inner-icon">
+                    <div class="wrap-search-icon">
                       <icon name="search"></icon>
                     </div>
                   </div>
                 </th>
-                <th class="categories-list-body__head_parent-select">
+                <th class="categories-list-body__head_parent-select table-head-ceil table-head-hover"
+                    :class="{'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                    @mouseover="addHoverElement(getCategoriesForSelect)"
+                    @mouseleave="removeHoverElements" >
+                  <div class="caption-head" @click="showHideSubMenu(1)">
+                    <div class="caption-head-text">
+                      <span>Type</span>
+                    </div>
+                    <div class="caption-head-icon">
+                      <span class="active-chevron" v-if="filerTableHead.selectedCeil === 1">
+                        <icon
+                          name="chevron-up"
+                        ></icon>
+                      </span>
+                      <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 1">
+                        <icon
+                          name="chevron-down"
+                        ></icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="wrap-dropdown-table-head"
+                       id="sub-menu-1"
+                       v-show="filerTableHead.selectedCeil === 1"
+                       tabindex="-1"
+                       @focusout="filerTableHead.selectedCeil = null">
                   <v-select
                     v-model="parent"
                     name="Category"
@@ -49,11 +95,12 @@
                     :options="getCategoriesForSelect"
                     v-validate="'required'"
                     placeholder="Parent" />
+                </div>
                 </th>
-                <th class="categories-list-body__head_count-articles">
+                <th class="categories-list-body__head_count-articles table-head-ceil">
                   No of articles
                 </th>
-                <th colspan="2" class="cellpadding categories-list-body__head_actions">Actions</th>
+                <th colspan="2" class="cellpadding categories-list-body__head_actions table-head-ceil">Actions</th>
               </tr>
               </thead>
               <tbody class="categories-list-body__body">
@@ -72,6 +119,7 @@
                     class="table-crud-btn icon-btn-m"
                     @click="showEditionForm(category.id)">
                     <icon name="pencil"/>
+                    <span class="table-tooltip-edit">Edit</span>
                   </button>
                 </td>
                 <td class="cellpadding text-center" v-if="category.type === 'show'">
@@ -89,14 +137,34 @@
                         <input type="text" v-model="category.title">
                       </div>
                       <div class="wrap-parent-select">
-                        <v-select
+                        <!--<div class="caption-head parent-select-edit" @click="showHideSubMenu(2)">-->
+                          <!--<div class="caption-head-text">-->
+                            <!--<span>Parent</span>-->
+                          <!--</div>-->
+                          <!--<div class="caption-head-icon">-->
+                            <!--<span class="active-chevron" v-if="filerTableHead.selectedCeil === 2">-->
+                              <!--<icon name="chevron-up"></icon>-->
+                            <!--</span>-->
+                            <!--<span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 2">-->
+                              <!--<icon name="chevron-down"></icon>-->
+                            <!--</span>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="wrap-dropdown-table-head"-->
+                             <!--id="sub-menu-2"-->
+                             <!--v-show="filerTableHead.selectedCeil === 2"-->
+                             <!--tabindex="-1"-->
+                             <!--@focusout="filerTableHead.selectedCeil = null">-->
+                          <v-select
                           v-model="category.parent"
                           name="Category"
                           :options="getCategoriesForSelect"
+                          :searchable = false
                           placeholder="Parent" />
+                        <!--</div>-->
                       </div>
                       <div class="wrap-desc-textarea">
-                        <textarea name="desc-textarea" cols="10" rows="3" v-model="category.description"></textarea>
+                        <textarea name="desc-textarea" cols="10" rows="1" v-model="category.description"></textarea>
                       </div>
                     </div>
                     <div class="wrap-table-control-panel">
@@ -189,12 +257,26 @@ export default {
       },
       disableAPI: false,
       searchString: '',
-      parent: null
+      parent: null,
+      statusbar: {
+        filter: {
+          isHover: false,
+          style: {
+            backgroundColor: '#fffdd8',
+            borderColor: '#000'
+          }
+        }
+      },
+      hoverElements: [],
+      filerTableHead: {
+        selectedCeil: null
+      }
     }
   },
   methods: {
     ...mapActions([
-      'getCategories'
+      'getCategories',
+      'setInformationMsg'
     ]),
     search () {
       if (!this.filter.search) {
@@ -263,7 +345,8 @@ export default {
                 break
               }
             }
-            alert('Successfully removed')
+            let infMsg = 'Category has been successfully removed'
+            self.setInformationMsg({text: infMsg, className: 'success'})
           })
           .catch((err) => console.log(err))
       }
@@ -328,7 +411,8 @@ export default {
           this.newCategory.parent = null
           this.newCategory.description = ''
           this.getCategories()
-          alert('Category has been successfully added')
+          let infMsg = 'Category has been successfully created'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -372,6 +456,8 @@ export default {
               break
             }
           }
+          let infMsg = 'Category has been successfully updated'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -383,6 +469,36 @@ export default {
         if (category.id === id && category.type === 'edit') {
           category.type = null
         }
+      }
+    },
+    removeSelectedFilters (filter) {
+      this.parent = null
+    },
+    removeAllFilters () {
+      this.parent = null
+    },
+    addHoverElement (elements) {
+      this.hoverElements = elements
+    },
+    removeHoverElements () {
+      this.hoverElements = []
+    },
+    isExist (element) {
+      let el = this.hoverElements.find(item => {
+        if ((element.value === item.value || item.value === null) && element.label === item.label) {
+          return true
+        }
+      })
+      return !!el
+    },
+    showHideSubMenu (num) {
+      if (!this.filerTableHead.selectedCeil) {
+        this.filerTableHead.selectedCeil = num
+//        setTimeout(() => {
+//          document.getElementById('sub-menu-' + num).focus()
+//        })
+      } else {
+        this.filerTableHead.selectedCeil = null
       }
     }
   },
