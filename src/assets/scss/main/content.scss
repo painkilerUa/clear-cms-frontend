@@ -1,5 +1,174 @@
 @import './settings/settings';
 
+.article {
+  &-page{
+    &-title {
+      color: #087280;
+      font-weight: bold;
+      font-size: 32px;
+      margin-bottom: 49px;
+    }
+  }
+  &-list{
+    list-style: none;
+    margin-bottom: 0;
+    &__item{
+      position: relative;
+      display: block;
+      margin-bottom: 29px;
+      &:last-of-type{
+        margin-bottom: 0;
+      }
+    }
+    &__link{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      position: relative;
+      text-decoration: none;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 14px;
+        flex-basis: 14px;
+        min-width: 14px;
+        height: 10px;
+        margin-left: 12px;
+        background-repeat: no-repeat;
+        background-image: url(../../img/content/article-arrow-right.svg);
+      }
+    }
+    &__tooltip{
+      background: none;
+      text-decoration: none;
+      border: none;
+      position: absolute;
+      left: -14px;
+    }
+  }
+  &-download{
+    margin-bottom: 50px;
+    &-list{
+      list-style: none;
+      margin-bottom: 0;
+      &__icon{
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        min-width: 20px;
+        min-height: 20px;
+        path{
+          fill: #BFBFBF;
+          transition: all 0.15s ease-in;
+        }
+      }
+      &__item{
+        display: block;
+      }
+      &__link {
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 0.92rem;
+        line-height: normal;
+        background-color: #F6F6F6;
+        color: #4f4f4f;
+        transition: all 0.15s ease-in;
+        &-text {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &:hover {
+          color: #fff;
+          background-color: #007381;
+          .article-download-list__icon {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-content{
+    &-title{
+      color: #087280;
+      font-size: 1.5rem;
+      margin-bottom: 22px;
+    }
+    &-area{
+      font-size: 1.06rem;
+      line-height: normal;
+      ul{
+        list-style: none;
+        margin-bottom: 30px;
+        li{
+          display: flex;
+          margin-bottom: 22px;
+          &:last-of-type{
+            margin-bottom: 0;
+          }
+          &::before{
+            min-width: 5px;
+            height: 5px;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 4px;
+            content: '';
+            margin-right: 18px;
+            border-radius: 50%;
+            background-color: #087280;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content{
+  &-main{
+    padding-top: 48px;
+    padding-bottom: 120px;
+    font-family: 'Arial';
+    &-inner{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+  &-sidebar{
+    margin-right: 54px;
+    width: 26.6%;
+    &-section{
+      margin-bottom: 17px;
+      padding: 24px 36px 38px 26px;
+      background-color: #CDCDCD;
+      &:last-of-type{
+        margin-bottom: 0;
+      }
+      &--accent{
+        background-color: #00B7D0;
+      }
+    }
+    &-title{
+      font-size: 1.125rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+  &-info {
+    flex-grow: 1;
+    flex-basis: 66%;
+    &-imgwrap{
+      margin-bottom: 34px;
+    }
+  }
+}
+
 #key {
   .position {
     padding-top: 30px;

@@ -1,62 +1,168 @@
 <template>
   <main class="main">
-    <section id="key">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 home">
-            <a href="#"><img src="assets/img/home.png" alt="home" /><span>Back to Home</span></a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Anxiety and Interviews</h2>
-          </div>
-        </div>
-        <div class="row outer-block">
-          <div class="col-md-7 position col-md-push-4 col-sm-6 col-sm-push-5"><!--   -->
-            <div class="text">
-              <h3>Key information</h3>
-              <ul>
-                <li>Anxiety is a feeling of unease, such as worry or fear, that can be mild or severe.</li>
-                <li>People often experience physical, psychological and behavioural symptoms when they feel anxious or stressed.</li>
-                <li>There are steps you can take to create a supportive environment. By helping an anxious candidate feel more comfortable you will help them perform better</li>
-                <li>Try to put the candidate at ease when they arrive by being professional and friendly this can be as simple as offering to get them a drink</li>
-                <li>Make sure your interview room is quiet, comfortable and easy to get to</li>
+    <div data-v-6f1f4672="" class="page-banner page-banner--content"></div>
+    <!-- .content-main -->
+    <div class="content-main">
+      <!-- .myContainer -->
+      <div class="myContainer">
+        <h1 class="article-page-title">Anxiety and Interviews</h1>
+        <!-- .content-main-inner -->
+        <div class="content-main-inner">
+          <aside class="content-sidebar">
+            <!-- .content-sidebar-section -->
+            <section class="content-sidebar-section content-sidebar-section--accent">
+              <h3 class="content-sidebar-section-title">Things to consider</h3>
+              <ul class="article-list">
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Assesments</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Reasonable Adjustments</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Language And Tone</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Inclusive Job Descriptions</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Mental Health</a>
+                </li>
               </ul>
-              <div class="hidden-xs hidden-sm">
-                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. Dis doles cient, ipsa nisi int omnihic imustio doloris asa quibea sed qui ali a pelesto reprerchit audam invel ipsanda eriorectur tiscil moluptatur ani hit eatis ped ene aut offi c temquos etum dipidelenis qui omni omnihic tesequid erferuntiu  m re ex et volorum rerum res rem quam nis dolum aut occullabo. Min eos repel et asi re esciis maion re eicilia ecatur soloraes. Acernatqui omnition pliti illoreperro est, voluptaturi tem quunt aut quibustrum ratem suntus, que porestiscil et omnim quis audicipsunt utam.</p>
-                <p>Ion re eicilia ecatur so laeatqui omnit. quibea sed qui alia pelesto reprerchit audam inv el ipsanda eriorectur sita tiscil moluptatur, anihit eatis ped ene aut offic temquos etum dipidelenis qui omn i omnihic tesequid erferuntium re ex et volorum rerum re rem uam  nis dolum aut occullabo eatisI ped ene aut offic temquos etum dipidelenis qui eatis ped  ene aut offico tem quos etum dipidelenis qui.</p>
-                <p>Omnihic tesequid erferuntium re ex et volorum rerum re rem uam nis dolum aut occulla bo ea tis ped ene aut offic temquos etum dipidelenis qui eatis ped ene aut offico tem  quos etum dipidelenis qui.</p>
+            </section>
+            <!-- END:.content-sidebar-section -->
+
+            <!-- .content-sidebar-section -->
+            <section class="content-sidebar-section">
+              <h3 class="content-sidebar-section-title">Things to do</h3>
+              <ul class="article-list">
+                <li class="article-list__item article-list__item--tooltip">
+                  <button type="button" class="article-list__tooltip">
+                    <img
+                      width="11.9px"
+                      height="11.7px"
+                      class="article-list__tooltip-icon"
+                      src="../../assets/img/content/exclamation-mark.svg"
+                      alt="tooltip" />
+                  </button>
+                  <a href="#" class="article-list__link">Targeting diverse talent</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Unconscious Bias Training</a>
+                </li>
+                <li class="article-list__item">
+                  <a href="#" class="article-list__link">Disability Basics</a>
+                </li>
+              </ul>
+            </section>
+            <!-- END:.content-sidebar-section -->
+          </aside>
+          <!-- .content-info -->
+          <div class="content-info">
+            <!-- .content-info-imgwrap -->
+            <div class="content-info-imgwrap">
+              <img
+                class="content-info-img"
+                src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"
+                alt="content-info-img" />
+            </div>
+            <!-- END:.content-info-imgwrap -->
+            <!-- .article-download -->
+            <div class="article-download">
+              <!-- article-download-list -->
+              <ul class="article-download-list">
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Document name can be longer like this & can go until right hereeeeeeee</span>
+                  </a>
+                </li>
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Download document here</span>
+                  </a>
+                </li>
+                <li class="article-download-list__item">
+                  <a href="#" class="article-download-list__link">
+                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
+                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
+                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
+                          <g id="Clip-2">
+                          </g>
+                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
+                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
+                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
+                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
+                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
+                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
+                            C-376.185,310-372.198,306.013-372.198,301.099"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <span class="article-download-list__link-text">Download document here longer name that doesn’t fit in a row, so we’ll display...</span>
+                  </a>
+                </li>
+              </ul>
+              <!-- END:article-download-list -->
+            </div>
+            <!-- END:.article-download -->
+            <!-- .article-content -->
+            <section class="article-content">
+              <h3 class="article-content-title">Key information</h3>
+              <!-- .article-content-area -->
+              <div class="article-content-area">
+                <ul>
+                  <li>Anxiety is a feeling of unease, such as worry or fear, that can be mild or severe.</li>
+                  <li>People often experience physical, psychological and behavioural symptoms when they feel anxious or stressed.</li>
+                  <li>There are steps you can take to create a supportive environment. By helping an anxious candidate feel more comfortable you will help them perform better</li>
+                  <li>Try to put the candidate at ease when they arrive by being professional and friendly this can be as simple as offering to get them a drink</li>
+                  <li>Make sure your interview room is quiet, comfortable and easy to get to</li>
+                </ul>
+                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. 
+                Dis doles cient, ipsa nisi int omnihic imustio doloris asa quibea sed qui ali a pelesto reprerchit audam invel ipsanda eriorectur tiscil moluptatur ani hit eatis ped ene aut offi c temquos etum dipidelenis qui omni omnihic tesequid erferuntiu  m re ex et volorum rerum res.</p>
+
+                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. </p>
               </div>
-            </div>
-            <div class="main-key hidden-xs hidden-sm"><a href="#">- See less key information about Anxiety and Interviews</a></div>
-            <div class="visible-xs visible-sm see_more"><a href="#">+ See more</a></div>
+              <!-- END:.article-content-area -->
+            </section>
+            <!-- END:.article-content -->
           </div>
-
-          <div class="col-md-4 first-block col-md-pull-7 col-sm-5 col-sm-pull-6"> <!--   -->
-            <div class="rectangle">
-              <p>Things to consider</p>
-              <ul>
-                <li><a href="#">Assessments</a></li>
-                <li><a href="#">Reasonable Adjustments</a></li>
-                <li><a href="#">Language And Tone</a></li>
-                <li><a href="#">Inclusive Job Descriptions</a></li>
-                <li><a href="#">Mental Health</a></li>
-              </ul>
-            </div>
-            <div class="rectangle second">
-              <p>Things to do</p>
-              <ul>
-                <li><a class="attention"href="#">Targeting diverse talent</a></li>
-                <li><a href="#">Unconscious Bias Training</a></li>
-                <li><a href="#">Disability Basics</a></li>
-              </ul>
-            </div>
-          </div>
-
+          <!-- END:.content-info -->
         </div>
+        <!-- END:.content-main-inner -->
       </div>
-    </section>
+      <!-- END:.myContainer -->
+    </div>
+    <!-- END:.content-main -->
   </main>
 </template>
 
