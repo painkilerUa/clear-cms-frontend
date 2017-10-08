@@ -17,98 +17,103 @@
     <div class="add-new-user">
       <div class="add-new-user-form" v-if="newUserForm.isShown">
         <h3>Add new user</h3>
-        <div class="add-new-user-body">
-          <div class="add-new-user-body-row">
-            <div class="add-new-user-body-row-half-body">
-              <label for="new-user-name">Name</label>
-              <input type="text"
-                     v-model="newUser.name"
-                     id="new-user-name"
-                     v-validate="'required'"
-                     name="Name"
-                     placeholder="Write user’s name">
-              <div
-                v-if="errors.has('Name')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Name') }}
-              </div>
-            </div>
-            <div class="add-new-user-body-row-half-body">
-              <label for="new-user-surname">Surname</label>
-              <input type="text"
-                     id="new-user-surname"
-                     v-validate="'required'"
-                     name="Surname"
-                     placeholder="Write user’s surname"
-                     v-model="newUser.surname" />
-              <div
-                v-if="errors.has('Surname')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Surname') }}
-              </div>
+        <div class="form-group">
+          <div class="form-element form-element--half">
+            <label for="new-user-name" class="form-label">Name</label>
+            <input type="text"
+                   class="form-control"
+                   v-model="newUser.name"
+                   id="new-user-name"
+                   v-validate="'required'"
+                   name="Name"
+                   placeholder="Write user’s name">
+            <div
+              v-if="errors.has('Name')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Name') }}
             </div>
           </div>
-          <div class="add-new-user-body-row">
-            <div class="add-new-user-body-row-inner-data">
-              <label for="new-user-email">Email</label>
-              <input type="text"
-                     id="new-user-email"
-                     v-validate="'required|email'"
-                     name="Email"
-                     placeholder="Write user’s email"
-                     v-model="newUser.email"/>
-              <div
-                v-if="errors.has('Email')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Email') }}
-              </div>
-            </div>
-          </div>
-          <div class="add-new-user-body-row">
-            <div class="add-new-user-body-row-half-body">
-              <label for="new-user-company-name">Company name</label>
-              <v-select
-                v-model="newUser.company"
-                :options="getCompaniesForSelect"
-                v-validate="'required'"
-                data-vv-name="Company name"
-                placeholder="Select company"
-                id="new-user-company-name"/>
-              <div
-                v-if="errors.has('Company name')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Company name') }}
-              </div>
-            </div>
-            <div class="add-new-user-body-row-half-body">
-              <label for="new-user-company-role">Company role</label>
-              <v-select
-                v-model="newUser.role"
-                :options="getRolesForSelect"
-                v-validate="'required'"
-                data-vv-name="Company role"
-                placeholder="Select role in company"
-                id="new-user-company-role" />
-              <div
-                v-if="errors.has('Company role')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Company role') }}
-              </div>
-            </div>
-          </div>
-          <div class="add-new-user-body-row">
-            <div class="add-new-user-body-row-half-body">
-              <label for="new-user-password">Password</label>
-              <input type="password"
-                     v-model="newUser.password"
-                     id="new-user-password"
-                     name="Password"
-                     v-validate="'required'">
-              <div
-                v-if="errors.has('Password')"
-                class="add-new-user-body-row-half-body-errors">{{ errors.first('Password') }}
-              </div>
-            </div>
-            <div class="add-new-user-body-row-half-body">
+          <div class="form-element form-element--half">
+            <label for="new-user-surname" class="form-label">Surname</label>
+            <input type="text"
+                   id="new-user-surname"
+                   class="form-control"
+                   v-validate="'required'"
+                   name="Surname"
+                   placeholder="Write user’s surname"
+                   v-model="newUser.surname" />
+            <div
+              v-if="errors.has('Surname')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Surname') }}
             </div>
           </div>
         </div>
-        <div class="add-new-user-server-validation">
+        <div class="form-elements">
+          <div class="form-element">
+            <label for="new-user-email" class="form-label">Email</label>
+            <input type="text"
+                   class="form-control"
+                   id="new-user-email"
+                   v-validate="'required|email'"
+                   name="Email"
+                   placeholder="Write user’s email"
+                   v-model="newUser.email"/>
+            <div
+              v-if="errors.has('Email')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Email') }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-element form-element--half">
+            <label for="new-user-company-name" class="form-label">Company name</label>
+            <v-select
+              :searchable = false
+              v-model="newUser.company"
+              :options="getCompaniesForSelect"
+              v-validate="'required'"
+              data-vv-name="Company name"
+              placeholder="Select company"
+              id="new-user-company-name"/>
+            <div
+              v-if="errors.has('Company name')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Company name') }}
+            </div>
+          </div>
+          <div class="form-element form-element--half">
+            <label for="new-user-company-role" class="form-label">Company role</label>
+            <v-select
+              :searchable = false
+              v-model="newUser.role"
+              :options="getRolesForSelect"
+              v-validate="'required'"
+              data-vv-name="Company role"
+              placeholder="Select role in company"
+              id="new-user-company-role" />
+            <div
+              v-if="errors.has('Company role')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Company role') }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-element form-element--half">
+            <label for="new-user-password" class="form-label">Password</label>
+            <input type="password"
+                   class="form-control"
+                   v-model="newUser.password"
+                   id="new-user-password"
+                   name="Password"
+                   placeholder="Insert password"
+                   v-validate="'required'">
+            <div
+              v-if="errors.has('Password')"
+              class="add-new-user-body-row-half-body-errors">{{ errors.first('Password') }}
+            </div>
+          </div>
+          <div class="form-element form-element--half">
+          </div>
+        </div>
+        <div class="add-new-user-server-validation" v-if="serverValidation.errors.length">
           <span v-for="error in serverValidation.errors">{{error}}</span>
         </div>
         <div class="add-new-user-control-panel">
@@ -131,11 +136,32 @@
             v-model="selectedAction"
             :options="getArticleListActions" />
         </div>
-        <div class="users-list-statusbar">
-          <div class="users-list-statusbar__contains users-list-statusbar__block">Articles</div>
+        <div class="users-list-statusbar"  v-if="!selectedFilters.length">
+          <div class="users-list-statusbar__contains users-list-statusbar__block">{{usersSum}} users</div>
           <ul class="users-list-statuses users-list-statusbar__block">
-            <li class="">101 Users</li>
+            <li v-for="item in statusbar.data"
+              class="users-list-statuses__item"
+              :style="{color: item.name === 'User' ? '#b70a37' : '#0a74b7'}"
+            >{{item.c + ' ' + item.name}}</li>
           </ul>
+        </div>
+        <div class="users-list-selected-filters" v-if="selectedFilters.length" :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+          <div class="users-list-selected-filters-remove-all"
+               @click="removeAllFilters"
+               @mouseover="statusbar.filter.isHover = true"
+               @mouseleave="statusbar.filter.isHover = false"
+               :style="statusbar.filter.isHover ? statusbar.filter.style : ''">
+            <span>{{statusbar.filter.isHover ? 'Remove all filters' : 'Aplied filters'}}</span>
+          </div>
+          <div class="users-list-selected-filters-body">
+            <button v-for="filter in selectedFilters"
+                    type="button"
+                    @click="removeSelectedFilters(filter)"
+                    :class="{'hover-filter-element': isExist(filter)}">
+              <span>{{filter.label}}</span>
+              <icon name="times"></icon>
+            </button>
+          </div>
         </div>
         <div class="users-list-add">
           <button type="button" class="users-list-add__btn" @click="newUserForm.isShown = true">
@@ -148,33 +174,90 @@
         <table class="table table-data">
           <thead>
           <tr>
-            <th class="cellpadding">ID</th>
-            <th class="users-list-search-col text-left">
+            <th class="cellpadding column-id-head table-head-ceil">ID</th>
+            <th class="users-list-search-col text-left column-search-head table-head-ceil">
               <div class="table-search-wrap">
-                <input
-                  v-model="searchString"
-                  type="search"
-                  class="table-search"
-                  placeholder="Search in users by name or surname..." />
+                <div class="wrap-input">
+                  <input
+                    v-model="searchString"
+                    type="search"
+                    class="table-search"
+                    placeholder="Search in users by name or surname..." />
+                </div>
+                <div class="wrap-search-icon">
+                  <icon name="search"></icon>
+                </div>
               </div>
             </th>
-            <th>
+            <th class="column-email-head table-head-ceil">
               <span>Email</span>
             </th>
-            <th>
-              <v-select placeholder="Company"
+            <th class="column-company-head table-head-hover table-head-ceil"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2, 'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                @mouseover="addHoverElement(getCompaniesForSelect)"
+                @mouseleave="removeHoverElements">
+              <div class="caption-head">
+                <div class="caption-head-text" @click="showHideSubMenu(1)">
+                  <span class="caption-head-inner-text">Copany</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 1">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                  <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 1">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-1"
+                   v-show="filerTableHead.selectedCeil === 1"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
                         :options="getCompaniesForSelect"
                         v-model="company" />
+              </div>
             </th>
-            <th>
-              <v-select placeholder="Role"
+            <th class="column-role-head table-head-hover table-head-ceil"
+                :class="{'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                @mouseover="addHoverElement(getRolesForSelect)"
+                @mouseleave="removeHoverElements">
+              <div class="caption-head">
+                <div class="caption-head-text" @click="showHideSubMenu(2)">
+                  <span class="caption-head-inner-text">Role</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 2">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                  <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 2">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="wrap-dropdown-table-head"
+                   id="sub-menu-2"
+                   v-show="filerTableHead.selectedCeil === 2"
+                   tabindex="-1"
+                   @focusout="filerTableHead.selectedCeil = null">
+                <v-select placeholder="Search here ..."
                         :options="getRolesForSelect"
                         v-model="role" />
+              </div>
             </th>
-            <th>
+            <th class="column-last-active-head table-head-ceil">
               <span>Last active</span>
             </th>
-            <th colspan="3" class="cellpadding">Actions</th>
+            <th colspan="3" class="cellpadding column-actions-head table-head-ceil">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -189,15 +272,16 @@
             <td class="cellpadding" v-if="user.type === 'show'">{{user.company ? user.company.name : ''}}</td>
             <td class="cellpadding" v-if="user.type === 'show'"> {{user.role_users.length ? user.role_users[0].name : ''}}</td>
             <td class="cellpadding" v-if="user.type === 'show'">3 hours ago</td>
-            <td class="cellpadding" v-if="user.type === 'show'">
+            <td class="cellpadding text-center" v-if="user.type === 'show'">
               <button
                 type="button"
                 class="table-crud-btn icon-btn"
                 @click="showEditableForm(user.id)">
                 <icon name="pencil"/>
+                <span class="table-tooltip-edit">Edit</span>
               </button>
             </td>
-            <td class="cellpadding" v-if="user.type === 'show'">
+            <td class="cellpadding text-center" v-if="user.type === 'show'">
               <button
                 v-if="user.enabled"
                 type="button"
@@ -213,7 +297,7 @@
                 <icon name="check-circle"/>
               </button>
             </td>
-            <td class="cellpadding" v-if="user.type === 'show'">
+            <td class="cellpadding text-center" v-if="user.type === 'show'">
               <button
                 type="button"
                 class="table-crud-btn icon-btn"
@@ -256,6 +340,7 @@
                       v-validate="'required'"
                       data-vv-name="userCompanyName"
                       data-vv-as="Company Name"
+                      :searchable = false
                       placeholder="Select company" />
                   </div>
                   <div class="edit-user-row-ceil">
@@ -265,6 +350,7 @@
                       v-validate="'required'"
                       data-vv-name="userCompanyRole"
                       data-vv-as="Company Role"
+                      :searchable = false
                       placeholder="Select role in company" />
                   </div>
                   <div class="edit-user-row-ceil">
@@ -352,19 +438,35 @@ export default {
         style: {
           top: '100px'
         }
+      },
+      hoverElements: [],
+      filerTableHead: {
+        selectedCeil: null
+      },
+      statusbar: {
+        data: [],
+        filter: {
+          isHover: false,
+          style: {
+            backgroundColor: '#fffdd8',
+            borderColor: '#000'
+          }
+        }
       }
     }
   },
   methods: {
     ...mapActions([
       'getRoles',
-      'getCompanies'
+      'getCompanies',
+      'setInformationMsg'
     ]),
     fetchAllContentByScroll (page, limit) {
       this.$http.get(api.URLS.users + '?limit=' + limit + '&page=' + page, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
           this.users = res.body.data.items
+          this.statusbar.data = res.body.count ? res.body.count : []
         })
         .catch((err) => {
           console.log(err)
@@ -389,10 +491,14 @@ export default {
           this.users.push(res.body)
           this.newUserForm.isShown = false
           this.resetAddNewUserForm()
+          let infMsg = 'User has been successfully created'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.serverValidation.errors = err.body
           console.log(err)
+          let infMsg = "User has't been successfully created"
+          this.setInformationMsg({text: infMsg, className: 'danger'})
         })
     },
     hideAddNewUserForm () {
@@ -452,8 +558,12 @@ export default {
               break
             }
           }
+          let infMsg = 'User has been successfully updated'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
+          let infMsg = "User has't been successfully created"
+          this.setInformationMsg({text: infMsg, className: 'success'})
           this.disableAPI = false
           console.log(err)
         })
@@ -494,9 +604,14 @@ export default {
                 break
               }
             }
-            alert('Successfully removed')
+            let infMsg = 'User has been successfully removed'
+            self.setInformationMsg({text: infMsg, className: 'success'})
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            console.log(err)
+            let infMsg = "User has't been successfully removed"
+            self.setInformationMsg({text: infMsg, className: 'danger'})
+          })
       }
       function changeUserStatus (id, status) {
         self.clearAction()
@@ -514,10 +629,52 @@ export default {
                 break
               }
             }
-            alert('Successfully updated')
+            let infMsg = 'User has been successfully updated'
+            self.setInformationMsg({text: infMsg, className: 'success'})
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            console.log(err)
+            let infMsg = "User has't been successfully updated"
+            self.setInformationMsg({text: infMsg, className: 'danger'})
+          })
       }
+    },
+    addHoverElement (elements) {
+      console.log(elements)
+      this.hoverElements = elements
+    },
+    removeHoverElements () {
+      this.hoverElements = []
+    },
+    showHideSubMenu (num) {
+      if (!this.filerTableHead.selectedCeil) {
+        this.filerTableHead.selectedCeil = num
+//        setTimeout(() => {
+//          document.getElementById('sub-menu-' + num).focus()
+//        })
+      } else {
+        this.filerTableHead.selectedCeil = null
+      }
+    },
+    isExist (element) {
+      let el = this.hoverElements.find(item => {
+        if ((element.value === item.value || item.value === null) && element.label === item.label) {
+          return true
+        }
+      })
+      return !!el
+    },
+    removeSelectedFilters (filter) {
+      if (this.role && this.role.label === filter.label && this.role.value === filter.value) {
+        this.role = null
+      }
+      if (this.company && this.company.label === filter.label && this.company.value === filter.value) {
+        this.company = null
+      }
+    },
+    removeAllFilters () {
+      this.role = null
+      this.company = null
     }
   },
   computed: {
@@ -529,6 +686,23 @@ export default {
       return this.users.filter((user) => (user.username + ' ' + user.last_name).toLowerCase().indexOf(this.searchString.toLowerCase()) > -1)
         .filter((user) => this.company === null || (user.company && user.company.id === this.company.value))
         .filter((user) => this.role === null || (user.role_users.length && user.role_users[0].id === this.role.value))
+    },
+    usersSum () {
+      let count = 0
+      this.statusbar.data.forEach(item => {
+        count = count + +item.c
+      })
+      return count
+    },
+    selectedFilters () {
+      let filters = []
+      if (this.company) {
+        filters.push(this.company)
+      }
+      if (this.role) {
+        filters.push(this.role)
+      }
+      return filters
     }
   },
   watch: {

@@ -57,7 +57,7 @@
             <button v-for="filter in selectedFilters"
                     type="button"
                     @click="removeSelectedFilters(filter)"
-                    :class="{hover: isExist(filter)}">
+                    :class="{'hover-filter-element': isExist(filter)}">
               <span>{{filter.label}}</span>
               <icon name="times"></icon>
             </button>

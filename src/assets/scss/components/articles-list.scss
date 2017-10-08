@@ -7,7 +7,6 @@
         display: flex;
         margin-bottom: 40px;
         color: color('tableText');
-
         align-items: center;
         justify-content: space-between;
     }
@@ -103,22 +102,6 @@
   min-width: 260px;
   padding: 0;
 }
-.table-search-wrap {
-  display: flex;
-  align-items: center;
-  .wrap-input {
-    width: 90%;
-    input {
-      background-color: transparent;
-      height: 30px;
-      width: 100%;
-    }
-  }
-}
-.wrap-search-icon {
-  padding: 20px;
-  background-color: #f3f3f3;
-}
 .column-lng-head {
   max-width: 150px;
   min-width: 150px;
@@ -169,10 +152,6 @@
 }
 .articles-list-body{
   margin-bottom: 40px;
-}
-.hover {
-  border-color: #000 !important;
-  background-color: #fffdd8 !important;
 }
 .active-ceil-head {
   border-top-color: #a0a0a0;

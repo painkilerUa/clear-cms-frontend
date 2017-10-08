@@ -14,101 +14,178 @@
         </div>
       </div>
     </div>
-    <div class="wrap-categories-list">
-      <h1>Topics List</h1>
-      <div class="categories-list">
-        <h2>List with topics</h2>
-        <!--<div class="categories-list-actions">-->
-          <!--<div class="categories-list-inputwrap">-->
-            <!--<input type="checkbox" class="categories-list-input" />-->
-          <!--</div>-->
-          <!--<v-select-->
-            <!--placeholder="Bulk action"-->
-            <!--:options="['Action 1', 'Action 2']"-->
-            <!--class="select-bulk-action"/>-->
-          <!--<span class="categories-statusbar">54 subcategories</span>-->
+    <div class="wrap-tag-list">
+      <h1 class="main-caption">Topics List</h1>
+      <div class="tag">
+        <div class="tag-list">
+          <!--<div class="tag-list-heading"></div>-->
+          <div class="tag-list-body">
+            <table class="table table-data">
+              <thead>
+              <tr>
+                <th class="cellpadding tag-list-body__head_id table-head-ceil">ID</th>
+                <th class="categories-list-search-col text-left tag-list-body__head_search table-head-ceil">
+                  <div class="table-search-wrap">
+                    <div class="wrap-input">
+                      <input
+                        v-model="searchString"
+                        type="search"
+                        class="table-search"
+                        placeholder="Search in topics..." />
+                    </div>
+                    <div class="wrap-search-icon">
+                      <icon name="search"></icon>
+                    </div>
+                  </div>
+                </th>
+                <th colspan="2" class="cellpadding tag-list-body__head_actions table-head-ceil">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="tag in updatedTags">
+                <td class="text-center cellpadding text-center" v-if="tag.type === 'show'">
+                  <!--<input type="checkbox" :id="tag.id"/>-->
+                  <!--<label :for="tag.id">{{tag.id}}</label>-->
+                  {{tag.id}}
+                </td>
+                <td class="cellpadding" v-if="tag.type === 'show'">{{tag.name}}</td>
+                <td class="cellpadding text-center" v-if="tag.type === 'show'">
+                  <button
+                    type="button"
+                    class="table-crud-btn icon-btn"
+                    @click="showEditionForm(tag.id)">
+                    <icon name="pencil"/>
+                    <span class="table-tooltip-edit">Edit</span>
+                  </button>
+                </td>
+                <td class="cellpadding text-center" v-if="tag.type === 'show'">
+                  <button
+                    type="button"
+                    class="table-crud-btn icon-btn"
+                    @click="initAction('removeTag', tag.id)">
+                    <icon name="times" />
+                  </button>
+                </td>
+                <td colspan="4" v-if="tag.type === 'edit'">
+                  <div class="wrap-edit-form">
+                    <div class="row">
+                      <div class="wrap-title-input">
+                        <input type="text" v-model="tag.name">
+                      </div>
+                      <div class="wrap-desc-textarea">
+                        <textarea name="desc-textarea" cols="10" rows="3" v-model="tag.description"></textarea>
+                      </div>
+                    </div>
+                    <div class="wrap-table-control-panel">
+                      <button type="button" @click="discardСhanges(tag.id)">Discard changes</button>
+                      <button type="button" @click="editTag(tag.id)">Save changes</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tag-add-form">
+          <h3>Add new topic</h3>
+          <div class="form-elements">
+            <div class="form-element">
+              <label for="input-tag-name" class="form-label">Topic Name</label>
+              <input type="text" id="input-tag-name" class="form-control" placeholder="Write topic name" v-model="newTag.name"/>
+            </div>
+            <div class="form-element">
+              <label for="textarea-tag-desc" class="form-label">Topic description</label>
+              <textarea class="form-control" name="category-desc" id="textarea-tag-desc" cols="30" rows="10" v-model="newTag.description"></textarea>
+            </div>
+          </div>
+          <div class="wrap-control-panel">
+            <button type="button" class="btn-conf" @click="createTag">Create topic</button>
+          </div>
+        </div>
+      </div>
+      <!--<div class="categories-list">-->
+        <!--<h2>List with topics</h2>-->
+        <!--<div class="categories-list-body">-->
+          <!--<table class="table table-data">-->
+            <!--<thead>-->
+            <!--<tr>-->
+              <!--<th class="cellpadding">ID</th>-->
+              <!--<th class="categories-list-search-col text-left">-->
+                <!--<div class="table-search-wrap">-->
+                  <!--<input-->
+                    <!--v-model="searchString"-->
+                    <!--type="search"-->
+                    <!--class="table-search"-->
+                    <!--placeholder="Search in topics..." />-->
+                <!--</div>-->
+              <!--</th>-->
+              <!--<th colspan="2" class="cellpadding">Actions</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr v-for="tag in updatedTags">-->
+              <!--<td class="text-center cellpadding" v-if="tag.type === 'show'">-->
+                <!--&lt;!&ndash;<input type="checkbox" :id="tag.id"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<label :for="tag.id">{{tag.id}}</label>&ndash;&gt;-->
+                <!--{{tag.id}}-->
+              <!--</td>-->
+              <!--<td class="cellpadding" v-if="tag.type === 'show'">{{tag.name}}</td>-->
+              <!--<td class="cellpadding" v-if="tag.type === 'show'">-->
+                <!--<button-->
+                  <!--type="button"-->
+                  <!--class="table-crud-btn icon-btn"-->
+                  <!--@click="showEditionForm(tag.id)">-->
+                  <!--<icon name="pencil"/>-->
+                <!--</button>-->
+              <!--</td>-->
+              <!--<td class="cellpadding" v-if="tag.type === 'show'">-->
+                <!--<button-->
+                  <!--type="button"-->
+                  <!--class="table-crud-btn icon-btn"-->
+                  <!--@click="initAction('removeTag', tag.id)">-->
+                  <!--<icon name="times" />-->
+                <!--</button>-->
+              <!--</td>-->
+              <!--<td colspan="4" v-if="tag.type === 'edit'">-->
+                <!--<div class="wrap-edit-form">-->
+                  <!--<div class="row">-->
+                    <!--<div class="wrap-title-input">-->
+                      <!--<input type="text" v-model="tag.name">-->
+                    <!--</div>-->
+                    <!--<div class="wrap-desc-textarea">-->
+                      <!--<textarea name="desc-textarea" cols="10" rows="3" v-model="tag.description"></textarea>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="wrap-table-control-panel">-->
+                    <!--<button type="button" @click="discardСhanges(tag.id)">Discard changes</button>-->
+                    <!--<button type="button" @click="editTag(tag.id)">Save changes</button>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
         <!--</div>-->
-        <div class="categories-list-body">
-          <table class="table table-data">
-            <thead>
-            <tr>
-              <th class="cellpadding">ID</th>
-              <th class="categories-list-search-col text-left">
-                <div class="table-search-wrap">
-                  <input
-                    v-model="searchString"
-                    type="search"
-                    class="table-search"
-                    placeholder="Search in topics..." />
-                </div>
-              </th>
-              <th colspan="2" class="cellpadding">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="tag in updatedTags">
-              <td class="text-center cellpadding" v-if="tag.type === 'show'">
-                <!--<input type="checkbox" :id="tag.id"/>-->
-                <!--<label :for="tag.id">{{tag.id}}</label>-->
-                {{tag.id}}
-              </td>
-              <td class="cellpadding" v-if="tag.type === 'show'">{{tag.name}}</td>
-              <td class="cellpadding" v-if="tag.type === 'show'">
-                <button
-                  type="button"
-                  class="table-crud-btn icon-btn"
-                  @click="showEditionForm(tag.id)">
-                  <icon name="pencil"/>
-                </button>
-              </td>
-              <td class="cellpadding" v-if="tag.type === 'show'">
-                <button
-                  type="button"
-                  class="table-crud-btn icon-btn"
-                  @click="initAction('removeTag', tag.id)">
-                  <icon name="times" />
-                </button>
-              </td>
-              <td colspan="4" v-if="tag.type === 'edit'">
-                <div class="wrap-edit-form">
-                  <div class="row">
-                    <div class="wrap-title-input">
-                      <input type="text" v-model="tag.name">
-                    </div>
-                    <div class="wrap-desc-textarea">
-                      <textarea name="desc-textarea" cols="10" rows="3" v-model="tag.description"></textarea>
-                    </div>
-                  </div>
-                  <div class="wrap-table-control-panel">
-                    <button type="button" @click="discardСhanges(tag.id)">Discard changes</button>
-                    <button type="button" @click="editTag(tag.id)">Save changes</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="wrap-add-category-form">
-        <h3>Add new topic</h3>
-        <div class="input-grout">
-          <label for="input-tag-name">Topic Name</label>
-          <div class="wrap-input">
-            <input type="text" id="input-tag-name" class="input-category-name" placeholder="Write topic name" v-model="newTag.name"/>
-          </div>
-        </div>
-        <div class="textarea-group">
-          <label for="textarea-tag-desc">Topic description</label>
-          <div class="wrap-textarea">
-            <textarea name="category-desc" id="textarea-tag-desc" cols="30" rows="10" v-model="newTag.description"></textarea>
-          </div>
-        </div>
-        <div class="wrap-control-panel">
-          <button type="button" class="btn-conf" @click="createTag">Create topic</button>
-        </div>
-      </div>
-
+      <!--</div>-->
+      <!--<div class="wrap-add-category-form">-->
+        <!--<h3>Add new topic</h3>-->
+        <!--<div class="input-grout">-->
+          <!--<label for="input-tag-name">Topic Name</label>-->
+          <!--<div class="wrap-input">-->
+            <!--<input type="text" id="input-tag-name" class="input-category-name" placeholder="Write topic name" v-model="newTag.name"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="textarea-group">-->
+          <!--<label for="textarea-tag-desc">Topic description</label>-->
+          <!--<div class="wrap-textarea">-->
+            <!--<textarea name="category-desc" id="textarea-tag-desc" cols="30" rows="10" v-model="newTag.description"></textarea>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="wrap-control-panel">-->
+          <!--<button type="button" class="btn-conf" @click="createTag">Create topic</button>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -133,7 +210,10 @@ export default {
       confirmation: {
         action: '',
         isShown: false,
-        id: null
+        id: null,
+        style: {
+          top: '100px'
+        }
       },
       contentAutoloadInfo: {
 //        typeAutoLoad: 'allContent',
@@ -157,7 +237,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getTags'
+      'getTags',
+      'setInformationMsg'
     ]),
     search () {
       if (!this.filter.search) {
@@ -226,7 +307,8 @@ export default {
                 break
               }
             }
-            alert('Successfully removed')
+            let infMsg = 'Topic has been successfully removed'
+            self.setInformationMsg({text: infMsg, className: 'success'})
           })
           .catch((err) => console.log(err))
       }
@@ -286,7 +368,8 @@ export default {
           this.tags.push(res.body)
           this.newTag.name = ''
           this.newTag.description = ''
-          alert('Tag has been successfully added')
+          let infMsg = 'Topic has been successfully created'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false
@@ -334,6 +417,8 @@ export default {
               break
             }
           }
+          let infMsg = 'Topic has been successfully updated'
+          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
           this.disableAPI = false

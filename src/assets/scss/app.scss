@@ -8,6 +8,7 @@
   font-family: Arial;
 }
 
+// style for all admin tables
 .hide-selected-items {
   .selected-tag {
     display: none;
@@ -51,7 +52,22 @@
     outline: none;
   }
 }
-
+.table-search-wrap {
+  display: flex;
+  align-items: center;
+  .wrap-input {
+    width: 90%;
+    input {
+      background-color: transparent;
+      height: 30px;
+      width: 100%;
+    }
+  }
+}
+.wrap-search-icon {
+  padding: 20px;
+  background-color: #f3f3f3;
+}
 .caption-head {
   display: flex;
   justify-content: space-between;
@@ -68,5 +84,19 @@
   .cell {
     height: 30px !important;
     line-height: 30px !important;
+  }
+}
+.main-caption {
+  font-size: 1.875rem;
+  padding-left: 30px;
+}
+.hover-filter-element {
+  border-color: #000 !important;
+  background-color: #fffdd8 !important;
+}
+.dropdown-toggle {
+  height: 40px;
+  input {
+    height: 40px!important;
   }
 }
