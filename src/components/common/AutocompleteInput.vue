@@ -124,6 +124,7 @@ export default {
           if (this.$route.path === '/') {
             this.fetchContent()
           } else {
+            this.fetchContent()
           }
         }
       }

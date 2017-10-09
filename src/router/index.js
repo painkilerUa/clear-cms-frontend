@@ -28,6 +28,7 @@ import Home from '@/components/main/Home'
 import Index from '@/components/main/Index'
 import Search from '@/components/main/Search'
 import Content from '@/components/main/Content'
+import AskExperts from '@/components/main/AskExperts'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ const router = new Router({
           name: 'content',
           props: true,
           component: Content
+        },
+        {
+          path: '/ask-experts',
+          name: 'AskExperts',
+          component: AskExperts
         }
       ]
     },

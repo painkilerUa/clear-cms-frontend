@@ -2,57 +2,63 @@
   <main class="main">
     <div data-v-6f1f4672="" class="page-banner page-banner--content"></div>
     <!-- .content-main -->
-    <div class="content-main">
+    <div class="content-main" v-if="this.content">
       <!-- .myContainer -->
       <div class="myContainer">
-        <h1 class="article-page-title">Anxiety and Interviews</h1>
+        <h1 class="article-page-title">{{content.title}}</h1>
         <!-- .content-main-inner -->
         <div class="content-main-inner">
           <aside class="content-sidebar">
             <!-- .content-sidebar-section -->
-            <section class="content-sidebar-section content-sidebar-section--accent">
+            <section class="content-sidebar-section content-sidebar-section--accent" v-if="thingsToConsider.length">
               <h3 class="content-sidebar-section-title">Things to consider</h3>
               <ul class="article-list">
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Assesments</a>
+                <li class="article-list__item" v-for="item in thingsToConsider">
+                  <a :href="'/content/' + item.id" class="article-list__link">{{item.title}}</a>
                 </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Reasonable Adjustments</a>
-                </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Language And Tone</a>
-                </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Inclusive Job Descriptions</a>
-                </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Mental Health</a>
-                </li>
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Assesments</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Reasonable Adjustments</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Language And Tone</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Inclusive Job Descriptions</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Mental Health</a>-->
+                <!--</li>-->
               </ul>
             </section>
             <!-- END:.content-sidebar-section -->
 
             <!-- .content-sidebar-section -->
-            <section class="content-sidebar-section">
+            <section class="content-sidebar-section"  v-if="thingsToDo.length">
               <h3 class="content-sidebar-section-title">Things to do</h3>
               <ul class="article-list">
-                <li class="article-list__item article-list__item--tooltip">
-                  <button type="button" class="article-list__tooltip">
-                    <img
-                      width="11.9px"
-                      height="11.7px"
-                      class="article-list__tooltip-icon"
-                      src="../../assets/img/content/exclamation-mark.svg"
-                      alt="tooltip" />
-                  </button>
-                  <a href="#" class="article-list__link">Targeting diverse talent</a>
+                <li class="article-list__item" v-for="item in thingsToDo">
+                  <a :href="'/content/' + item.id" class="article-list__link">{{item.title}}</a>
                 </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Unconscious Bias Training</a>
-                </li>
-                <li class="article-list__item">
-                  <a href="#" class="article-list__link">Disability Basics</a>
-                </li>
+                <!--<li class="article-list__item article-list__item&#45;&#45;tooltip">-->
+                  <!--<button type="button" class="article-list__tooltip">-->
+                    <!--<img-->
+                      <!--width="11.9px"-->
+                      <!--height="11.7px"-->
+                      <!--class="article-list__tooltip-icon"-->
+                      <!--src="../../assets/img/content/exclamation-mark.svg"-->
+                      <!--alt="tooltip" />-->
+                  <!--</button>-->
+                  <!--<a href="#" class="article-list__link">Targeting diverse talent</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Unconscious Bias Training</a>-->
+                <!--</li>-->
+                <!--<li class="article-list__item">-->
+                  <!--<a href="#" class="article-list__link">Disability Basics</a>-->
+                <!--</li>-->
               </ul>
             </section>
             <!-- END:.content-sidebar-section -->
@@ -64,7 +70,9 @@
               <img
                 class="content-info-img"
                 src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"
-                alt="content-info-img" />
+                alt="content-info-img"
+                v-if="!content.image_path"/>
+              <img :src="mainImgPath" alt="main-content-img" v-if="content.image_path">
             </div>
             <!-- END:.content-info-imgwrap -->
             <!-- .article-download -->
@@ -139,18 +147,18 @@
             <section class="article-content">
               <h3 class="article-content-title">Key information</h3>
               <!-- .article-content-area -->
-              <div class="article-content-area">
-                <ul>
-                  <li>Anxiety is a feeling of unease, such as worry or fear, that can be mild or severe.</li>
-                  <li>People often experience physical, psychological and behavioural symptoms when they feel anxious or stressed.</li>
-                  <li>There are steps you can take to create a supportive environment. By helping an anxious candidate feel more comfortable you will help them perform better</li>
-                  <li>Try to put the candidate at ease when they arrive by being professional and friendly this can be as simple as offering to get them a drink</li>
-                  <li>Make sure your interview room is quiet, comfortable and easy to get to</li>
-                </ul>
-                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. 
-                Dis doles cient, ipsa nisi int omnihic imustio doloris asa quibea sed qui ali a pelesto reprerchit audam invel ipsanda eriorectur tiscil moluptatur ani hit eatis ped ene aut offi c temquos etum dipidelenis qui omni omnihic tesequid erferuntiu  m re ex et volorum rerum res.</p>
+              <div class="article-content-area" v-html="content.content">
+                <!--<ul>-->
+                  <!--<li>Anxiety is a feeling of unease, such as worry or fear, that can be mild or severe.</li>-->
+                  <!--<li>People often experience physical, psychological and behavioural symptoms when they feel anxious or stressed.</li>-->
+                  <!--<li>There are steps you can take to create a supportive environment. By helping an anxious candidate feel more comfortable you will help them perform better</li>-->
+                  <!--<li>Try to put the candidate at ease when they arrive by being professional and friendly this can be as simple as offering to get them a drink</li>-->
+                  <!--<li>Make sure your interview room is quiet, comfortable and easy to get to</li>-->
+                <!--</ul>-->
+                <!--<p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga.-->
+                <!--Dis doles cient, ipsa nisi int omnihic imustio doloris asa quibea sed qui ali a pelesto reprerchit audam invel ipsanda eriorectur tiscil moluptatur ani hit eatis ped ene aut offi c temquos etum dipidelenis qui omni omnihic tesequid erferuntiu  m re ex et volorum rerum res.</p>-->
 
-                <p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. </p>
+                <!--<p>Cerion reri alitiniae preiciet voloribus exera eosam faces estis de nonsequatem idessum  ute strum volore, nimolen dolesse ctemqui offic to veliber ibuscium ulpa dolendist harum  in eate molorero coreperum fuga. </p>-->
               </div>
               <!-- END:.article-content-area -->
             </section>
@@ -167,11 +175,38 @@
 </template>
 
 <script>
+import api from '@/api'
+
 export default {
   name: 'index',
-  computed: {
+  data () {
+    return {
+      content: null
+    }
   },
-  components: {
+  computed: {
+    mainImgPath () {
+      return this.content.image_path ? api.staticServerURL + this.content.image_path : ''
+    },
+    thingsToConsider () {
+      return this.content.children ? this.content.children.filter(item => item.is_article) : []
+    },
+    thingsToDo () {
+      return this.content.children ? this.content.children.filter(item => !item.is_article) : []
+    }
+  },
+  methods: {
+    getArticleById () {
+      this.$http.get(`${api.URLS.content}/${this.$route.params.id}`, api.headersAuthSettings)
+        .then((res) => {
+          this.content = res.body
+          console.log(res)
+        })
+        .catch((err) => console.error(err))
+    }
+  },
+  mounted () {
+    this.getArticleById()
   }
 }
 </script>
