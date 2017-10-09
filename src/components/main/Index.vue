@@ -1,5 +1,8 @@
 <template>
   <main class="main">
+    <login v-if="$route.name === 'login'" />
+    <register v-if="$route.name === 'register'" />
+    <forgot-password v-if="$route.name === 'forgot-password'" />
     <!-- .page-banner -->
     <div class="page-banner page-banner--home"></div>
     <!-- .home-info -->
@@ -357,7 +360,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link">Ask an expert</a>
+            <a href="#" class="home-info-list__link" @click="followAskExpLink($event)">Ask an expert</a>
           </li>
         </ul>
         <!-- END:.home-info-list -->
@@ -397,11 +400,23 @@
 </template>
 
 <script>
+import Login from '@/components/pages/Login'
+import Register from '@/components/pages/Register'
+import ForgotPassword from '@/components/pages/ForgotPassword'
 export default {
   name: 'index',
   computed: {
   },
   components: {
+    Login,
+    Register,
+    ForgotPassword
+  },
+  methods: {
+    followAskExpLink (e) {
+      e.preventDefault()
+      this.$router.push('/ask-experts')
+    }
   }
 }
 </script>
@@ -431,7 +446,7 @@ export default {
   .st18{mask:url(#mask-18_2_);fill:#077280;}
   .st19{filter:url(#Adobe_OpacityMaskFilter_9_);}
   .st20{mask:url(#mask-20_2_);fill:#077280;}
-  .st21{fill:#22B6CD;}   
-  } 
+  .st21{fill:#22B6CD;}
+  }
 }
 </style>

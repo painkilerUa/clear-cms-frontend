@@ -18,7 +18,13 @@
       <h1 class="main-caption">Topics List</h1>
       <div class="tag">
         <div class="tag-list">
-          <!--<div class="tag-list-heading"></div>-->
+          <div class="tag-list-heading">
+            <div class="tag-list-statusbar">
+              <div class="tag-list-statusbar__contains">
+                <span>{{tags.length}} topics</span>
+              </div>
+            </div>
+          </div>
           <div class="tag-list-body">
             <table class="table table-data">
               <thead>

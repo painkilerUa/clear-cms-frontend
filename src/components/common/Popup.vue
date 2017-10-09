@@ -50,7 +50,8 @@ export default {
   },
   methods: {
     close () {
-      this.show = false
+//      this.show = false
+      this.$router.push('/')
     }
   },
   directives: {

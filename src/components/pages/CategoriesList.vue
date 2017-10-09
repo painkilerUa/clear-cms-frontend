@@ -110,8 +110,8 @@
                   <!--<label :for="category.id">{{category.id}}</label>-->
                   {{category.id}}
                 </td>
-                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? '- ' + category.title : category.title}}</td>
-                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? category.parent.title : '-'}}</td>
+                <td class="cellpadding" v-if="category.type === 'show'">{{category.isChild ? '- ' + category.title : category.title}}</td>
+                <td class="cellpadding" v-if="category.type === 'show'">{{category.parent ? category.parent.label : '-'}}</td>
                 <td class="cellpadding" v-if="category.type === 'show'">{{category.contents.length}}</td>
                 <td class="cellpadding text-center" v-if="category.type === 'show'">
                   <button
@@ -375,7 +375,8 @@ export default {
         .then((res) => {
           this.contentAutoloadInfo.curPage = res.body.current_page_number
           this.contentAutoloadInfo.numPages = Math.ceil(res.body.total_count / limit)
-          this.categories = [...this.categories, ...res.body.items]
+//          this.categories = [...this.categories, ...res.body.items]
+          this.categories = this.expendCategories(res.body.items.filter(item => !item.parent))
           this.contentAutoloadInfo.locked = false
           console.log(res)
         })
@@ -383,6 +384,24 @@ export default {
           this.contentAutoloadInfo.locked = false
           console.log(err)
         })
+    },
+    expendCategories (categories) {
+      let result = []
+      categories.forEach(item => {
+        result.push(item)
+        if (item.children.length) {
+          item.children.forEach(child => {
+            let curChild = child
+            curChild.isChild = true
+            curChild.parent = {
+              label: item.title,
+              value: item.id
+            }
+            result.push(curChild)
+          })
+        }
+      })
+      return result
     },
     createCategory () {
       if (this.disableAPI) return
@@ -510,7 +529,7 @@ export default {
     ]),
     filteredCategories () {
       return this.categories.filter((category) => category.title.toLowerCase().indexOf(this.searchString.toLowerCase()) > -1)
-        .filter((category) => this.parent === null || (category.parent && category.parent.id === this.parent.value))
+        .filter((category) => this.parent === null || (category.parent && category.parent.value === this.parent.value))
     }
   },
   watch: {
@@ -523,7 +542,7 @@ export default {
           type: null,
           id: category.id,
           title: category.title,
-          parent: category.parent ? {label: category.parent.title, value: category.parent.id} : null,
+          parent: category.parent ? {label: category.parent.label, value: category.parent.value} : null,
           description: category.description
         })
       })

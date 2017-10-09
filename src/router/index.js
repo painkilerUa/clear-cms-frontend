@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/pages/Login'
+// import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
 import ForgotPassword from '@/components/pages/ForgotPassword'
 import Admin from '@/components/pages/Admin/Admin'
@@ -60,14 +60,29 @@ const router = new Router({
           path: '/ask-experts',
           name: 'AskExperts',
           component: AskExperts
+        },
+        {
+          path: '/login',
+          name: 'login',
+          component: Index
+        },
+        {
+          path: '/register',
+          name: 'register',
+          component: Index
+        },
+        {
+          path: '/forgot-password',
+          name: 'forgot-password',
+          component: Index
         }
       ]
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: Login
+    // },
     {
       path: '/register',
       name: 'register',
