@@ -27,7 +27,7 @@
     }
     &-statusbar {
         display: table;
-        margin-right: 300px;
+        margin: 0 auto;
         align-items: center;
         &__block {
             display: table-cell;
@@ -81,6 +81,7 @@
         }
     }
     &-add {
+        margin-left: -120px;
         &__btn {
             text-decoration: none;
             padding: 9px;

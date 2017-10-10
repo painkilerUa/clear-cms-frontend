@@ -198,7 +198,7 @@
                 @mouseleave="removeHoverElements">
               <div class="caption-head">
                 <div class="caption-head-text" @click="showHideSubMenu(1)">
-                  <span class="caption-head-inner-text">Copany</span>
+                  <span class="caption-head-inner-text">Company</span>
                 </div>
                 <div class="caption-head-icon">
                   <span class="active-chevron" v-if="filerTableHead.selectedCeil === 1">

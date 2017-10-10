@@ -467,14 +467,15 @@ export default {
           this.disableAPI = false
           console.log('updateCategory', res)
           this.discardСhanges(id)
-          for (let i = 0; i < this.updatedCategories.length; i++) {
-            if (this.updatedCategories[i].id === id && this.updatedCategories[i].type === 'show') {
-              let updatedData = res.body
-              updatedData.type = 'show'
-              this.updatedCategories[i] = updatedData
-              break
-            }
-          }
+          this.fetchAllContentByScroll(1, 200)
+//          for (let i = 0; i < this.updatedCategories.length; i++) {
+//            if (this.updatedCategories[i].id === id && this.updatedCategories[i].type === 'show') {
+//              let updatedData = res.body
+//              updatedData.type = 'show'
+//              this.updatedCategories[i] = updatedData
+//              break
+//            }
+//          }
           let infMsg = 'Category has been successfully updated'
           this.setInformationMsg({text: infMsg, className: 'success'})
         })
@@ -555,7 +556,7 @@ export default {
     }
   },
   mounted () {
-    this.fetchAllContentByScroll(1, 20)
+    this.fetchAllContentByScroll(1, 200)
     this.getCategories()
 //    window.addEventListener('scroll', this.handleScroll)
   },

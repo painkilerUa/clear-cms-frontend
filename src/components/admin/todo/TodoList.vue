@@ -65,7 +65,7 @@
         </div>
         <div class="articles-list-add">
           <router-link
-            :to="{name: 'add-article'}"
+            :to="{name: 'add-todo'}"
             class="icon-btn articles-list-add__btn">
             <!--<icon name="plus" />-->
             <span>Add new TTD</span>
@@ -124,6 +124,8 @@
                    @focusout="filerTableHead.selectedCeil = null">
                 <v-select placeholder="Search here ..."
                           :options="getLanguagesForSelect"
+                          v-model="languages"
+                          :multiple="true"
                           :class="'hide-selected-items'"/>
               </div>
             </th>
@@ -525,6 +527,7 @@ export default {
         locked: false
       },
       search: '',
+      languages: [],
       contentType: [],
       tags: [],
       categories: [],
@@ -667,6 +670,11 @@ export default {
         this.searchByParams(1, 20)
         return
       }
+// filter by languages
+      let subLanguages = ''
+      this.languages.forEach((lng, i) => {
+        subLanguages += `&language[${i}]=${lng.value}`
+      })
       let subTag = ''
       this.tags.forEach((tag, i) => {
         subTag += `&tags[${i}]=${tag.value}`
@@ -709,7 +717,7 @@ export default {
       this.status.forEach((status, i) => {
         subStatus += `&status[${i}]=${status.value}`
       })
-      let urlString = `${api.URLS.search}&search=${this.search + subContentType + subTag + subCategories + subRole + subCompany + subLastEdited + subLastEditors + subStatus}&page=${page}&limit=${limit}&isArticle=false`
+      let urlString = `${api.URLS.search}&search=${this.search + subLanguages + subContentType + subTag + subCategories + subRole + subCompany + subLastEdited + subLastEditors + subStatus}&page=${page}&limit=${limit}&isArticle=false`
       this.isLoading = true
       this.$http.get(urlString, api.headersAuthSettings)
         .then((res) => {
@@ -733,6 +741,7 @@ export default {
       this.contentAutoloadInfo.curPage = page
       if (this.contentAutoloadInfo.locked || this.contentAutoloadInfo.curPage > this.contentAutoloadInfo.numPages) return
       let body = {
+        language: this.languages.map((item) => item.value),
         contentType: this.contentType.map((item) => item.value),
         tags: this.tags.map((item) => item.value),
         categories: this.categories.map((item) => item.value),
@@ -799,6 +808,13 @@ export default {
     },
     removeSelectedFilters (filter) {
       console.log(filter)
+// Languages
+      this.languages.forEach((item, i) => {
+        if (item.value === filter.value && item.label === filter.label) {
+          this.languages.splice(i, 1)
+          return
+        }
+      })
       this.contentType.forEach((item, i) => {
         if (item.value === filter.value && item.label === filter.label) {
           this.contentType.splice(i, 1)
@@ -852,6 +868,7 @@ export default {
       })
     },
     removeAllFilters () {
+      this.languages = []
       this.contentType = []
       this.categories = []
       this.tags = []
@@ -965,10 +982,13 @@ export default {
       'getLanguagesForSelect'
     ]),
     selectedFilters () {
-      return [...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies, ...this.lastEdited, ...this.lastEditors, ...this.status]
+      return [...this.languages, ...this.contentType, ...this.categories, ...this.tags, ...this.roles, ...this.companies, ...this.lastEdited, ...this.lastEditors, ...this.status]
     }
   },
   watch: {
+    languages () {
+      this.initSearch()
+    },
     contentType () {
       this.initSearch()
     },
