@@ -57,6 +57,8 @@
             <button v-for="filter in selectedFilters"
                     type="button"
                     @click="removeSelectedFilters(filter)"
+                    @mouseover="addHoverElement([filter])"
+                    @mouseleave="removeHoverElements"
                     :class="{'hover-filter-element': isExist(filter)}">
               <span>{{filter.label}}</span>
               <icon name="times"></icon>
@@ -97,10 +99,12 @@
               </div>
             </th>
             <th class="column-lng-head table-head-hover table-head-ceil"
-              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2, 'active-ceil-head': filerTableHead.selectedCeil === 1}"
+              :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2,
+                'active-ceil-head': filerTableHead.selectedCeil === 1,
+                'hover-head-ceil': isExistInOptions(getLanguagesForSelect)}"
               @mouseover="addHoverElement(getLanguagesForSelect)"
               @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(1)">
+              <div class="caption-head" @click.stop="showHideSubMenu(1)">
                 <div class="caption-head-text">
                   <span>Language</span>
                 </div>
@@ -121,8 +125,8 @@
                  id="sub-menu-1"
                  v-show="filerTableHead.selectedCeil === 1"
                  tabindex="-1"
-                 @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                 @click.stop="">
+                <app-select placeholder="Search here ..."
                           :options="getLanguagesForSelect"
                           v-model="languages"
                           :multiple="true"
@@ -130,10 +134,12 @@
               </div>
             </th>
             <th class="column-type-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 3, 'active-ceil-head': filerTableHead.selectedCeil === 2}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 3,
+                'active-ceil-head': filerTableHead.selectedCeil === 2,
+                'hover-head-ceil': isExistInOptions(getContentTypeForSelect)}"
                 @mouseover="addHoverElement(getContentTypeForSelect)"
                 @mouseleave="removeHoverElements" >
-              <div class="caption-head" @click="showHideSubMenu(2)">
+              <div class="caption-head" @click.stop="showHideSubMenu(2)">
                 <div class="caption-head-text">
                   <span>Type</span>
                 </div>
@@ -154,8 +160,8 @@
                 id="sub-menu-2"
                 v-show="filerTableHead.selectedCeil === 2"
                 tabindex="-1"
-                @focusout="filerTableHead.selectedCeil = null">
-                <v-select v-model="contentType"
+                @click.stop="">
+                <app-select v-model="contentType"
                           placeholder="Search here ..."
                           :options="getContentTypeForSelect"
                           :multiple="true"
@@ -163,10 +169,12 @@
               </div>
             </th>
             <th class="column-topics-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 4, 'active-ceil-head': filerTableHead.selectedCeil === 3}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 4,
+                'active-ceil-head': filerTableHead.selectedCeil === 3,
+                'hover-head-ceil': isExistInOptions(getTagsForSelect)}"
                 @mouseover="addHoverElement(getTagsForSelect)"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(3)">
+              <div class="caption-head" @click.stop="showHideSubMenu(3)">
                 <div class="caption-head-text">
                   <span>Topics</span>
                 </div>
@@ -187,8 +195,8 @@
                 id="sub-menu-3"
                 v-show="filerTableHead.selectedCeil === 3"
                 tabindex="-1"
-                @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                @click.stop="">
+                <app-select placeholder="Search here ..."
                           :options="getTagsForSelect"
                           v-model="tags"
                           :multiple="true"
@@ -196,10 +204,12 @@
               </div>
             </th>
             <th class="column-categories-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 5, 'active-ceil-head': filerTableHead.selectedCeil === 4}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 5,
+                'active-ceil-head': filerTableHead.selectedCeil === 4,
+                'hover-head-ceil': isExistInOptions(getCategoriesForSelect)}"
                 @mouseover="addHoverElement(getCategoriesForSelect)"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(4)">
+              <div class="caption-head" @click.stop="showHideSubMenu(4)">
                 <div class="caption-head-text">
                   <span>Category</span>
                 </div>
@@ -220,8 +230,8 @@
                    id="sub-menu-4"
                    v-show="filerTableHead.selectedCeil === 4"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                   @click.stop="">
+                <app-select placeholder="Search here ..."
                         :options="getCategoriesForSelect"
                         v-model="categories"
                         :multiple="true"
@@ -229,10 +239,12 @@
               </div>
             </th>
             <th class="column-access-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 6, 'active-ceil-head': filerTableHead.selectedCeil === 5}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 6,
+                'active-ceil-head': filerTableHead.selectedCeil === 5,
+                'hover-head-ceil': isExistInOptions(getRolesForSelect)}"
                 @mouseover="addHoverElement(getRolesForSelect)"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(5)">
+              <div class="caption-head" @click.stop="showHideSubMenu(5)">
                 <div class="caption-head-text">
                   <span>Access</span>
                 </div>
@@ -253,8 +265,8 @@
                 id="sub-menu-5"
                 v-show="filerTableHead.selectedCeil === 5"
                 tabindex="-1"
-                @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                @click.stop="">
+                <app-select placeholder="Search here ..."
                           :options="getRolesForSelect"
                           v-model="roles"
                           :multiple="true"
@@ -263,10 +275,12 @@
               </div>
             </th>
             <th class="column-companies-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 7, 'active-ceil-head': filerTableHead.selectedCeil === 6}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 7,
+                'active-ceil-head': filerTableHead.selectedCeil === 6,
+                'hover-head-ceil': isExistInOptions(getCompaniesForSelect)}"
                 @mouseover="addHoverElement(getCompaniesForSelect)"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(6)">
+              <div class="caption-head" @click.stop="showHideSubMenu(6)">
                 <div class="caption-head-text">
                   <span>Company specific</span>
                 </div>
@@ -287,8 +301,8 @@
                    id="sub-menu-6"
                    v-show="filerTableHead.selectedCeil === 6"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                   @click.stop="">
+                <app-select placeholder="Search here ..."
                           :options="getCompaniesForSelect"
                           v-model="companies"
                           :multiple="true"
@@ -297,9 +311,10 @@
               </div>
             </th>
             <th class="column-last-edited-head table-head-hover table-head-ceil"
+                :class="{'hover-head-ceil': isExistInOptions([{id: null, label: lastEdited.length ? lastEdited[0].label : null}])}"
                 @mouseover="addHoverElement([{id: null, label: lastEdited.length ? lastEdited[0].label : null}])"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="datepicker.isShown = !datepicker.isShown">
+              <div class="caption-head" @click.stop="showHideSubMenu(7)">
                 <div class="caption-head-text">
                   <span >Last Edited</span>
                 </div>
@@ -316,7 +331,7 @@
                   </span>
                 </div>
               </div>
-              <div class="datepicker" v-if="datepicker.isShown">
+              <div class="datepicker" v-if="filerTableHead.selectedCeil === 7" @click.stop="">
                 <div class="datepicker-statusbar">
                   <div class="datepicker-statusbar-half">
                     <div class="datepicker-statusbar-half-inner">
@@ -353,11 +368,13 @@
               </div>
             </th>
             <th class="column-author-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 9, 'active-ceil-head': filerTableHead.selectedCeil === 8}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 9,
+                'active-ceil-head': filerTableHead.selectedCeil === 8,
+                'hover-head-ceil': isExistInOptions(lastEditorsOptions)}"
                 @mouseover="addHoverElement(lastEditorsOptions)"
                 @mouseleave="removeHoverElements">
               <div class="caption-head">
-                <div class="caption-head-text" @click="showHideSubMenu(8)">
+                <div class="caption-head-text" @click.stop="showHideSubMenu(8)">
                   <span>Uploader / Editor</span>
                 </div>
                 <div class="caption-head-icon">
@@ -377,8 +394,8 @@
                    id="sub-menu-8"
                    v-show="filerTableHead.selectedCeil === 8"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select
+                   @click.stop="">
+                <app-select
                   :debounce="250"
                   :on-search="getOptionsLastEditors"
                   :options="lastEditorsOptions"
@@ -390,10 +407,12 @@
               </div>
             </th>
             <th class="column-status-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 10, 'active-ceil-head': filerTableHead.selectedCeil === 9}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 10,
+                'active-ceil-head': filerTableHead.selectedCeil === 9,
+                'hover-head-ceil': isExistInOptions(statusOptions)}"
                 @mouseover="addHoverElement(statusOptions)"
                 @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(9)">
+              <div class="caption-head" @click.stop="showHideSubMenu(9)">
                 <div class="caption-head-text">
                   <span>Status</span>
                 </div>
@@ -414,8 +433,8 @@
                    id="sub-menu-9"
                    v-show="filerTableHead.selectedCeil === 9"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                   @click.stop="">
+                <app-select placeholder="Search here ..."
                           v-model="status"
                           :options="statusOptions"
                           :multiple="true"
@@ -502,6 +521,7 @@ import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
 import 'vue-awesome/icons/rotate-right'
+import AppSelect from '@/components/admin/common/Select'
 // import DPicker from '@/components/admin/article/components/vue.datepicker.min.js'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -540,7 +560,7 @@ export default {
       statusOptions: [],
       lastEditorsOptions: [],
       datepicker: {
-        isShown: false,
+//        isShown: false,
         from: null,
         to: null
       },
@@ -893,7 +913,8 @@ export default {
       return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
     },
     changeDateFilter () {
-      this.datepicker.isShown = false
+//      this.datepicker.isShown = false
+      this.showHideSubMenu(7)
       if (!this.datepicker.from && !this.datepicker.to) return
       let label = (this.datepicker.from ? this.convertDate(this.datepicker.from, '.') : 'n/a') +
         ' - ' + (this.datepicker.to ? this.convertDate(this.datepicker.to, '.') : 'n/a')
@@ -941,7 +962,7 @@ export default {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     },
     addHoverElement (elements) {
-      console.log(elements)
+//      console.log(elements)
       this.hoverElements = elements
     },
     removeHoverElements () {
@@ -955,6 +976,16 @@ export default {
       })
       return !!el
     },
+    isExistInOptions (options) {
+      let hoverElement = this.hoverElements.length ? this.hoverElements[0] : {}
+      let el = options.find(item => {
+        if ((hoverElement.value === item.value || hoverElement.value === null) && hoverElement.label === item.label) {
+          return true
+        }
+      })
+//      console.log(hoverElements, options, !!el)
+      return !!el
+    },
     articleRoles (roles) {
       let string = ''
       roles.forEach(role => {
@@ -965,15 +996,12 @@ export default {
     showHideSubMenu (num) {
       if (!this.filerTableHead.selectedCeil) {
         this.filerTableHead.selectedCeil = num
-//        setTimeout(() => {
-//          document.getElementById('sub-menu-' + num).focus()
-//        })
       } else {
-        this.filerTableHead.selectedCeil = null
+        this.filerTableHead.selectedCeil === num ? this.filerTableHead.selectedCeil = null : this.filerTableHead.selectedCeil = num
       }
     },
-    checkClickTableHead (e) {
-      console.log(e)
+    hideSubMenuTableHead (e) {
+      this.filerTableHead.selectedCeil = null
     }
   },
   computed: {
@@ -1027,6 +1055,7 @@ export default {
     }
   },
   components: {
+    AppSelect
   },
   mounted () {
     this.getTypes()
@@ -1037,13 +1066,14 @@ export default {
     this.getTags()
     this.getLngs()
     window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('click', this.checkClickTableHead)
+    document.addEventListener('click', this.hideSubMenuTableHead)
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
-    window.addEventListener('click', this.checkClickTableHead)
+    document.addEventListener('click', this.hideSubMenuTableHead)
   }
 }
 </script>
 
 <style src='@/assets/scss/components/articles-list.scss' lang='scss' scoped />
+
