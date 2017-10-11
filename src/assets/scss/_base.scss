@@ -4,6 +4,9 @@
 html{
     font-size: 16px;
 }
+em {
+  font-style: italic;
+}
 
 .myContainer {
     max-width: gridValue('mainContainer');

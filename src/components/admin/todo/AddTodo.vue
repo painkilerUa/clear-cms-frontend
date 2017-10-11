@@ -208,6 +208,7 @@
             <h2 class="add-article-section__title">Content</h2>
             <vue-editor
               name="Content"
+              :editorToolbar="editorToolbar"
               class="article-editor"
               data-vv-as='"Content"'
               v-model="selectedValues.content" />
@@ -425,10 +426,15 @@ export default {
         mainImg: null,
         resources: []
       },
-      customEditorToolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{'list': 'blockquote'}, {'list': 'code-block'}],
-        [{'list': 'ordered'}, {'list': 'bullet'}]
+      editorToolbar: [
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        ['bold', 'italic', 'underline', 'strike', {'color': []}, {'background': []}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        ['blockquote', 'code-block', 'image', 'link'],
+        [{'font': []}],
+        [{'align': []}],
+        ['clean']
       ]
     }
   },
