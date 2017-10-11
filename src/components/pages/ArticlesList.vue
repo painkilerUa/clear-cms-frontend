@@ -100,7 +100,7 @@
               :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2, 'active-ceil-head': filerTableHead.selectedCeil === 1}"
               @mouseover="addHoverElement(getLanguagesForSelect)"
               @mouseleave="removeHoverElements">
-              <div class="caption-head" @click="showHideSubMenu(1)">
+              <div class="caption-head" @click.stop="showHideSubMenu(1)">
                 <div class="caption-head-text">
                   <span>Language</span>
                 </div>
@@ -121,8 +121,8 @@
                  id="sub-menu-1"
                  v-show="filerTableHead.selectedCeil === 1"
                  tabindex="-1"
-                 @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                 @click.stop="">
+                <app-select placeholder="Search here ..."
                           :options="getLanguagesForSelect"
                           v-model="languages"
                           :multiple="true"
@@ -155,7 +155,7 @@
                 v-show="filerTableHead.selectedCeil === 2"
                 tabindex="-1"
                 @focusout="filerTableHead.selectedCeil = null">
-                <v-select v-model="contentType"
+                <app-select v-model="contentType"
                           placeholder="Search here ..."
                           :options="getContentTypeForSelect"
                           :multiple="true"
@@ -188,7 +188,7 @@
                 v-show="filerTableHead.selectedCeil === 3"
                 tabindex="-1"
                 @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                <app-select placeholder="Search here ..."
                           :options="getTagsForSelect"
                           v-model="tags"
                           :multiple="true"
@@ -221,7 +221,7 @@
                    v-show="filerTableHead.selectedCeil === 4"
                    tabindex="-1"
                    @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                <app-select placeholder="Search here ..."
                         :options="getCategoriesForSelect"
                         v-model="categories"
                         :multiple="true"
@@ -254,7 +254,7 @@
                 v-show="filerTableHead.selectedCeil === 5"
                 tabindex="-1"
                 @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                <app-select placeholder="Search here ..."
                           :options="getRolesForSelect"
                           v-model="roles"
                           :multiple="true"
@@ -288,7 +288,7 @@
                    v-show="filerTableHead.selectedCeil === 6"
                    tabindex="-1"
                    @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                <app-select placeholder="Search here ..."
                           :options="getCompaniesForSelect"
                           v-model="companies"
                           :multiple="true"
@@ -378,7 +378,7 @@
                    v-show="filerTableHead.selectedCeil === 8"
                    tabindex="-1"
                    @focusout="filerTableHead.selectedCeil = null">
-                <v-select
+                <app-select
                   :debounce="250"
                   :on-search="getOptionsLastEditors"
                   :options="lastEditorsOptions"
@@ -415,7 +415,7 @@
                    v-show="filerTableHead.selectedCeil === 9"
                    tabindex="-1"
                    @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                <app-select placeholder="Search here ..."
                           v-model="status"
                           :options="statusOptions"
                           :multiple="true"
@@ -502,6 +502,7 @@ import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
 import 'vue-awesome/icons/rotate-right'
+import AppSelect from '@/components/admin/common/Select'
 // import DPicker from '@/components/admin/article/components/vue.datepicker.min.js'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -941,7 +942,7 @@ export default {
       this.search ? this.mainSearch(1, 20) : this.searchByParams(1, 20)
     },
     addHoverElement (elements) {
-      console.log(elements)
+//      console.log(elements)
       this.hoverElements = elements
     },
     removeHoverElements () {
@@ -972,8 +973,8 @@ export default {
         this.filerTableHead.selectedCeil = null
       }
     },
-    checkClickTableHead (e) {
-      console.log(e)
+    hideSubMenuTableHead (e) {
+      this.filerTableHead.selectedCeil = null
     }
   },
   computed: {
@@ -1027,6 +1028,7 @@ export default {
     }
   },
   components: {
+    AppSelect
   },
   mounted () {
     this.getTypes()
@@ -1037,13 +1039,14 @@ export default {
     this.getTags()
     this.getLngs()
     window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('click', this.checkClickTableHead)
+    document.addEventListener('click', this.hideSubMenuTableHead)
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
-    window.addEventListener('click', this.checkClickTableHead)
+    document.addEventListener('click', this.hideSubMenuTableHead)
   }
 }
 </script>
 
 <style src='@/assets/scss/components/articles-list.scss' lang='scss' scoped />
+

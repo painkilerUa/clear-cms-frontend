@@ -271,7 +271,7 @@
 
       <span class="selected-tag" v-for="option in valueAsArray" v-bind:key="option.index">
         {{ getOptionLabel(option) }}
-        <button v-if="multiple" @click="deselect(option)" type="button" class="close" aria-label="Remove option">
+        <button v-if="multiple" @click.stop="deselect(option)" type="button" class="close" aria-label="Remove option">
           <span aria-hidden="true">&times;</span>
         </button>
       </span>
@@ -303,7 +303,7 @@
     </div>
 
     <transition :name="transition">
-      <ul ref="dropdownMenu" v-if="dropdownOpen" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
+      <ul ref="dropdownMenu" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
         <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
           <a @mousedown.prevent="select(option)">
             {{ getOptionLabel(option) }}
@@ -318,9 +318,9 @@
 </template>
 
 <script type="text/babel">
-  import pointerScroll from '../mixins/pointerScroll'
-  import typeAheadPointer from '../mixins/typeAheadPointer'
-  import ajax from '../mixins/ajax'
+  import pointerScroll from '@/components/admin/common/mixins/pointerScroll'
+  import typeAheadPointer from '@/components/admin/common/mixins/typeAheadPointer'
+  import ajax from '@/components/admin/common/mixins/ajax'
 
   export default {
     mixins: [pointerScroll, typeAheadPointer, ajax],
@@ -345,7 +345,7 @@
        */
       options: {
         type: Array,
-        default() {
+        default () {
           return []
         },
       },
@@ -434,7 +434,7 @@
        */
       getOptionLabel: {
         type: Function,
-        default(option) {
+        default (option) {
           if (typeof option === 'object') {
             if (this.label && option[this.label]) {
               return option[this.label]
@@ -483,7 +483,7 @@
        */
       createOption: {
         type: Function,
-        default(newOption) {
+        default (newOption) {
           if (typeof this.mutableOptions[0] === 'object') {
             newOption = {[this.label]: newOption}
           }
@@ -520,7 +520,7 @@
       }
     },
 
-    data() {
+    data () {
       return {
         search: '',
         open: false,
@@ -536,7 +536,7 @@
        * @param  {mixed} val
        * @return {void}
        */
-      value(val) {
+      value (val) {
 				this.mutableValue = val
       },
 
@@ -546,7 +546,7 @@
        * @param  {string|object} old
        * @return {void}
        */
-			mutableValue(val, old) {
+			mutableValue (val, old) {
         if (this.multiple) {
           this.onChange ? this.onChange(val) : null
         } else {
@@ -560,7 +560,7 @@
        * @param  {array} val
        * @return {void}
        */
-      options(val) {
+      options (val) {
         this.mutableOptions = val
       },
 
@@ -569,7 +569,7 @@
        * when mutableOptions change.
        * @return {[type]} [description]
        */
-      mutableOptions() {
+      mutableOptions () {
         if (!this.taggable && this.resetOnOptionsChange) {
 					this.mutableValue = this.multiple ? [] : null
         }
@@ -581,7 +581,7 @@
        * @param  {Boolean} val
        * @return {void}
        */
-      multiple(val) {
+      multiple (val) {
 				this.mutableValue = val ? [] : null
       }
     },
@@ -590,7 +590,7 @@
      * Clone props into mutable values,
      * attach any event listeners.
      */
-    created() {
+    created () {
 			this.mutableValue = this.value
       this.mutableOptions = this.options.slice(0)
 			this.mutableLoading = this.loading
@@ -605,7 +605,7 @@
        * @param  {Object|String} option
        * @return {void}
        */
-      select(option) {
+      select (option) {
         if (this.isOptionSelected(option)) {
           this.deselect(option)
         } else {
@@ -630,7 +630,7 @@
        * @param  {Object|String} option
        * @return {void}
        */
-      deselect(option) {
+      deselect (option) {
         if (this.multiple) {
           let ref = -1
           this.mutableValue.forEach((val) => {
@@ -650,7 +650,7 @@
        * @param  {Object|String} option
        * @return {void}
        */
-      onAfterSelect(option) {
+      onAfterSelect (option) {
         if (this.closeOnSelect) {
           this.open = !this.open
           this.$refs.search.blur()
@@ -666,7 +666,7 @@
        * @param  {Event} e
        * @return {void}
        */
-      toggleDropdown(e) {
+      toggleDropdown (e) {
         if (e.target === this.$refs.openIndicator || e.target === this.$refs.search || e.target === this.$refs.toggle || e.target === this.$el) {
           if (this.open) {
             this.$refs.search.blur() // dropdown will close on blur
@@ -682,7 +682,7 @@
        * @param  {Object|String}  option
        * @return {Boolean}        True when selected | False otherwise
        */
-      isOptionSelected(option) {
+      isOptionSelected (option) {
         if (this.multiple && this.mutableValue) {
           let selected = false
           this.mutableValue.forEach(opt => {
@@ -706,7 +706,7 @@
        * Otherwise, blur the search input to close the dropdown.
        * @return {void}
        */
-      onEscape() {
+      onEscape () {
         if (!this.search.length) {
           this.$refs.search.blur()
         } else {
@@ -719,7 +719,7 @@
        * @emits  {search:blur}
        * @return {void}
        */
-      onSearchBlur() {
+      onSearchBlur () {
         if (this.clearSearchOnBlur) {
           this.search = ''
         }
@@ -732,7 +732,7 @@
        * @emits  {search:focus}
        * @return {void}
        */
-      onSearchFocus() {
+      onSearchFocus () {
         this.open = true
         this.$emit('search:focus')
       },
@@ -742,7 +742,7 @@
        * text in the search input, & there's tags to delete
        * @return {this.value}
        */
-      maybeDeleteValue() {
+      maybeDeleteValue () {
         if (!this.$refs.search.value.length && this.mutableValue) {
           return this.multiple ? this.mutableValue.pop() : this.mutableValue = null
         }
@@ -755,7 +755,7 @@
        * @param  {Object || String} option
        * @return {boolean}
        */
-      optionExists(option) {
+      optionExists (option) {
         let exists = false
 
         this.mutableOptions.forEach(opt => {
@@ -776,7 +776,7 @@
        * @param  {Object || String} option
        * @return {void}
        */
-      maybePushTag(option) {
+      maybePushTag (option) {
         if (this.pushTags) {
           this.mutableOptions.push(option)
         }
@@ -789,7 +789,7 @@
        * Classes to be output on .dropdown
        * @return {Object}
        */
-      dropdownClasses() {
+      dropdownClasses () {
         return {
           open: this.dropdownOpen,
           single: !this.multiple,
@@ -804,7 +804,7 @@
        * If search text should clear on blur
        * @return {Boolean} True when single and clearSearchOnSelect
        */
-      clearSearchOnBlur() {
+      clearSearchOnBlur () {
         return this.clearSearchOnSelect && !this.multiple
       },
 
@@ -813,7 +813,7 @@
        * search input
        * @return {Boolean} True if non empty value
        */
-      searching() {
+      searching () {
         return !!this.search
       },
 
@@ -822,7 +822,7 @@
        * dropdown menu.
        * @return {Boolean} True if open
        */
-      dropdownOpen() {
+      dropdownOpen () {
         return this.noDrop ? false : this.open && !this.mutableLoading
       },
 
@@ -831,7 +831,7 @@
        * & there is no value selected.
        * @return {String} Placeholder text
        */
-      searchPlaceholder() {
+      searchPlaceholder () {
         if (this.isValueEmpty && this.placeholder) {
           return this.placeholder;
         }
@@ -845,7 +845,7 @@
        *
        * @return {array}
        */
-      filteredOptions() {
+      filteredOptions () {
         let options = this.mutableOptions.filter((option) => {
           if (typeof option === 'object' && option.hasOwnProperty(this.label)) {
             return option[this.label].toLowerCase().indexOf(this.search.toLowerCase()) > -1
@@ -864,7 +864,7 @@
        * Check if there aren't any options selected.
        * @return {Boolean}
        */
-      isValueEmpty() {
+      isValueEmpty () {
         if (this.mutableValue) {
           if (typeof this.mutableValue === 'object') {
             return !Object.keys(this.mutableValue).length
@@ -879,7 +879,7 @@
        * Return the current value in array format.
        * @return {Array}
        */
-      valueAsArray() {
+      valueAsArray () {
         if (this.multiple) {
           return this.mutableValue
         } else if (this.mutableValue) {
