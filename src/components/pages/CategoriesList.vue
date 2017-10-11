@@ -281,7 +281,7 @@ export default {
     search () {
       if (!this.filter.search) {
         this.contentInfo.typeAutoLoad = 'allContent'
-        this.fetchAllContentByScroll(1, 20)
+        this.fetchAllContentByScroll(1, 200)
         return
       }
       this.contentInfo.typeAutoLoad = 'searchContent'
@@ -359,7 +359,7 @@ export default {
       let fullScrolledValue = window.pageYOffset + window.innerHeight
 
       if (fullScrolledValue > scrollHeight - 200) {
-        this.fetchAllContentByScroll(++this.contentAutoloadInfo.curPage, 20)
+        this.fetchAllContentByScroll(++this.contentAutoloadInfo.curPage, 200)
 //        if (!this.contentInfo.locked) {
 //          this.contentInfo.locked = true
 //          if (this.contentInfo.typeAutoLoad === 'allContent') {
@@ -425,7 +425,7 @@ export default {
         .then((res) => {
           this.disableAPI = false
           console.log('createCategory', res)
-          this.categories.push(res.body)
+          this.fetchAllContentByScroll(1, 200)
           this.newCategory.title = ''
           this.newCategory.parent = null
           this.newCategory.description = ''

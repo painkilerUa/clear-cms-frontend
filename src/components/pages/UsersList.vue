@@ -552,12 +552,13 @@ export default {
           this.discardСhanges(id)
           for (let i = 0; i < this.editedUsers.length; i++) {
             if (this.editedUsers[i].id === id && this.editedUsers[i].type === 'show') {
-              let updatedData = res.body
+              let updatedData = res.body.data
               updatedData.type = 'show'
               this.editedUsers[i] = updatedData
               break
             }
           }
+          this.statusbar.data = res.body.count ? res.body.count : []
           let infMsg = 'User has been successfully updated'
           this.setInformationMsg({text: infMsg, className: 'success'})
         })
@@ -604,6 +605,7 @@ export default {
                 break
               }
             }
+            self.statusbar.data = res.body.count ? res.body.count : []
             let infMsg = 'User has been successfully removed'
             self.setInformationMsg({text: infMsg, className: 'success'})
           })
