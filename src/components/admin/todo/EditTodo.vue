@@ -238,6 +238,7 @@
           <section class="add-article-section">
             <h2 class="add-article-section__title">2. TTD content</h2>
             <vue-editor
+              :editorToolbar="editorToolbar"
               name="Content"
               class="article-editor"
               data-vv-as='"Content"'
@@ -411,10 +412,15 @@ export default {
       },
       formResource: [],
       disableAPI: false,
-      customEditorToolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block', 'list', 'indent', 'picker'],
-        [{'list': 'ordered'}, {'list': 'bullet'}]
+      editorToolbar: [
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        ['bold', 'italic', 'underline', 'strike', {'color': []}, {'background': []}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        ['blockquote', 'code-block', 'image', 'link'],
+        [{'font': []}],
+        [{'align': []}],
+        ['clean']
       ],
       formData: new FormData(),
       articlePreview: {
