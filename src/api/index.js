@@ -48,6 +48,7 @@ api.URLS = {
   languages: '/api/v1/language',
   enabled: `${api.serverURL}/api/v1/enabled`,
   createAdmin: `${api.serverURL}/api/v1/register-admin/`,
-  changeStatus: `${api.serverURL}/api/v1/change-status`
+  changeStatus: `${api.serverURL}/api/v1/change-status`,
+  profile: `${api.serverURL}/api/v1/profile/user`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)

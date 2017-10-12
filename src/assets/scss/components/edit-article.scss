@@ -199,6 +199,16 @@
   .title {
     width: 85%;
   }
+  .statusbar {
+    span {
+      padding: 5px 10px;
+      background-color: #dcdcdc;
+      margin-right: 15px;
+      &:last-child {
+        font-style: italic;
+      }
+    }
+  }
   .control-panel {
     width: 15%;
     .wrap-button {

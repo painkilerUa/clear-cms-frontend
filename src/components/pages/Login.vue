@@ -82,12 +82,22 @@ export default {
     sendFormRequest () {
       this.$http.post(api.URLS.login, this.formJson)
       .then((res) => {
+        console.log('sendFormRequest', res)
         localStorage.setItem('token', res.body.access_token)
-        localStorage.setItem('username', this.formInfo.username)
-        this.submitSuccess(res.body)
         this.$store.commit('authLoginSuccess')
-        this.$store.commit('authLoginSetUsername', this.formInfo.username)
-        this.redirect()
+        let headers = { headers: {'Authorization': `Bearer ${res.body.access_token}`} }
+        this.$http.put(api.URLS.profile, {}, headers)
+        .then((res) => {
+          console.log(res)
+          let username = res.body.username ? res.body.username : ''
+          localStorage.setItem('username', username)
+          this.submitSuccess(res.body)
+          this.$store.commit('authLoginSetUsername', username)
+          this.redirect()
+        })
+        .catch((err) => {
+          return err
+        })
       })
       .catch((err) => {
         this.submitErrors(err.bodyText)

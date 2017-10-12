@@ -62,6 +62,10 @@
     <div class="wrap-title">
       <div class="title">
         <h1>{{article.title}}</h1>
+        <div class="statusbar">
+          <span>{{getStatus(article.status)}}</span>
+          <span>{{lastTimeEdited(article)}}</span>
+        </div>
       </div>
       <div class="control-panel">
         <div class="wrap-button">
@@ -676,6 +680,8 @@ export default {
           this.article.description = res.body.description
           this.article.content = res.body.content ? res.body.content : ''
           this.article.status = +res.body.status
+          this.article.updated_at = res.body.updated_at
+          this.article.user = res.body.user
 
           this.article.contentType = {
             label: res.body.content_type.type,
@@ -842,6 +848,45 @@ export default {
         case 'doc':
           return 'file-word-o'
       }
+    },
+    getStatus (st) {
+      switch (st) {
+        case 0:
+          return 'Draft'
+        case 1:
+          return 'Published'
+        case 2:
+          return 'Archived'
+        default:
+          return ''
+      }
+    },
+    lastTimeEdited (article) {
+      if (!article.updated_at) return
+      let string = 'Last edited '
+      let updatedAt = new Date(article.updated_at)
+      let now = new Date()
+      let difference = Math.floor((+now - +updatedAt) / (1000 * 60 * 60))
+      if (difference < 1) {
+        string += 'less than 1 hour ago'
+      } else if (difference >= 1 && difference < 24) {
+        string += difference + ' hours ago'
+      } else {
+        string += this.convertDate(article.updated_at, '.')
+      }
+      string += ' by ' + article.user.username
+      return string
+    },
+    convertDate (payload, delimetr) {
+      if (!payload) return
+      let date = new Date(payload)
+      let fullYear = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      function toDoubleDigit (num) {
+        return num.toString().length < 2 ? '0' + num : num.toString()
+      }
+      return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
     }
   },
   components: {

@@ -12,8 +12,12 @@
             src="../../../assets/img/main/svg/main-logo.svg"
             alt="logo" />
         </a>
-        <div class="front-header-text">
-          helping talent shine through
+        <div class="front-header-tagline">
+          <img
+            width="200px"
+            height="16px"
+            src="../../../assets/img/main/svg/tagline.svg"
+            alt="tagline" />
         </div>
       </div>
       <!-- END:.myContainer -->
