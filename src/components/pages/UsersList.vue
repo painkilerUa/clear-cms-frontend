@@ -157,6 +157,8 @@
             <button v-for="filter in selectedFilters"
                     type="button"
                     @click="removeSelectedFilters(filter)"
+                    @mouseover="addHoverElement([filter])"
+                    @mouseleave="removeHoverElements"
                     :class="{'hover-filter-element': isExist(filter)}">
               <span>{{filter.label}}</span>
               <icon name="times"></icon>
@@ -193,11 +195,13 @@
               <span>Email</span>
             </th>
             <th class="column-company-head table-head-hover table-head-ceil"
-                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2, 'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 2,
+                'active-ceil-head': filerTableHead.selectedCeil === 1,
+                'hover-head-ceil': isExistInOptions(getCompaniesForSelect)}"
                 @mouseover="addHoverElement(getCompaniesForSelect)"
                 @mouseleave="removeHoverElements">
               <div class="caption-head">
-                <div class="caption-head-text" @click="showHideSubMenu(1)">
+                <div class="caption-head-text" @click.stop="showHideSubMenu(1)">
                   <span class="caption-head-inner-text">Company</span>
                 </div>
                 <div class="caption-head-icon">
@@ -217,18 +221,19 @@
                    id="sub-menu-1"
                    v-show="filerTableHead.selectedCeil === 1"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                   @click.stop="">
+                <app-select placeholder="Search here ..."
                         :options="getCompaniesForSelect"
                         v-model="company" />
               </div>
             </th>
             <th class="column-role-head table-head-hover table-head-ceil"
-                :class="{'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                :class="{'active-ceil-head': filerTableHead.selectedCeil === 1,
+                'hover-head-ceil': isExistInOptions(getRolesForSelect)}"
                 @mouseover="addHoverElement(getRolesForSelect)"
                 @mouseleave="removeHoverElements">
               <div class="caption-head">
-                <div class="caption-head-text" @click="showHideSubMenu(2)">
+                <div class="caption-head-text" @click.stop="showHideSubMenu(2)">
                   <span class="caption-head-inner-text">Role</span>
                 </div>
                 <div class="caption-head-icon">
@@ -248,8 +253,8 @@
                    id="sub-menu-2"
                    v-show="filerTableHead.selectedCeil === 2"
                    tabindex="-1"
-                   @focusout="filerTableHead.selectedCeil = null">
-                <v-select placeholder="Search here ..."
+                   @click.stop="">
+                <app-select placeholder="Search here ..."
                         :options="getRolesForSelect"
                         v-model="role" />
               </div>
@@ -404,6 +409,7 @@ import 'vue-awesome/icons/ban'
 //  import 'vue-awesome/icons/chevron-up'
 //  import 'vue-awesome/icons/chevron-down'
 import { mapGetters, mapActions } from 'vuex'
+import AppSelect from '@/components/admin/common/Select'
 
 export default {
   name: 'users-list',
@@ -648,19 +654,18 @@ export default {
     removeHoverElements () {
       this.hoverElements = []
     },
-    showHideSubMenu (num) {
-      if (!this.filerTableHead.selectedCeil) {
-        this.filerTableHead.selectedCeil = num
-//        setTimeout(() => {
-//          document.getElementById('sub-menu-' + num).focus()
-//        })
-      } else {
-        this.filerTableHead.selectedCeil = null
-      }
-    },
     isExist (element) {
       let el = this.hoverElements.find(item => {
         if ((element.value === item.value || item.value === null) && element.label === item.label) {
+          return true
+        }
+      })
+      return !!el
+    },
+    isExistInOptions (options) {
+      let hoverElement = this.hoverElements.length ? this.hoverElements[0] : {}
+      let el = options.find(item => {
+        if ((hoverElement.value === item.value || hoverElement.value === null) && hoverElement.label === item.label) {
           return true
         }
       })
@@ -677,6 +682,16 @@ export default {
     removeAllFilters () {
       this.role = null
       this.company = null
+    },
+    showHideSubMenu (num) {
+      if (!this.filerTableHead.selectedCeil) {
+        this.filerTableHead.selectedCeil = num
+      } else {
+        this.filerTableHead.selectedCeil === num ? this.filerTableHead.selectedCeil = null : this.filerTableHead.selectedCeil = num
+      }
+    },
+    hideSubMenuTableHead (e) {
+      this.filerTableHead.selectedCeil = null
     }
   },
   computed: {
@@ -738,12 +753,17 @@ export default {
       }
     }
   },
+  components: {
+    AppSelect
+  },
   mounted () {
     this.fetchAllContentByScroll(1, 2000)
     this.getRoles()
     this.getCompanies()
+    document.addEventListener('click', this.hideSubMenuTableHead)
   },
   destroyed () {
+    document.addEventListener('click', this.hideSubMenuTableHead)
   }
 }
 </script>

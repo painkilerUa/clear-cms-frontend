@@ -36,6 +36,8 @@
                 <button
                   type="button"
                   @click="removeSelectedFilters"
+                  @mouseover="addHoverElement([{label: parent.label, value: parent.value}])"
+                  @mouseleave="removeHoverElements"
                   :class="{'hover-filter-element': isExist(this.parent)}">
                   <span>{{parent.label}}</span>
                   <icon name="times"></icon>
@@ -63,10 +65,11 @@
                   </div>
                 </th>
                 <th class="categories-list-body__head_parent-select table-head-ceil table-head-hover"
-                    :class="{'active-ceil-head': filerTableHead.selectedCeil === 1}"
+                    :class="{'active-ceil-head': filerTableHead.selectedCeil === 1,
+                    'hover-head-ceil': isExistInOptions(getCategoriesForSelect)}"
                     @mouseover="addHoverElement(getCategoriesForSelect)"
                     @mouseleave="removeHoverElements" >
-                  <div class="caption-head" @click="showHideSubMenu(1)">
+                  <div class="caption-head" @click.stop="showHideSubMenu(1)">
                     <div class="caption-head-text">
                       <span>Type</span>
                     </div>
@@ -87,13 +90,12 @@
                        id="sub-menu-1"
                        v-show="filerTableHead.selectedCeil === 1"
                        tabindex="-1"
-                       @focusout="filerTableHead.selectedCeil = null">
-                  <v-select
+                       @click.stop="">
+                  <app-select
                     v-model="parent"
                     name="Category"
                     data-vv-as='"Category"'
                     :options="getCategoriesForSelect"
-                    v-validate="'required'"
                     placeholder="Parent" />
                 </div>
                 </th>
@@ -227,6 +229,7 @@ import 'vue-awesome/icons/folder'
 import 'vue-awesome/icons/times'
 import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
+import AppSelect from '@/components/admin/common/Select'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -515,12 +518,21 @@ export default {
     showHideSubMenu (num) {
       if (!this.filerTableHead.selectedCeil) {
         this.filerTableHead.selectedCeil = num
-//        setTimeout(() => {
-//          document.getElementById('sub-menu-' + num).focus()
-//        })
       } else {
-        this.filerTableHead.selectedCeil = null
+        this.filerTableHead.selectedCeil === num ? this.filerTableHead.selectedCeil = null : this.filerTableHead.selectedCeil = num
       }
+    },
+    hideSubMenuTableHead (e) {
+      this.filerTableHead.selectedCeil = null
+    },
+    isExistInOptions (options) {
+      let hoverElement = this.hoverElements.length ? this.hoverElements[0] : {}
+      let el = options.find(item => {
+        if ((hoverElement.value === item.value || hoverElement.value === null) && hoverElement.label === item.label) {
+          return true
+        }
+      })
+      return !!el
     }
   },
   computed: {
@@ -557,12 +569,17 @@ export default {
       }
     }
   },
+  components: {
+    AppSelect
+  },
   mounted () {
     this.fetchAllContentByScroll(1, 200)
     this.getCategories()
 //    window.addEventListener('scroll', this.handleScroll)
+    document.addEventListener('click', this.hideSubMenuTableHead)
   },
   destroyed () {
+    document.addEventListener('click', this.hideSubMenuTableHead)
 //    window.removeEventListener('scroll', this.handleScroll)
   }
 }

@@ -522,7 +522,6 @@ import 'vue-awesome/icons/chevron-up'
 import 'vue-awesome/icons/chevron-down'
 import 'vue-awesome/icons/rotate-right'
 import AppSelect from '@/components/admin/common/Select'
-// import DPicker from '@/components/admin/article/components/vue.datepicker.min.js'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -795,7 +794,6 @@ export default {
             })
           })
 //
-          console.log('searchByParams', res)
           this.contentAutoloadInfo.curPage = res.body.data.current_page_number
           this.contentAutoloadInfo.numPages = Math.ceil(res.body.data.total_count / limit) !== 0 ? Math.ceil(res.body.data.total_count / limit) : 1
           if (page === 1) {
