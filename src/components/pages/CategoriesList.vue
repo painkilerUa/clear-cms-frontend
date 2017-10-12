@@ -191,7 +191,7 @@
                 <v-select
                   v-model="newCategory.parent"
                   name="Category"
-                  :options="getCategoriesForSelect"
+                  :options="parentCategoriesForSelect"
                   placeholder="Select parent category (optional)"
                   id="select-parent-category" />
               </div>
@@ -336,6 +336,7 @@ export default {
       }
       function removeCategory (id) {
         self.clearAction()
+        self.getCategories()
         self.$http.delete(api.URLS.category + '/' + id, api.headersAuthSettings)
           .then((res) => {
             self.clearAction()
@@ -526,6 +527,7 @@ export default {
     ...mapGetters([
       'getCategoriesTitle',
       'getCategoriesForSelect',
+      'parentCategoriesForSelect',
       'getTagsForSelect'
     ]),
     filteredCategories () {

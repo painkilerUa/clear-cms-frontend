@@ -44,6 +44,14 @@ export const getCategoriesForSelect = (state) => state.categories.map(item => {
   }
 //  }
 })
+export const parentCategoriesForSelect = (state) => state.categories
+  .filter(item => !item.parent)
+  .map(item => {
+    return {
+      label: item.title,
+      value: item.id
+    }
+  })
 // companies
 export const getCompaniesForSelect = (state) => state.companies.map(item => {
 //  if (item.is_active) {
