@@ -205,6 +205,11 @@ export default {
         .catch((err) => console.error(err))
     }
   },
+  watch: {
+    '$route.params.id' () {
+      this.getArticleById()
+    }
+  },
   mounted () {
     this.getArticleById()
   }

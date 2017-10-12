@@ -160,6 +160,7 @@ export default {
     select (id) {
       this.close()
       this.clear()
+//      this.$router.push({name: 'content', params: {id: id}})
       this.$router.push({name: 'content', params: {id: id}})
     },
     open (value) {
