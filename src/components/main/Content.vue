@@ -76,11 +76,11 @@
             </div>
             <!-- END:.content-info-imgwrap -->
             <!-- .article-download -->
-            <div class="article-download">
+            <div class="article-download" v-if="typeExistingResource === 'resource'">
               <!-- article-download-list -->
               <ul class="article-download-list">
-                <li class="article-download-list__item">
-                  <a href="#" class="article-download-list__link">
+                <li class="article-download-list__item" v-for="resource in existedResources">
+                  <a :href="resource.link" target="_blank" class="article-download-list__link">
                     <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
                       <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
                         <g id="Page-1" transform="translate(803.000000, 395.000000)">
@@ -96,53 +96,59 @@
                         </g>
                       </g>
                     </svg>
-                    <span class="article-download-list__link-text">Document name can be longer like this & can go until right hereeeeeeee</span>
+                    <span class="article-download-list__link-text">{{resource.title}}</span>
                   </a>
                 </li>
-                <li class="article-download-list__item">
-                  <a href="#" class="article-download-list__link">
-                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
-                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
-                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
-                          <g id="Clip-2">
-                          </g>
-                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
-                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
-                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
-                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
-                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
-                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
-                            C-376.185,310-372.198,306.013-372.198,301.099"/>
-                        </g>
-                      </g>
-                    </svg>
-                    <span class="article-download-list__link-text">Download document here</span>
-                  </a>
-                </li>
-                <li class="article-download-list__item">
-                  <a href="#" class="article-download-list__link">
-                    <svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">
-                      <g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">
-                        <g id="Page-1" transform="translate(803.000000, 395.000000)">
-                          <g id="Clip-2">
-                          </g>
-                          <path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054
-                            c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521
-                            s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818
-                            c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208
-                            s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099
-                            c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901
-                            C-376.185,310-372.198,306.013-372.198,301.099"/>
-                        </g>
-                      </g>
-                    </svg>
-                    <span class="article-download-list__link-text">Download document here longer name that doesn’t fit in a row, so we’ll display...</span>
-                  </a>
-                </li>
+                <!--<li class="article-download-list__item">-->
+                  <!--<a href="#" class="article-download-list__link">-->
+                    <!--<svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">-->
+                      <!--<g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">-->
+                        <!--<g id="Page-1" transform="translate(803.000000, 395.000000)">-->
+                          <!--<g id="Clip-2">-->
+                          <!--</g>-->
+                          <!--<path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054-->
+                            <!--c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521-->
+                            <!--s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818-->
+                            <!--c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208-->
+                            <!--s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099-->
+                            <!--c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901-->
+                            <!--C-376.185,310-372.198,306.013-372.198,301.099"/>-->
+                        <!--</g>-->
+                      <!--</g>-->
+                    <!--</svg>-->
+                    <!--<span class="article-download-list__link-text">Download document here</span>-->
+                  <!--</a>-->
+                <!--</li>-->
+                <!--<li class="article-download-list__item">-->
+                  <!--<a href="#" class="article-download-list__link">-->
+                    <!--<svg version="1.1" width="20" height="20" class="article-download-list__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-390 292.198 17.802 17.802" style="enable-background:new -390 292.198 17.802 17.802;" xml:space="preserve">-->
+                      <!--<g id="Key-information-B-Home-Desktop" transform="translate(-803.000000, -395.000000)">-->
+                        <!--<g id="Page-1" transform="translate(803.000000, 395.000000)">-->
+                          <!--<g id="Clip-2">-->
+                          <!--</g>-->
+                          <!--<path id="Fill-1" d="M-375.118,301.111c0,0.197-0.069,0.382-0.208,0.521l-4.197,4.196l-1.054,1.054-->
+                            <!--c-0.14,0.14-0.325,0.209-0.522,0.209s-0.383-0.069-0.522-0.208l-1.054-1.055l-4.195-4.196c-0.14-0.139-0.21-0.324-0.21-0.521-->
+                            <!--s0.07-0.382,0.209-0.521l1.054-1.055c0.139-0.139,0.325-0.22,0.521-0.22c0.197,0,0.383,0.081,0.522,0.22l2.19,2.19v-5.818-->
+                            <!--c0-0.406,0.336-0.741,0.741-0.741h1.484c0.406,0,0.741,0.336,0.741,0.741v5.818l2.191-2.19c0.138-0.139,0.324-0.208,0.521-0.208-->
+                            <!--s0.382,0.069,0.521,0.208l1.055,1.055C-375.188,300.729-375.118,300.913-375.118,301.111 M-372.198,301.099-->
+                            <!--c0-4.914-3.987-8.901-8.901-8.901s-8.901,3.987-8.901,8.901s3.987,8.901,8.902,8.901-->
+                            <!--C-376.185,310-372.198,306.013-372.198,301.099"/>-->
+                        <!--</g>-->
+                      <!--</g>-->
+                    <!--</svg>-->
+                    <!--<span class="article-download-list__link-text">Download document here longer name that doesn’t fit in a row, so we’ll display...</span>-->
+                  <!--</a>-->
+                <!--</li>-->
               </ul>
               <!-- END:article-download-list -->
             </div>
             <!-- END:.article-download -->
+            <div class="article-video" v-if="typeExistingResource === 'video'">
+              <div class="article-video-resource" v-for="resource in existedResources">
+                <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/ztYSwVOma2M" frameborder="0" allowfullscreen></iframe>-->
+                <iframe :src="resource.link"></iframe>
+              </div>
+            </div>
             <!-- .article-content -->
             <section class="article-content">
               <h3 class="article-content-title">Key information</h3>
@@ -193,6 +199,40 @@ export default {
     },
     thingsToDo () {
       return this.content.children ? this.content.children.filter(item => !item.is_article) : []
+    },
+    typeExistingResource () {
+      return this.content.content_type.form.type
+    },
+    existedResources () {
+      switch (this.content.content_type.form.type) {
+        case 'resource':
+          return resource(this.content.formResource)
+        case 'video':
+          return video(this.content.formResource)
+      }
+      function resource (existedResources) {
+        return existedResources.map((item) => {
+          return {
+            title: item.file ? item.file : item.link,
+            link: item.path ? `${api.staticServerURL}${item.path}` : item.link
+          }
+        })
+      }
+      function video (existedResources) {
+        return existedResources.map((item) => {
+          let linkPart = item.link.split('/')
+          let link
+          if (linkPart[2].indexOf('youtu') !== -1) {
+            link = `${linkPart[0]}//www.youtube.com/embed/${linkPart[3]}`
+          }
+          if (linkPart[2].indexOf('vimeo') !== -1) {
+            link = `${linkPart[0]}//player.vimeo.com/video/${linkPart[3]}`
+          }
+          return {
+            link
+          }
+        })
+      }
     }
   },
   methods: {
