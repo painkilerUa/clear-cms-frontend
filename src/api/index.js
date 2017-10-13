@@ -8,8 +8,8 @@ const api = {}
 
 export default api
 api.timeout = { timeout: 20000 }
-api.serverURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://52.15.253.49' : 'http://18.220.13.196'
-api.staticServerURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://52.15.253.49' : 'http://18.220.13.196'
+api.serverURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://13.58.54.217' : 'http://18.220.13.196'
+api.staticServerURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://13.58.54.217' : 'http://18.220.13.196'
 // For production
 // api.serverURL = 'http://52.15.253.49'
 // api.staticServerURL = 'http://52.15.253.49'
@@ -49,6 +49,7 @@ api.URLS = {
   enabled: `${api.serverURL}/api/v1/enabled`,
   createAdmin: `${api.serverURL}/api/v1/register-admin/`,
   changeStatus: `${api.serverURL}/api/v1/change-status`,
-  profile: `${api.serverURL}/api/v1/profile/user`
+  profile: `${api.serverURL}/api/v1/profile/user`,
+  userLastLogin: `${api.serverURL}/api/v1/user-last-login/`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)

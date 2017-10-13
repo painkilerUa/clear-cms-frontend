@@ -319,12 +319,12 @@
                   <span >Last Edited</span>
                 </div>
                 <div class="caption-head-icon">
-                  <span class="active-chevron" v-if="this.datepicker.isShown">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 7">
                     <icon
                       name="chevron-up"
                     ></icon>
                   </span>
-                  <span class="passive-chevron" v-if="!this.datepicker.isShown">
+                  <span class="passive-chevron" v-if="filerTableHead.selectedCeil === 7">
                     <icon
                       name="chevron-down"
                     ></icon>
@@ -369,7 +369,8 @@
             </th>
             <th class="column-author-head table-head-hover table-head-ceil"
                 :class="{'left-active-ceil-head': filerTableHead.selectedCeil === 9,
-                'active-ceil-head': filerTableHead.selectedCeil === 8}"
+                'active-ceil-head': filerTableHead.selectedCeil === 8,
+                'hover-head-ceil': isExistInOptions(lastEditorsOptions)}"
                 @mouseover="addHoverElement(lastEditorsOptions)"
                 @mouseleave="removeHoverElements">
               <div class="caption-head">

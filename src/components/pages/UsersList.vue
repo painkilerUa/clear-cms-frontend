@@ -259,8 +259,62 @@
                         v-model="role" />
               </div>
             </th>
-            <th class="column-last-active-head table-head-ceil">
-              <span>Last active</span>
+            <th class="column-last-active-head table-head-ceil"
+                :class="{'hover-head-ceil': isExistInOptions([{id: null, label: lastEdited ? lastEdited.label : null}])}"
+                @mouseover="addHoverElement([{id: null, label: lastEdited ? lastEdited.label : null}])"
+                @mouseleave="removeHoverElements">
+              <div class="caption-head" @click.stop="showHideSubMenu(3)">
+                <div class="caption-head-text">
+                  <span >Last Edited</span>
+                </div>
+                <div class="caption-head-icon">
+                  <span class="active-chevron" v-if="filerTableHead.selectedCeil === 3">
+                    <icon
+                      name="chevron-up"
+                    ></icon>
+                  </span>
+                  <span class="passive-chevron" v-if="filerTableHead.selectedCeil !== 3">
+                    <icon
+                      name="chevron-down"
+                    ></icon>
+                  </span>
+                </div>
+              </div>
+              <div class="datepicker" v-if="filerTableHead.selectedCeil === 3" @click.stop="">
+                <div class="datepicker-statusbar">
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>From</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.from, '/')}}</div>
+                    </div>
+                  </div>
+                  <div class="datepicker-statusbar-half">
+                    <div class="datepicker-statusbar-half-inner">
+                      <span>To</span>
+                      <div class="datepicker-statusbar-half-input">{{convertDate(datepicker.to, '/')}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="datepicker-calendar">
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.from"
+                      :format="'dd MM yyyy'"
+                    />
+                  </div>
+                  <div class="datepicker-calendar-half">
+                    <datepicker
+                      :inline="true"
+                      v-model="datepicker.to"
+                      :format="'dd MM yyyy'"
+                    />
+                  </div>
+                </div>
+                <div class="datepicker-control-panel">
+                  <button type="button" @click="changeDateFilter">Ok</button>
+                </div>
+              </div>
             </th>
             <th colspan="3" class="cellpadding column-actions-head table-head-ceil">Actions</th>
           </tr>
@@ -276,7 +330,7 @@
             <td class="cellpadding" v-if="user.type === 'show'">{{user.email}}</td>
             <td class="cellpadding" v-if="user.type === 'show'">{{user.company ? user.company.name : ''}}</td>
             <td class="cellpadding" v-if="user.type === 'show'"> {{user.role_users.length ? user.role_users[0].name : ''}}</td>
-            <td class="cellpadding" v-if="user.type === 'show'">3 hours ago</td>
+            <td class="cellpadding text-center" v-if="user.type === 'show'">{{lastActiveTime(user.last_login)}}</td>
             <td class="cellpadding text-center" v-if="user.type === 'show'">
               <button
                 type="button"
@@ -422,6 +476,7 @@ export default {
       searchString: '',
       company: null,
       role: null,
+      lastEdited: null,
       newUser: {
         name: '',
         surname: '',
@@ -448,6 +503,11 @@ export default {
       hoverElements: [],
       filerTableHead: {
         selectedCeil: null
+      },
+      datepicker: {
+        isShown: false,
+        from: null,
+        to: null
       },
       statusbar: {
         data: [],
@@ -678,10 +738,14 @@ export default {
       if (this.company && this.company.label === filter.label && this.company.value === filter.value) {
         this.company = null
       }
+      if (this.lastEdited && this.lastEdited.label === filter.label && this.lastEdited.value === filter.value) {
+        this.lastEdited = null
+      }
     },
     removeAllFilters () {
       this.role = null
       this.company = null
+      this.lastEdited = null
     },
     showHideSubMenu (num) {
       if (!this.filerTableHead.selectedCeil) {
@@ -692,6 +756,44 @@ export default {
     },
     hideSubMenuTableHead (e) {
       this.filerTableHead.selectedCeil = null
+    },
+    lastActiveTime (timestamp) {
+      if (!timestamp) return ''
+      let string = 'Last login '
+      let loginAt = new Date(timestamp)
+      let now = new Date()
+      let difference = Math.floor((+now - +loginAt) / (1000 * 60 * 60))
+      if (difference < 1) {
+        string += 'less than 1 hour ago'
+      } else if (difference >= 1 && difference < 24) {
+        string += difference + ' hours ago'
+      } else {
+        string += this.convertDate(timestamp, '.')
+      }
+      return string
+    },
+    convertDate (payload, delimetr) {
+      if (!payload) return
+      let date = new Date(payload)
+      let fullYear = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      function toDoubleDigit (num) {
+        return num.toString().length < 2 ? '0' + num : num.toString()
+      }
+      return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
+    },
+    changeDateFilter () {
+      this.showHideSubMenu(3)
+      if (!this.datepicker.from && !this.datepicker.to) return
+      let label = (this.datepicker.from ? this.convertDate(this.datepicker.from, '.') : 'n/a') +
+        ' - ' + (this.datepicker.to ? this.convertDate(this.datepicker.to, '.') : 'n/a')
+      this.lastEdited = {
+        label,
+        id: null,
+        from: this.datepicker.from ? this.datepicker.from : null,
+        to: this.datepicker.to ? this.datepicker.to : null
+      }
     }
   },
   computed: {
@@ -703,6 +805,10 @@ export default {
       return this.users.filter((user) => (user.username + ' ' + user.last_name).toLowerCase().indexOf(this.searchString.toLowerCase()) > -1)
         .filter((user) => this.company === null || (user.company && user.company.id === this.company.value))
         .filter((user) => this.role === null || (user.role_users.length && user.role_users[0].id === this.role.value))
+        .filter(user => {
+          return this.lastEdited === null || ((this.datepicker.from === null || new Date(this.datepicker.from).getTime() <= new Date(user.last_login).getTime()) &&
+            (this.datepicker.to === null || new Date(this.datepicker.to).getTime() >= new Date(user.last_login).getTime()))
+        })
     },
     usersSum () {
       let count = 0
@@ -718,6 +824,9 @@ export default {
       }
       if (this.role) {
         filters.push(this.role)
+      }
+      if (this.lastEdited) {
+        filters.push(this.lastEdited)
       }
       return filters
     }

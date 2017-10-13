@@ -89,6 +89,14 @@ export default {
         this.$http.put(api.URLS.profile, {}, headers)
         .then((res) => {
           console.log(res)
+          this.$http.put(api.URLS.userLastLogin + res.body.id, {}, headers)
+          .then((res) => {
+            console.log('Last login', res)
+          })
+          .catch((err) => {
+            return err
+          })
+          console.log(res)
           let username = res.body.username ? res.body.username : ''
           localStorage.setItem('username', username)
           this.submitSuccess(res.body)
