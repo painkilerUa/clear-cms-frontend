@@ -1,7 +1,7 @@
 <template>
 	<!-- .profile -->
 	<div class="profile">
-		<h1>{{getUsername}}</h1>
+		<h1>Some content will be here</h1>
 	</div>
 	<!-- END:.profile -->
 </template>
@@ -18,3 +18,5 @@ export default {
   }
 }
 </script>
+
+<style src='@/assets/scss/components/profile.scss' lang='scss' scoped />

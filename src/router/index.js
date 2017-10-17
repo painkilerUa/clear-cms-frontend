@@ -75,6 +75,12 @@ const router = new Router({
           path: '/forgot-password',
           name: 'forgot-password',
           component: Index
+        },
+        {
+          path: '/profile',
+          name: 'profile',
+          component: Profile,
+          meta: { requiresAuth: true }
         }
       ]
     },
@@ -172,12 +178,6 @@ const router = new Router({
           component: UsersList
         }
       ]
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
-      meta: { requiresAuth: true }
     },
     {
       path: '/resetting',
