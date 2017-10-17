@@ -32,8 +32,6 @@ p{
   background-color:#dddcdc;
   margin:0 auto;
   margin-bottom: 30px;
-
-
 }
 
 .style-form{
@@ -74,6 +72,8 @@ p{
   color: #fff;
   font-weight: bold;
   font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
 }
 
 .information{
@@ -93,6 +93,12 @@ p{
 .flex-container{
   display: flex;
   flex-wrap: wrap;
+}
+
+.logo-wrap{
+  margin: 0 auto;
+  padding-top: 24%;
+  width: 80%;
 
 }
 
@@ -126,7 +132,6 @@ p{
 }
 
 .client-block-item{
-  float:left;
   margin-bottom: 39px;
   margin-right: 24px;
 }
@@ -136,7 +141,7 @@ p{
 }
 
 .client{
-  margin-bottom: 29px;
+  margin-bottom: 13px;
 }
 
 .client-block-item-logo-name-chat{
@@ -153,8 +158,20 @@ p{
   margin-top: -30px;
 }
 
+/*-------------Media-query----------------*/
+
+@media screen and (min-width: 1200px){
+
+}
+
+@media screen and (max-width: 1200px){
+
+}
 
 
+@media screen and (max-width: 800px) and (min-width: 600px)  {
+  /* CSS-стили */;
+}
 
 
 

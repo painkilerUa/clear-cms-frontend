@@ -23,7 +23,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
-                            <img src="../../assets/img/main/AbilityNet.png" alt="">
+                            <div class="logo-wrap">
+                            <img src="../../assets/img/main/AbilityNetImg.png" alt="">
+                            </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
                         <div class="client-block-item-content flex-container">
@@ -36,7 +38,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
-                            <img src="../../assets/img/main/theClearCompany.png" alt="">
+                            <div class="logo-wrap">
+                            <img src="../../assets/img/main/ClearCompany.png" alt="">
+                            </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
                         <div class="client-block-item-content flex-container">
@@ -49,7 +53,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
+                            <div class="logo-wrap">
                             <img class="client-block-item-logo-dwf" src="../../assets/img/main/dwf.png" alt="">
+                            </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
                         <div class="client-block-item-content flex-container">
@@ -62,7 +68,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
+                            <div class="logo-wrap">
                             <img class="gray rectangle" src="" alt="">
+                            </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
                         <div class="client-block-item-content flex-container">
@@ -75,7 +83,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
+                            <div class="logo-wrap">
                             <img class="gray rectangle" src="" alt="">
+                            </div>
                         </div>
                             <h3 class="client-block-item-logo-name">Ability Net </h3>
                             <div class="client-block-item-content flex-container">
@@ -88,7 +98,9 @@
 
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
+                            <div class="logo-wrap">
                             <img class="gray rectangle" src="" alt="">
+                            </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
                         <div class="client-block-item-content flex-container">
