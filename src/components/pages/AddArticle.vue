@@ -561,7 +561,7 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    publishArticle (status) {
+    publishArticle (status, redirect) {
       this.$validator.validateAll()
       if (this.errors.items.length) return
       if (this.disableAPI) return
@@ -570,7 +570,7 @@ export default {
         formData.append('content[imageFile]', document.getElementById('uploadThumbnail').files[0])
       }
       formData.append('content[title]', this.selectedValues.title)
-      formData.append('content[content]', this.selectedValues.content)
+      formData.append('content[content]', this.selectedValues.content ? this.selectedValues.content : '')
       formData.append('content[description]', this.selectedValues.description)
       formData.append('content[contentType]', this.selectedValues.contentType.value)
       if (this.selectedValues.language) {
@@ -636,6 +636,10 @@ export default {
           formData.append('content[typeValues][' + i + '][textarea]', textarea.value)
         })
       }
+      let newWindow
+      if (redirect) {
+        newWindow = window.open('', '_blank')
+      }
       this.disableAPI = true
       this.$http.post(api.URLS.content, formData, api.headersAuthSettings)
         .then((res) => {
@@ -654,10 +658,16 @@ export default {
               break
           }
           this.setInformationMsg({text: infMsg, className: 'success'})
+          if (redirect) {
+            newWindow.location.href = '/content/' + res.body.id
+          }
           this.$router.push('/admin/article/edit/' + res.body.id)
         })
         .catch((err) => {
           this.disableAPI = false
+          if (redirect) {
+            newWindow.close()
+          }
           console.log(err)
           let infMsg
           switch (status) {
@@ -684,37 +694,40 @@ export default {
         .catch((err) => console.log(err))
     },
     previewArticle () {
-      this.articlePreview.resources = []
-      this.articlePreview.isShown = true
-      if (this.subForm.type === 'video') {
-        let urls = [...document.getElementsByClassName('input-url-video')]
-        let textareas = [...document.getElementsByClassName('input-textarea-video')]
-        if (!urls.length || !textareas.length) return
-        urls.forEach((url, i) => {
-          if (!url.value) return
-          this.articlePreview.resources.push({link: url.value})
-        })
-        textareas.forEach((textarea, i) => {
-          if (!textarea.value) return
-          this.articlePreview.resources[i].textarea = textarea.value
-        })
-      }
-      if (this.subForm.type === 'resource') {
-        let urls = [...document.getElementsByClassName('input-url-resource')]
-        let textareas = [...document.getElementsByClassName('input-textarea-resource')]
-        let files = [...document.getElementsByClassName('input-file-resource')]
-        if (!urls.length || !textareas.length || !files.length) return
-        textareas.forEach((textarea, i) => {
-          this.articlePreview.resources.push({textarea: textarea.value})
-        })
-        urls.forEach((url, i) => {
-          this.articlePreview.resources[i].link = url.value
-        })
-        files.forEach((file, i) => {
-          console.log(file)
-          this.articlePreview.resources[i].fileName = file.files[0].name
-        })
-      }
+      this.$validator.validateAll()
+      if (this.errors.items.length) return
+      this.publishArticle(0, true)
+//      this.articlePreview.resources = []
+//      this.articlePreview.isShown = true
+//      if (this.subForm.type === 'video') {
+//        let urls = [...document.getElementsByClassName('input-url-video')]
+//        let textareas = [...document.getElementsByClassName('input-textarea-video')]
+//        if (!urls.length || !textareas.length) return
+//        urls.forEach((url, i) => {
+//          if (!url.value) return
+//          this.articlePreview.resources.push({link: url.value})
+//        })
+//        textareas.forEach((textarea, i) => {
+//          if (!textarea.value) return
+//          this.articlePreview.resources[i].textarea = textarea.value
+//        })
+//      }
+//      if (this.subForm.type === 'resource') {
+//        let urls = [...document.getElementsByClassName('input-url-resource')]
+//        let textareas = [...document.getElementsByClassName('input-textarea-resource')]
+//        let files = [...document.getElementsByClassName('input-file-resource')]
+//        if (!urls.length || !textareas.length || !files.length) return
+//        textareas.forEach((textarea, i) => {
+//          this.articlePreview.resources.push({textarea: textarea.value})
+//        })
+//        urls.forEach((url, i) => {
+//          this.articlePreview.resources[i].link = url.value
+//        })
+//        files.forEach((file, i) => {
+//          console.log(file)
+//          this.articlePreview.resources[i].fileName = file.files[0].name
+//        })
+//      }
     },
     changeLinkForPreview (oldLink) {
       let splited = oldLink.split('/')

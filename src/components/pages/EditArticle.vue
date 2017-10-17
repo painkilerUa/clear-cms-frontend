@@ -560,12 +560,12 @@ export default {
         console.log('tags', this.formInfo.tags)
       }
     },
-    editArticle (status = this.article.status) {
+    editArticle (status = this.article.status, redirect) {
       this.$validator.validateAll()
       if (this.errors.items.length) return
       if (this.disableAPI) return
       this.formData.append('content[title]', this.article.title)
-      this.formData.append('content[content]', this.article.content)
+      this.formData.append('content[content]', this.article.content ? this.article.content : '')
       this.formData.append('content[description]', this.article.description)
       this.formData.append('content[contentType]', this.article.contentType.value)
       if (this.article.language) {
@@ -625,6 +625,10 @@ export default {
           })
         }
       })
+      let newWindow
+      if (redirect) {
+        newWindow = window.open('', '_blank')
+      }
       this.disableAPI = true
       this.$http.post(api.URLS.content + '/' + this.articleId, this.formData, api.headersAuthSettings)
         .then((res) => {
@@ -644,9 +648,15 @@ export default {
               break
           }
           this.setInformationMsg({text: infMsg, className: 'success'})
+          if (redirect) {
+            newWindow.location.href = '/content/' + res.body.id
+          }
         })
         .catch((err) => {
           this.disableAPI = false
+          if (redirect) {
+            newWindow.close()
+          }
           let infMsg
           switch (status) {
             case 0:
@@ -853,8 +863,11 @@ export default {
       this.article.resources.data[i].id = ''
     },
     previewArticle () {
-      this.articlePreview.resources = []
-      this.articlePreview.isShown = true
+      this.$validator.validateAll()
+      if (this.errors.items.length) return
+      this.editArticle(0, true)
+//      this.articlePreview.resources = []
+//      this.articlePreview.isShown = true
     },
     changeArtStatus () {
       let newStatus

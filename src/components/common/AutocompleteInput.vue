@@ -55,7 +55,7 @@
             <!-- END:.ac-content -->
           </li>
           <li >
-            <button type="button" class="ac-blocktitle ac-more">+ See more</button>
+            <button type="button" class="ac-blocktitle ac-more" @click="seeMore()">+ See more</button>
           </li>
         </ul>
         <!-- END:ac-list -->
@@ -185,6 +185,13 @@ export default {
         this.selectedTags = []
       }
       this.fetchContent()
+    },
+    seeMore () {
+      this.close()
+//      let searchTypes =
+      this.setSearchTypes()
+      this.setSearchTopics()
+      this.$router.push('search')
     }
   },
   directives: {

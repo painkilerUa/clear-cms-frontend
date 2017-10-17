@@ -67,11 +67,11 @@
           <div class="content-info">
             <!-- .content-info-imgwrap -->
             <div class="content-info-imgwrap">
-              <img
-                class="content-info-img"
-                src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"
-                alt="content-info-img"
-                v-if="!content.image_path"/>
+              <!--<img-->
+                <!--class="content-info-img"-->
+                <!--src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"-->
+                <!--alt="content-info-img"-->
+                <!--v-if="!content.image_path"/>-->
               <img :src="mainImgPath" alt="main-content-img" v-if="content.image_path">
             </div>
             <!-- END:.content-info-imgwrap -->
@@ -211,6 +211,7 @@ export default {
           return video(this.content.formResource)
       }
       function resource (existedResources) {
+        if (!existedResources) return []
         return existedResources.map((item) => {
           return {
             title: item.file ? item.file : item.link,
@@ -219,6 +220,7 @@ export default {
         })
       }
       function video (existedResources) {
+        if (!existedResources) return []
         return existedResources.map((item) => {
           let linkPart = item.link.split('/')
           let link

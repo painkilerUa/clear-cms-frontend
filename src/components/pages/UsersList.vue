@@ -807,7 +807,7 @@ export default {
         .filter((user) => this.role === null || (user.role_users.length && user.role_users[0].id === this.role.value))
         .filter(user => {
           return this.lastEdited === null || ((this.datepicker.from === null || new Date(this.datepicker.from).getTime() <= new Date(user.last_login).getTime()) &&
-            (this.datepicker.to === null || new Date(this.datepicker.to).getTime() >= new Date(user.last_login).getTime()))
+            (this.datepicker.to === null || (new Date(this.datepicker.to).getTime() + 24 * 60 * 60 * 1000) >= new Date(user.last_login).getTime()))
         })
     },
     usersSum () {

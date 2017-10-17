@@ -35,6 +35,11 @@ const state = {
     className: {'success': false, 'danger': false, 'warning': false},
     style: {
     }
+  },
+  search: {
+    searchString: null,
+    contentTypes: [],
+    topics: []
   }
 }
 
