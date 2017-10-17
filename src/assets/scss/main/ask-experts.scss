@@ -1,1 +1,200 @@
+p{
+  margin-bottom: 0;
+}
+/*--------IMAGE----------*/
+.wrapper{
+  width: 100%;
+
+}
+
+.picture{
+  /*--------BACKGROUND-Main---------------*/
+
+  background-image: url('../../img/main/AskPageMain.jpg');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center center;
+  height: 582px;
+  margin-bottom: -180px;
+}
+/*-------END-IMAGE-------*/
+/*-------FORM------------*/
+
+.container{
+  width: 927px;
+  margin:0 auto;
+}
+
+.form-container{
+  width: 927px;
+  height: 380px;
+  background-color:#dddcdc;
+  margin:0 auto;
+  margin-bottom: 30px;
+}
+
+.style-form{
+  padding: 51px 33px 53px 24px ;
+}
+
+.header-form{
+  margin-bottom: 17px;
+  color:#077280;
+  font-weight: 700;
+}
+
+.message{
+  margin-bottom: 9px;
+}
+
+.textfield{
+  margin-bottom: 14px;
+}
+
+.header-form-text{
+  width: 100%;
+}
+
+.header-form-text.title{
+  height: 35px;
+  padding-left: 11px;
+}
+
+.header-form-text.textarea{
+  height: 183px;
+}
+
+.submit{
+  background-color: #077280;
+  width: 188px;
+  height: 42px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
+}
+
+.information{
+  padding: 0 50px;
+  text-align: center;
+  line-height: 1.38;
+  margin-bottom: 36px;
+}
+/*------END-FORM------*/
+
+/*------CLIENT------*/
+
+.client-block{
+  width: 932px;
+  margin: 0 auto;
+}
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.logo-wrap{
+  margin: 0 auto;
+  padding-top: 24%;
+  width: 80%;
+
+}
+
+.client-block-item-logo{
+  width: 292px;
+  height: 209px;
+  border: 3px solid #077280;
+  margin-bottom: 20px;
+}
+
+.client-block-item-logo-dwf{
+  width: 100px;
+  position: relative;
+  top: 25%;
+  left: 30%;
+}
+
+.gray.rectangle{
+  width: 178px;
+  height: 80px;
+  margin: 0 auto;
+  background-color: #d8d8d8;
+  position: relative;
+  top: 30%;
+  display: block;
+}
+
+.client-block-item-logo-name{
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.client-block-item{
+  margin-bottom: 39px;
+  margin-right: 24px;
+}
+
+.client-block-item:nth-child(3n){
+  margin-right: 0;
+}
+
+.client{
+  margin-bottom: 13px;
+}
+
+.client-block-item-logo-name-chat{
+  display: block;
+}
+
+.client-block-item-logo-name-chat-icon{
+  width: 36px;
+  height:35px;
+  background: url("../../img/main/iconChat.png");
+  background-repeat: no-repeat;
+  display: block;
+  margin-left: 16px;
+  margin-top: -30px;
+}
+
+/*-------------Media-query----------------*/
+
+@media screen and (min-width: 1200px){
+
+}
+
+@media screen and (max-width: 1200px){
+
+}
+
+
+@media screen and (max-width: 800px) and (min-width: 600px)  {
+  /* CSS-стили */;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
