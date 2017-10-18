@@ -7,9 +7,9 @@ p{
 
 }
 
-.picture{
-  /*--------BACKGROUND-Main---------------*/
 
+  /*--------BACKGROUND-Main---------------*/
+.picture{
   background-image: url('../../img/main/AskPageMain.jpg');
   width: 100%;
   background-repeat: no-repeat;
@@ -19,6 +19,7 @@ p{
   margin-bottom: -180px;
 }
 /*-------END-IMAGE-------*/
+
 /*-------FORM------------*/
 
 .container{
@@ -108,13 +109,6 @@ p{
   margin-bottom: 20px;
 }
 
-//.client-block-item-logo-dwf{
-//  width: 100px;
-//  position: relative;
-//  top: 25%;
-//  left: 30%;
-//}
-
 .gray.rectangle{
   width: 178px;
   height: 80px;
@@ -161,10 +155,6 @@ p{
 
 /*------Desktops------*/
 @media screen and (max-width: 1200px) and (min-width: 992px){
-  //.client-block{
-  //  width: 832px;
-  //  margin: 0 auto;
-  //}
 }
 /*------Tablets-------*/
 @media screen and (max-width: 991px) and (min-width: 768px)  {
