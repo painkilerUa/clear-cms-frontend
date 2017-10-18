@@ -14,3 +14,192 @@
     }
   }
 }
+.main-container{
+  margin-bottom: 404px;       /*---------then-video-block-empty---------*/
+}
+
+.wrapper{
+  width: 1148px;
+  margin: 0 auto;
+}
+
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrap{
+  margin-bottom: 100px;
+}
+
+.flex-block{
+  width: 50%;
+  padding: 0 36px;
+}
+
+.flex-block>p{
+  color: #ffffff;
+}
+
+.flex-block>p:first-child{
+  margin-bottom: 24px;
+}
+
+.footer{
+  background-color: #000000;
+  height: 100px;/*---------height del ---*/
+  color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bottom{
+  padding: 34px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.email,
+.password{
+  padding: 10px 52px 12px 10px;
+  margin-right: 14px;
+}
+
+.login{
+  padding: 12px 28px;
+  background-color: #257281;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.lost-password{
+  color: #257281;
+  text-decoration: none;
+  color: #257281;
+  text-decoration: none;
+  margin-left: 10px;
+  font-weight: 400;
+
+}
+
+.front-footer-social-list{
+  margin-left: 104px;
+}
+
+
+/*-------Scss-icon--------*/
+.front-footer{
+  font-family: 'Arial';
+  padding: 0;
+&-social{
+  &__title{
+    font-size: 0.8rem;
+    line-height: 1.38;
+    text-align: right;
+    margin-bottom: 7px;
+    font-weight: normal;
+  }
+  &-list{
+    list-style: none;
+    margin-bottom: 0;
+    &__item{
+      margin-right: 6px;
+      display: inline-block;
+      &:last-of-type{
+        margin-right: 0;
+      }
+    }
+    &__link{
+      color: #fff;
+      width: 31px;
+      height: 31px;
+      line-height: 36px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+  }
+}
+&-links{
+  padding-top: 28px;
+  padding-bottom: 45px;
+  font-size: 0.8125rem;
+  &__inner{
+    text-align: center;
+  }
+  &-list{
+    display: inline-block;
+    list-style: none;
+    margin: 0 -41px;
+    &__item{
+      display: inline-block;
+      margin: 0 29px;
+    }
+    &__link{
+      color: #fff;
+    }
+  }
+}
+}
+
+/*--------------Media-query----------*/
+
+/*------Desktops------*/
+@media screen and (max-width: 1200px) and (min-width: 992px){
+}
+/*------Tablets-------*/
+@media screen and (max-width: 991px) and (min-width: 768px)  {
+}
+/*---Landscape phones---*/
+@media screen and (max-width: 767px) and (min-width: 544px)  {
+
+}
+/*---Portrait-phones ---*/
+@media screen and (max-width: 543px) and (min-width: 320px)   {
+  .main-container {
+    max-width: 274px;
+    margin: 0 auto;
+  }
+
+  .wrapper{
+    width: 274px;
+    margin: 0 auto;
+  }
+
+  .flex-container{
+    display: block;
+  }
+  .flex-block{
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .main-container {
+    max-width: 274px;
+    margin: 0 auto;
+  }
+
+  .wrapper{
+    width: 274px;
+    margin: 0 auto;
+  }
+
+  .flex-container{
+    display: block;
+  }
+  .flex-block{
+    width: 100%;
+  }
+
+}
+
