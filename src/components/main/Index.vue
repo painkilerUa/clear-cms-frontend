@@ -1,8 +1,8 @@
 <template>
   <main class="main">
-    <login v-if="$route.name === 'login'" />
-    <register v-if="$route.name === 'register'" />
-    <forgot-password v-if="$route.name === 'forgot-password'" />
+    <!--<login v-if="$route.name === 'login'" />-->
+    <!--<register v-if="$route.name === 'register'" />-->
+    <!--<forgot-password v-if="$route.name === 'forgot-password'" />-->
     <!-- .page-banner -->
     <div class="page-banner page-banner--home"></div>
     <!-- .home-info -->

@@ -1,49 +1,57 @@
 <template>
-	<div class="login">
-		<popup :title="title" :description="description" :modal="true">
-		  <!-- popup-body -->
-			<template slot="body">
-			  <!-- .form -->
-			  <form action="#" class="form" @submit.prevent="submit">
-			  	<!-- .form-element -->
-			  	<div class="form-element">
-			  		<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />
-			  		<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>
-			  	</div>
-			  	<!-- END:.form-element -->
-			  	<!-- .form-element -->
-			  	<div class="form-element">
-			  		<input type="password" name="PasswordFirst" v-model="formInfo.password" data-vv-as='"PasswordFirst"' class="form-control" v-validate="'required'" placeholder="Password" />
-			  		<div v-if="errors.has('PasswordFirst')" class="form-errors">{{ errors.first('PasswordFirst') }}</div>
-			  	</div>
-			  	<!-- END:.form-element -->
-			  	<!-- .form-element -->
-			  	<div class="form-element">
-			  		<input type="hidden" name="PasswordSecond" :value="secondPasswordComputed" />
-			  	</div>
-			  	<!-- END:.form-element -->
-			  	<button type="submit" class="form-control form-submit">Login</button>
-			  	<form-messages :messages="formServerMessages" />
-			  </form>
-			  <!-- END:.form -->
-			</template>
-		  <!-- END:popup-body -->
-		  <!-- popup-footer -->
-		  <template slot="footer">
-		  	<!-- popup-infolinks -->
-		  	<ul class="popup-infolinks">
-		  		<li class="popup-infolinks__item">
-		  			<router-link class="popup-infolinks__link" :to="{name: 'forgot-password'}">Forgot password?</router-link>
-		  		</li>
-		  		<!--<li class="popup-infolinks__item">-->
-		  			<!--<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>-->
-		  		<!--</li>-->
-		  	</ul>
-		  	<!-- END:popup-infolinks -->
-		  </template>
-		  <!-- END:popup-footer -->
-		</popup>
-	</div>
+  <div>
+    <Authorization-header />
+    <main class="main">
+      <div class="main-container">
+        <h1>Lloyd’s is the world’s specialist insurance and reinsurance market</h1>
+      </div>
+    </main>
+    <!--<div class="login">-->
+      <!--<popup :title="title" :description="description" :modal="true">-->
+        <!--&lt;!&ndash; popup-body &ndash;&gt;-->
+        <!--<template slot="body">-->
+          <!--&lt;!&ndash; .form &ndash;&gt;-->
+          <!--<form action="#" class="form" @submit.prevent="submit">-->
+            <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+            <!--<div class="form-element">-->
+              <!--<input type="text" name="User Name" v-model="formInfo.username" data-vv-as='"User Name"' class="form-control" v-validate="'required'" placeholder="User Name" />-->
+              <!--<div v-if="errors.has('User Name')" class="form-errors">{{ errors.first('User Name') }}</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+            <!--<div class="form-element">-->
+              <!--<input type="password" name="PasswordFirst" v-model="formInfo.password" data-vv-as='"PasswordFirst"' class="form-control" v-validate="'required'" placeholder="Password" />-->
+              <!--<div v-if="errors.has('PasswordFirst')" class="form-errors">{{ errors.first('PasswordFirst') }}</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--&lt;!&ndash; .form-element &ndash;&gt;-->
+            <!--<div class="form-element">-->
+              <!--<input type="hidden" name="PasswordSecond" :value="secondPasswordComputed" />-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END:.form-element &ndash;&gt;-->
+            <!--<button type="submit" class="form-control form-submit">Login</button>-->
+            <!--<form-messages :messages="formServerMessages" />-->
+          <!--</form>-->
+          <!--&lt;!&ndash; END:.form &ndash;&gt;-->
+        <!--</template>-->
+        <!--&lt;!&ndash; END:popup-body &ndash;&gt;-->
+        <!--&lt;!&ndash; popup-footer &ndash;&gt;-->
+        <!--<template slot="footer">-->
+          <!--&lt;!&ndash; popup-infolinks &ndash;&gt;-->
+          <!--<ul class="popup-infolinks">-->
+            <!--<li class="popup-infolinks__item">-->
+              <!--<router-link class="popup-infolinks__link" :to="{name: 'forgot-password'}">Forgot password?</router-link>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<li class="popup-infolinks__item">&ndash;&gt;-->
+              <!--&lt;!&ndash;<router-link class="popup-infolinks__link" :to="{name: 'register'}">Not registered yet?</router-link>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+          <!--</ul>-->
+          <!--&lt;!&ndash; END:popup-infolinks &ndash;&gt;-->
+        <!--</template>-->
+        <!--&lt;!&ndash; END:popup-footer &ndash;&gt;-->
+      <!--</popup>-->
+    <!--</div>-->
+  </div>
 </template>
 
 <script>
@@ -52,6 +60,7 @@ import api from '@/api'
 import forms from '@/mixins/forms'
 import Popup from '@/components/common/Popup'
 import FormMessages from '@/components/common/FormMessages'
+import AuthorizationHeader from '@/components/main/common/AuthorizationHeader'
 
 export default {
   name: 'login',
@@ -115,7 +124,9 @@ export default {
   },
   components: {
     Popup,
-    FormMessages
+    FormMessages,
+    AuthorizationHeader
   }
 }
 </script>
+<style src="@/assets/scss/main/login.scss" lang="scss" scoped></style>
