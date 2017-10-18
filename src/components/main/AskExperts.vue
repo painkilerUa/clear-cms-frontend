@@ -54,7 +54,7 @@
                     <div class="client-block-item flex-block">
                         <div class="client-block-item-logo">
                             <div class="logo-wrap">
-                            <img class="client-block-item-logo-dwf" src="../../assets/img/main/dwf.png" alt="">
+                            <img class="client-block-item-logo" src="../../assets/img/main/dwf.png" alt="" style="width: 220px;height: 73px">
                             </div>
                         </div>
                         <h3 class="client-block-item-logo-name">Ability Net </h3>
