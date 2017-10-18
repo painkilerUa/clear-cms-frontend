@@ -1,0 +1,75 @@
+.container{
+  width: 960px;
+  margin: 0 auto;
+}
+
+h1{
+  color: #087280;
+  margin-top: 62px;
+  margin-bottom: 32px;
+}
+
+.text-wrap{
+  width: 640px;
+  margin-bottom: 26px;
+}
+
+.info{
+  width: 100%;
+  background-color: #F4F4F4;
+  padding: 48px 20px;
+  margin-bottom: 210px;
+}
+
+h2{
+  color: #087280;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.form-element{
+  margin-bottom: 0;
+}
+
+.form-group .form-element {
+  width: 47%;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+
+}
+
+.form-control{
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.password-info{
+  margin-bottom: 32px;
+}
+
+.submit{
+  background-color: #077280;
+  padding: 21px 60px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
+}
+
+.update-info{
+  text-align: center;
+}
+

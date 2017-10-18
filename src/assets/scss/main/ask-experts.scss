@@ -7,9 +7,9 @@ p{
 
 }
 
-.picture{
-  /*--------BACKGROUND-Main---------------*/
 
+  /*--------BACKGROUND-Main---------------*/
+.picture{
   background-image: url('../../img/main/AskPageMain.jpg');
   width: 100%;
   background-repeat: no-repeat;
@@ -19,23 +19,23 @@ p{
   margin-bottom: -180px;
 }
 /*-------END-IMAGE-------*/
+
 /*-------FORM------------*/
 
 .container{
-  width: 927px;
+  width: 930px;
   margin:0 auto;
 }
 
 .form-container{
-  width: 927px;
-  height: 380px;
+  width: 930px;
   background-color:#dddcdc;
   margin:0 auto;
   margin-bottom: 30px;
 }
 
 .style-form{
-  padding: 51px 33px 53px 24px ;
+  padding: 33px 52px 24px 52px;
 }
 
 .header-form{
@@ -80,14 +80,14 @@ p{
   padding: 0 50px;
   text-align: center;
   line-height: 1.38;
-  margin-bottom: 36px;
+  margin-bottom: 34px;
 }
 /*------END-FORM------*/
 
 /*------CLIENT------*/
 
 .client-block{
-  width: 932px;
+  width: 930px;
   margin: 0 auto;
 }
 .flex-container{
@@ -97,8 +97,8 @@ p{
 
 .logo-wrap{
   margin: 0 auto;
-  padding-top: 24%;
-  width: 80%;
+  padding: 68px 29px 68px 36px;
+  width: 100%;
 
 }
 
@@ -107,13 +107,6 @@ p{
   height: 209px;
   border: 3px solid #077280;
   margin-bottom: 20px;
-}
-
-.client-block-item-logo-dwf{
-  width: 100px;
-  position: relative;
-  top: 25%;
-  left: 30%;
 }
 
 .gray.rectangle{
@@ -141,7 +134,7 @@ p{
 }
 
 .client{
-  margin-bottom: 13px;
+  margin-bottom: 32px;
 }
 
 .client-block-item-logo-name-chat{
@@ -160,19 +153,18 @@ p{
 
 /*-------------Media-query----------------*/
 
-@media screen and (min-width: 1200px){
-
+/*------Desktops------*/
+@media screen and (max-width: 1200px) and (min-width: 992px){
 }
-
-@media screen and (max-width: 1200px){
-
+/*------Tablets-------*/
+@media screen and (max-width: 991px) and (min-width: 768px)  {
 }
-
-
-@media screen and (max-width: 800px) and (min-width: 600px)  {
-  /* CSS-стили */;
+/*---Landscape phones---*/
+@media screen and (max-width: 767px) and (min-width: 544px)  {
 }
-
+/*---Portrait-phones ---*/
+@media screen and (max-width: 543px)   {
+}
 
 
 
