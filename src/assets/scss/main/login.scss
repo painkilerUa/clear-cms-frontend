@@ -29,7 +29,7 @@
 }
 
 .wrap{
-  margin-bottom: 94px;
+  margin-bottom: 100px;
 }
 
 .flex-block{
@@ -150,5 +150,56 @@
 }
 }
 
+/*--------------Media-query----------*/
 
+/*------Desktops------*/
+@media screen and (max-width: 1200px) and (min-width: 992px){
+}
+/*------Tablets-------*/
+@media screen and (max-width: 991px) and (min-width: 768px)  {
+}
+/*---Landscape phones---*/
+@media screen and (max-width: 767px) and (min-width: 544px)  {
+
+}
+/*---Portrait-phones ---*/
+@media screen and (max-width: 543px) and (min-width: 320px)   {
+  .main-container {
+    max-width: 274px;
+    margin: 0 auto;
+  }
+
+  .wrapper{
+    width: 274px;
+    margin: 0 auto;
+  }
+
+  .flex-container{
+    display: block;
+  }
+  .flex-block{
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .main-container {
+    max-width: 274px;
+    margin: 0 auto;
+  }
+
+  .wrapper{
+    width: 274px;
+    margin: 0 auto;
+  }
+
+  .flex-container{
+    display: block;
+  }
+  .flex-block{
+    width: 100%;
+  }
+
+}
 
