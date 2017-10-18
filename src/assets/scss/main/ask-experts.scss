@@ -160,19 +160,22 @@ p{
 
 /*-------------Media-query----------------*/
 
-@media screen and (min-width: 1200px){
-
+/*------Desktops------*/
+@media screen and (max-width: 1200px) and (min-width: 992px){
+  //.client-block{
+  //  width: 832px;
+  //  margin: 0 auto;
+  //}
 }
-
-@media screen and (max-width: 1200px){
-
+/*------Tablets-------*/
+@media screen and (max-width: 991px) and (min-width: 768px)  {
 }
-
-
-@media screen and (max-width: 800px) and (min-width: 600px)  {
-  /* CSS-стили */;
+/*---Landscape phones---*/
+@media screen and (max-width: 767px) and (min-width: 544px)  {
 }
-
+/*---Portrait-phones ---*/
+@media screen and (max-width: 543px)   {
+}
 
 
 
