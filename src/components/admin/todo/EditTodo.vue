@@ -345,6 +345,27 @@
               </div>
             </div>
           </section>
+          <section class="edit-article-log" v-if="articleLog">
+            <h2>Change log</h2>
+            <div class="edit-article-log-table">
+              <table class="table-log">
+                <thead>
+                <tr>
+                  <th class="table-log-action">Action performed</th>
+                  <th class="table-log-date">Date</th>
+                  <th class="table-log-user">User</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in articleLog">
+                  <td>{{item.action}}</td>
+                  <td>{{convertDate(item.created_at, '.')}}</td>
+                  <td>{{item.user.username}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
@@ -434,7 +455,8 @@ export default {
       },
       flags: {
         hasImg: null
-      }
+      },
+      articleLog: null
     }
   },
   computed: {
@@ -900,6 +922,14 @@ export default {
         return num.toString().length < 2 ? '0' + num : num.toString()
       }
       return toDoubleDigit(day) + delimetr + toDoubleDigit(month) + delimetr + fullYear
+    },
+    getArticleLogById (id) {
+      this.$http.get(api.URLS.articleLog + id, api.headersAuthSettings)
+        .then((res) => {
+          this.articleLog = res.body.items ? res.body.items : null
+          console.log('getArticleLogById', res)
+        })
+        .catch((err) => console.log(err))
     }
   },
   components: {
@@ -908,6 +938,7 @@ export default {
   },
   mounted () {
     this.getArticleById(this.$route.params.id)
+    this.getArticleLogById(this.$route.params.id)
     this.getCompanies()
     this.getRoles()
     this.getLngs()

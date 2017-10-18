@@ -297,3 +297,43 @@
     display: none;
   }
 }
+
+.edit-article-log {
+  background-color: #f4f4f4;
+  margin-top: 20px;
+  padding: 20px;
+  h2 {
+    font-size: 1.5rem;
+    color: #B70A37;
+  }
+}
+.table-log {
+  th,
+  td {
+    position: relative;
+    vertical-align: middle;
+    color: color('tableText');
+    border-bottom: 1px solid color('tableBorder');
+    padding: 10px;
+    text-align: left;
+  },
+  th {
+    font-size: 1rem;
+    color: #707489;
+  },
+  td {
+    font-size: 0.875rem;
+  },
+  &-action {
+    max-width: 600px;
+    min-width: 600px;
+  }
+  &-date {
+    max-width: 188px;
+    min-width: 188px;
+  }
+  &-user {
+    max-width: 188px;
+    min-width: 188px;
+  }
+}

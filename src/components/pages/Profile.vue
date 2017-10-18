@@ -2,38 +2,46 @@
 	<!-- .profile -->
 	<div class="container">
       <h1>My account</h1>
-      <p class="text-wrap">Lorem ipsum — dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-        ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-      <section class="info">
+      <p class="text-wrap">If you need to change any of your details edit the relevant fields below and click on update. You can change your password by entering your current and your new passwords below.</p>
+      <section class="info" v-if="user">
         <article class="personal-info">
         <h2>Personal info</h2>
         <div class="form-group">
           <div class="form-element">
             <label class="form-label">First name</label>
-            <input class="form-control">
+            <input class="form-control"
+                   v-model="user.personal.username"
+                   v-validate="'required'">
           </div>
           <div class="form-element form-element">
             <label class="form-label">Surname</label>
-            <input class="form-control">
+            <input class="form-control"
+                   v-model="user.personal.last_name"
+                   v-validate="'required'">
           </div>
           <div class="form-element form-element">
             <label class="form-label">Email adress</label>
-            <input class="form-control">
+            <input class="form-control"
+                   v-model="user.personal.email"
+                   v-validate="'required|email'">
           </div>
         </div>
         </article>
 
         <article class="company-info">
           <h2>Company info</h2>
-          <div class="form-group">
+          <div class="form-group form-v-select">
             <div class="form-element">
               <label class="form-label">Company name</label>
-              <input class="form-control">
+              <v-select
+                disabled="true"
+                v-model="user.company"/>
             </div>
             <div class="form-element form-element">
               <label class="form-label">Company role</label>
-              <input class="form-control">
+              <v-select
+                disabled="true"
+                v-model="user.role"/>
             </div>
           </div>
         </article>
@@ -43,24 +51,31 @@
           <div class="form-group">
             <div class="form-element">
               <label class="form-label">Current password</label>
-              <input class="form-control">
+              <input class="form-control"
+                     v-model="user.personal.current_password"
+                     v-validate="'required'">
             </div>
             <div class="form-element form-element">
               <label class="form-label">New password</label>
-              <input class="form-control">
+              <input class="form-control"
+                     placeholder="Type in new password ..."
+                     v-model="user.personal.plainPassword.first"
+                     v-validate="'required'">
             </div>
             <div class="form-element form-element">
               <label class="form-label">Confirm new password</label>
-              <input class="form-control">
+              <input class="form-control"
+                     placeholder="Retype in the new password ..."
+                     v-model="user.personal.plainPassword.second"
+                     v-validate="'required'">
             </div>
           </div>
         </article>
 
         <article class="update-info">
-          <input  type="submit" value="Update" class="submit">
+          <button class="submit" type="button" @click="updateProfile()">Update</button>
+          <!--<input  type="submit" value="Update" class="submit">-->
         </article>
-
-
       </section>
 
 	</div>
@@ -68,14 +83,89 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import api from '@/api'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'profile',
+  data () {
+    return {
+      user: {
+        personal: {
+          id: '',
+          username: '',
+          last_name: '',
+          email: '',
+          current_password: '',
+          plainPassword: {
+            first: '',
+            second: ''
+          }
+        },
+        company: {},
+        role: {}
+      }
+    }
+  },
   computed: {
     ...mapGetters([
-      'getUsername'
+      'getCompaniesForSelect',
+      'getRolesForSelect'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'getRoles',
+      'getCompanies'
+    ]),
+    getProfileData () {
+      this.$http.put(api.URLS.profile, {}, api.headersAuthSettings).then((res) => {
+        let personal = this.user.personal
+        personal.id = res.body.id
+        personal.username = res.body.username
+        personal.last_name = res.body.last_name
+        personal.email = res.body.email
+        this.user.company = this.getCompaniesForSelect.find(item => item.value === res.body.company.id)
+        this.user.role = this.getRolesForSelect.find(item => item.value === res.body.role_users[0].id)
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    updateProfile () {
+      if (this.disableAPI) return
+      this.$validator.validateAll()
+      if (this.errors.items.length) return
+      let userData = {
+        username: this.user.personal.username,
+        lastName: this.user.personal.last_name,
+        email: this.user.personal.email,
+        currentPassword: this.user.personal.current_password,
+        plainPassword: {
+          first: this.user.personal.plainPassword.first,
+          second: this.user.personal.plainPassword.second
+        }
+      }
+      this.disableAPI = true
+      this.$http.put(api.URLS.user + '/' + this.user.personal.id, userData, api.headersAuthSettings)
+        .then((res) => {
+          console.log(res)
+          this.disableAPI = false
+//          let infMsg = 'User has been successfully updated'
+//          this.setInformationMsg({text: infMsg, className: 'success'})
+        })
+        .catch((err) => {
+//          let infMsg = "User has't been successfully created"
+//          this.setInformationMsg({text: infMsg, className: 'success'})
+          this.disableAPI = false
+          console.log(err)
+        })
+    }
+  },
+  mounted () {
+    this.getProfileData()
+    this.getRoles()
+    this.getCompanies()
   }
 }
 </script>
