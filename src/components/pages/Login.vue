@@ -5,6 +5,114 @@
       <div class="main-container">
         <h1>Lloyd’s is the world’s specialist insurance and reinsurance market</h1>
       </div>
+      <section class="wrapper flex-container wrap">
+        <div class="flex-block">
+          <p>With expertise earned over centuries, Lloyd’s is the foundation of the insurance industry and the future of
+            it. Led by expert underwriters and brokers in more than 200 territories, the Lloyd’s market develops the
+            essential, complex and critical insurance needed to underwrite human progress.</p>
+          <p>Backed by diverse global capital and excellent financial ratings, Lloyd’s works with a global network of
+            over 4000 insurance professionals to grow the insured world – building resilience for businesses and local
+            communities and strengthening economic growth around the world. </p>
+        </div>
+        <div class="flex-block">
+          <p>As a result the Lloyd’s market attracts the world’s best insurance talent and wants to continue to attract
+            diverse talent from a wide variety of backgrounds. This commitment is led by Inclusion@Lloyd’s, an
+            initiative where the Corporation of Lloyd’s and organisations in the Lloyd’s market work in partnership
+            to embrace and embed diversity in their individual businesses by widening perspectives and sharing best
+            practice.</p>
+          <p>This portal, developed with the Clear Company, provides access to practical resources and examples of best
+            practice to support the Lloyd’s market increase diversity and embed inclusive practices within their
+            organisations.</p>
+        </div>
+      </section>
+      <article class="footer">
+        <section class="wrapper bottom flex-container">
+          <div class="footer-form flex">
+            <form action="">
+              <input type="email" class="form email" value="Email">
+              <input type="" class="form password" value="Password">
+              <input type="submit" class="form login" value="Login">
+              <a class="lost-password" href="">Lost you password?</a>
+            </form>
+          </div>
+          <div class="foter-icon flex">
+            <ul class="front-footer-social-list">
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="14"
+                          height="10"
+                          src="../../assets/img/main/footer/svg/youtube.svg"
+                          alt="youtube"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="12.5"
+                          height="12.5"
+                          src="../../assets/img/main/footer/svg/instagram.svg"
+                          alt="instagram"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="7.7"
+                          height="14.7"
+                          src="../../assets/img/main/footer/svg/facebook.svg"
+                          alt="facebook"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="15.8"
+                          height="12.9"
+                          src="../../assets/img/main/footer/svg/twitter.svg"
+                          alt="twitter"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="20"
+                          height="12"
+                          src="../../assets/img/main/footer/svg/googlePlus.svg"
+                          alt="googlePlus"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="20"
+                          height="12"
+                          src="../../assets/img/main/footer/svg/linkedIn.svg"
+                          alt="linkedIn"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              <li class="front-footer-social-list__item">
+                <a href="#" class="front-footer-social-list__link">
+                  <img
+                          width="11.7"
+                          height="15.1"
+                          src="../../assets/img/main/footer/svg/pinterest.svg"
+                          alt="pinterest"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
+              </ul>
+          </div>
+        </section>
+
+      </article>
+
     </main>
     <!--<div class="login">-->
       <!--<popup :title="title" :description="description" :modal="true">-->
