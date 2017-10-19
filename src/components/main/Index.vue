@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="main" :style="{backgroundColor: bgColorSpOp}">
     <!--<login v-if="$route.name === 'login'" />-->
     <!--<register v-if="$route.name === 'register'" />-->
     <!--<forgot-password v-if="$route.name === 'forgot-password'" />-->
@@ -403,9 +403,13 @@
 import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
 import ForgotPassword from '@/components/pages/ForgotPassword'
+import { mapGetters } from 'vuex'
 export default {
   name: 'index',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp'
+    ])
   },
   components: {
     Login,

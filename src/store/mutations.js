@@ -44,3 +44,13 @@ export const setInformationMsg = (state, payload) => {
 export const setStyleForMsg = (state, payload) => {
   state.informationMsg.style = payload
 }
+
+export const resizeText = (state, payload) => {
+  state.specialOps.selectedFont = payload
+  localStorage.setItem('selectedFont', payload)
+}
+
+export const changeVisibilityThem = (state, payload) => {
+  state.specialOps.selectedHightCont = payload
+  localStorage.setItem('selectedHightCont', payload)
+}

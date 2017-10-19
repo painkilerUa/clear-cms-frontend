@@ -117,6 +117,14 @@ export const setInformationMsg = ({commit}, payload) => {
 export const setStyleForMsg = ({commit}, payload) => {
   commit('setStyleForMsg', payload)
 }
+
+export const resizeText = ({commit}, payload) => {
+  commit('resizeText', payload)
+}
+
+export const changeVisibilityThem = ({commit}, payload) => {
+  commit('changeVisibilityThem', payload)
+}
 // export const initConfAction = ({ commit }, payload) => {
 //   commit('initConfAction', payload)
 // }

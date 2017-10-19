@@ -1,5 +1,5 @@
 <template>
-  <header class="front-header">
+  <header class="front-header" :style="{backgroundColor: bgColorSpOp, color: color}">
     <!-- .front-header-top -->
     <div class="front-header-top">
       <!-- .myContainer -->
@@ -74,13 +74,13 @@
             <!-- front-header-capabilities-sizes -->
             <ul class="front-header-capabilities-sizes">
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link small" @click.prevent="resizeText(16)">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link small" @click.prevent="resizeText(0)">A</a>
               </li>
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link medium" @click.prevent="resizeText(19.2)">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link medium" @click.prevent="resizeText(1)">A</a>
               </li>
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link large"@click.prevent="resizeText(22.4)">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link large"@click.prevent="resizeText(2)">A</a>
               </li>
             </ul>
             <!-- END:front-header-capabilities-sizes -->
@@ -88,17 +88,25 @@
             <!-- .front-header-capabilities-colors -->
             <ul class="front-header-capabilities-colors">
               <li class="front-header-capabilities-colors__item">
-                <a href="#" class="front-header-capabilities-colors__link">
+                <a href="#" class="front-header-capabilities-colors__link" @click.prevent="changeVisibilityThem(0)">
                   <img
-                    src="../../../assets/img/main/header/capabilities-color-dyslexia.svg"
+                    src="../../../assets/img/main/header/capabilities-color-normal.svg"
                     alt="capabilities-color"
                     class="front-header-capabilities-colors__icon" />
                 </a>
               </li>
               <li class="front-header-capabilities-colors__item">
-                <a href="#" class="front-header-capabilities-colors__link">
+                <a href="#" class="front-header-capabilities-colors__link" @click.prevent="changeVisibilityThem(1)">
                   <img
-                    src="../../../assets/img/main/header/capabilities-color-normal.svg"
+                    src="../../../assets/img/main/header/capabilities-2high-contrast.svg"
+                    alt="capabilities-color"
+                    class="front-header-capabilities-colors__icon" />
+                </a>
+              </li>
+              <li class="front-header-capabilities-colors__item">
+                <a href="#" class="front-header-capabilities-colors__link" @click.prevent="changeVisibilityThem(2)">
+                  <img
+                    src="../../../assets/img/main/header/capabilities-color-dyslexia.svg"
                     alt="capabilities-color"
                     class="front-header-capabilities-colors__icon" />
                 </a>
@@ -123,16 +131,17 @@ export default {
     ...mapGetters([
       'getIsLoggedIn',
       'getUsername',
-      'getUserRole'
+      'getUserRole',
+      'bgColorSpOp',
+      'color'
     ])
   },
   methods: {
     ...mapActions([
-      'authLogout'
-    ]),
-    resizeText (fontSize) {
-//      document.getElementsByTagName('html')[0].style.fontSize = fontSize + 'px'
-    }
+      'authLogout',
+      'resizeText',
+      'changeVisibilityThem'
+    ])
   },
   components: {
   }

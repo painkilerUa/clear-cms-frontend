@@ -40,6 +40,25 @@ const state = {
     searchString: null,
     contentTypes: [],
     topics: []
+  },
+  specialOps: {
+    selectedFont: localStorage.getItem('selectedFont') ? localStorage.getItem('selectedFont') : 1,
+    fontOpt: {
+      0: '16px',
+      1: '19.2px',
+      2: '22.4px'
+    },
+    selectedHightCont: localStorage.getItem('selectedHightCont') ? localStorage.getItem('selectedHightCont') : 0,
+    backgroundColor: {
+      0: '#fff',
+      1: '#000',
+      2: '#fafac8'
+    },
+    color: {
+      0: '#000',
+      1: '#FFFA1A',
+      2: '#000'
+    }
   }
 }
 

@@ -15,11 +15,20 @@ export default {
   name: 'admin',
   computed: {
     ...mapGetters([
+      'getSelectedFontSize'
     ])
   },
   components: {
     AppHeader,
     AppFooter
+  },
+  created () {
+    document.getElementsByTagName('html')[0].style.fontSize = this.getSelectedFontSize
+  },
+  watch: {
+    getSelectedFontSize () {
+      document.getElementsByTagName('html')[0].style.fontSize = this.getSelectedFontSize
+    }
   }
 }
 </script>

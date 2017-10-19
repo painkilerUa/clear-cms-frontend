@@ -84,3 +84,9 @@ export const getArticlePreview = (state) => state.articlePreview
 export const getConfData = (state) => state.confData
 
 export const getInformationMsgs = (state) => state.informationMsg
+
+// Special opportunities
+export const getSelectedFontSize = (state) => state.specialOps.fontOpt[state.specialOps.selectedFont]
+
+export const bgColorSpOp = (state) => state.specialOps.backgroundColor[state.specialOps.selectedHightCont]
+export const color = (state) => state.specialOps.color[state.specialOps.selectedHightCont]
