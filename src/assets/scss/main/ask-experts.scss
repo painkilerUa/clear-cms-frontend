@@ -10,7 +10,7 @@ p{
 
   /*--------BACKGROUND-Main---------------*/
 .picture{
-  background-image: url('../../img/main/AskPageMain.jpg');
+  background-image: url('../../img/main/AskPageMain.png');
   width: 100%;
   background-repeat: no-repeat;
   background-size:cover;
@@ -25,6 +25,11 @@ p{
 .container{
   width: 930px;
   margin:0 auto;
+  padding: 20px;
+  background-color: #fff;
+  h1 {
+    color: #077280
+  }
 }
 
 .form-container{
@@ -86,6 +91,25 @@ p{
 
 /*------CLIENT------*/
 
+.client {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &-item {
+    width: 280px;
+    margin-bottom: 30px;
+    &-logo {
+      height: 210px;
+      border: 3px solid #077280;
+      margin-bottom: 20px;
+    }
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
 .client-block{
   width: 930px;
   margin: 0 auto;
@@ -103,8 +127,8 @@ p{
 }
 
 .client-block-item-logo{
-  width: 292px;
-  height: 209px;
+  width: 280px;
+  height: 210px;
   border: 3px solid #077280;
   margin-bottom: 20px;
 }
@@ -125,30 +149,27 @@ p{
 }
 
 .client-block-item{
-  margin-bottom: 39px;
-  margin-right: 24px;
+  justify-content: space-between;
+  //margin-bottom: 39px;
+  //margin-right: 24px;
 }
 
 .client-block-item:nth-child(3n){
   margin-right: 0;
 }
 
-.client{
-  margin-bottom: 32px;
-}
 
 .client-block-item-logo-name-chat{
   display: block;
 }
 
 .client-block-item-logo-name-chat-icon{
+  margin-left: 5px;
   width: 36px;
   height:35px;
   background: url("../../img/main/iconChat.png");
   background-repeat: no-repeat;
   display: block;
-  margin-left: 16px;
-  margin-top: -30px;
 }
 
 /*-------------Media-query----------------*/

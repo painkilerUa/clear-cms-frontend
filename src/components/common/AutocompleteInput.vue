@@ -141,7 +141,7 @@ export default {
         queryString += `&search=${searchQuery}`
       }
       if (this.selectedType) {
-        queryString += `&contentType=${this.selectedType}`
+        queryString += `&contentType[0]=${this.selectedType}`
       }
       if (this.selectedTags.length) {
         this.selectedTags.forEach(function (el, index) {

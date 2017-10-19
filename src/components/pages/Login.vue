@@ -57,16 +57,16 @@
                           <!--class="front-footer-social-list__icon" />-->
                 <!--</a>-->
               <!--</li>-->
-              <!--<li class="front-footer-social-list__item">-->
-                <!--<a href="#" class="front-footer-social-list__link">-->
-                  <!--<img-->
-                          <!--width="7.7"-->
-                          <!--height="14.7"-->
-                          <!--src="../../assets/img/main/footer/svg/facebook.svg"-->
-                          <!--alt="facebook"-->
-                          <!--class="front-footer-social-list__icon" />-->
-                <!--</a>-->
-              <!--</li>-->
+              <li class="front-footer-social-list__item">
+                <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">
+                  <img
+                          width="7.7"
+                          height="14.7"
+                          src="../../assets/img/main/footer/svg/facebook.svg"
+                          alt="facebook"
+                          class="front-footer-social-list__icon" />
+                </a>
+              </li>
               <li class="front-footer-social-list__item">
                 <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link">
                   <img

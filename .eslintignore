@@ -2,3 +2,4 @@ build/*.js
 config/*.js
 src/components/admin/common/Select.vue
 src/components/admin/common/mixins/*
+src/components/main/AskExperts.vue
