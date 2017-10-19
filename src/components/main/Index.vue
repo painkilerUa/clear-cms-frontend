@@ -99,7 +99,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link">Policies and procedures</a>
+            <router-link :to="{ path: '/content/132' }" class="home-info-list__link">Policies and procedures</router-link>
           </li>
           <li class="home-info-list__item">
             <!-- .home-info-list-iconwrap -->
@@ -135,7 +135,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link">Finding talent</a>
+            <router-link :to="{ path: '/content/131' }" class="home-info-list__link">Finding talent</router-link>
           </li>
           <li class="home-info-list__item">
             <!-- .home-info-list-iconwrap -->
@@ -157,7 +157,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link">Assessing talent</a>
+            <router-link :to="{ path: '/content/130' }" class="home-info-list__link">Assessing talent</router-link>
           </li>
           <li class="home-info-list__item">
             <!-- .home-info-list-iconwrap -->
@@ -343,7 +343,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link">Retaining talent</a>
+            <router-link :to="{ path: '/content/133' }" class="home-info-list__link">Retaining talent</router-link>
           </li>
           <li class="home-info-list__item">
             <!-- .home-info-list-iconwrap -->

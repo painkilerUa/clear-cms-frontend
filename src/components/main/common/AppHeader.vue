@@ -74,13 +74,13 @@
             <!-- front-header-capabilities-sizes -->
             <ul class="front-header-capabilities-sizes">
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link small">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link small" @click.prevent="resizeText(16)">A</a>
               </li>
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link medium">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link medium" @click.prevent="resizeText(19.2)">A</a>
               </li>
               <li class="front-header-capabilities-sizes__item">
-                <a href="#" class="front-header-capabilities-sizes__link large">A</a>
+                <a href="#" class="front-header-capabilities-sizes__link large"@click.prevent="resizeText(22.4)">A</a>
               </li>
             </ul>
             <!-- END:front-header-capabilities-sizes -->
@@ -129,7 +129,10 @@ export default {
   methods: {
     ...mapActions([
       'authLogout'
-    ])
+    ]),
+    resizeText (fontSize) {
+//      document.getElementsByTagName('html')[0].style.fontSize = fontSize + 'px'
+    }
   },
   components: {
   }

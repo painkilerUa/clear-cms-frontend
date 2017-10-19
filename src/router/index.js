@@ -29,6 +29,10 @@ import Index from '@/components/main/Index'
 import Search from '@/components/main/Search'
 import Content from '@/components/main/Content'
 import AskExperts from '@/components/main/AskExperts'
+import TermsAndConditions from '@/components/main/TermsAndConditions'
+import PrivacyStatement from '@/components/main/PrivacyStatement'
+import AccessibilitySection from '@/components/main/AccessibilitySection'
+import Cookies from '@/components/main/Cookies'
 
 Vue.use(Router)
 
@@ -43,28 +47,51 @@ const router = new Router({
         {
           path: '',
           name: 'index',
-          component: Index
+          component: Index,
+          meta: { requiresAuth: true }
         },
         {
           path: 'search',
           name: 'search',
-          component: Search
+          component: Search,
+          meta: { requiresAuth: true }
         },
         {
           path: '/content/:id',
           name: 'content',
           props: true,
-          component: Content
+          component: Content,
+          meta: { requiresAuth: true }
         },
         {
           path: '/ask-experts',
           name: 'AskExperts',
-          component: AskExperts
+          component: AskExperts,
+          meta: { requiresAuth: true }
         },
         {
-          path: '/register',
-          name: 'register',
-          component: Index
+          path: '/terms-and-conditions',
+          name: 'termsAndConditions',
+          component: TermsAndConditions,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/privacy-statement',
+          name: 'PrivacyStatement',
+          component: PrivacyStatement,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/accessibility-section',
+          name: 'AccessibilitySection',
+          component: AccessibilitySection,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/cookies',
+          name: 'Cookies',
+          component: Cookies,
+          meta: { requiresAuth: true }
         },
         {
           path: '/forgot-password',

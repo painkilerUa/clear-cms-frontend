@@ -52,22 +52,21 @@
             <div class="form-element">
               <label class="form-label">Current password</label>
               <input class="form-control"
-                     v-model="user.personal.current_password"
-                     v-validate="'required'">
+                     v-model="user.personal.current_password">
             </div>
             <div class="form-element form-element">
               <label class="form-label">New password</label>
               <input class="form-control"
                      placeholder="Type in new password ..."
                      v-model="user.personal.plainPassword.first"
-                     v-validate="'required'">
+                     >
             </div>
             <div class="form-element form-element">
               <label class="form-label">Confirm new password</label>
               <input class="form-control"
                      placeholder="Retype in the new password ..."
                      v-model="user.personal.plainPassword.second"
-                     v-validate="'required'">
+                     >
             </div>
           </div>
         </article>
@@ -116,7 +115,8 @@ export default {
   methods: {
     ...mapActions([
       'getRoles',
-      'getCompanies'
+      'getCompanies',
+      'setInformationMsg'
     ]),
     getProfileData () {
       this.$http.put(api.URLS.profile, {}, api.headersAuthSettings).then((res) => {
@@ -140,23 +140,27 @@ export default {
         username: this.user.personal.username,
         lastName: this.user.personal.last_name,
         email: this.user.personal.email,
-        currentPassword: this.user.personal.current_password,
+        current_password: this.user.personal.current_password,
         plainPassword: {
           first: this.user.personal.plainPassword.first,
           second: this.user.personal.plainPassword.second
         }
       }
       this.disableAPI = true
-      this.$http.put(api.URLS.user + '/' + this.user.personal.id, userData, api.headersAuthSettings)
+      this.$http.put(api.URLS.profile, userData, api.headersAuthSettings)
         .then((res) => {
           console.log(res)
           this.disableAPI = false
+          this.getProfileData()
+          alert('User has been successfully updated')
 //          let infMsg = 'User has been successfully updated'
 //          this.setInformationMsg({text: infMsg, className: 'success'})
         })
         .catch((err) => {
-//          let infMsg = "User has't been successfully created"
+//          let infMsg = "User has't been successfully updated"
 //          this.setInformationMsg({text: infMsg, className: 'success'})
+          this.getProfileData()
+          alert('User has not been successfully updated')
           this.disableAPI = false
           console.log(err)
         })

@@ -17,7 +17,7 @@
             <h4 class="front-footer-social__title">Join us on...</h4>
             <ul class="front-footer-social-list">
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="14"
                     height="10"
@@ -26,28 +26,28 @@
                     class="front-footer-social-list__icon" />
                 </a>
               </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                    <!--width="12.5"-->
+                    <!--height="12.5"-->
+                    <!--src="../../../assets/img/main/footer/svg/instagram.svg"-->
+                    <!--alt="instagram"-->
+                    <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                    <!--width="7.7"-->
+                    <!--height="14.7"-->
+                    <!--src="../../../assets/img/main/footer/svg/facebook.svg"-->
+                    <!--alt="facebook"-->
+                    <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                    width="12.5"
-                    height="12.5"
-                    src="../../../assets/img/main/footer/svg/instagram.svg"
-                    alt="instagram"
-                    class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                    width="7.7"
-                    height="14.7"
-                    src="../../../assets/img/main/footer/svg/facebook.svg"
-                    alt="facebook"
-                    class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="15.8"
                     height="12.9"
@@ -56,18 +56,18 @@
                     class="front-footer-social-list__icon" />
                 </a>
               </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                    <!--width="20"-->
+                    <!--height="12"-->
+                    <!--src="../../../assets/img/main/footer/svg/googlePlus.svg"-->
+                    <!--alt="googlePlus"-->
+                    <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                    width="20"
-                    height="12"
-                    src="../../../assets/img/main/footer/svg/googlePlus.svg"
-                    alt="googlePlus"
-                    class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://www.linkedin.com/company/the-clear-company/" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="20"
                     height="12"
@@ -76,16 +76,16 @@
                     class="front-footer-social-list__icon" />
                 </a>
               </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                    width="11.7"
-                    height="15.1"
-                    src="../../../assets/img/main/footer/svg/pinterest.svg"
-                    alt="pinterest"
-                    class="front-footer-social-list__icon" />
-                </a>
-              </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                    <!--width="11.7"-->
+                    <!--height="15.1"-->
+                    <!--src="../../../assets/img/main/footer/svg/pinterest.svg"-->
+                    <!--alt="pinterest"-->
+                    <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
             </ul>
           </div>
           <!-- END:.front-footer-social -->
@@ -105,13 +105,16 @@
           <!-- front-footer-links-list -->
           <ul class="front-footer-links-list">
             <li class="front-footer-links-list__item">
-              <a href="#" class="front-footer-links-list__link">Terms and conditions</a>
+              <router-link :to="{ path: '/terms-and-conditions' }" class="front-footer-links-list__link">Terms and conditions</router-link>
             </li>
             <li class="front-footer-links-list__item">
-              <a href="#" class="front-footer-links-list__link">Privacy statement</a>
+              <router-link :to="{ path: '/privacy-statement' }" class="front-footer-links-list__link">Privacy statement</router-link>
             </li>
             <li class="front-footer-links-list__item">
-              <a href="#" class="front-footer-links-list__link">Accessibility section</a>
+              <router-link :to="{ path: '/accessibility-section' }" class="front-footer-links-list__link">Accessibility section</router-link>
+            </li>
+            <li class="front-footer-links-list__item">
+              <router-link :to="{ path: '/cookies' }" class="front-footer-links-list__link">Cookies</router-link>
             </li>
           </ul>
           <!-- END:front-footer-links-list -->

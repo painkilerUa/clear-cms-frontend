@@ -28,17 +28,17 @@
       <article class="footer">
         <section class="wrapper bottom flex-container">
           <div class="footer-form flex">
-            <form action="">
-              <input type="email" class="form email" value="Email">
-              <input type="" class="form password" value="Password">
-              <input type="submit" class="form login" value="Login">
+            <form>
+              <input type="email" class="form email" placeholder="Email" v-model="formInfo.username">
+              <input type="" class="form password" placeholder="Password" v-model="formInfo.password">
+              <button type="button" class="form login" @click="sendFormRequest()">Login</button>
               <a class="lost-password" href="">Lost you password?</a>
             </form>
           </div>
           <div class="foter-icon flex">
             <ul class="front-footer-social-list">
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">
                   <img
                           width="14"
                           height="10"
@@ -47,28 +47,28 @@
                           class="front-footer-social-list__icon" />
                 </a>
               </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                          <!--width="12.5"-->
+                          <!--height="12.5"-->
+                          <!--src="../../assets/img/main/footer/svg/instagram.svg"-->
+                          <!--alt="instagram"-->
+                          <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                          <!--width="7.7"-->
+                          <!--height="14.7"-->
+                          <!--src="../../assets/img/main/footer/svg/facebook.svg"-->
+                          <!--alt="facebook"-->
+                          <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                          width="12.5"
-                          height="12.5"
-                          src="../../assets/img/main/footer/svg/instagram.svg"
-                          alt="instagram"
-                          class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                          width="7.7"
-                          height="14.7"
-                          src="../../assets/img/main/footer/svg/facebook.svg"
-                          alt="facebook"
-                          class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link">
                   <img
                           width="15.8"
                           height="12.9"
@@ -77,18 +77,18 @@
                           class="front-footer-social-list__icon" />
                 </a>
               </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                          <!--width="20"-->
+                          <!--height="12"-->
+                          <!--src="../../assets/img/main/footer/svg/googlePlus.svg"-->
+                          <!--alt="googlePlus"-->
+                          <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                          width="20"
-                          height="12"
-                          src="../../assets/img/main/footer/svg/googlePlus.svg"
-                          alt="googlePlus"
-                          class="front-footer-social-list__icon" />
-                </a>
-              </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
+                <a href="https://www.linkedin.com/company/the-clear-company/" target="_blank" class="front-footer-social-list__link">
                   <img
                           width="20"
                           height="12"
@@ -97,22 +97,20 @@
                           class="front-footer-social-list__icon" />
                 </a>
               </li>
-              <li class="front-footer-social-list__item">
-                <a href="#" class="front-footer-social-list__link">
-                  <img
-                          width="11.7"
-                          height="15.1"
-                          src="../../assets/img/main/footer/svg/pinterest.svg"
-                          alt="pinterest"
-                          class="front-footer-social-list__icon" />
-                </a>
-              </li>
+              <!--<li class="front-footer-social-list__item">-->
+                <!--<a href="#" class="front-footer-social-list__link">-->
+                  <!--<img-->
+                          <!--width="11.7"-->
+                          <!--height="15.1"-->
+                          <!--src="../../assets/img/main/footer/svg/pinterest.svg"-->
+                          <!--alt="pinterest"-->
+                          <!--class="front-footer-social-list__icon" />-->
+                <!--</a>-->
+              <!--</li>-->
               </ul>
           </div>
         </section>
-
       </article>
-
     </main>
     <!--<div class="login">-->
       <!--<popup :title="title" :description="description" :modal="true">-->
@@ -194,13 +192,26 @@ export default {
   },
   methods: {
     ...mapActions([
-      'redirect'
+      'redirect',
+      'getRoles',
+      'getCompanies'
     ]),
     sendFormRequest () {
-      this.$http.post(api.URLS.login, this.formJson)
+      let auth = {
+        grant_type: 'password',
+        client_id: this.formInfo.client_id,
+        client_secret: this.formInfo.client_secret,
+        username: this.formInfo.username,
+        password: this.formInfo.password
+      }
+      this.$http.post(api.URLS.login, auth)
       .then((res) => {
         console.log('sendFormRequest', res)
         localStorage.setItem('token', res.body.access_token)
+
+        this.getRoles()
+        this.getCompanies()
+
         this.$store.commit('authLoginSuccess')
         let headers = { headers: {'Authorization': `Bearer ${res.body.access_token}`} }
         this.$http.put(api.URLS.profile, {}, headers)
