@@ -2,12 +2,10 @@
     <div class="wrapper">
         <div class="picture"></div>
         <div class="container">
-            <h1>Ask an experts</h1>
+            <h1>Ask an expert</h1>
 
             <div class="text-paragraf">
-                <p class="information">Dipidelenis qui omni omnihic tesequid erferuntium re ex et volorum rerum re rem quam nis dolum aut occullabo.
-                Min eos repel et asi re esciis maion re eicilia ecatur solorae. Acernatqui omnition pliti illoreperro est orum
-                rerum re rem quam nis dolum aut occasta ostaha d aga sjau yo.
+                <p class="information">Clear Assured brings together a panel of UK experts to help you recruit and retain diverse talent. Select an expert to see who is in our expert centre and find out more about their expertise. Then if you have a burning question of your own then why not submit it to our panel? You will receive a response within 24 hours (Mon-Fri).
                 </p>
             </div>
 
@@ -232,15 +230,6 @@
     methods: {
     },
     mounted () {
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-      (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/59b658fec28eca75e461f521/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-      })();
     }
   }
 </script>

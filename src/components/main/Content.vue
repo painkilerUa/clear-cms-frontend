@@ -214,7 +214,7 @@ export default {
         if (!existedResources) return []
         return existedResources.map((item) => {
           return {
-            title: item.file ? item.file : item.link,
+            title: item.name ? item.name : 'File.pdf',
             link: item.path ? `${api.staticServerURL}${item.path}` : item.link
           }
         })

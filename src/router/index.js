@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/pages/Login'
 import Register from '@/components/pages/Register'
-import ForgotPassword from '@/components/pages/ForgotPassword'
+import ForgotPassword from '@/components/main/ForgotPassword'
 import Admin from '@/components/pages/Admin/Admin'
 import Profile from '@/components/pages/Profile'
 import SecurityConfiguration from '@/components/pages/Admin/SecurityConfiguration'
@@ -92,11 +92,6 @@ const router = new Router({
           name: 'Cookies',
           component: Cookies,
           meta: { requiresAuth: true }
-        },
-        {
-          path: '/forgot-password',
-          name: 'forgot-password',
-          component: Index
         },
         {
           path: '/profile',

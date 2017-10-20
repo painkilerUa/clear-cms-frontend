@@ -51,6 +51,7 @@ api.URLS = {
   changeStatus: `${api.serverURL}/api/v1/change-status`,
   profile: `${api.serverURL}/api/v1/profile/user`,
   userLastLogin: `${api.serverURL}/api/v1/user-last-login/`,
-  articleLog: `${api.serverURL}/api/v1/get-log-data/`
+  articleLog: `${api.serverURL}/api/v1/get-log-data/`,
+  resetPassword: `${api.serverURL}/resetting/reset/`
 }
 api.requestToServer = (urlEnd, type, payload = api.headersAuthSettings) => Vue.http[type](api.serverURL + urlEnd, payload, api.timeout)

@@ -32,7 +32,7 @@
               <input type="email" class="form email" placeholder="Email" v-model="formInfo.username">
               <input type="" class="form password" placeholder="Password" v-model="formInfo.password">
               <button type="button" class="form login" @click="sendFormRequest()">Login</button>
-              <a class="lost-password" href="">Lost you password?</a>
+              <router-link :to="{path: '/forgot-password'}" class="lost-password">Lost you password?</router-link>
             </form>
           </div>
           <div class="foter-icon flex">
