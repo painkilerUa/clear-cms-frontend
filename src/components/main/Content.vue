@@ -66,13 +66,13 @@
           <!-- .content-info -->
           <div class="content-info">
             <!-- .content-info-imgwrap -->
-            <div class="content-info-imgwrap">
+            <div class="content-info-imgwrap" v-if="content.image_path">
               <!--<img-->
                 <!--class="content-info-img"-->
                 <!--src="http://via.placeholder.com/650x365/A7EAF1/087280?text=Image%20/%20video%20placeholder"-->
                 <!--alt="content-info-img"-->
                 <!--v-if="!content.image_path"/>-->
-              <img :src="mainImgPath" alt="main-content-img" v-if="content.image_path">
+              <img :src="mainImgPath" alt="main-content-img">
             </div>
             <!-- END:.content-info-imgwrap -->
             <!-- .article-download -->

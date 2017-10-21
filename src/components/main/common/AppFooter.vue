@@ -20,7 +20,7 @@
                 <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="14"
-                    height="10"
+                    height="14.7"
                     src="../../../assets/img/main/footer/svg/youtube.svg"
                     alt="youtube"
                     class="front-footer-social-list__icon" />
@@ -50,7 +50,7 @@
                 <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="15.8"
-                    height="12.9"
+                    height="14.7"
                     src="../../../assets/img/main/footer/svg/twitter.svg"
                     alt="twitter"
                     class="front-footer-social-list__icon" />
@@ -70,7 +70,7 @@
                 <a href="https://www.linkedin.com/company/the-clear-company/" target="_blank" class="front-footer-social-list__link">
                   <img
                     width="20"
-                    height="12"
+                    height="14.7"
                     src="../../../assets/img/main/footer/svg/linkedIn.svg"
                     alt="linkedIn"
                     class="front-footer-social-list__icon" />

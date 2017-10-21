@@ -1,0 +1,26 @@
+<svg width="24" height="18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+ <title>Page 1</title>
+ <desc>Created with Sketch.</desc>
+ <defs>
+  <polygon points="2.13987271e-21 1.18779838e-05 2.13987271e-21 17.7111033 24 17.7111033 24 1.18779838e-05 0 1.18779838e-05" id="path-1"/>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="Welcome">
+   <g id="Search-Drop-Down-Menu">
+    <g id="Page-1">
+     <mask stroke="#faf845" fill="#faf845" id="mask-2">
+      <use stroke="#faf845" fill="#faf845" id="svg_1" xlink:href="#path-1"/>
+     </mask>
+     <g id="Clip-2"/>
+     <path stroke="#faf845" mask="url(#mask-2)" fill="#faf845" id="Fill-1" d="m16.158875,9.500275l-6.429169,3.800095c-0.497284,0.294022 -1.124939,-0.065643 -1.124939,-0.644745l0,-7.600159c0,-0.579025 0.627655,-0.938675 1.124939,-0.644745l6.429169,3.800079c0.489777,0.289429 0.489777,1.000046 0,1.289474m7.444733,-7.342651c-0.084259,-0.698654 -0.751831,-1.357483 -1.467957,-1.458298c-6.848358,-0.932419 -13.422882,-0.932419 -20.27124,0c-0.716217,0.100815 -1.383789,0.759644 -1.467957,1.458298c-0.528625,4.44957 -0.528625,8.94635 0,13.395752c0.084167,0.698746 0.75174,1.357574 1.467957,1.458389c6.848358,0.932495 13.422882,0.932495 20.27124,0c0.716125,-0.100815 1.383698,-0.759644 1.467957,-1.458389c0.528534,-4.449402 0.528534,-8.946182 0,-13.395752"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

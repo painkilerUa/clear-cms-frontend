@@ -8,8 +8,8 @@ const api = {}
 
 export default api
 api.timeout = { timeout: 20000 }
-api.serverURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://13.58.54.217' : 'http://18.220.13.196'
-api.staticServerURL = (location.hostname === '18.220.188.74' || location.hostname === 'ec2-18-220-188-74.us-east-2.compute.amazonaws.com') ? 'http://13.58.54.217' : 'http://18.220.13.196'
+api.serverURL = (location.hostname === 'localhost' || location.hostname === '18.221.159.194' || location.hostname === 'ec2-18-221-159-194.us-east-2.compute.amazonaws.com') ? 'http://18.220.13.196' : 'http://13.58.54.217'
+api.staticServerURL = (location.hostname === 'localhost' || location.hostname === '18.221.159.194' || location.hostname === 'ec2-18-221-159-194.us-east-2.compute.amazonaws.com') ? 'http://18.220.13.196' : 'http://13.58.54.217'
 // For production
 // api.serverURL = 'http://52.15.253.49'
 // api.staticServerURL = 'http://52.15.253.49'

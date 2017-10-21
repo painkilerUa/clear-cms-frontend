@@ -1,7 +1,7 @@
 <template>
 	<!-- .profile -->
 	<div class="container">
-      <h1>My account</h1>
+      <h2>Your details</h2>
       <p class="text-wrap">If you need to change any of your details edit the relevant fields below and click on update. You can change your password by entering your current and your new passwords below.</p>
       <section class="info" v-if="user">
         <article class="personal-info">
@@ -20,7 +20,7 @@
                    v-validate="'required'">
           </div>
           <div class="form-element form-element">
-            <label class="form-label">Email adress</label>
+            <label class="form-label">Email address</label>
             <input class="form-control"
                    v-model="user.personal.email"
                    v-validate="'required|email'">
@@ -170,6 +170,7 @@ export default {
     this.getProfileData()
     this.getRoles()
     this.getCompanies()
+    document.title = 'Clear Assured – Your details'
   }
 }
 </script>

@@ -11,112 +11,112 @@
 
             <section class="client">
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://ridi.org.uk/" target="_blank">
                   <img src="../../assets/img/main/ridi.png" alt="ridi_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>RIDI</h3>
                     <span>RIDI helps recruiters and employers to become disability confident and offer more job opportunities to people with disabilities.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://ridi.org.uk/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://www.enei.org.uk/" target="_blank">
                   <img src="../../assets/img/main/enei.png" alt="enei_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>ENEI</h3>
                     <span>ENEI is the UK's leading employer network promoting equality and inclusion in the workplace.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://www.enei.org.uk/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://www.shaw-trust.org.uk/en-GB/" target="_blank">
                   <img src="../../assets/img/main/ShawTrust.png" alt="shaw_trast_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>Shaw Trust</h3>
                     <span>Providing employment opportunities, skills development training and health and well-being services across the UK.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://www.shaw-trust.org.uk/en-GB/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"></div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://www.leonardcheshire.org/support-and-information/life-and-work-skills-development/employment-programmes/change100" target="_blank">
                   <img src="../../assets/img/main/LeonardCheshireDisAbility.png" alt="clear_talents_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>Leonard Cheshire</h3>
                     <span>Change100 is for talented students and graduates with disabilities or long-term health conditions.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://www.leonardcheshire.org/support-and-information/life-and-work-skills-development/employment-programmes/change100" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://www.cleartalents.com/" target="_blank">
                   <img src="../../assets/img/main/ClearTalents.png" alt="clear_talents_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>Clear Talents</h3>
                     <span>A managed adjustment solution that ensures employers meet their legal obligation around disability and diversity.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://www.cleartalents.com/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://www.abilitynet.org.uk/" target="_blank">
                   <img src="../../assets/img/main/AbilityNet.png" alt="clear_talents_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>AbilityNet</h3>
                     <span>AbilityNet helps people of any age and with any disability to use technology to achieve their goals.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://www.abilitynet.org.uk/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>
                 </div>
               </div>
               <div class="client-item">
-                <div class="client-item-logo">
+                <a class="client-item-logo" href="https://uk.dwf.law/" target="_blank">
                   <img src="../../assets/img/main/dwf.png" alt="dwf_logo">
-                </div>
+                </a>
                 <div class="client-item-content">
                   <div class="client-item-content-left">
                     <h3>DWF</h3>
                     <span>DWF is dedicated to offering robust legal advice rooted in specialised sector expertise, including Employment Law.</span>
                   </div>
                   <div class="client-item-content-right">
-                    <a class="client-block-item-logo-name-chat flex-block" href="https://uk.dwf.law/" target="_blank">
+                    <a class="client-block-item-logo-name-chat flex-block" href="javascript:void(Tawk_API.toggle())">
                       <div class="client-block-item-logo-name-chat-icon"> </div>
                     </a>
                   </div>

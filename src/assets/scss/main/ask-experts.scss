@@ -25,7 +25,7 @@ p{
 .container{
   width: 930px;
   margin:0 auto;
-  padding: 20px;
+  padding: 50px;
   background-color: #fff;
   h1 {
     color: #077280
@@ -82,7 +82,7 @@ p{
 }
 
 .information{
-  padding: 50px;
+  padding: 0 0 20px 0;
   text-align: left;
   line-height: 1.38;
 }
@@ -95,10 +95,11 @@ p{
   justify-content: space-between;
   flex-wrap: wrap;
   &-item {
-    width: 280px;
+    width: 260px;
     margin-bottom: 30px;
     &-logo {
-      height: 210px;
+      display: block;
+      height: 190px;
       border: 1px solid #9a9a9a;
       margin-bottom: 20px;
       &:hover {
@@ -108,7 +109,7 @@ p{
     &-content {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       &-left {
         h3 {
           font-weight: 400;

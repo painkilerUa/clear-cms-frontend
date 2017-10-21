@@ -1,0 +1,39 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <g id="svg_2">
+    <path stroke="#faf845" id="svg_3" fill="#faf845" d="m53,12c0,-0.1 0,-0.2 -0.099998,-0.3l0,-0.099999c-0.100002,-0.1 -0.100002,-0.200001 -0.200001,-0.3l-11,-11c-0.100002,-0.1 -0.200001,-0.1 -0.299999,-0.2l-0.100002,0c-0.099998,0 -0.200001,-0.1 -0.299999,-0.1l0,0l-33,0c-0.6,0 -1,0.4 -1,1l0,58c0,0.599998 0.4,1 1,1l5,0l6,0l5,0l9,0l19,0c0.599998,0 1,-0.400002 1,-1l0,-47l0,0zm-3.400002,-1l-7.599998,0l0,-7.6l7.599998,7.6zm-35.599998,12l4,0l0,29l-4,0l0,-29zm0.5,-2l1.5,-3.5l1.5,3.5l-3,0zm-0.5,37l0,-4l4,0l0,4l-4,0zm11,0l0,-6l4,0l0,-2l-4,0l0,-6l4,0l0,-2l-4,0l0,-7l4,0l0,-2l-4,0l0,-6l4,0l0,-2l-4,0l0,-5l7,0l0,38l-7,0zm9,0l0,-39c0,-0.6 -0.400002,-1 -1,-1l-9,0c-0.6,0 -1,0.4 -1,1l0,39l-3,0l0,-5l0,-31c0,-0.299999 -0.1,-0.6 -0.299999,-0.700001l-2.800001,-6.599999c-0.1,-0.4 -0.5,-0.599999 -0.9,-0.599999s-0.7,0.2 -0.9,0.599999l-2.8,6.599999c-0.2,0.200001 -0.3,0.400002 -0.3,0.700001l0,31l0,5l-3,0l0,-56l31,0l0,10c0,0.6 0.400002,1 1,1l10,0l0,45l-17,0z"/>
+    <rect stroke="#faf845" id="svg_4" fill="#faf845" height="2" width="8" y="5" x="12"/>
+    <rect stroke="#faf845" id="svg_5" fill="#faf845" height="2" width="9" y="22" x="38"/>
+    <rect stroke="#faf845" id="svg_6" fill="#faf845" height="2" width="9" y="27" x="38"/>
+    <rect stroke="#faf845" id="svg_7" fill="#faf845" height="2" width="9" y="32" x="38"/>
+    <rect stroke="#faf845" id="svg_8" fill="#faf845" height="2" width="9" y="37" x="38"/>
+    <rect stroke="#faf845" id="svg_9" fill="#faf845" height="2" width="9" y="42" x="38"/>
+    <rect stroke="#faf845" id="svg_10" fill="#faf845" height="2" width="9" y="47" x="38"/>
+    <rect stroke="#faf845" id="svg_11" fill="#faf845" height="2" width="9" y="52" x="38"/>
+    <rect stroke="#faf845" id="svg_12" fill="#faf845" height="2" width="16" y="9" x="12"/>
+   </g>
+  </g>
+  <g id="svg_13"/>
+  <g id="svg_14"/>
+  <g id="svg_15"/>
+  <g id="svg_16"/>
+  <g id="svg_17"/>
+  <g id="svg_18"/>
+  <g id="svg_19"/>
+  <g id="svg_20"/>
+  <g id="svg_21"/>
+  <g id="svg_22"/>
+  <g id="svg_23"/>
+  <g id="svg_24"/>
+  <g id="svg_25"/>
+  <g id="svg_26"/>
+  <g id="svg_27"/>
+ </g>
+</svg>

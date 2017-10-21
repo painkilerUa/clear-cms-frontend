@@ -10,14 +10,25 @@
             height="26px"
             class="logo-img"
             src="../../../assets/img/main/svg/main-logo.svg"
-            alt="logo" />
+            alt="logo" v-if="+selectedHightCont !== 1"/>
+          <img
+            width="222px"
+            height="26px"
+            class="logo-img"
+            src="../../../assets/img/main/contrast/main-logo.svg"
+            alt="logo"  v-if="+selectedHightCont === 1"/>
         </a>
         <div class="front-header-tagline">
           <img
             width="200px"
             height="16px"
             src="../../../assets/img/main/svg/tagline.svg"
-            alt="tagline" />
+            alt="tagline" v-if="+selectedHightCont !== 1"/>
+          <img
+            width="200px"
+            height="16px"
+            src="../../../assets/img/main/contrast/tagline.svg"
+            alt="tagline" v-if="+selectedHightCont === 1"/>
         </div>
       </div>
       <!-- END:.myContainer -->
@@ -133,7 +144,8 @@ export default {
       'getUsername',
       'getUserRole',
       'bgColorSpOp',
-      'color'
+      'color',
+      'selectedHightCont'
     ])
   },
   methods: {

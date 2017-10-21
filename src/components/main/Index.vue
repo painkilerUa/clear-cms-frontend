@@ -11,7 +11,7 @@
       <div class="myContainer">
         <!-- .home-info-list -->
         <ul class="home-info-list">
-          <li class="home-info-list__item">
+          <li class="home-info-list__item" @click="goLink('/content/132')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
                 <svg width="113" height="103" viewBox="0 0 112 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -101,7 +101,7 @@
             <!-- END:.home-info-list-iconwrap -->
             <router-link :to="{ path: '/content/132' }" class="home-info-list__link">Policies and procedures</router-link>
           </li>
-          <li class="home-info-list__item">
+          <li class="home-info-list__item" @click="goLink('/content/131')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
               <svg width="128" height="65" viewBox="0 0 128 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -137,7 +137,7 @@
             <!-- END:.home-info-list-iconwrap -->
             <router-link :to="{ path: '/content/131' }" class="home-info-list__link">Finding talent</router-link>
           </li>
-          <li class="home-info-list__item">
+          <li class="home-info-list__item" @click="goLink('/content/130')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
                 <svg width="95" height="111" viewBox="0 0 110 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -159,7 +159,7 @@
             <!-- END:.home-info-list-iconwrap -->
             <router-link :to="{ path: '/content/130' }" class="home-info-list__link">Assessing talent</router-link>
           </li>
-          <li class="home-info-list__item">
+          <li class="home-info-list__item" @click="goLink('/content/133')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
               <svg width="173" height="90" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -345,7 +345,7 @@
             <!-- END:.home-info-list-iconwrap -->
             <router-link :to="{ path: '/content/133' }" class="home-info-list__link">Retaining talent</router-link>
           </li>
-          <li class="home-info-list__item">
+          <li class="home-info-list__item" @click="goLink('/ask-experts')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
               <svg version="1.1" id="Layer_1" width="95" height="95" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -360,7 +360,7 @@
               </svg>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link" @click="followAskExpLink($event)">Ask an expert</a>
+            <a href="#" class="home-info-list__link" @click.prevent="goLink('/ask-experts')">Ask an expert</a>
           </li>
         </ul>
         <!-- END:.home-info-list -->
@@ -408,7 +408,8 @@ export default {
   name: 'index',
   computed: {
     ...mapGetters([
-      'bgColorSpOp'
+      'bgColorSpOp',
+      'selectedHightCont'
     ])
   },
   components: {
@@ -420,7 +421,13 @@ export default {
     followAskExpLink (e) {
       e.preventDefault()
       this.$router.push('/ask-experts')
+    },
+    goLink (path) {
+      this.$router.push(path)
     }
+  },
+  created () {
+    document.title = 'Clear Assured – the Inclusive Recruitment Standard'
   }
 }
 </script>

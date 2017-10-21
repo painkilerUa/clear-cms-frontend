@@ -16,7 +16,7 @@
   &-login {
     &-link {
       color: #000;
-      font-size: 12px;
+      font-size: 0.875rem;
       text-decoration: none;
       &:hover,
       &:focus {
@@ -70,7 +70,6 @@
     }
   }
 }
-
 .logo {
   &-link {
     display: inline-block;

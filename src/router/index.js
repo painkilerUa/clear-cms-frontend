@@ -104,7 +104,8 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: { isAuthorized: true }
     },
     {
       path: '/register',
@@ -114,7 +115,8 @@ const router = new Router({
     {
       path: '/forgot-password',
       name: 'forgot-password',
-      component: ForgotPassword
+      component: ForgotPassword,
+      meta: { isAuthorized: true }
     },
     {
       path: '/admin',
@@ -227,6 +229,17 @@ router.beforeEach((to, from, next) => {
     if (!localStorage.getItem('token')) {
       next({
         path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } if (to.matched.some(record => record.meta.isAuthorized)) {
+    if (localStorage.getItem('token')) {
+      next({
+        path: '/',
         query: {
           redirect: to.fullPath
         }
