@@ -146,7 +146,9 @@ export default {
       'bgColorSpOp',
       'color',
       'selectedHightCont'
-    ])
+    ]),
+    backgroundSeachBar () {
+    }
   },
   methods: {
     ...mapActions([

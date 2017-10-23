@@ -1,5 +1,5 @@
 .login .clear {clear:both; display:block;}
-.login .wrapper {min-height:100%; margin:0 0 -108px 0; background:url('http://eromagency.com/tmp/tcc/img/login-hero.jpg') 50% calc(50% + 62px) no-repeat; background-size:cover;}
+.login .wrapper {min-height:100%; margin:0 0 -108px 0; background:url('../../img/main/index/login-hero.jpg') 50% calc(50% + 62px) no-repeat; background-size:cover;}
 .login .center {width:60%; max-width:1152px; margin:0 auto; min-width:320px;}
 .login .front-header {height:62px; background:#ffffff;}
 .login .logo-link {float:left; margin:18px 0 18px 0;}
@@ -9,7 +9,7 @@
 .login .main {color:#ffffff;}
 .login .main-title {padding:120px 70px 0 70px; font-size:29pt; text-transform:uppercase; font-weight:bold; text-align:center;}
 .login .main-video {display:block; margin:90px auto 0 auto; width:54%; padding:15px 0 20px 0; color:#ffffff; text-decoration:none;}
-.login .main-video-start {width:57px; height:57px; margin:0 auto; background:url('http://eromagency.com/tmp/tcc/img/play.svg') 0 0 no-repeat;}
+.login .main-video-start {width:57px; height:57px; margin:0 auto; background:url('../../img/main/svg/play.svg') 0 0 no-repeat;}
 .login .main-video-label {font-size:13pt; font-weight:bold; padding:35px 0 0 0; text-align:center;}
 .login .main-text {font-size:12pt; padding:120px 40px 30px 40px;}
 .login .main-text-left {width:47%; float:left; margin:0 6% 0 0;}
@@ -157,4 +157,7 @@
 }
 .wrap-video {
   text-align: center;
+}
+input[type=submit] {
+  cursor: pointer;
 }

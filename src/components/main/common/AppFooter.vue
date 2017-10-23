@@ -111,7 +111,7 @@
               <router-link :to="{ path: '/privacy-statement' }" class="front-footer-links-list__link">Privacy statement</router-link>
             </li>
             <li class="front-footer-links-list__item">
-              <router-link :to="{ path: '/accessibility-section' }" class="front-footer-links-list__link">Accessibility section</router-link>
+              <router-link :to="{ path: '/accessibility-section' }" class="front-footer-links-list__link">Accessibility</router-link>
             </li>
             <li class="front-footer-links-list__item">
               <router-link :to="{ path: '/cookies' }" class="front-footer-links-list__link">Cookies</router-link>

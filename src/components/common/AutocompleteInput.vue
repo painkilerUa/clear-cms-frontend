@@ -1,9 +1,13 @@
 <template>
   <div class="ac-wrapper">
+    <img src="../../assets/img/main/svg/cross.svg" alt="cross-icon" v-if="isOpen" class="icon-input" @click="closeSeachList"/>
+    <img src="../../assets/img/main/header/search-magnifier.svg" v-else="isOpen" alt="cross-icon" class="icon-input" />
     <input
       class="ac-input"
       v-model.trim="searchQuery"
       placeholder="Search"
+      @focus="isTyping = true"
+      @blur="isTyping = false"
       @input="onInput($event.target.value)"
       @keyup.esc="close"/>
       <!-- .ac-results -->
@@ -86,7 +90,8 @@ export default {
       highlightedPosition: 0,
       options: [],
       selectedType: null,
-      selectedTags: []
+      selectedTags: [],
+      isTyping: false
     }
   },
   computed: {
@@ -102,7 +107,13 @@ export default {
     ]),
     optionsComputed () {
       let options = this.options.map(option => {
-        let cutTitle = option.title.split(' ').splice(0, 9).join(' ') + '...'
+        let cutTitle
+        let title = option.title.split(' ')
+        if (title.length > 8) {
+          cutTitle = title.splice(0, 9).join(' ') + '...'
+        } else {
+          cutTitle = title.join(' ')
+        }
         let resourseTipe = option.content_type.type
         console.log(resourseTipe)
         return {
@@ -115,6 +126,11 @@ export default {
     },
     tokenComputed () {
       return localStorage.getItem('token')
+    },
+    mainInputStyle () {
+      return {
+        backgroundImage: 'url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA2MTIgNjEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MTIgNjEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGcgaWQ9ImNyb3NzIj48Zz48cG9seWdvbiBwb2ludHM9IjYxMiwzNi4wMDQgNTc2LjUyMSwwLjYwMyAzMDYsMjcwLjYwOCAzNS40NzgsMC42MDMgMCwzNi4wMDQgMjcwLjUyMiwzMDYuMDExIDAsNTc1Ljk5NyAzNS40NzgsNjExLjM5NyAgICAgIDMwNiwzNDEuNDExIDU3Ni41MjEsNjExLjM5NyA2MTIsNTc1Ljk5NyAzNDEuNDU5LDMwNi4wMTEgICAgIiBmaWxsPSIjMDc3MjgwIi8+PC9nPjwvZz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PC9zdmc+)'
+      }
     }
   },
   methods: {
@@ -126,6 +142,7 @@ export default {
       this.open(value)
       if (value === '') {
         this.close()
+        this.selectedType = null
       } else {
         if (this.getIsLoggedIn) {
           console.log(this.$route.path)
@@ -200,6 +217,11 @@ export default {
       this.setSearchTypes()
       this.setSearchTopics()
       this.$router.push('search')
+    },
+    closeSeachList () {
+      this.close()
+      this.searchQuery = ''
+      this.selectedType = null
     }
   },
   directives: {

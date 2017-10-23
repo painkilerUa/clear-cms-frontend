@@ -25,10 +25,10 @@
         padding: 10px 50px 10px 10px;
         color: color('appHeaderSearchBg');
         border: none;
-        background-size: 22px 22px;
-        background-image: url('../../img/main/header/search-magnifier.svg');
-        background-repeat: no-repeat;
-        background-position: 98% center;
+        //background-size: 22px 22px;
+        //background-image: url('../../img/main/header/search-magnifier.svg');
+        //background-repeat: no-repeat;
+        //background-position: 98% center;
         &::-webkit-input-placeholder {
             color: #077380;
         }
@@ -113,4 +113,15 @@
         color: #077280;
         background-color: transparent;
     }
+}
+.cross-icon {
+}
+.icon-input {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  width: 26px;
+  height: 26px;
+  z-index: 99;
+  cursor: pointer;
 }

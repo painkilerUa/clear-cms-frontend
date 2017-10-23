@@ -12,6 +12,7 @@
   &-list{
     list-style: none;
     margin-bottom: 0;
+    margin-left: 0;
     &__item{
       position: relative;
       display: block;
@@ -520,9 +521,9 @@
   }
 }
 // Actavian's changes
-ul {
-  margin-left: 30px;
-}
+//ul {
+//  margin-left: 30px;
+//}
 
 li {
   padding-left: 5px;
@@ -543,7 +544,9 @@ li.ql-indent-3 {
   margin-left: 85px;
   font-size: 13px;
 }
-
+.article-content-area ul {
+  margin-left: 30px;
+}
 .article-content-area a {
   color: #087280;
   text-decoration: underline;

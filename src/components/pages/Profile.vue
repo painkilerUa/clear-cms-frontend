@@ -52,18 +52,22 @@
             <div class="form-element">
               <label class="form-label">Current password</label>
               <input class="form-control"
+                     type="password"
+                     placeholder="Type in the current password ..."
                      v-model="user.personal.current_password">
             </div>
             <div class="form-element form-element">
               <label class="form-label">New password</label>
               <input class="form-control"
-                     placeholder="Type in new password ..."
+                     type="password"
+                     placeholder="Type in the new password ..."
                      v-model="user.personal.plainPassword.first"
                      >
             </div>
             <div class="form-element form-element">
               <label class="form-label">Confirm new password</label>
               <input class="form-control"
+                     type="password"
                      placeholder="Retype in the new password ..."
                      v-model="user.personal.plainPassword.second"
                      >
