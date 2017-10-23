@@ -42,7 +42,7 @@
       <img src="../../../assets/img/main/header/theme2.png" alt="theme2">
     </div> -->
 
-    <div id="search" class="front-header-actions">
+    <div id="search" class="front-header-actions" :style="{backgroundColor: backgroundColorSearchPanel}">
       <!-- .myContainer -->
       <div class="myContainer">
         <div class="front-header-actions__inner">
@@ -51,6 +51,7 @@
             <template v-if="getIsLoggedIn">
               <template v-if="getUserRole === 'Admin'">
                 <router-link
+                  :style="{color: color}"
                   :to="{name: 'admin'}"
                   class="front-header-login-link"
                   tabindex="-1"
@@ -58,12 +59,13 @@
               </template>
               <template v-else>
                 <router-link
+                  :style="{color: color}"
                   :to="{name: 'profile'}"
                   class="front-header-login-link"
                   tabindex="-1"
                   v-if="getUsername">{{getUsername}}</router-link>
               </template>
-              <a href="#" class="front-header-login-link" tabindex="-1" @click.prevent="authLogout">Logout</a>
+              <a href="#" class="front-header-login-link" :style="{color: color}" tabindex="-1" @click.prevent="authLogout">Logout</a>
             </template>
             <template v-else>
               <router-link
@@ -83,7 +85,7 @@
           <!-- front-header-capabilities -->
           <div class="front-header-capabilities">
             <!-- front-header-capabilities-sizes -->
-            <ul class="front-header-capabilities-sizes">
+            <ul class="front-header-capabilities-sizes" :style="{color: color}">
               <li class="front-header-capabilities-sizes__item">
                 <a href="#" class="front-header-capabilities-sizes__link small" @click.prevent="resizeText(0)">A</a>
               </li>
@@ -147,7 +149,15 @@ export default {
       'color',
       'selectedHightCont'
     ]),
-    backgroundSeachBar () {
+    backgroundColorSearchPanel () {
+      switch (this.selectedHightCont) {
+        case 0:
+          return '#22b6cd'
+        case 1:
+          return '#000'
+        case 2:
+          return '#22b6cd'
+      }
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <main class="main" :style="{backgroundColor: bgColorSpOp}">
+  <main class="main">
     <!--<login v-if="$route.name === 'login'" />-->
     <!--<register v-if="$route.name === 'register'" />-->
     <!--<forgot-password v-if="$route.name === 'forgot-password'" />-->
@@ -14,7 +14,7 @@
           <li class="home-info-list__item" @click="goLink('/content/132')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
-                <svg width="113" height="103" viewBox="0 0 112 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg v-if="+selectedHightCont !== 1" width="113" height="103" viewBox="0 0 112 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
                   <title>Group 5</title>
                   <desc>Created with Sketch.</desc>
@@ -97,14 +97,20 @@
                       </g>
                   </g>
               </svg>
+              <img
+                width="113px"
+                height="103px"
+                class=""
+                src="../../assets/img/main/contrast/home1-hc.svg"
+                alt="svg" v-if="+selectedHightCont === 1"/>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <router-link :to="{ path: '/content/132' }" class="home-info-list__link">Policies and procedures</router-link>
+            <router-link :to="{ path: '/content/132' }" class="home-info-list__link" :style="{backgroundColor: color, color: bgColorSpOp}" >Policies and procedures</router-link>
           </li>
           <li class="home-info-list__item" @click="goLink('/content/131')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
-              <svg width="128" height="65" viewBox="0 0 128 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg v-if="+selectedHightCont !== 1" width="128" height="65" viewBox="0 0 128 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
                   <title>Group 11</title>
                   <desc>Created with Sketch.</desc>
@@ -133,14 +139,20 @@
                       </g>
                   </g>
               </svg>
+              <img
+                width="128px"
+                height="165px"
+                class=""
+                src="../../assets/img/main/contrast/home2-hc.svg"
+                alt="svg"  v-if="+selectedHightCont === 1"/>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <router-link :to="{ path: '/content/131' }" class="home-info-list__link">Finding talent</router-link>
+            <router-link :to="{ path: '/content/131' }" class="home-info-list__link" :style="{backgroundColor: color, color: bgColorSpOp}">Finding talent</router-link>
           </li>
           <li class="home-info-list__item" @click="goLink('/content/130')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
-                <svg width="95" height="111" viewBox="0 0 110 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg v-if="+selectedHightCont !== 1" width="95" height="111" viewBox="0 0 110 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
                   <title>Group 13</title>
                   <desc>Created with Sketch.</desc>
@@ -155,14 +167,20 @@
                       </g>
                   </g>
               </svg>
+              <img
+                width="95px"
+                height="111px"
+                class=""
+                src="../../assets/img/main/contrast/home3-hc.svg"
+                alt="svg" v-if="+selectedHightCont === 1"/>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <router-link :to="{ path: '/content/130' }" class="home-info-list__link">Assessing talent</router-link>
+            <router-link :to="{ path: '/content/130' }" class="home-info-list__link" :style="{backgroundColor: color, color: bgColorSpOp}">Assessing talent</router-link>
           </li>
           <li class="home-info-list__item" @click="goLink('/content/133')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
-              <svg width="173" height="90" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              <svg v-if="+selectedHightCont !== 1" width="173" height="90" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 172.925 90.13" style="enable-background:new 0 0 172.925 90.13;" xml:space="preserve">
               <g id="XMLID_3_">
                 <g id="Group-3" transform="translate(128.000000, 35.000000)">
@@ -341,14 +359,20 @@
                 </g>
               </g>
               </svg>
+              <img
+                width="173px"
+                height="90px"
+                class=""
+                src="../../assets/img/main/contrast/home4-hc.svg"
+                alt="svg" v-if="+selectedHightCont === 1"/>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <router-link :to="{ path: '/content/133' }" class="home-info-list__link">Retaining talent</router-link>
+            <router-link :to="{ path: '/content/133' }" class="home-info-list__link" :style="{backgroundColor: color, color: bgColorSpOp}">Retaining talent</router-link>
           </li>
           <li class="home-info-list__item" @click="goLink('/ask-experts')">
             <!-- .home-info-list-iconwrap -->
             <div class="home-info-list-iconwrap">
-              <svg version="1.1" id="Layer_1" width="95" height="95" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              <svg v-if="+selectedHightCont !== 1" version="1.1" id="Layer_1" width="95" height="95" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="-258 349.877 94.031 94.123" style="enable-background:new -258 349.877 94.031 94.123;" xml:space="preserve">
               <path id="Fill-1" fill="#CCCCCC" class="st0" d="M-204.912,402.88v4.339h-13.339v-6.31c0-7.257,11.403-11.358,11.403-15.698
                 c0-2.997-2.797-4.903-5.307-4.903c-3.084,0-5.609,2.686-8.048,5.84l-8.367-7.776c5.02-6.388,10.821-10.369,17.992-10.369
@@ -358,9 +382,15 @@
                 c0,9.49,2.809,18.323,7.636,25.715l-4.747,17.734l17.465-4.684c7.576,5.231,16.76,8.298,26.66,8.298
                 c25.966,0,47.017-21.072,47.017-47.063S-185.019,349.877-210.986,349.877"/>
               </svg>
+              <img
+                width="95px"
+                height="95px"
+                class=""
+                src="../../assets/img/main/contrast/home5-hc.svg"
+                alt="svg" v-if="+selectedHightCont === 1"/>
             </div>
             <!-- END:.home-info-list-iconwrap -->
-            <a href="#" class="home-info-list__link" @click.prevent="goLink('/ask-experts')">Ask an expert</a>
+            <a href="#" class="home-info-list__link" @click.prevent="goLink('/ask-experts')" :style="{backgroundColor: color, color: bgColorSpOp}">Ask an expert</a>
           </li>
         </ul>
         <!-- END:.home-info-list -->
@@ -409,6 +439,7 @@ export default {
   computed: {
     ...mapGetters([
       'bgColorSpOp',
+      'color',
       'selectedHightCont'
     ])
   },

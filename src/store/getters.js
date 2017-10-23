@@ -91,3 +91,37 @@ export const getSelectedFontSize = (state) => state.specialOps.fontOpt[state.spe
 export const selectedHightCont = (state) => state.specialOps.selectedHightCont
 export const bgColorSpOp = (state) => state.specialOps.backgroundColor[state.specialOps.selectedHightCont]
 export const color = (state) => state.specialOps.color[state.specialOps.selectedHightCont]
+export const whiteYelWhite = (state) => {
+  let color
+  switch (state.specialOps.selectedHightCont) {
+    case 0:
+      color = '#fff'
+      break
+    case 1:
+      color = '#FFFA1A'
+      break
+    case 2:
+      color = '#fff'
+      break
+  }
+  return {
+    color
+  }
+}
+export const BlueYelBlue = (state) => {
+  let color
+  switch (state.specialOps.selectedHightCont) {
+    case 0:
+      color = '#257281'
+      break
+    case 1:
+      color = '#FFFA1A'
+      break
+    case 2:
+      color = '#257281'
+      break
+  }
+  return {
+    color
+  }
+}

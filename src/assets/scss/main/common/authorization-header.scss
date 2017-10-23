@@ -114,6 +114,7 @@
         display: inline-block;
       }
       &__link{
+        color: inherit;
         text-decoration: none;
         &:hover,
         &:focus{

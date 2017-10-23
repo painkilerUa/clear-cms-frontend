@@ -5,7 +5,7 @@
       <!-- .myContainer -->
       <div class="myContainer">
         <!-- .front-footer-top__inner -->
-        <div class="front-footer-top__inner">
+        <div class="front-footer-top__inner" :style="{color: footerColor}">
           <!-- .front-footer-info -->
           <div class="front-footer-info">
             <p>The Clear Company, The Base, <br /> 20 Dallam Lane, Warrington, <br /> Cheshire, WA2 7NG</p>
@@ -17,13 +17,20 @@
             <h4 class="front-footer-social__title">Join us on...</h4>
             <ul class="front-footer-social-list">
               <li class="front-footer-social-list__item">
-                <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">
+                <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link" :style="{borderColor: footerColor}">
                   <img
+                    v-if="+selectedHightCont !== 1"
                     width="14"
                     height="14.7"
                     src="../../../assets/img/main/footer/svg/youtube.svg"
                     alt="youtube"
                     class="front-footer-social-list__icon" />
+                  <img
+                    width="14"
+                    height="14.7"
+                    class="front-footer-social-list__icon"
+                    src="../../../assets/img/main/contrast/social/Youtube-hc.svg"
+                    alt="svg" v-if="+selectedHightCont === 1"/>
                 </a>
               </li>
               <!--<li class="front-footer-social-list__item">-->
@@ -37,23 +44,37 @@
                 <!--</a>-->
               <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="https://www.facebook.com/TheClearCompany" target="_blank" class="front-footer-social-list__link">
+                <a href="https://www.facebook.com/TheClearCompany" target="_blank" class="front-footer-social-list__link" :style="{borderColor: footerColor}">
                   <img
+                    v-if="+selectedHightCont !== 1"
                     width="7.7"
                     height="14.7"
                     src="../../../assets/img/main/footer/svg/facebook.svg"
                     alt="facebook"
                     class="front-footer-social-list__icon" />
+                  <img
+                    width="7.7"
+                    height="14.7"
+                    class="front-footer-social-list__icon"
+                    src="../../../assets/img/main/contrast/social/Facebook-hc.svg"
+                    alt="svg" v-if="+selectedHightCont === 1"/>
                 </a>
               </li>
               <li class="front-footer-social-list__item">
-                <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link">
+                <a href="https://twitter.com/@TheClearCo" target="_blank" class="front-footer-social-list__link" :style="{borderColor: footerColor}">
                   <img
+                    v-if="+selectedHightCont !== 1"
                     width="15.8"
                     height="14.7"
                     src="../../../assets/img/main/footer/svg/twitter.svg"
                     alt="twitter"
                     class="front-footer-social-list__icon" />
+                  <img
+                    width="15.8"
+                    height="14.7"
+                    class="front-footer-social-list__icon"
+                    src="../../../assets/img/main/contrast/social/Twitter-hc.svg"
+                    alt="svg" v-if="+selectedHightCont === 1"/>
                 </a>
               </li>
               <!--<li class="front-footer-social-list__item">-->
@@ -67,13 +88,20 @@
                 <!--</a>-->
               <!--</li>-->
               <li class="front-footer-social-list__item">
-                <a href="https://www.linkedin.com/company/the-clear-company/" target="_blank" class="front-footer-social-list__link">
+                <a href="https://www.linkedin.com/company/the-clear-company/" target="_blank" class="front-footer-social-list__link" :style="{borderColor: footerColor}">
                   <img
+                    v-if="+selectedHightCont !== 1"
                     width="20"
                     height="14.7"
                     src="../../../assets/img/main/footer/svg/linkedIn.svg"
                     alt="linkedIn"
                     class="front-footer-social-list__icon" />
+                  <img
+                    width="20"
+                    height="14.7"
+                    class="front-footer-social-list__icon"
+                    src="../../../assets/img/main/contrast/social/LinkedIn-hc.svg"
+                    alt="svg" v-if="+selectedHightCont === 1"/>
                 </a>
               </li>
               <!--<li class="front-footer-social-list__item">-->
@@ -103,7 +131,7 @@
         <!-- .front-footer-links__inner -->
         <div class="front-footer-links__inner">
           <!-- front-footer-links-list -->
-          <ul class="front-footer-links-list">
+          <ul class="front-footer-links-list" :style="{color: footerColor}">
             <li class="front-footer-links-list__item">
               <router-link :to="{ path: '/terms-and-conditions' }" class="front-footer-links-list__link">Terms and conditions</router-link>
             </li>
@@ -150,10 +178,26 @@
 
 <script>
 // import AppHeader from '@/components/main/common/AppHeader'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'user-header',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp',
+      'color',
+      'selectedHightCont'
+    ]),
+    footerColor () {
+      switch (this.selectedHightCont) {
+        case 0:
+          return '#fff'
+        case 1:
+          return '#FFFA1A'
+        case 2:
+          return '#fff'
+      }
+    }
   },
   components: {
   },

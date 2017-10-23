@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <h1>Terms and conditions</h1>
+  <main class="main" :style="{color: color}">
+    <h1 :style="{color: color}">Terms and conditions</h1>
     <section>
       <h4>INTRODUCTION</h4>
       <p>This disclaimer governs your use of the CLEAR ASSURED website and by using this website, you accept this disclaimer in full. If you disagree with any part of this disclaimer, you must not use the CLEAR ASSURED website.</p>
@@ -55,10 +55,15 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'TermsAndConditions',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp',
+      'color',
+      'selectedHightCont'
+    ])
   },
   components: {
   },

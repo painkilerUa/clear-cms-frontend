@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <h1>Privacy statement</h1>
+  <main class="main" :style="{color: color}">
+    <h1 :style="{color: color}">Privacy statement</h1>
     <section>
       <h4>USING YOUR PERSONAL DATA</h4>
       <p>Personal data submitted on this website will be used for the purposes specified in this privacy policy or in relevant parts of the website. We may use your personal information to:</p>
@@ -52,10 +52,15 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'TermsAndConditions',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp',
+      'color',
+      'selectedHightCont'
+    ])
   },
   components: {
   },

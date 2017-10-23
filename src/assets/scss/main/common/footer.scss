@@ -4,7 +4,7 @@
   font-family: 'Arial';
   padding: 0;
   a {
-    color: #fff;
+    color: inherit;
   }
   &-top{
     padding-top: 48px;
@@ -26,7 +26,7 @@
   }
   a[href^="tel"],
   &-phone {
-    color: #fff;
+    color: inherit;
     font-weight: bold;
     text-decoration: none;
     &:hover,
@@ -53,7 +53,7 @@
         }
       }
       &__link{
-        color: #fff;
+        color: inherit;
         width: 36px;
         height: 36px;
         line-height: 36px;

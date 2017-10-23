@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{backgroundColor: bgColorSpOp}">
       <app-header />
       <router-view />
       <app-footer />
@@ -15,7 +15,8 @@ export default {
   name: 'admin',
   computed: {
     ...mapGetters([
-      'getSelectedFontSize'
+      'getSelectedFontSize',
+      'bgColorSpOp'
     ])
   },
   components: {

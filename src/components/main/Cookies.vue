@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <h1>Cookies</h1>
+  <main class="main" :style="{color: color}">
+    <h1 :style="{color: color}">Cookies</h1>
     <section class="last-section">
       <p>We use cookies on our website to distinguish you as a discrete user of our website so that we can provide you with a good experience when you browse our website and also allows us to improve our site. By continuing to browse the site, you are agreeing to our use of cookies.</p>
       <p>A cookie is a small file of letters and numbers that we store on your browser or the hard drive of your computer, if you agree. Cookies contain information that is transferred to your computer's hard drive.</p>
@@ -19,10 +19,15 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'TermsAndConditions',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp',
+      'color',
+      'selectedHightCont'
+    ])
   },
   components: {
   },

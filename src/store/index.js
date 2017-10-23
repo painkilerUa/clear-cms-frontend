@@ -42,13 +42,13 @@ const state = {
     topics: []
   },
   specialOps: {
-    selectedFont: localStorage.getItem('selectedFont') ? localStorage.getItem('selectedFont') : 1,
+    selectedFont: 0, // localStorage.getItem('selectedFont') ? localStorage.getItem('selectedFont') : 1,
     fontOpt: {
       0: '16px',
       1: '19.2px',
       2: '22.4px'
     },
-    selectedHightCont: localStorage.getItem('selectedHightCont') ? localStorage.getItem('selectedHightCont') : 0,
+    selectedHightCont: 0, // localStorage.getItem('selectedHightCont') ? localStorage.getItem('selectedHightCont') : 0,
     backgroundColor: {
       0: '#fff',
       1: '#000',

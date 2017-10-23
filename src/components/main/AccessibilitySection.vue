@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <h1>Accessibility</h1>
+  <main class="main" :style="{color: color}">
+    <h1 :style="{color: color}">Accessibility</h1>
     <section>
       <h4>Accessibility statement</h4>
       <p>We have used our best endeavours to make our web site as accessible as possible by adhering sensibly and practically to the Web Content Accessibility Guidelines (WCAG) produced by the World Wide Web Consortium (W3C). We have aimed for AA compliance but have not adhered to some elements that are no longer relevant or have since been shown to hinder accessibility.
@@ -47,10 +47,15 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'TermsAndConditions',
   computed: {
+    ...mapGetters([
+      'bgColorSpOp',
+      'color',
+      'selectedHightCont'
+    ])
   },
   components: {
   },

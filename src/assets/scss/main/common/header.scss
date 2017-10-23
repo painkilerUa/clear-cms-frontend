@@ -46,6 +46,7 @@
       }
       &__link{
         text-decoration: none;
+        color: inherit;
         &:hover,
         &:focus{
           text-decoration: underline;
@@ -333,3 +334,5 @@
     }
   }
 }
+
+
