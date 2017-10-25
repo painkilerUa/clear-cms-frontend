@@ -8,6 +8,7 @@
           <div class="main-reset" :class="{error: isError}">
             <input type="password" name="first_password" placeholder="New Password" v-model="formInfo.fos_user_resetting_form.plainPassword.first" v-validate="'required'" data-vv-as="'Password'" />
             <input type="password" name="" placeholder="Retype Password" v-model="formInfo.fos_user_resetting_form.plainPassword.second" v-validate="'required|confirmed:first_password'" data-vv-as="'Second password'"/>
+            <label class="error_label_reset" v-if="isError">Invalid credentials</label>
             <input type="submit" name="" value="Reset" @click="reserPassword()"/>
             <div class="main-reset-label" v-if="successfullyReset">Your password has been successfully reset.</div>
           </div>

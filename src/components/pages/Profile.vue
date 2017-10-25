@@ -1,6 +1,20 @@
 <template>
 	<!-- .profile -->
 	<div class="container">
+      <div class="confirmation-popup" v-if="confirmation.isShown">
+        <div class="confirmation-popup-inner" :style="confirmation.style">
+          <div class="confirmation-popup-inner-caption">
+            <span>Are you sure you want to perform this action?</span>
+          </div>
+          <div class="confirmation-popup-inner-body">
+            <span>Please note that by deleting/arhiving/restoring this article you will</span>
+          </div>
+          <div class="confirmation-popup-inner-controll-panel">
+            <button type="button" @click="clearAction">No, cancel</button>
+            <button type="button" @click="confirmActionHandler">Yes, proceed</button>
+          </div>
+        </div>
+      </div>
       <h2>Your details</h2>
       <p class="text-wrap">If you need to change any of your details edit the relevant fields below and click on update. You can change your password by entering your current and your new passwords below.</p>
       <section class="info" v-if="user">
@@ -107,6 +121,15 @@ export default {
         },
         company: {},
         role: {}
+      },
+      confirmation: {
+        action: '',
+        isShown: false,
+        articleId: null,
+        i: null,
+        style: {
+          top: '100px'
+        }
       }
     }
   },
