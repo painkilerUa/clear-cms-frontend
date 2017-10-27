@@ -1,7 +1,10 @@
 @import '../settings/settings';
 
 .inf-msgs {
-  margin-top: 20px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  top: 50px;
 }
 .msg {
   //position: absolute;

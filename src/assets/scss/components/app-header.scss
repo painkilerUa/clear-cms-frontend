@@ -58,6 +58,9 @@
   vertical-align: middle;
   list-style: none;
   margin-bottom: 0;
+  &-link {
+    color: #777 !important;
+  }
   li {
     display: inline-block;
     position: relative;
@@ -75,7 +78,7 @@
     }
     a {
       display: inline-block;
-      color: #777777;
+      color: #000;
       font-size: 16px;
       line-height: 20px;
       text-decoration: none;

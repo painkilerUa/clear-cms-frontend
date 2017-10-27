@@ -15,11 +15,11 @@
           </div>
         </div>
       </div>
-      <h2>Your details</h2>
-      <p class="text-wrap">If you need to change any of your details edit the relevant fields below and click on update. You can change your password by entering your current and your new passwords below.</p>
-      <section class="info" v-if="user">
+      <h2 :style="BlueYelBlue" >Your details</h2>
+      <p class="text-wrap" :style="blackYelBlack" >If you need to change any of your details edit the relevant fields below and click on update. You can change your password by entering your current and your new passwords below.</p>
+      <section class="info" v-if="user" :style="infoStyles">
         <article class="personal-info">
-        <h2>Personal info</h2>
+        <h2 :style="BlueYelBlue">Personal info</h2>
         <div class="form-group">
           <div class="form-element">
             <label class="form-label">First name</label>
@@ -61,7 +61,7 @@
         </article>
 
         <article class="password-info">
-          <h2>Password</h2>
+          <h2 :style="BlueYelBlue">Password</h2>
           <div class="form-group">
             <div class="form-element">
               <label class="form-label">Current password</label>
@@ -74,7 +74,7 @@
               <label class="form-label">New password</label>
               <input class="form-control"
                      type="password"
-                     placeholder="Type in the new password ..."
+                     placeholder="Type new password"
                      v-model="user.personal.plainPassword.first"
                      >
             </div>
@@ -82,7 +82,7 @@
               <label class="form-label">Confirm new password</label>
               <input class="form-control"
                      type="password"
-                     placeholder="Retype in the new password ..."
+                     placeholder="Type new password"
                      v-model="user.personal.plainPassword.second"
                      >
             </div>
@@ -90,7 +90,8 @@
         </article>
 
         <article class="update-info">
-          <button class="submit" type="button" @click="updateProfile()">Update</button>
+          <button class="submit" type="button" @click="clearProfile()" :style="confButtonStyle">Cancel</button>
+          <button class="submit" type="button" @click="updateProfile()" :style="confButtonStyle">Update</button>
           <!--<input  type="submit" value="Update" class="submit">-->
         </article>
       </section>
@@ -135,9 +136,41 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'selectedHightCont',
       'getCompaniesForSelect',
-      'getRolesForSelect'
-    ])
+      'getRolesForSelect',
+      'BlueYelBlue',
+      'blackYelBlack'
+    ]),
+    confButtonStyle () {
+      let color
+      let backgroundColor
+      switch (this.selectedHightCont) {
+        case 0:
+          color = '#fff'
+          backgroundColor = '#257281'
+          break
+        case 1:
+          color = '#000'
+          backgroundColor = '#FFFA1A'
+          break
+        case 2:
+          color = '#fff'
+          backgroundColor = '#257281'
+          break
+      }
+      return {
+        color,
+        backgroundColor
+      }
+    },
+    infoStyles () {
+      let updatedStyle = Object.assign(this.BlueYelBlue, {})
+      if (+this.selectedHightCont === 1) {
+        updatedStyle.backgroundColor = '#000'
+      }
+      return updatedStyle
+    }
   },
   methods: {
     ...mapActions([
@@ -191,6 +224,9 @@ export default {
           this.disableAPI = false
           console.log(err)
         })
+    },
+    clearProfile () {
+      this.getProfileData()
     }
   },
   mounted () {

@@ -74,6 +74,11 @@ h2{
 
 .update-info{
   text-align: center;
+  button {
+    &:first-child {
+      margin-right: 30px;
+    }
+  }
 }
 .form-v-select {
   margin-bottom: 20px;

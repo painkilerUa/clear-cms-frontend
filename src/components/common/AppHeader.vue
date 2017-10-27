@@ -52,7 +52,7 @@
               </li>
               <li>
                 <icon name="user-o" class="icon icon-user-o icon-menu-header"></icon>
-                <router-link :to="{name: 'users'}">Users</router-link>
+                <router-link :to="{name: 'users'}" class="main-menu-header-link">Users</router-link>
               </li>
               <!--<li>-->
                 <!--<router-link :to="{name: 'security-configuration'}">Security Configuration</router-link>-->

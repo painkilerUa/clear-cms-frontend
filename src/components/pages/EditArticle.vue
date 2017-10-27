@@ -378,12 +378,16 @@
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
         <div class="add-article-actions">
+          <button type="button" @click="$router.push('/admin/articles-list')" class="action-btn--back">
+            <icon name="rotate-left"></icon>
+            Back to list
+          </button>
           <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
             <span>Preview Article</span>
           </button>
           <button type="button" class="action-btn action-btn--exit icon-btn" @click="$router.push('/admin/articles-list')">Exit / Discard changes</button>
-          <button type="button" class="action-btn action-btn--draft icon-btn" @click="editArticle(0)">Save as draft</button>
+          <button type="button" class="action-btn action-btn--draft icon-btn" @click="editArticle(0)" v-if="false">Save as draft</button>
           <button type="submit" class="action-btn action-btn--publish icon-btn" @click.prevent="editArticle(1)">Save changes & publish</button>
         </div>
         <!-- END:.add-article-actions -->
@@ -405,6 +409,7 @@ import 'vue-awesome/icons/info-circle'
 import 'vue-awesome/icons/remove'
 import 'vue-awesome/icons/file-pdf-o'
 import 'vue-awesome/icons/file-word-o'
+import 'vue-awesome/icons/rotate-left'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'

@@ -108,6 +108,23 @@ export const whiteYelWhite = (state) => {
     color
   }
 }
+export const blackYelBlack = (state) => {
+  let color
+  switch (state.specialOps.selectedHightCont) {
+    case 0:
+      color = '#000'
+      break
+    case 1:
+      color = '#FFFA1A'
+      break
+    case 2:
+      color = '#000'
+      break
+  }
+  return {
+    color
+  }
+}
 export const BlueYelBlue = (state) => {
   let color
   switch (state.specialOps.selectedHightCont) {

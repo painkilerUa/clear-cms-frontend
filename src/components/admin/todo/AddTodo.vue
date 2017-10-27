@@ -342,6 +342,10 @@
         <!-- END:.add-article-sections -->
         <!-- .add-article-actions -->
         <div class="add-article-actions">
+          <button type="button" @click="$router.push('/admin/todo-list')" class="action-btn--back">
+            <icon name="rotate-left"></icon>
+            Back to list
+          </button>
           <button type="button" class="action-btn action-btn--preview icon-btn" @click="previewArticle">
             <icon name="eye" />
             <span>Preview TTD</span>
@@ -367,6 +371,7 @@ import 'vue-awesome/icons/upload'
 import 'vue-awesome/icons/times-circle-o'
 import 'vue-awesome/icons/info-circle'
 import 'vue-awesome/icons/window-close-o'
+import 'vue-awesome/icons/rotate-left'
 import FormMessages from '@/components/common/FormMessages'
 import ArticleAddData from '@/components/pages/ArticleAddData'
 import { mapGetters, mapActions } from 'vuex'

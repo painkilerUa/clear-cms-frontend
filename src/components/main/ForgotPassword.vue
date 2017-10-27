@@ -68,6 +68,9 @@
           <input type="text" data-vv-name="email" placeholder="Email" v-model="formInfo.email" v-validate="'required|email'"/>
           <input :style="confButtonStyle" type="submit" name="" value="Submit" @click="sendFormRequest"/>
         </div>
+        <div class="back-to-login" :style="BlueYelBlue">
+          <router-link :to="{path: '/login'}">Login</router-link>
+        </div>
         <ul  class="front-footer-social-list">
           <li  class="front-footer-social-list__item">
             <a href="https://www.youtube.com/user/UKClearKit" target="_blank" class="front-footer-social-list__link">

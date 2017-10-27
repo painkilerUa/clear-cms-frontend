@@ -120,10 +120,10 @@
           <div class="front-footer-supported-by">
             <span>Supported by</span>
             <a href="https://www.lloyds.com/lloyds/diversity-and-inclusion" target="_blank">
-              <img src="../../../assets/img/main/logo-footer-1.png" width="auto" height="60px" alt="logo-footet-1">
+              <img src="../../../assets/img/main/logo-footer-1.png" width="auto" height="36px" alt="logo-footet-1">
             </a>
             <a href="https://www.lloyds.com/" target="_blank">
-              <img src="../../../assets/img/main/logo-footer-2.png" style="margin-bottom: 15px;" width="auto" height="30px" alt="logo-footet-2">
+              <img src="../../../assets/img/main/logo-footer-2.png" width="auto" height="36px" alt="logo-footet-2">
             </a>
           </div>
         </div>
